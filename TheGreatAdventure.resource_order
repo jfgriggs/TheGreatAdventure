@@ -1,0 +1,24 @@
+{
+  "FolderOrderSettings":[
+    {"name":"Obsticles","order":11,"path":"folders/Obsticles.yy",},
+    {"name":"Player","order":8,"path":"folders/Player.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"oPlayer","order":1,"path":"objects/oPlayer/oPlayer.yy",},
+    {"name":"oPlayerLeft","order":6,"path":"objects/oPlayerLeft/oPlayerLeft.yy",},
+    {"name":"oPlayerRight","order":7,"path":"objects/oPlayerRight/oPlayerRight.yy",},
+    {"name":"oPlayerUp","order":5,"path":"objects/oPlayerUp/oPlayerUp.yy",},
+    {"name":"oWall","order":1,"path":"objects/oWall/oWall.yy",},
+    {"name":"customFunctions","order":9,"path":"scripts/customFunctions/customFunctions.yy",},
+    {"name":"sPlayerDownGirl","order":12,"path":"sprites/sPlayerDownGirl/sPlayerDownGirl.yy",},
+    {"name":"sPlayerLeftBoy","order":3,"path":"sprites/sPlayerLeftBoy/sPlayerLeftBoy.yy",},
+    {"name":"sPlayerLeftGirl","order":9,"path":"sprites/sPlayerLeftGirl/sPlayerLeftGirl.yy",},
+    {"name":"sPlayerRightBoy","order":4,"path":"sprites/sPlayerRightBoy/sPlayerRightBoy.yy",},
+    {"name":"sPlayerRightGirl","order":10,"path":"sprites/sPlayerRightGirl/sPlayerRightGirl.yy",},
+    {"name":"sPlayerUpBoy","order":2,"path":"sprites/sPlayerUpBoy/sPlayerUpBoy.yy",},
+    {"name":"sPlayerUpGirl","order":11,"path":"sprites/sPlayerUpGirl/sPlayerUpGirl.yy",},
+    {"name":"sSolidWall","order":2,"path":"sprites/sSolidWall/sSolidWall.yy",},
+    {"name":"sWall","order":3,"path":"sprites/sWall/sWall.yy",},
+    {"name":"sWeapon","order":8,"path":"sprites/sWeapon/sWeapon.yy",},
+  ],
+}

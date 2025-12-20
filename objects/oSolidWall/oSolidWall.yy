@@ -10,8 +10,8 @@
     "path":"folders/Obsticles.yy",
   },
   "parentObjectId":{
-    "name":"oWall",
-    "path":"objects/oWall/oWall.yy",
+    "name":"oWater",
+    "path":"objects/oWater/oWater.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

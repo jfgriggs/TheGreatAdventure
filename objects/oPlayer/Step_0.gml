@@ -21,8 +21,8 @@ downKey = keyboard_check(vk_down);
 	yspd = lengthdir_y(_spd, moveDir);
 	
 	// Collision check
-	if place_meeting(x + xspd, y, oSolidWall) xspd = 0;
-	if place_meeting(x, y + yspd, oSolidWall) yspd = 0;
+	if place_meeting(x + xspd, y, oWater) xspd = 0;
+	if place_meeting(x, y + yspd, oWater) yspd = 0;
 	
 	// Move player
 	x += xspd;

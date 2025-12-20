@@ -1,9 +1,9 @@
 {
   "$GMSprite":"v2",
   "%Name":"sPlayerLeftGirl",
-  "bboxMode":2,
+  "bboxMode":0,
   "bbox_bottom":31,
-  "bbox_left":9,
+  "bbox_left":8,
   "bbox_right":23,
   "bbox_top":4,
   "collisionKind":1,
@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"17a1a4a3-65a8-4b59-84f2-e6c5a0ce15c4","name":"17a1a4a3-65a8-4b59-84f2-e6c5a0ce15c4","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"a0a83c5f-72d1-4dbe-95b9-9ae4e5035ae6","name":"a0a83c5f-72d1-4dbe-95b9-9ae4e5035ae6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":32,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"5eeea0d0-8a93-4b60-8799-3728a4c570dc","blendMode":0,"displayName":"default","isLocked":false,"name":"5eeea0d0-8a93-4b60-8799-3728a4c570dc","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"4da8fa1e-cc06-41ed-b08f-a802dbe97594","blendMode":0,"displayName":"default","isLocked":false,"name":"4da8fa1e-cc06-41ed-b08f-a802dbe97594","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sPlayerLeftGirl",
   "nineSlice":null,
@@ -71,8 +71,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"17a1a4a3-65a8-4b59-84f2-e6c5a0ce15c4","path":"sprites/sPlayerLeftGirl/sPlayerLeftGirl.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"031e3ac8-30d4-4255-afc0-9237ee184710","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a0a83c5f-72d1-4dbe-95b9-9ae4e5035ae6","path":"sprites/sPlayerLeftGirl/sPlayerLeftGirl.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"85eef2c1-c539-43ae-bc67-07316c789ca0","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

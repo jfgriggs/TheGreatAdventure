@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"fnWeapons",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"fnWeapons",
+  "parent":{
+    "name":"TheGreatAdventure",
+    "path":"TheGreatAdventure.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Vegetables",
-    "path":"folders/Vegetables.yy",
+    "path":"folders/Items/Vegetables.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

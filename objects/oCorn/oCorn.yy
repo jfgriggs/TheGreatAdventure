@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Vegetables",
-    "path":"folders/Vegetables.yy",
+    "path":"folders/Items/Vegetables.yy",
   },
   "parentObjectId":null,
   "persistent":false,

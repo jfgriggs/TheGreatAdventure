@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"fnDamage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"fnDamage",
+  "parent":{
+    "name":"TheGreatAdventure",
+    "path":"TheGreatAdventure.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

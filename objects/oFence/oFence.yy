@@ -6,8 +6,8 @@
   "name":"oFence",
   "overriddenProperties":[],
   "parent":{
-    "name":"Obsticles",
-    "path":"folders/Obsticles.yy",
+    "name":"Obstacles",
+    "path":"folders/Obstacles.yy",
   },
   "parentObjectId":{
     "name":"oWater",

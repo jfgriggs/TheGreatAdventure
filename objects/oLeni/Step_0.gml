@@ -21,8 +21,8 @@ downKey = keyboard_check(ord("S"));
 	yspd = lengthdir_y(_spd, moveDir);
 	
 	// Collision check
-	if place_meeting(x + xspd, y, oSolidWall) xspd = 0;
-	if place_meeting(x, y + yspd, oSolidWall) yspd = 0;
+	if place_meeting(x + xspd, y, oWall) xspd = 0;
+	if place_meeting(x, y + yspd, oWall) yspd = 0;
 	
 	// Move player
 	x += xspd;

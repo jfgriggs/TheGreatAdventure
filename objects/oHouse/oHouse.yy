@@ -10,8 +10,8 @@
     "path":"folders/Buildings.yy",
   },
   "parentObjectId":{
-    "name":"oWall",
-    "path":"objects/oWall/oWall.yy",
+    "name":"oBuildingParent",
+    "path":"objects/oBuildingParent/oBuildingParent.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

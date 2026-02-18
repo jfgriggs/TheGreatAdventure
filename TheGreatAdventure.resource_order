@@ -11,6 +11,7 @@
     {"name":"Trees","order":10,"path":"folders/Trees.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"oBuildingParent","order":12,"path":"objects/oBuildingParent/oBuildingParent.yy",},
     {"name":"oCamera","order":12,"path":"objects/oCamera/oCamera.yy",},
     {"name":"oCarrot","order":38,"path":"objects/oCarrot/oCarrot.yy",},
     {"name":"oCarrotCrate","order":45,"path":"objects/oCarrotCrate/oCarrotCrate.yy",},
@@ -77,6 +78,7 @@
     {"name":"oTree2","order":48,"path":"objects/oTree2/oTree2.yy",},
     {"name":"oTree3","order":49,"path":"objects/oTree3/oTree3.yy",},
     {"name":"oTreefrog","order":5,"path":"objects/oTreefrog/oTreefrog.yy",},
+    {"name":"oTreeParent","order":52,"path":"objects/oTreeParent/oTreeParent.yy",},
     {"name":"oWater","order":5,"path":"objects/oWater/oWater.yy",},
     {"name":"oWatermelon","order":44,"path":"objects/oWatermelon/oWatermelon.yy",},
     {"name":"oWatermelonCrate","order":69,"path":"objects/oWatermelonCrate/oWatermelonCrate.yy",},

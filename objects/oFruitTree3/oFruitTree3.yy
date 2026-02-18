@@ -9,7 +9,10 @@
     "name":"Trees",
     "path":"folders/Trees.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oTreeParent",
+    "path":"objects/oTreeParent/oTreeParent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

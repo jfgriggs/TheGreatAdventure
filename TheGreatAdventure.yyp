@@ -30,6 +30,7 @@
   "name":"TheGreatAdventure",
   "resources":[
     {"id":{"name":"oBarn","path":"objects/oBarn/oBarn.yy",},},
+    {"id":{"name":"oBuildingParent","path":"objects/oBuildingParent/oBuildingParent.yy",},},
     {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},},
     {"id":{"name":"oCarrot","path":"objects/oCarrot/oCarrot.yy",},},
     {"id":{"name":"oCarrotCrate","path":"objects/oCarrotCrate/oCarrotCrate.yy",},},
@@ -97,6 +98,7 @@
     {"id":{"name":"oTree2","path":"objects/oTree2/oTree2.yy",},},
     {"id":{"name":"oTree3","path":"objects/oTree3/oTree3.yy",},},
     {"id":{"name":"oTreefrog","path":"objects/oTreefrog/oTreefrog.yy",},},
+    {"id":{"name":"oTreeParent","path":"objects/oTreeParent/oTreeParent.yy",},},
     {"id":{"name":"oWall","path":"objects/oWall/oWall.yy",},},
     {"id":{"name":"oWater","path":"objects/oWater/oWater.yy",},},
     {"id":{"name":"oWatermelon","path":"objects/oWatermelon/oWatermelon.yy",},},

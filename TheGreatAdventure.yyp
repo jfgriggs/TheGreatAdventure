@@ -43,6 +43,7 @@
     {"id":{"name":"oCornCrateEmpty","path":"objects/oCornCrateEmpty/oCornCrateEmpty.yy",},},
     {"id":{"name":"oCornPlant","path":"objects/oCornPlant/oCornPlant.yy",},},
     {"id":{"name":"oCornPlantEmpty","path":"objects/oCornPlantEmpty/oCornPlantEmpty.yy",},},
+    {"id":{"name":"oCoverController","path":"objects/oCoverController/oCoverController.yy",},},
     {"id":{"name":"oFence","path":"objects/oFence/oFence.yy",},},
     {"id":{"name":"oFlowerTree1","path":"objects/oFlowerTree1/oFlowerTree1.yy",},},
     {"id":{"name":"oFlowerTree2","path":"objects/oFlowerTree2/oFlowerTree2.yy",},},

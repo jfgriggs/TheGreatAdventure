@@ -24,6 +24,7 @@
     {"name":"oCornCrateEmpty","order":50,"path":"objects/oCornCrateEmpty/oCornCrateEmpty.yy",},
     {"name":"oCornPlant","order":51,"path":"objects/oCornPlant/oCornPlant.yy",},
     {"name":"oCornPlantEmpty","order":52,"path":"objects/oCornPlantEmpty/oCornPlantEmpty.yy",},
+    {"name":"oCoverController","order":6,"path":"objects/oCoverController/oCoverController.yy",},
     {"name":"oFence","order":4,"path":"objects/oFence/oFence.yy",},
     {"name":"oFlowerTree1","order":26,"path":"objects/oFlowerTree1/oFlowerTree1.yy",},
     {"name":"oFlowerTree2","order":27,"path":"objects/oFlowerTree2/oFlowerTree2.yy",},

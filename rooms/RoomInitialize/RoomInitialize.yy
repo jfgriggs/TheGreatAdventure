@@ -17,8 +17,8 @@
   ],
   "name":"RoomInitialize",
   "parent":{
-    "name":"TheGreatAdventure",
-    "path":"TheGreatAdventure.yyp",
+    "name":"Rooms",
+    "path":"folders/Rooms.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -1,6 +1,8 @@
 var p = oPlayer;
 
-depth = -y;
+//depth = -y;
+// Depth
+depth = -bbox_bottom;
 
 with (oWall)
 {
@@ -11,11 +13,11 @@ with (oWall)
         if (
             p.x > bbox_left &&
             p.x < bbox_right &&
-            p.y > y &&
+            p.y > bbox_top &&
             p.y < bbox_bottom
         )
         {
-            target = 0.35;
+            target = 0.65;
         }
     }
 

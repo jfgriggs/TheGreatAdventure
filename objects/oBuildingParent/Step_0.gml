@@ -1,2 +1,2 @@
-	// Depth
-	depth = -bbox_bottom;
+// Depth
+depth = -bbox_bottom;

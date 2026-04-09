@@ -1,4 +1,5 @@
 function apply_damage(target, amount, source) {
+	show_debug_message(string(amount) + " DAMAGE from " + string(source));
 
     // --- SAFETY ---
     if (!instance_exists(target)) return;

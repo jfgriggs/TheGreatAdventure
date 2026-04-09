@@ -1,4 +1,4 @@
- /// =========================
+/// =========================
 /// PLAYER STATE: IDLE
 function Player_Idle(_sm) {
 
@@ -57,23 +57,22 @@ function Player_Move(_sm) {
 			if (tile == TILE.TRAP) {
 				o.hp -= 10;
 				o.invincible_timer = 5
-				
 			}
 
 			var vx = lengthdir_x(o.move_speed * speed_factor, o.move_dir);
 			var vy = lengthdir_y(o.move_speed * speed_factor, o.move_dir);
 			
-			show_debug_message("EMPTY=" + string(TILE.EMPTY)
-				+ " WALL=" + string(TILE.WALL)
-				+ " WATER=" + string(TILE.WATER)
-				+ " MUD=" + string(TILE.MUD)
-				+ " TRAP=" + string(TILE.TRAP)
-				+ " HOLE=" + string(TILE.HOLE)
-				+ " EXPANSION1=" + string(TILE.EXPANSION1)
-				+ " EXPANSION2=" + string(TILE.EXPANSION2)
-				+ " EXPANSION3=" + string(TILE.EXPANSION3)
-				);
-			show_debug_message("tile=" + string(tile) + " speed_factor=" + string(speed_factor) + " vx=" + string(vx) + " vy=" + string(vy));
+			//show_debug_message("EMPTY=" + string(TILE.EMPTY)
+			//	+ " WALL=" + string(TILE.WALL)
+			//	+ " WATER=" + string(TILE.WATER)
+			//	+ " MUD=" + string(TILE.MUD)
+			//	+ " TRAP=" + string(TILE.TRAP)
+			//	+ " HOLE=" + string(TILE.HOLE)
+			//	+ " EXPANSION1=" + string(TILE.EXPANSION1)
+			//	+ " EXPANSION2=" + string(TILE.EXPANSION2)
+			//	+ " EXPANSION3=" + string(TILE.EXPANSION3)
+			//	);
+			//show_debug_message("tile=" + string(tile) + " speed_factor=" + string(speed_factor) + " vx=" + string(vx) + " vy=" + string(vy));
 
             o.move_and_collide_fn(vx, vy);
 
@@ -131,19 +130,33 @@ function Player_Teleport(_sm) {
 				/// ==============================
 				case 0:
 					if (o.teleport_timer <= 0) {
-						//Move player
-			            o.x = irandom(room_width);
-			            o.y = irandom(room_height);					
+						//Move player - find a position that is not blocked by a wall, water, or trap.
+					    var tile_size = 16; // match your tileset
+					    var attempts = 50;
 
-						// Particle effect at destination
-						spawn_spark(o.x, o.y);
-						spawn_spark(o.x, o.y);
+					    repeat (attempts) {
 
-						// Switch to reappear
-						o.teleport_phase = 1;
-						o.telport_timer = 60;
-						
-						o.flash_timer = 60;
+					        var tx = irandom(room_width div tile_size) * tile_size;
+					        var ty = irandom(room_height div tile_size) * tile_size;
+
+					        var tile = tile_get(tx, ty);
+
+					        if (!tile_is_blocking(tile)) {
+					            o.x = tx;
+								o.y = ty;
+							
+								// Particle effect at destination
+								spawn_spark(o.x, o.y);
+								spawn_spark(o.x, o.y);
+
+								// Switch to reappear
+								o.teleport_phase = 1;
+								o.telport_timer = 60;
+								o.flash_timer = 60;								
+								
+								break;
+					        }
+						}
 					}
 				break;
 

@@ -17,12 +17,10 @@ if (game_state == GAME_STATE.START) {
 		draw_set_valign(fa_middle);
 		
 		draw_set_color(c_yellow);
-		draw_text(cx, cy - 30, "PRESS SPACE");
+		draw_text(cx, cy - 70, "PRESS SPACE");
 
 		draw_set_color(c_white);
-		draw_text(cx, cy + 30, "TO START");
-
-		draw_set_font(fnt_normal);
+		draw_text(cx, cy + 70, "TO START");
 	}
 }
 
@@ -43,12 +41,10 @@ else if (game_state == GAME_STATE.PAUSED) {
 		draw_set_valign(fa_middle);
 		
 		draw_set_color(c_yellow);
-	    draw_text(cx, cy - 30, "QUIT GAME?");
+	    draw_text(cx, cy - 70, "QUIT GAME?");
 		
 		draw_set_color(c_white);
-		draw_text(cx, cy + 30, "Y = YES   N = NO");
-		
-		draw_set_font(fnt_normal);
+		draw_text(cx, cy + 70, "Y = YES   N = NO");
 	}
 }
 
@@ -69,11 +65,9 @@ else if (game_state == GAME_STATE.GAME_OVER) {
 		draw_set_valign(fa_middle);
 		
 		draw_set_color(c_yellow);
-	    draw_text(cx, cy - 30, "GAME OVER");
+	    draw_text(cx, cy - 70, "GAME OVER");
 
 		draw_set_color(c_white);
-		draw_text(cx, cy + 30, "Press R to Restart");
-
-		draw_set_font(fnt_normal);
+		draw_text(cx, cy + 70, "Press R to Restart");
 	}
 }

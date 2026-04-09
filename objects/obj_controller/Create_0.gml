@@ -18,7 +18,7 @@ game_state = GAME_STATE.START
 
 // Fade in/out
 fade_alpha  = 0.5;     // 1 = fully black, 0 = visible
-fade_target = 0;     // where we want to go
+fade_target = 1;     // where we want to go
 fade_speed  = 0.05;  // how fast it fades
 
 next_state = undefined;

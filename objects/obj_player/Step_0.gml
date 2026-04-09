@@ -1,9 +1,9 @@
-show_debug_message("game_state=" + string(obj_controller.game_state)
-	+ " start=" +  string(GAME_STATE.START)
-	+ " playing=" +  string(GAME_STATE.PLAYING)
-	+ " paused=" +  string(GAME_STATE.PAUSED)
-	+ " game_over=" +  string(GAME_STATE.GAME_OVER)
-);
+//show_debug_message("game_state=" + string(obj_controller.game_state)
+//	+ " start=" +  string(GAME_STATE.START)
+//	+ " playing=" +  string(GAME_STATE.PLAYING)
+//	+ " paused=" +  string(GAME_STATE.PAUSED)
+//	+ " game_over=" +  string(GAME_STATE.GAME_OVER)
+//);
 
 if (obj_controller.game_state != GAME_STATE.PLAYING) {
     exit;
@@ -87,7 +87,7 @@ if (teleport_timer > 0) {
 
 
 /// =========================
-/// TRAP TILE DAMAGE
+/// TRAP
 /// =========================
 var tile = tile_get(x, y);
 if (tile == TILE.TRAP) {

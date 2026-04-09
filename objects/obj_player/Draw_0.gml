@@ -23,24 +23,17 @@ draw_self();
 // Reset (important!)
 image_alpha = 1;
 image_blend = c_white;
-draw_set_color(c_white);
-draw_set_font(fnt_normal);
+
 
 /// =========================
 /// DEBUG (REMOVE LATER)
 /// =========================
+draw_set_font(fnt_debug_small);
+draw_set_color(c_white);
 
-// State
-draw_text(x - 40, y - 75, "State: " + string(sm.current));
-
-// Input
-draw_text(x - 40, y - 60, "Input: " + string(input_x) + "," + string(input_y));
-
-// Movement
+//draw_text(x - 40, y - 75, "State: " + string(sm.current));
+draw_text(x - 40, y - 55, "Input: " + string(input_x) + "," + string(input_y));
 draw_text(x - 40, y - 45, "Move: " + string(input_x) + "," + string(input_y) + "," + string(move_dir) + "," + string(move_speed));
-
-// HP
-draw_text(x - 40, y - 30, "HP: " + string(hp));
-
-// Weapon
-draw_text(x - 40, y - 15, "Wpn: " + string(weapon.name));
+draw_text(x - 40, y - 35, "HP: " + string(hp));
+draw_text(x - 40, y - 25, "Wpn: " + string(weapon.name));
+draw_text(x - 40, y - 15, "Item: " + string(active_item.name));

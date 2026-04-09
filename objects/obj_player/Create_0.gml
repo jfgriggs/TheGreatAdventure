@@ -90,7 +90,7 @@ trap_cooldown = 60; // frames (~2 sec)
 /// =========================
 weapons = ds_list_create();
 
-ds_list_add(weapons, Weapon_Create("slingshot"));
+ds_list_add(weapons, Weapon_Create("bow"));
 ds_list_add(weapons, Weapon_Create("spread"));
 
 weapon_index = 0;
@@ -104,8 +104,26 @@ weapon_cooldown = 0;
 /// =========================
 inventory = ds_list_create();
 
-ds_list_add(inventory, "carrot");
-ds_list_add(inventory, "corn");
+ds_list_add(inventory, {
+	name: "carrot",
+	sprite: spr_item_carrot,
+	sprite_large: spr_item_carrot_large,
+	count: 3
+});
+	
+ds_list_add(inventory, {
+	name: "corn",
+	sprite: spr_item_corn,
+	sprite_large: spr_item_corn_large,
+	count: 1
+});
+
+ds_list_add(inventory, {
+	name: "corn",
+	sprite: spr_item_pumpkin,
+	sprite_large: spr_item_pumpkin_large,
+	count: 1
+});
 
 active_item_index = 0;
 active_item = inventory[| active_item_index];
@@ -113,7 +131,7 @@ active_item = inventory[| active_item_index];
 move_and_collide_fn = function(_vx, _vy) {
     var o = self;
 
-	show_debug_message("(x,y)=" + string(o.x) + "," + string(o.y) + " (vx,vy)=" + string(_vx) + "," + string(_vy));
+	//show_debug_message("(x,y)=" + string(o.x) + "," + string(o.y) + " (vx,vy)=" + string(_vx) + "," + string(_vy));
 
 	// --- X ---
     if (_vx != 0) {

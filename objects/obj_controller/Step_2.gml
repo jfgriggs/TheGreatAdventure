@@ -1,3 +1,6 @@
+// File: obj_controller.gml
+// Event: end step
+
 // Camera follow
 var p = instance_find(obj_player, 0);
 

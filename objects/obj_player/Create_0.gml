@@ -1,3 +1,6 @@
+// File: obj_player.gml
+// Event: create
+
 /// =========================
 ///  --- STATE MACHINE ---
 /// =========================
@@ -9,7 +12,9 @@ sm.change(Player_Idle(sm));
 /// INITIALIZATION
 /// =========================
 
+// Sprite index (down right)
 face = 3;
+
 sprite[0] = sPlayerRightBoy;
 sprite[1] = sPlayerUpBoy;
 sprite[2] = sPlayerLeftBoy;
@@ -22,6 +27,7 @@ sprite[3] = sPlayerDownBoy;
 input_x = 0;
 input_y = 0;
 input_attack = false;
+input_throw = false;
 
 move_speed_default = 2;
 move_speed = move_speed_default
@@ -30,6 +36,7 @@ move_dir = 0;
 spawn_x = x;
 spawn_y = y;
 
+center_y_offset = 10;
 center_y_offset = 10;
 center_y = y - center_y_offset;   // Set in step event
 
@@ -67,8 +74,9 @@ knockback_y = 0;
 knockback_force = 6;
 
 is_dead = false;
-hit_timer = 0;
 
+hit_timer = 0;
+throw_timer = 0;
 
 /// =========================
 /// FLASH
@@ -104,26 +112,9 @@ weapon_cooldown = 0;
 /// =========================
 inventory = ds_list_create();
 
-ds_list_add(inventory, {
-	name: "carrot",
-	sprite: spr_item_carrot,
-	sprite_large: spr_item_carrot_large,
-	count: 3
-});
-	
-ds_list_add(inventory, {
-	name: "corn",
-	sprite: spr_item_corn,
-	sprite_large: spr_item_corn_large,
-	count: 1
-});
-
-ds_list_add(inventory, {
-	name: "corn",
-	sprite: spr_item_pumpkin,
-	sprite_large: spr_item_pumpkin_large,
-	count: 1
-});
+// Pre-populated inventory items
+ds_list_add(inventory, Item_Create(ITEM.CARROT));
+ds_list_add(inventory, Item_Create(ITEM.CORN));
 
 active_item_index = 0;
 active_item = inventory[| active_item_index];

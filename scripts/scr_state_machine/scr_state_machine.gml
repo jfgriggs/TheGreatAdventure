@@ -1,3 +1,5 @@
+// File: src_state_machine.gml
+
 function StateMachine(_owner) constructor {
 
     owner = _owner;

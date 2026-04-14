@@ -1,17 +1,12 @@
-saved_count = 0;
+// File: obj_pen.gml
+// Event: create
 
-// Optional: set from controller
-target_count = 5;
+show_debug_message("Pen created: " + object_get_name(object_index));
 
-function add_animal() {
-    saved_count++;
-    global.points += 100;
+// Child must set this
+//if (!variable_instance_exists(id, "accepted_animal")) {
+//    show_debug_message("WARNING: Pen missing accepted_animal");
+//    accepted_animal = -1;    // safe fallback
+//}
 
-    // Check win condition
-    if (saved_count >= target_count) {
-        show_debug_message("LEVEL COMPLETE");
-        
-        // You can replace this later:
-        // room_goto_next();
-    }
-}
+score_value = 100;

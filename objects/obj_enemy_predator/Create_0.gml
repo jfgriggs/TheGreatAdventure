@@ -1,3 +1,6 @@
+// File: obj_enemy_predator.gml
+// Event: create
+
 sm = new StateMachine(id);
 
 speed = 3;

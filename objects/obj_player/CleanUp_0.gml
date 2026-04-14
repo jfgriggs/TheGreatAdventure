@@ -1,6 +1,5 @@
-/// =========================
-/// CLEANUP (IMPORTANT)
-/// =========================
+// File: obj_player.gml
+// Event: clean up
 
 // Weapons list
 if (ds_exists(weapons, ds_type_list)) {

@@ -1,4 +1,7 @@
-if (obj_controller.game_state != GAME_STATE.PLAYING) exit;
+// File: obj_enemy_archer.gml
+// Event: step
+
+if (global.game_state != GAME_STATE.PLAYING) exit;
 
 sm.update();
 

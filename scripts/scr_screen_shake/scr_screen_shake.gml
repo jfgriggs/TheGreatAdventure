@@ -1,3 +1,5 @@
+// File: src_screen_shake.gml
+
 function screen_shake(amount, duration) {
 	var c = obj_controller;
 	

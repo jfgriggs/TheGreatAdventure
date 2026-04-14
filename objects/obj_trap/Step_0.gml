@@ -1,3 +1,11 @@
+// File: obj_trap.gml
+// Event: step
+
+// If game not playing stop
+if (global.game_state != GAME_STATE.PLAYING) {
+    exit;
+}
+
 lifetime--;
 if (lifetime <= 0) instance_destroy();
 

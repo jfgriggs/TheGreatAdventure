@@ -1,3 +1,6 @@
+// File: obj_ui.gml
+// Event: draw gui
+
 var p = obj_player;
 
 if (!instance_exists(p)) exit;

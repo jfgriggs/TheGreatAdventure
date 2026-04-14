@@ -1,3 +1,6 @@
+// File: obj_enemy_archer.gml
+// Event: create
+
 sm = new StateMachine(id);
 
 speed = 2;

@@ -1,4 +1,21 @@
+// File: src_game_reset.gml
+
+//function game_reset() {
+
+//    global.points = 0;
+//    global.animals_saved = 0;
+//    global.game_time = 0;
+
+//    room_restart();
+//}
+
+
 function game_reset() {
+
+	// Reset globals
+	global.points = 0;
+    global.animals_saved = 0;
+    global.game_time = 0;
 
     // Reset player
     var p = obj_player;
@@ -18,15 +35,15 @@ function game_reset() {
         p.trap_timer = 0;
     }
 
-    // Reset enemies (simple version)
-    with (obj_enemy_parent) {
-        instance_destroy();
-    }
+    //// Reset enemies (simple version)
+    //with (obj_enemy) {
+    //    instance_destroy();
+    //}
 
-    // Reset animals
-    with (obj_animal_parent) {
-        instance_destroy();
-    }
+    //// Reset animals
+    //with (obj_animal) {
+    //    instance_destroy();
+    //}
 
     // (Optional) respawn logic goes here
 }

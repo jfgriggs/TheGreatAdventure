@@ -1,10 +1,5 @@
-// --- Globals ---
-global.game_time = 0;
-global.points = 0;
-global.best_time = 0;
-
-// Store controller reference
-global.controller = id;
+// File: obj_controller.gml
+// Event: create
 
 // Game states
 enum GAME_STATE {
@@ -14,7 +9,15 @@ enum GAME_STATE {
 	GAME_OVER
 }
 
-game_state = GAME_STATE.START
+// --- Globals ---
+global.game_state = GAME_STATE.START
+global.game_time = 0;
+global.points = 0;
+global.best_time = 0;
+global.FPS = game_get_speed(gamespeed_fps);
+
+// Store controller reference
+global.controller = id;
 
 // Fade in/out
 fade_alpha  = 0.5;     // 1 = fully black, 0 = visible

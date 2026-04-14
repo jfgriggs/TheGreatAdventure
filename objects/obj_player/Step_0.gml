@@ -1,11 +1,15 @@
-//show_debug_message("game_state=" + string(obj_controller.game_state)
+// File: obj_player.gml
+// Event: step
+
+//show_debug_message("game_state=" + string(global.game_state)
 //	+ " start=" +  string(GAME_STATE.START)
 //	+ " playing=" +  string(GAME_STATE.PLAYING)
 //	+ " paused=" +  string(GAME_STATE.PAUSED)
 //	+ " game_over=" +  string(GAME_STATE.GAME_OVER)
 //);
 
-if (obj_controller.game_state != GAME_STATE.PLAYING) {
+// If game not playing stop
+if (global.game_state != GAME_STATE.PLAYING) {
     exit;
 }
 
@@ -16,6 +20,7 @@ input_x = keyboard_check(vk_right) - keyboard_check(vk_left);
 input_y = keyboard_check(vk_down) - keyboard_check(vk_up);
 
 input_attack = mouse_check_button_pressed(mb_left);
+input_throw = mouse_check_button_pressed(mb_right);
 
 // Store previous position BEFORE movement
 prev_x = x;

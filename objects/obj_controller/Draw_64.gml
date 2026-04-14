@@ -1,10 +1,13 @@
+// File: obj_controller.gml
+// Event: draw gui
+
 var cx = display_get_gui_width() / 2;
 var cy = display_get_gui_height() / 2;
 
 // =========================
 // START SCREEN
 // =========================
-if (game_state == GAME_STATE.START) {
+if (global.game_state == GAME_STATE.START) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
 	draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);
@@ -28,7 +31,7 @@ if (game_state == GAME_STATE.START) {
 // =========================
 // PAUSE / QUIT SCREEN
 // =========================
-else if (game_state == GAME_STATE.PAUSED) {
+else if (global.game_state == GAME_STATE.PAUSED) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
 	draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);
@@ -52,7 +55,7 @@ else if (game_state == GAME_STATE.PAUSED) {
 // =========================
 // GAME OVER
 // =========================
-else if (game_state == GAME_STATE.GAME_OVER) {
+else if (global.game_state == GAME_STATE.GAME_OVER) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
 	draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);

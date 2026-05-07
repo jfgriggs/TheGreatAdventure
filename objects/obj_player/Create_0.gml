@@ -1,12 +1,24 @@
-// File: obj_player.gml
-// Event: create
-
-/// =========================
-///  --- STATE MACHINE ---
-/// =========================
-sm = new StateMachine(id);
-sm.change(Player_Idle(sm));
-
+/// @description Initialize player systems and runtime state.
+///
+/// Object: obj_player
+/// Event: Create
+///
+/// Responsibilities:
+/// - Initialize movement variables
+/// - Initialize combat variables
+/// - Create inventory
+/// - Initialize state machine
+/// - Register player states
+/// - Configure movement handler
+///
+/// Dependencies:
+/// - scr_state_machine
+/// - scr_player_states
+/// - src_items
+///
+/// Notes:
+/// - Gameplay logic should remain inside state scripts
+/// - Shared movement logic should remain centralized
 
 /// =========================
 /// INITIALIZATION
@@ -119,40 +131,56 @@ ds_list_add(inventory, Item_Create(ITEM.CORN));
 active_item_index = 0;
 active_item = inventory[| active_item_index];
 
-move_and_collide_fn = function(_vx, _vy) {
-    var o = self;
 
-	//show_debug_message("(x,y)=" + string(o.x) + "," + string(o.y) + " (vx,vy)=" + string(_vx) + "," + string(_vy));
+// ============================================================================
+// Movement Handler
+// ============================================================================
 
-	// --- X ---
+apply_movement = function(_vx, _vy) {
+
+    // ------------------------------------------------------------------------
+    // Horizontal Movement
+    // ------------------------------------------------------------------------
     if (_vx != 0) {
-        var new_x = o.x + _vx;
-        var tile = tile_get(new_x, o.y);
+        var new_x = x + _vx;
+        var tile = tile_get(new_x, y);
 
         if (!tile_is_blocking(tile)) {
-            o.x = new_x;
+            x = new_x;
         } else {
 			// If inside a tile move out of it
 			var step = sign(_vx);
-            while (!tile_is_blocking(tile_get(o.x + step, o.y))) {
-                o.x += step;
+            while (!tile_is_blocking(tile_get(x + step, y))) {
+                x += step;
             }
         }
     }
 
-    // --- Y ---
+
+    // ------------------------------------------------------------------------
+    // Vertical Movement
+    // ------------------------------------------------------------------------
+
     if (_vy != 0) {
-        var new_y = o.y + _vy;
-        var tile = tile_get(o.x, new_y);
+        var new_y = y + _vy;
+        var tile = tile_get(x, new_y);
 
         if (!tile_is_blocking(tile)) {
-            o.y = new_y;
+            y = new_y;
         } else {
 			// If inside a tile move out of it
             var step = sign(_vy);
-            while (!tile_is_blocking(tile_get(o.x, o.y + step))) {
-                o.y += step;
+            while (!tile_is_blocking(tile_get(x, y + step))) {
+                y += step;
             }
         }
     }
 };
+
+
+// ============================================================================
+// State Machine
+// ============================================================================
+
+sm = new StateMachine(id);
+sm.change(Player_Idle(sm));

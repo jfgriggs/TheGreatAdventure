@@ -38,7 +38,10 @@ draw_set_color(c_white);
 draw_text(x - 40, y - 55, "Input: " + string(input_x) + "," + string(input_y));
 draw_text(x - 40, y - 45, "Move: " + string(input_x) + "," + string(input_y) + "," + string(move_dir) + "," + string(move_speed));
 draw_text(x - 40, y - 35, "HP: " + string(hp));
-draw_text(x - 40, y - 25, "Wpn: " + string(weapon.name));
+
+if (variable_instance_exists(id, "weapon")) {
+	draw_text(x - 40, y - 25, "Wpn: " + string(weapon.name));
+}
 
 if (variable_instance_exists(id, "active_item")) {
 	draw_text(x - 40, y - 15, "Item: " + string(active_item));

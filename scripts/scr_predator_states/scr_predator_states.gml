@@ -27,10 +27,7 @@ function Predator_Hunt(_sm) {
 
             var dir = point_direction(o.x,o.y,t.x,t.y);
 
-            move_and_collide(o,
-                lengthdir_x(o.speed,dir),
-                lengthdir_y(o.speed,dir)
-            );
+            o.apply_movement(lengthdir_x(o.speed,dir), lengthdir_y(o.speed,dir));
 
             if (point_distance(o.x,o.y,t.x,t.y) < 20) {
                 with(t) instance_destroy();

@@ -6,8 +6,8 @@ show_debug_message("Animal created: " + object_get_name(object_index));
 /// =========================
 ///  --- STATE MACHINE ---
 /// =========================
-sm = new StateMachine(id);
-sm.change(Animal_Idle(sm));
+//sm = new StateMachine(id);
+//sm.change(Animal_Idle(sm));
 
 /// =========================
 /// ANIMAL SETUP
@@ -31,7 +31,7 @@ wander_dir = irandom(359);
 wander_timer = 0;
 
 // Movement helper
-move_and_collide_fn = function(_vx, _vy) {
+apply_movement = function(_vx, _vy) {
     var o = self;
 
 	//show_debug_message("(x,y)=" + string(o.x) + "," + string(o.y) + " (vx,vy)=" + string(_vx) + "," + string(_vy));
@@ -68,3 +68,12 @@ move_and_collide_fn = function(_vx, _vy) {
         }
     }
 };
+
+
+// ============================================================================
+// State Machine
+// ============================================================================
+
+sm = new StateMachine(id);
+sm.change(Animal_Idle(sm));
+

@@ -9,4 +9,5 @@ animal = Animal_Create(ANIMAL.CHICKEN);
 face = 3;
 sprite = animal.sprite;
 
-show_debug_message("ANIMAL CREATED: " + string(animal));
+//show_debug_message("ANIMAL CREATED: " + string(animal));
+show_debug_message("ANIMAL CREATED");

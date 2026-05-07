@@ -1,5 +1,22 @@
-// File: obj_player.gml
-// Event: step
+/// @description <short purpose>
+///
+/// Object: obj_player
+/// Event: Step
+///
+/// Responsibilities:
+/// - Update player state machine
+/// - Process movement state
+/// - Handle interaction logic
+/// - Update facing direction
+///
+/// Dependencies:
+/// - scr_state_machine
+/// - scr_player_states
+/// - scr_tile_lookup
+///
+/// Notes:
+/// - State-specific logic belongs in state scripts
+/// - Avoid direct gameplay logic in Step event
 
 //show_debug_message("game_state=" + string(global.game_state)
 //	+ " start=" +  string(GAME_STATE.START)
@@ -64,7 +81,7 @@ if (invincible_timer > 0) invincible_timer--;
 /// KNOCKBACK
 /// =========================
 if (abs(knockback_x) > 0.1 || abs(knockback_y) > 0.1) {
-    move_and_collide_fn(knockback_x, knockback_y);
+    self.apply_movement(knockback_x, knockback_y);
 
     knockback_x *= 0.8;
     knockback_y *= 0.8;
@@ -135,8 +152,11 @@ sprite_index = sprite[face];
 /// WEAPON SWITCH
 /// =========================
 if (keyboard_check_pressed(vk_space)) {
-    weapon_index = (weapon_index + 1) mod ds_list_size(weapons);
-    weapon = weapons[| weapon_index];
+	weapon_count = ds_list_size(weapons)
+	if (weapon_count > 0) {
+	    weapon_index = (weapon_index + 1) mod weapon_count;
+	    weapon = weapons[| weapon_index];
+	}
 }
 
 
@@ -144,6 +164,9 @@ if (keyboard_check_pressed(vk_space)) {
 /// ITEM SWITCH
 /// =========================
 if (keyboard_check_pressed(vk_tab)) {
-    active_item_index = (active_item_index + 1) mod ds_list_size(inventory);
-    active_item = inventory[| active_item_index];
+	item_count = ds_list_size(inventory)
+	if (item_count > 0) {
+	    active_item_index = (active_item_index + 1) mod item_count;
+	    active_item = inventory[| active_item_index];
+	}
 }

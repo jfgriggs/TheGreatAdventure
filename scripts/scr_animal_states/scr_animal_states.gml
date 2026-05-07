@@ -2,25 +2,15 @@
 
 function Animal_Idle(_sm) {
 	return {
-
 		sm: _sm,
-
-        enter: function() {
-
-            var sm = self.sm;
-            var o  = sm.owner;
-			
-			o.wander_dir = irandom(359);
+		owner: _sm.owner,
+        
+		enter: function() {
+			owner.wander_dir = irandom(359);
         },
 
         update: function() {
-            var sm = self.sm;
-            var o  = sm.owner;
-
-            //o.move_and_collide(
-            //    lengthdir_x(o.speed, o.wander_dir),
-            //    lengthdir_y(o.speed, o.wander_dir)
-            //);
+            owner.apply_movement(lengthdir_x(owner.speed, owner.wander_dir), lengthdir_y(owner.speed, owner.wander_dir));
 
             //var p = obj_player;
 
@@ -37,24 +27,18 @@ function Animal_Idle(_sm) {
 
 function Animal_Follow(_sm) {
     return {
+		sm: _sm,
+		owner: _sm.owner,
 
-        sm: _sm,
+		update: function() {
+            //if (!instance_exists(p)) {
+            //    sm.change(o.Animal_Idle());
+			//	sm.change(state_idle);
+            //    return;
+            //}
 
-        update: function() {
-            var sm = self.sm;
-            var o  = sm.owner;
-
-            if (!instance_exists(p)) {
-                _sm.change(Animal_Idle(_sm));
-                return;
-            }
-
-            var dir = point_direction(o.x,o.y,p.x,p.y);
-
-            o.move_and_collide_fn(
-				lengthdir_x(o.speed, dir),
-                lengthdir_y(o.speed, dir)
-            );
+            //var dir = point_direction(o.x,o.y,p.x,p.y);
+            //o.apply_movement(lengthdir_x(o.speed, dir), lengthdir_y(o.speed, dir));
         }
     };
 }

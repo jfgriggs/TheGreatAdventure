@@ -1,5 +1,21 @@
-// File: obj_player.gml
-// Event: draw
+// =============================================================================
+// OBJECT:      obj_player
+// EVENT:       Draw
+// SYSTEM:      Player Rendering
+// =============================================================================
+
+/// @description Handles player rendering and visual effects.
+///
+/// Responsibilities:
+/// - Draw player sprite
+/// - Draw weapon/aim visuals
+/// - Draw debug visuals
+/// - Draw temporary effects
+///
+/// Notes:
+/// - HUD rendering belongs in obj_hud
+/// - Debug rendering should remain optional
+/// - Rendering should avoid gameplay logic
 
 // Red flash + blink combo
 if (flash_timer > 0 && !flash_visible) {

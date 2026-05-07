@@ -1,5 +1,29 @@
-// File: obj_enemy_predator.gml
-// Event: step
+// =============================================================================
+// OBJECT:      obj_enemy_predator
+// EVENT:       Create
+// SYSTEM:      Enemy Configuration
+// =============================================================================
+
+/// @description Configures predator-specific enemy data, combat behavior, and AI tuning.
+///
+/// Parent Object:
+/// - obj_enemy_parent
+///
+/// Responsibilities:
+/// - Assign enemy type
+/// - Configure predator data struct
+/// - Setup ranged combat properties
+/// - Configure movement/AI tuning
+/// - Initialize targeting variables
+/// - Configure projectile behavior
+/// - Setup visual/animation configuration
+///
+/// Notes:
+/// - Inherits shared enemy behavior from obj_enemy_parent
+/// - Shared AI logic belongs in scr_enemy_states
+/// - Shared combat logic belongs in scr_combat
+/// - Enemy definitions should remain data-driven
+/// - Avoid duplicating shared enemy functionality here
 
 if (global.game_state != GAME_STATE.PLAYING) exit;
 

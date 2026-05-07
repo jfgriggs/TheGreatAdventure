@@ -1,5 +1,24 @@
-// File: obj_hud.gml
-// Event: draw gui
+// =============================================================================
+// OBJECT:      obj_hud
+// EVENT:       Draw GUI
+// SYSTEM:      HUD Rendering
+// =============================================================================
+
+/// @description Draws gameplay HUD elements and runtime player information.
+///
+/// Responsibilities:
+/// - Draw player health
+/// - Draw timer/score
+/// - Draw inventory information
+/// - Draw equipped weapons/items
+/// - Draw ammo/resource counters
+/// - Draw optional debug information
+///
+/// Notes:
+/// - Gameplay overlays belong here
+/// - Global game-state overlays belong in obj_controller
+/// - Rendering should remain presentation-focused
+/// - Avoid modifying gameplay state during rendering
 
 // If game not playing do not show
 if (global.game_state != GAME_STATE.PLAYING) {
@@ -80,7 +99,7 @@ draw_set_valign(fa_top);
 /// =========================
 
 // Total seconds
-var total_seconds = floor(global.game_time / global.FPS);
+var total_seconds = floor(global.game_time / global.target_fps);
 
 // Split into minutes + seconds
 var minutes = total_seconds div 60;

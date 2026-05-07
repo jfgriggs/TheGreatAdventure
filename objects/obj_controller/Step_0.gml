@@ -1,5 +1,21 @@
-// File: obj_controller.gml
-// Event: step
+// =============================================================================
+// OBJECT:      obj_controller
+// EVENT:       Step
+// SYSTEM:      Core Game Controller
+// =============================================================================
+
+/// @description Handles high-level game state updates and transitions.
+///
+/// Responsibilities:
+/// - Update global game states
+/// - Handle pause/game over transitions
+/// - Process fade transitions
+/// - Manage restart/reset flow
+/// - Update global timers
+///
+/// Notes:
+/// - Gameplay-specific logic belongs in subsystem scripts
+/// - Keep this event focused on orchestration
 
 fade_alpha = lerp(fade_alpha, fade_target, fade_speed);
 
@@ -9,62 +25,64 @@ if (abs(fade_alpha - fade_target) < 0.01) {
 }
 
 switch(global.game_state) {
-	// =========================
-	// START SCREEN
-	// =========================
+	// =============================================================================
+	// REGION: Start State
+	// =============================================================================
 	case GAME_STATE.START:
 		if (keyboard_check_pressed(vk_space)) {
-			show_debug_message("global.game_state == GAME_STATE.START == " + string(global.game_state));
-	        // reset room to spawn everything fresh
+			// reset room to spawn everything fresh
 	        game_reset();
 
 			fade_target = 1;
 			global.game_state = GAME_STATE.PLAYING;
-	    }
+			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));	    }
 		break;
 
-	// =========================
-	// PLAYING
-	// =========================
+	// =============================================================================
+	// REGION: Playing State
+	// =============================================================================
 	case GAME_STATE.PLAYING:
 	    // Pause / Quit prompt
 	    if (keyboard_check_pressed(vk_escape)) {
-			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));
-	        global.game_state = GAME_STATE.PAUSED;
+			global.game_state = GAME_STATE.PAUSED;
+			show_debug_message("global.game_state == GAME_STATE.PAUSED == " + string(global.game_state));
 	    }
 
 		// Time updates here (NOT in Create)
 		global.game_time++;
 		break;
 
-	// =========================
-	// PAUSED (QUIT CONFIRM)
-	// =========================
+	// =============================================================================
+	// REGION: Pause State
+	// =============================================================================
 	case GAME_STATE.PAUSED:
-		show_debug_message("global.game_state == GAME_STATE.PAUSED == " + string(global.game_state));
-	    // YES → quit to start
+		// YES → quit to start
 	    if (keyboard_check_pressed(ord("Y"))) {
 	        game_reset();
 			fade_target = 1;
 			global.game_state = GAME_STATE.START;
+			show_debug_message("global.game_state == GAME_STATE.START == " + string(global.game_state));
 	    }
 
 	    // NO → resume game
 	    if (keyboard_check_pressed(ord("N"))) {
 			fade_target = 1;
 	        global.game_state = GAME_STATE.PLAYING;
+			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));
+			
 	   }
 	   break;
 
-	// =========================
-	// GAME OVER
-	// =========================
+	// =============================================================================
+	// REGION: Game Over State
+	// =============================================================================
 	case GAME_STATE.GAME_OVER:
 		show_debug_message("global.game_state == GAME_STATE.GAME_OVER == " + string(global.game_state));
 	    if (keyboard_check_pressed(ord("R"))) {
 	        game_reset();
 			fade_target = 1;
 			global.game_state = GAME_STATE.PLAYING;
+			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));
 	    }
 		break;
 }		

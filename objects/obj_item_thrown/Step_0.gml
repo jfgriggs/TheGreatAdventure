@@ -1,5 +1,27 @@
-// File: obj_item_thrown.gml
-// Event: step
+// =============================================================================
+// OBJECT:      obj_item_thrown
+// EVENT:       Step
+// SYSTEM:      Thrown Item Runtime Update
+// =============================================================================
+
+/// @description Updates thrown-item movement, collision, terrain interaction, and lifecycle behavior.
+///
+/// Parent Object:
+/// - obj_item
+///
+/// Responsibilities:
+/// - Apply movement physics
+/// - Process drag/deceleration
+/// - Handle collision resolution
+/// - Update terrain interaction
+/// - Process lifetime expiration
+/// - Detect animal interactions
+/// - Update visual state/effects
+///
+/// Notes:
+/// - Movement should route through shared systems
+/// - Terrain handling should remain centralized
+/// - Avoid duplicating projectile logic across item types
 
 // Lifetime countdown
 life--;

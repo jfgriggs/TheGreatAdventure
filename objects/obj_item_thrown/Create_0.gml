@@ -1,9 +1,26 @@
-// File: obj_item_thrown.gml
-// Event: create
+// =============================================================================
+// OBJECT:      obj_item_thrown
+// EVENT:       Create
+// SYSTEM:      Thrown Item Initialization
+// =============================================================================
 
-/// =========================
-/// SETUP
-/// =========================
+/// @description Initializes thrown-item runtime behavior, physics, movement variables, and interaction state.
+///
+/// Responsibilities:
+/// - Initialize thrown item data
+/// - Configure movement physics
+/// - Setup drag/deceleration
+/// - Configure collision behavior
+/// - Initialize terrain interaction
+/// - Setup ownership/source references
+/// - Configure lifetime/timers
+///
+/// Notes:
+/// - Thrown item properties should remain data-driven
+/// - Shared movement logic belongs in scr_movement
+/// - Item definitions belong in scr_items
+/// - Avoid hardcoding vegetable-specific behavior here
+
 
 // Horizontal movement
 vx = 0;

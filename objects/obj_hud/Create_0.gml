@@ -1,5 +1,23 @@
-// File: obj_hud.gml
-// Event: create
+// =============================================================================
+// OBJECT:      obj_hud
+// EVENT:       Create
+// SYSTEM:      HUD Initialization
+// =============================================================================
+
+/// @description Initializes HUD configuration, display settings, runtime UI variables, and cached references.
+///
+/// Responsibilities:
+/// - Initialize HUD display variables
+/// - Setup fonts and UI spacing
+/// - Cache player/controller references
+/// - Configure debug display flags
+/// - Initialize temporary UI timers/effects
+///
+/// Notes:
+/// - HUD should remain presentation-only
+/// - Avoid gameplay logic in HUD systems
+/// - Pull gameplay data from centralized systems
+/// - Fullscreen overlays belong in obj_controller
 
 draw_panel_fn = function(x1, y1, x2, y2, alpha) {	
     draw_set_color(c_black);

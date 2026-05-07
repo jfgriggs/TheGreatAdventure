@@ -45,6 +45,7 @@
     {"name":"obj_ui","order":6,"path":"objects/obj_ui/obj_ui.yy",},
     {"name":"obj_weapon_boomerang","order":8,"path":"objects/obj_weapon_boomerang/obj_weapon_boomerang.yy",},
     {"name":"obj_weapon_projectile","order":1,"path":"objects/obj_weapon_projectile/obj_weapon_projectile.yy",},
+    {"name":"obj_weapon","order":27,"path":"objects/obj_weapon/obj_weapon.yy",},
     {"name":"oBuildingParent","order":12,"path":"objects/oBuildingParent/oBuildingParent.yy",},
     {"name":"oCamera","order":12,"path":"objects/oCamera/oCamera.yy",},
     {"name":"oCarrot","order":38,"path":"objects/oCarrot/oCarrot.yy",},

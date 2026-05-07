@@ -1,7 +1,28 @@
-// File: obj_controller.gml
-// Event: create
+// =============================================================================
+// OBJECT:      obj_controller
+// EVENT:       Create
+// SYSTEM:      Core Game Controller
+// =============================================================================
 
-// Game states
+/// @description Initializes high-level game systems and controller-owned resources.
+///
+/// Responsibilities:
+/// - Initialize global game state
+/// - Setup controller references
+/// - Configure camera systems
+/// - Initialize tilemap references
+/// - Create particle systems
+/// - Initialize audio/music
+/// - Setup runtime globals
+///
+/// Notes:
+/// - Central coordinator for high-level systems
+/// - Avoid placing gameplay-specific logic here
+/// - Shared systems should remain modularized
+
+// =============================================================================
+// REGION: Game States
+// =============================================================================
 enum GAME_STATE {
 	START,
 	PLAYING,
@@ -9,31 +30,39 @@ enum GAME_STATE {
 	GAME_OVER
 }
 
-// --- Globals ---
+// =============================================================================
+// REGION: Global Variables
+// =============================================================================
 global.game_state = GAME_STATE.START
 global.game_time = 0;
 global.points = 0;
 global.best_time = 0;
-global.FPS = game_get_speed(gamespeed_fps);
+global.target_fps = game_get_speed(gamespeed_fps);
 
 // Store controller reference
 global.controller = id;
 
-// Fade in/out
-fade_alpha  = 0.5;     // 1 = fully black, 0 = visible
+// Screen fade overlay
+// 1 = fully black
+// 0 = fully visible
+// Starts partially visible and fades to black during startup
+fade_alpha  = 0.5;   // starting fade value
 fade_target = 1;     // where we want to go
 fade_speed  = 0.05;  // how fast it fades
 
 next_state = undefined;
 
-// Camera shake
+// =============================================================================
+// REGION: Camera
+// =============================================================================
 shake_timer = 0;
 shake_strength = 0;
 
-// Camera
 cam = view_camera[0];
 
-// Tilemap
+// =============================================================================
+// REGION: Tilemap
+// =============================================================================
 var layer_id = layer_get_id("Tiles");
 
 if (layer_id != -1) {
@@ -46,6 +75,9 @@ if (layer_id != -1) {
     show_debug_message("ERROR: Tile layer missing!");
 }
 
+// =============================================================================
+// REGION: Particle Systems
+// =============================================================================
 // Create particle system
 ps = part_system_create();
 part_system_depth(ps, -100); // draw above most things
@@ -80,7 +112,9 @@ part_type_gravity(pt_spark, 0.08, 270);
 // Glow effect
 part_type_blend(pt_spark, true);
 
-// Play game start sound
+// =============================================================================
+// REGION: Audio
+// =============================================================================
 audio_play_sound(snd_game_start, 1, false);
 music_id = audio_play_sound(snd_music, 1, true);
 audio_sound_gain(snd_music, 1, 120);

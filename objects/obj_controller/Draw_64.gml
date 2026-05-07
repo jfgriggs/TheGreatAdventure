@@ -1,12 +1,27 @@
-// File: obj_controller.gml
-// Event: draw gui
+// =============================================================================
+// OBJECT:      obj_controller
+// EVENT:       Draw GUI
+// SYSTEM:      UI / Global Overlay Rendering
+// =============================================================================
+
+/// @description Draws fullscreen overlays and global game-state UI.
+///
+/// Responsibilities:
+/// - Draw pause overlay
+/// - Draw game over screen
+/// - Draw fade transitions
+/// - Draw startup overlays
+///
+/// Notes:
+/// - Gameplay HUD belongs in obj_hud
+/// - Keep this event limited to global overlays
 
 var cx = display_get_gui_width() / 2;
 var cy = display_get_gui_height() / 2;
 
-// =========================
-// START SCREEN
-// =========================
+// =============================================================================
+// REGION: Start Screen
+// =============================================================================
 if (global.game_state == GAME_STATE.START) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
@@ -28,9 +43,9 @@ if (global.game_state == GAME_STATE.START) {
 }
 
 
-// =========================
-// PAUSE / QUIT SCREEN
-// =========================
+// =============================================================================
+// REGION: Pause / Quit Screen
+// =============================================================================
 else if (global.game_state == GAME_STATE.PAUSED) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
@@ -52,9 +67,9 @@ else if (global.game_state == GAME_STATE.PAUSED) {
 }
 
 
-// =========================
-// GAME OVER
-// =========================
+// =============================================================================
+// REGION: Game Over Screen
+// =============================================================================
 else if (global.game_state == GAME_STATE.GAME_OVER) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);

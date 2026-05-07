@@ -1,29 +1,24 @@
-/// @description <short purpose>
-///
-/// Object: obj_player
-/// Event: Step
+// =============================================================================
+// OBJECT:      obj_player
+// EVENT:       Step
+// SYSTEM:      Player Runtime Update
+// =============================================================================
+
+/// @description Handles per-frame player updates and delegates behavior to shared systems and player states.
 ///
 /// Responsibilities:
 /// - Update player state machine
-/// - Process movement state
-/// - Handle interaction logic
-/// - Update facing direction
-///
-/// Dependencies:
-/// - scr_state_machine
-/// - scr_player_states
-/// - scr_tile_lookup
+/// - Process movement input
+/// - Process aiming input
+/// - Handle attack/throw input
+/// - Apply movement and collision
+/// - Update terrain interactions
+/// - Update animation state
 ///
 /// Notes:
-/// - State-specific logic belongs in state scripts
-/// - Avoid direct gameplay logic in Step event
-
-//show_debug_message("game_state=" + string(global.game_state)
-//	+ " start=" +  string(GAME_STATE.START)
-//	+ " playing=" +  string(GAME_STATE.PLAYING)
-//	+ " paused=" +  string(GAME_STATE.PAUSED)
-//	+ " game_over=" +  string(GAME_STATE.GAME_OVER)
-//);
+/// - State-specific behavior belongs in scr_player_states
+/// - Shared movement logic belongs in scr_movement
+/// - Avoid embedding complex gameplay logic directly here
 
 // If game not playing stop
 if (global.game_state != GAME_STATE.PLAYING) {

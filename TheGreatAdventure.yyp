@@ -68,6 +68,7 @@
     {"id":{"name":"obj_ui","path":"objects/obj_ui/obj_ui.yy",},},
     {"id":{"name":"obj_weapon_boomerang","path":"objects/obj_weapon_boomerang/obj_weapon_boomerang.yy",},},
     {"id":{"name":"obj_weapon_projectile","path":"objects/obj_weapon_projectile/obj_weapon_projectile.yy",},},
+    {"id":{"name":"obj_weapon","path":"objects/obj_weapon/obj_weapon.yy",},},
     {"id":{"name":"oBuildingParent","path":"objects/oBuildingParent/oBuildingParent.yy",},},
     {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},},
     {"id":{"name":"oCarrot","path":"objects/oCarrot/oCarrot.yy",},},

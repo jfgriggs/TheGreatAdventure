@@ -1,5 +1,24 @@
-// File: obj_ui.gml
-// Event: draw gui
+// =============================================================================
+// OBJECT:      obj_ui
+// EVENT:       Draw GUI
+// SYSTEM:      User Interface Rendering
+// =============================================================================
+
+/// @description Draws gameplay-independent user interface elements, menus, prompts, notifications, and interaction feedback.
+///
+/// Responsibilities:
+/// - Draw menus and interface panels
+/// - Draw interaction prompts
+/// - Draw notifications/messages
+/// - Draw contextual UI elements
+/// - Draw temporary interface effects
+/// - Draw optional debug UI
+///
+/// Notes:
+/// - Gameplay HUD belongs in obj_hud
+/// - Global overlays belong in obj_controller
+/// - Keep rendering logic presentation-focused
+/// - Avoid gameplay/state modification during drawing
 
 var p = obj_player;
 

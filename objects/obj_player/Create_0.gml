@@ -1,28 +1,25 @@
-/// @description Initialize player systems and runtime state.
-///
-/// Object: obj_player
-/// Event: Create
+// =============================================================================
+// OBJECT:      obj_player
+// EVENT:       Create
+// SYSTEM:      Player Initialization
+// =============================================================================
+
+/// @description Initializes player systems, runtime variables, movement configuration, combat systems, inventory data, and player state machine.
 ///
 /// Responsibilities:
 /// - Initialize movement variables
-/// - Initialize combat variables
-/// - Create inventory
-/// - Initialize state machine
-/// - Register player states
-/// - Configure movement handler
-///
-/// Dependencies:
-/// - scr_state_machine
-/// - scr_player_states
-/// - src_items
+/// - Setup combat configuration
+/// - Initialize inventory systems
+/// - Configure terrain interaction
+/// - Create player state machine
+/// - Setup aiming/rotation variables
+/// - Configure runtime flags
 ///
 /// Notes:
-/// - Gameplay logic should remain inside state scripts
-/// - Shared movement logic should remain centralized
-
-/// =========================
-/// INITIALIZATION
-/// =========================
+/// - Player behavior is driven through state machine logic
+/// - Movement should route through scr_movement
+/// - State logic belongs in scr_player_states
+/// - Combat systems should remain modularized
 
 // Sprite index (down right)
 face = 3;

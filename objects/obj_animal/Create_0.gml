@@ -1,6 +1,34 @@
-// File: obj_animal.gml
-// Event: create
+// =============================================================================
+// OBJECT:      obj_animal
+// EVENT:       Create
+// SYSTEM:      Animal Base Initialization
+// =============================================================================
 
+/// @description Initializes shared animal systems, runtime variables, AI configuration, movement settings, and state machine behavior for all animal child objects.
+///
+/// Child Objects:
+/// - obj_animal_chicken
+/// - obj_animal_cow
+/// - obj_animal_sheep
+/// - obj_animal_*
+///
+/// Responsibilities:
+/// - Initialize shared animal variables
+/// - Configure movement settings
+/// - Setup AI behavior variables
+/// - Initialize animal state machine
+/// - Configure terrain interaction
+/// - Setup follow/target tracking
+/// - Initialize wandering behavior
+/// - Configure pen/safe tracking
+///
+/// Notes:
+/// - Child objects assign animal_type
+/// - Species-specific configuration belongs in child objects
+/// - Shared AI logic belongs in scr_animal_states
+/// - Shared movement logic belongs in scr_movement
+/// - Animal data should remain data-driven
+/// - Avoid species-specific logic in parent object
 show_debug_message("Animal created: " + object_get_name(object_index));
 
 /// =========================

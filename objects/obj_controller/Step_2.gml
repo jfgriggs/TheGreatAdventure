@@ -1,5 +1,20 @@
-// File: obj_controller.gml
-// Event: end step
+// =============================================================================
+// OBJECT:      obj_controller
+// EVENT:       End Step
+// SYSTEM:      Camera System
+// =============================================================================
+
+/// @description Updates camera positioning and post-movement effects.
+///
+/// Responsibilities:
+/// - Smooth camera follow
+/// - Camera interpolation
+/// - Screen shake handling
+/// - Final camera positioning
+///
+/// Notes:
+/// - Runs after entity movement is finalized
+/// - Camera effects should be applied here
 
 // Camera follow
 var p = instance_find(obj_player, 0);

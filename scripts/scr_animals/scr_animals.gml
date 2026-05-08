@@ -1,11 +1,32 @@
-// File: scr_items.gml
+// =============================================================================
+// SCRIPT:      scr_animals
+// TYPE:        Animal Subsystem
+// =============================================================================
 
-// To add new items (where "NAME" is the name of the item in lowercase):
-//   - create new spr_item_NAME 
-//   - create new obj_item_NAME having obj_item as a parent
-//   - on obj_item_NAME add create event and override
-//        event_inherited();
-//        item = Item_Create("NAME");
+/// @description Centralized animal management, configuration, and shared animal utility system.
+///
+/// Responsibilities:
+/// - Animal data creation
+/// - Animal configuration lookup
+/// - Preferred food handling
+/// - Follow behavior helpers
+/// - Pen validation support
+/// - Shared animal utility functions
+/// - Runtime animal state support
+///
+/// Public API:
+/// - Animal_Create()
+/// - Animal_LikesItem()
+/// - Animal_HasLineOfSight()
+/// - Animal_FindTarget()
+/// - Animal_IsSafe() - TBD
+///
+/// Notes:
+/// - Animal definitions should remain data-driven
+/// - Shared AI behavior belongs in scr_animal_states
+/// - Shared movement logic belongs in scr_movement
+/// - Avoid duplicating species logic across objects
+/// - Supports all obj_animal_* child objects
 
 enum ANIMAL {
     CHICKEN,
@@ -129,7 +150,7 @@ function Animal_Create(_type) {
 }
 
 
-function animal_likes_item(o, item_struct) {
+function Animal_LikesItem(o, item_struct) {
 
     if (item_struct == undefined) return false;
 
@@ -145,12 +166,12 @@ function animal_likes_item(o, item_struct) {
 }
 
 
-function has_line_of_sight(x1, y1, x2, y2) {
+function Animal_Animal_HasLineOfSight(x1, y1, x2, y2) {
     return !collision_line(x1, y1, x2, y2, obj_wall, true, true);
 }
 
 
-function animal_find_target(o) {
+function Animal_FindTarget(o) {
 
     var best = noone;
     var best_dist = 999999;
@@ -158,13 +179,13 @@ function animal_find_target(o) {
     /// PRIORITY 1: THROWN ITEMS
     with (obj_item_thrown) {
 
-        if (!animal_likes_item(o, item)) continue;
+        if (!Animal_LikesItem(o, item)) continue;
 
         var d = point_distance(x, y, o.x, o.y);
 
         if (d < best_dist && d < o.animal.vision_range) {
 
-            if (has_line_of_sight(o.x, o.y, x, y)) {
+            if (Animal_Animal_HasLineOfSight(o.x, o.y, x, y)) {
                 best = id;
                 best_dist = d;
             }
@@ -181,11 +202,11 @@ function animal_find_target(o) {
 
     if (instance_exists(p)) {
 
-        if (animal_likes_item(o, p.active_item)) {
+        if (Animal_LikesItem(o, p.active_item)) {
 
             var d = point_distance(o.x, o.y, p.x, p.y);
 
-            if (d < o.animal.vision_range && has_line_of_sight(o.x, o.y, p.x, p.y)) {
+            if (d < o.animal.vision_range && Animal_Animal_HasLineOfSight(o.x, o.y, p.x, p.y)) {
                 o.target_type = "player";
                 return p;
             }
@@ -193,4 +214,9 @@ function animal_find_target(o) {
     }
 
     return noone;
+}
+
+
+function Animal_IsSafe(o) {
+	return false;
 }

@@ -106,10 +106,10 @@ if (teleport_timer > 0) {
 /// =========================
 /// TRAP
 /// =========================
-var tile = tile_get(x, y);
+var tile = Tile_Get(x, y);
 if (tile == TILE.TRAP) {
     if (trap_timer <= 0) {
-        apply_damage(id, 10, id);
+        Damage_Apply(id, 10, id);
         trap_timer = trap_cooldown;
     }
 }

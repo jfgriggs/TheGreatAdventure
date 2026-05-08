@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_weapon_types",
+  "%Name":"scr_game_utils",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_weapon_types",
+  "name":"scr_game_utils",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

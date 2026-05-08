@@ -31,7 +31,7 @@ switch(global.game_state) {
 	case GAME_STATE.START:
 		if (keyboard_check_pressed(vk_space)) {
 			// reset room to spawn everything fresh
-	        game_reset();
+	        Game_Reset();
 
 			fade_target = 1;
 			global.game_state = GAME_STATE.PLAYING;
@@ -58,7 +58,7 @@ switch(global.game_state) {
 	case GAME_STATE.PAUSED:
 		// YES → quit to start
 	    if (keyboard_check_pressed(ord("Y"))) {
-	        game_reset();
+	        Game_Reset();
 			fade_target = 1;
 			global.game_state = GAME_STATE.START;
 			show_debug_message("global.game_state == GAME_STATE.START == " + string(global.game_state));
@@ -79,7 +79,7 @@ switch(global.game_state) {
 	case GAME_STATE.GAME_OVER:
 		show_debug_message("global.game_state == GAME_STATE.GAME_OVER == " + string(global.game_state));
 	    if (keyboard_check_pressed(ord("R"))) {
-	        game_reset();
+	        Game_Reset();
 			fade_target = 1;
 			global.game_state = GAME_STATE.PLAYING;
 			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));

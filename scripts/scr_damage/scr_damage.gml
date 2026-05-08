@@ -1,6 +1,30 @@
-// File: scr_damage.gml
+// =============================================================================
+// SCRIPT:      scr_damage
+// TYPE:        Damage / Combat Subsystem
+// =============================================================================
 
-function apply_damage(target, amount, source) {
+/// @description Centralized damage handling, combat resolution, and health management system.
+///
+/// Responsibilities:
+/// - Damage application
+/// - Health modification
+/// - Death handling
+/// - Invulnerability processing
+/// - Damage source tracking
+/// - Combat effect triggering
+/// - Shared combat utility functions
+///
+/// Public API:
+/// - Damage_Apply()
+///
+/// Notes:
+/// - Shared combat logic should remain centralized
+/// - Avoid duplicating damage logic across objects
+/// - Supports player, animals, enemies, and traps
+/// - Visual/audio combat feedback should remain modular
+/// - State machines may react to combat state changes
+
+function Damage_Apply(target, amount, source) {
 	show_debug_message(string(amount) + " DAMAGE from " + string(source));
 
     // --- SAFETY ---
@@ -57,7 +81,7 @@ function apply_damage(target, amount, source) {
 	if (variable_instance_exists(target, "flash_timer")) {
 		target.flash_timer = 60;
 	}
-	screen_shake(8, 30);
+	Screen_Shake(8, 30);
 
     // --- DEATH ---
 	if (target.hp <= 0) {
@@ -72,7 +96,7 @@ function apply_damage(target, amount, source) {
 	        global.game_state = GAME_STATE.GAME_OVER;
 			obj_controller.fade_target = 1;
 			audio_play_sound(snd_game_over, 1, false);
-			screen_shake(8, 20);			
+			Screen_Shake(8, 20);			
 	    }
 	}
 }

@@ -1,9 +1,29 @@
-// File: scr_tiles.gml
+// =============================================================================
+// SCRIPT:      scr_tiles
+// TYPE:        Tilemap / Terrain Subsystem
+// =============================================================================
 
-// To add new tiles update the spr_tiles 
-// The tiles are 16x16 pixels
-// Change sprite width to total number of tiles * 16
-// Paint the sprite tiles appropriately
+/// @description Centralized tilemap and terrain handling system.
+///
+/// Responsibilities:
+/// - Tile lookup helpers
+/// - Terrain type detection
+/// - Terrain interaction queries
+/// - Collision tile checks
+/// - Tile property utilities
+/// - Movement terrain validation
+/// - Shared tilemap helper functions
+///
+/// Public API:
+/// - Tile_Get()
+/// - Tile_Is_Blocking()
+///
+/// Notes:
+/// - Terrain behavior should remain centralized
+/// - Shared movement systems depend on terrain queries
+/// - Avoid duplicating tile logic across gameplay objects
+/// - Supports player, animal, enemy, and item systems
+/// - Tilemap references should be initialized by obj_controller
 
 enum TILE {
     EMPTY,                 // 0
@@ -19,4 +39,33 @@ enum TILE {
 	EXPANSION1,            // 10
 	EXPANSION2,            // 11
 	EXPANSION3             // 12
+}
+
+function Tile_Get(_x, _y) {
+
+    var ctrl = instance_find(obj_controller, 0);
+
+    if (ctrl == noone) return TILE.EMPTY;
+
+    var tilemap = ctrl.tilemap;
+
+    var tile = tilemap_get_at_pixel(tilemap, _x, _y);
+    var index = tile_get_index(tile);
+
+    switch(index) {
+        case 1: return TILE.WALL;
+        case 2: return TILE.WATER;
+        case 3: return TILE.MUD;
+        case 4: return TILE.TRAP;
+        case 5: return TILE.HOLE;
+        case 6: return TILE.EXPANSION1;
+        case 7: return TILE.EXPANSION2;
+        case 8: return TILE.EXPANSION3;
+    }
+
+    return TILE.EMPTY;
+}
+
+function Tile_Is_Blocking(_tile) {
+    return (_tile == TILE.WALL || _tile == TILE.WATER);
 }

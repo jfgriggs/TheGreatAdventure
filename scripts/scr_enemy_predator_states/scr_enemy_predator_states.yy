@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_screen_shake",
+  "%Name":"scr_enemy_predator_states",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_screen_shake",
+  "name":"scr_enemy_predator_states",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

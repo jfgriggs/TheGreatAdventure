@@ -76,7 +76,7 @@ if (!landed) {
     //with (obj_predator) {
 
     //    if (point_distance(x, y, other.x, other.y) < 12) {
-    //        apply_damage(id, other.damage, other);
+    //        Damage_Apply(id, other.damage, other);
     //    }
     //}
 }

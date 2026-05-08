@@ -1,4 +1,32 @@
-// File: scr_player_states.gml
+// =============================================================================
+// SCRIPT:      scr_player_states
+// TYPE:        Player State Definitions
+// =============================================================================
+
+/// @description Contains all player state constructors and shared player state behavior.
+///
+/// Responsibilities:
+/// - Define player state logic
+/// - Handle state transitions
+/// - Process movement state behavior
+/// - Handle attack/throw behavior
+/// - Coordinate animation state updates
+/// - Process input-driven state changes
+/// - Coordinate movement/combat requests
+///
+/// States:
+/// - Playey_Idle
+/// - Player_Move
+/// - Player_Throw
+/// - Player_Attack
+///
+/// Notes:
+/// - States are struct-based
+/// - Transitions use sm.change(NewState(sm))
+/// - Shared movement logic belongs in scr_movement
+/// - Shared combat logic belongs in scr_combat
+/// - Avoid embedding large subsystem logic directly in states
+/// - Keep states focused on orchestration and transitions
 
 /// =========================
 /// PLAYER STATE: IDLE
@@ -50,7 +78,7 @@ function Player_Move(_sm) {
         enter: function() {},
 		
         update: function() {
-            var tile = tile_get(owner.x, owner.y);
+            var tile = Tile_Get(owner.x, owner.y);
 
             var speed_factor = 1
 			if (tile == TILE.MUD) speed_factor = 0.1;
@@ -119,9 +147,9 @@ function Player_Teleport(_sm) {
 			owner.flash_timer = 60;
 			
 			// Particle effect at original position
-			spawn_spark(owner.x, owner.y);
-			spawn_spark(owner.x, owner.y);
-			screen_shake(3, 8);
+			Spark_Spawn(owner.x, owner.y);
+			Spark_Spawn(owner.x, owner.y);
+			Screen_Shake(3, 8);
 
             // Play sound
             audio_play_sound(snd_hole, 1, false);
@@ -145,15 +173,15 @@ function Player_Teleport(_sm) {
 					        var tx = irandom(room_width div tile_size) * tile_size;
 					        var ty = irandom(room_height div tile_size) * tile_size;
 
-					        var tile = tile_get(tx, ty);
+					        var tile = Tile_Get(tx, ty);
 
-					        if (!tile_is_blocking(tile)) {
+					        if (!Tile_Is_Blocking(tile)) {
 					            owner.x = tx;
 								owner.y = ty;
 							
 								// Particle effect at destination
-								spawn_spark(owner.x, owner.y);
-								spawn_spark(owner.x, owner.y);
+								Spark_Spawn(owner.x, owner.y);
+								Spark_Spawn(owner.x, owner.y);
 
 								// Switch to reappear
 								owner.teleport_phase = 1;
@@ -231,7 +259,7 @@ function Player_Throw(_sm) {
 			show_debug_message("Player_Throw:enter => o=", string(owner));
 
             // Perform throw
-            throw_item(owner);
+            Item_Throw(owner);
 
             // Small delay so it feels intentional
             owner.throw_timer = 8;

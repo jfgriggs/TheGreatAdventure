@@ -1,4 +1,33 @@
-// File: scr_enemy_archer_states.gml
+// =============================================================================
+// SCRIPT:      scr_enemy_archer_states
+// TYPE:        Archer Enemy State Definitions
+// =============================================================================
+
+/// @description Contains archer-specific enemy state constructors and shared ranged combat AI behavior.
+///
+/// Responsibilities:
+/// - Define archer AI states
+/// - Handle patrol/chase behavior
+/// - Process target acquisition
+/// - Handle ranged attack behavior
+/// - Coordinate projectile attacks
+/// - Process combat-driven transitions
+/// - Coordinate movement requests
+///
+/// States:
+/// - Archer_Patrol
+/// - Archer_Chase
+/// - Archer_Shoot
+///
+/// Notes:
+/// - States are struct-based
+/// - Transitions use sm.change(NewState(sm))
+/// - Shared movement logic belongs in scr_movement
+/// - Shared combat logic belongs in scr_combat
+/// - Shared AI helpers belong in scr_ai_common
+/// - Projectile spawning should remain centralized
+/// - Avoid embedding large subsystem logic directly in states
+/// - Keep states focused on orchestration and transitions
 
 function Archer_Patrol(_sm) {
     return {
@@ -36,7 +65,7 @@ function Archer_Chase(_sm) {
     };
 }
 
-function Archer_Attack(_sm) {
+function Archer_Shoot(_sm) {
     return {
         update: function() {
             var o = _sm.owner;

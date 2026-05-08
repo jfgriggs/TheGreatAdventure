@@ -1,19 +1,35 @@
-/// @struct StateMachine
-/// @description Generic reusable finite state machine.
+// =============================================================================
+// SCRIPT:      scr_state_machine
+// TYPE:        Shared State Machine Subsystem
+// =============================================================================
+
+/// @description Centralized reusable state machine system used by player, animal, and enemy AI systems.
 ///
 /// Responsibilities:
-/// - Store current state
-/// - Handle transitions
-/// - Execute update methods
+/// - State creation/management
+/// - State transitions
+/// - Enter/exit callback handling
+/// - State validation
+/// - Update dispatching
+/// - Runtime state tracking
 ///
-/// Expected State Interface:
-/// - enter()
-/// - update()
-/// - exit()
+/// Public API:
+/// - StateMachine()
+/// - sm.change()
+/// - sm.update()
+/// - sm.is_state()
 ///
 /// Notes:
-/// - States are structs
-/// - States should remain stateless when possible
+/// - States are struct-based
+/// - States should contain:
+///     name
+///     update
+///     optional enter
+///     optional exit
+/// - Explicit owner injection is required
+/// - Transitions use sm.change(NewState(sm))
+/// - Shared gameplay logic should remain outside state machine core
+/// - Keep this subsystem generic and reusable
 
 function StateMachine(_owner) constructor {
 

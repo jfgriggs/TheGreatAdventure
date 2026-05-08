@@ -67,14 +67,14 @@ apply_movement = function(_vx, _vy) {
 	// --- X ---
     if (_vx != 0) {
         var new_x = o.x + _vx;
-        var tile = tile_get(new_x, o.y);
+        var tile = Tile_Get(new_x, o.y);
 
-        if (!tile_is_blocking(tile)) {
+        if (!Tile_Is_Blocking(tile)) {
             o.x = new_x;
         } else {
 			// If inside a tile move out of it
 			var step = sign(_vx);
-            while (!tile_is_blocking(tile_get(o.x + step, o.y))) {
+            while (!Tile_Is_Blocking(Tile_Get(o.x + step, o.y))) {
                 o.x += step;
             }
         }
@@ -83,14 +83,14 @@ apply_movement = function(_vx, _vy) {
     // --- Y ---
     if (_vy != 0) {
         var new_y = o.y + _vy;
-        var tile = tile_get(o.x, new_y);
+        var tile = Tile_Get(o.x, new_y);
 
-        if (!tile_is_blocking(tile)) {
+        if (!Tile_Is_Blocking(tile)) {
             o.y = new_y;
         } else {
 			// If inside a tile move out of it
             var step = sign(_vy);
-            while (!tile_is_blocking(tile_get(o.x, o.y + step))) {
+            while (!Tile_Is_Blocking(Tile_Get(o.x, o.y + step))) {
                 o.y += step;
             }
         }

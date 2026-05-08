@@ -107,8 +107,11 @@ trap_cooldown = 60; // frames (~2 sec)
 /// =========================
 weapons = ds_list_create();
 
-ds_list_add(weapons, Weapon_Create("bow"));
-ds_list_add(weapons, Weapon_Create("spread"));
+ds_list_add(weapons, Weapon_Create(WEAPON.SLINGSHOT));
+ds_list_add(weapons, Weapon_Create(WEAPON.SPREAD));
+ds_list_add(weapons, Weapon_Create(WEAPON.BOOMERANG));
+ds_list_add(weapons, Weapon_Create(WEAPON.TRAP));
+ds_list_add(weapons, Weapon_Create(WEAPON.BOW));
 
 weapon_index = 0;
 weapon = weapons[| weapon_index];
@@ -140,14 +143,14 @@ apply_movement = function(_vx, _vy) {
     // ------------------------------------------------------------------------
     if (_vx != 0) {
         var new_x = x + _vx;
-        var tile = tile_get(new_x, y);
+        var tile = Tile_Get(new_x, y);
 
-        if (!tile_is_blocking(tile)) {
+        if (!Tile_Is_Blocking(tile)) {
             x = new_x;
         } else {
 			// If inside a tile move out of it
 			var step = sign(_vx);
-            while (!tile_is_blocking(tile_get(x + step, y))) {
+            while (!Tile_Is_Blocking(Tile_Get(x + step, y))) {
                 x += step;
             }
         }
@@ -160,14 +163,14 @@ apply_movement = function(_vx, _vy) {
 
     if (_vy != 0) {
         var new_y = y + _vy;
-        var tile = tile_get(x, new_y);
+        var tile = Tile_Get(x, new_y);
 
-        if (!tile_is_blocking(tile)) {
+        if (!Tile_Is_Blocking(tile)) {
             y = new_y;
         } else {
 			// If inside a tile move out of it
             var step = sign(_vy);
-            while (!tile_is_blocking(tile_get(x, y + step))) {
+            while (!Tile_Is_Blocking(Tile_Get(x, y + step))) {
                 y += step;
             }
         }

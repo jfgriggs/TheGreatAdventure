@@ -5,7 +5,7 @@ var nx = x + lengthdir_x(speed, direction);
 var ny = y + lengthdir_y(speed, direction);
 
 // Wall collision
-if (tile_is_blocking(tile_get(nx, ny))) {
+if (Tile_Is_Blocking(Tile_Get(nx, ny))) {
     instance_destroy();
     exit;
 }
@@ -16,14 +16,14 @@ y = ny;
 // Hit enemies
 with (obj_enemy_archer) {
     if (point_distance(x,y,other.x,other.y) < 10) {
-        apply_damage(id, other.damage, other);
+        Damage_Apply(id, other.damage, other);
         instance_destroy(other);
     }
 }
 
 with (obj_enemy_predator) {
     if (point_distance(x,y,other.x,other.y) < 10) {
-        apply_damage(id, other.damage, other);
+        Damage_Apply(id, other.damage, other);
         instance_destroy(other);
     }
 }

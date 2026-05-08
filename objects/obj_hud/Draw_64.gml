@@ -232,7 +232,7 @@ if (weap_count > 0) {
 
 	    var center_y = vy + slot_size / 2;
 
-	    if (i == player.weapon_index) {
+	    if (i == player.active_weapon_index) {
 	        draw_set_alpha(0.5);
 			draw_set_color(c_aqua);
 
@@ -248,7 +248,7 @@ if (weap_count > 0) {
 
 	    draw_set_color(c_white);
 
-	    var scale = (i == player.weapon_index) ? 1.2 : 1;
+	    var scale = (i == player.active_weapon_index) ? 1.2 : 1;
 
 	    draw_sprite_ext(
 	        weapon.sprite_large,

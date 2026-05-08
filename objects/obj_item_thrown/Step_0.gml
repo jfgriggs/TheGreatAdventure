@@ -23,18 +23,28 @@
 /// - Terrain handling should remain centralized
 /// - Avoid duplicating projectile logic across item types
 
-// Lifetime countdown
-life--;
-
 /// =========================
 /// AIR PHYSICS
 /// =========================
 if (!landed) {
 
-	// Move
-	x += vx;
-	y += vy;
+    // ------------------------------------------------------------------------
+    // Movement
+    // ------------------------------------------------------------------------
+    var new_x = x + vx;
+    var new_y = y + vy;
+    var tile = Tile_Get(new_x, new_y);
 
+    if (Tile_Is_Blocking_Thrown_Item(tile)) {
+		// Yes - Stop the item
+		vx = 0;
+		vy = 0;
+	} else {
+		// No = Set the new location of the item
+        x = new_x;
+        y = new_y;
+    }
+    
 	// Apply drag (THIS CREATES NATURAL SLOWDOWN)
 	vx *= drag;
 	vy *= drag;
@@ -64,6 +74,7 @@ if (!landed) {
 
 	    i.item = item;
 	    i.sprite_index = item.sprite;
+		i.life = item.life;
 
 	    instance_destroy();
 	}
@@ -79,14 +90,4 @@ if (!landed) {
     //        Damage_Apply(id, other.damage, other);
     //    }
     //}
-}
-else {
-
-    // =========================
-    // ON GROUND
-    // =========================
-
-    if (life <= 0) {
-        instance_destroy();
-    }
 }

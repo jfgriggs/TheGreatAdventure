@@ -47,7 +47,8 @@ function Item_Create(_type) {
 
 		        throw_speed: 12,
 		        throw_distance: 260,
-		        drag: 0.985
+		        drag: 0.985,
+				life: 2400
 		    };
 
 		case ITEM.CORN:
@@ -59,7 +60,8 @@ function Item_Create(_type) {
 
 		        throw_speed: 10,
 		        throw_distance: 220,
-		        drag: 0.975
+		        drag: 0.975,
+				life: 2400
 		    };
 
 		case ITEM.TOMATO:
@@ -71,7 +73,8 @@ function Item_Create(_type) {
 
 		        throw_speed: 9,
 		        throw_distance: 180,
-		        drag: 0.96
+		        drag: 0.96,
+				life: 1800
 		    };
 
 		case ITEM.PUMPKIN:
@@ -83,7 +86,8 @@ function Item_Create(_type) {
 
 		        throw_speed: 7,
 		        throw_distance: 130,
-		        drag: 0.93
+		        drag: 0.93,
+				life: 3600
 		    };
 
 		case ITEM.WATERMELON:
@@ -95,7 +99,8 @@ function Item_Create(_type) {
 
 		        throw_speed: 6,
 		        throw_distance: 100,
-		        drag: 0.90
+		        drag: 0.90,
+				life: 3600
 		    };
 	}
 	return {
@@ -123,14 +128,10 @@ function Item_Throw(_o) {
     /// =========================
     /// CREATE OBJECT (SAFE)
     /// =========================
-//    var obj = asset_get_index("obj_item_thrown");
-//	show_debug_message(string(obj));
-
     var t = instance_create_layer(o.x, o.y, "Instances", obj_item_thrown);
 
     t.item = item;
     t.sprite_index = item.sprite;
-	t.max_distance = item.throw_distance
 	t.drag = item.drag;
 	t.start_x = o.x;
 	t.start_y = o.y;
@@ -142,6 +143,11 @@ function Item_Throw(_o) {
     var my = Mouse_GetWorldY();
 
     var dir = point_direction(o.x, o.y, mx, my);
+
+	// If the mouse location is less that the throw_distance 
+	// throw to the mouse location, otherwise, it travels the
+	// full throw_distance
+	t.max_distance = min(item.throw_distance, point_distance(o.x, o.y, mx, my));
 
 
     /// =========================

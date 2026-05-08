@@ -222,17 +222,39 @@ function Player_Attack(_sm) {
 		owner: _sm.owner,
 
         enter: function() {
-            if (owner.weapon_cooldown > 0) return;
+			show_debug_message("Player entered ATTACK state - enter() - sm_exists=" + string(!is_undefined(sm))
+				+ ", weapon=" + string(owner.active_weapon.name)
+				+ ", cooldown=" + string(owner.active_weapon_cooldown)
+				);
+			
+            // Prevent firing if no weapons
+            if (ds_list_size(owner.weapons) <= 0) {
+                sm.change(Player_Idle(sm));
+                return;
+            }
 
-            weapon_fire(owner);
-            owner.weapon_cooldown = owner.weapon.cooldown;
+			if (owner.active_weapon_cooldown > 0) return;
+
+			// Fire weapon
+            Weapon_Fire(owner);
+			
+			// Small cooldown period to reload
+            owner.active_weapon_cooldown = owner.active_weapon.cooldown;
         },
 
 		update: function() {
-            if (sm.time > 5) {
+			show_debug_message("Player entered ATTACK state - update() - sm_exists=" + string(!is_undefined(sm))
+				+ ", weapon=" + string(owner.active_weapon.name)
+				+ ", cooldown=" + string(owner.active_weapon_cooldown)
+				);
+
+            owner.active_weapon_cooldown--;
+
+            if (owner.active_weapon_cooldown <= 0) {
                 sm.change(Player_Idle(sm));
             }
-        }
+
+		}
     };
 }
 
@@ -248,16 +270,17 @@ function Player_Throw(_sm) {
 		owner: _sm.owner,
 
         enter: function() {
+			show_debug_message("Player entered THROW state - enter() - sm_exists=" + string(!is_undefined(sm))
+				+ ", item=" + string(owner.active_item.name)
+				+ ", throw_timer=" + string(owner.throw_timer)
+				);
+
             // Prevent throwing if no items
             if (ds_list_size(owner.inventory) <= 0) {
                 sm.change(Player_Idle(sm));
                 return;
             }
 			
-			show_debug_message("Player entered THROW state - enter()");
-			show_debug_message("sm exists=" + string(!is_undefined(sm)));
-			show_debug_message("Player_Throw:enter => o=", string(owner));
-
             // Perform throw
             Item_Throw(owner);
 
@@ -266,8 +289,10 @@ function Player_Throw(_sm) {
         },
 		
         update: function() {
-			show_debug_message("Player entered THROW state - update()");
-			show_debug_message("sm exists=" + string(!is_undefined(sm)));
+			show_debug_message("Player entered THROW state - update() - sm_exists=" + string(!is_undefined(sm))
+				+ ", item=" + string(owner.active_item.name)
+				+ ", throw_timer=" + string(owner.throw_timer)
+				);
 
             owner.throw_timer--;
 

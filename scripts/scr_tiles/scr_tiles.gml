@@ -69,3 +69,7 @@ function Tile_Get(_x, _y) {
 function Tile_Is_Blocking(_tile) {
     return (_tile == TILE.WALL || _tile == TILE.WATER);
 }
+
+function Tile_Is_Blocking_Thrown_Item(_tile) {
+    return (_tile == TILE.WALL);
+}

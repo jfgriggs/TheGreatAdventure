@@ -40,3 +40,5 @@ bob_phase = random(1000);
 // PICKUP SETTINGS
 // =========================
 pickup_radius = 16;
+
+life = -1;

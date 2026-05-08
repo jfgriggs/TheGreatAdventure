@@ -17,7 +17,6 @@
 ///
 /// Notes:
 /// - State-specific behavior belongs in scr_player_states
-/// - Shared movement logic belongs in scr_movement
 /// - Avoid embedding complex gameplay logic directly here
 
 // If game not playing stop
@@ -58,12 +57,6 @@ if (sm != undefined) {
 } else {
     show_debug_message("ERROR: sm undefined in obj_player");
 }
-
-
-/// =========================
-/// COOLDOWNS
-/// =========================
-if (weapon_cooldown > 0) weapon_cooldown--;
 
 
 /// =========================
@@ -146,11 +139,11 @@ sprite_index = sprite[face];
 /// =========================
 /// WEAPON SWITCH
 /// =========================
-if (keyboard_check_pressed(vk_space)) {
+if (keyboard_check_pressed(vk_space) && active_weapon_cooldown == 0) {
 	weapon_count = ds_list_size(weapons)
 	if (weapon_count > 0) {
-	    weapon_index = (weapon_index + 1) mod weapon_count;
-	    weapon = weapons[| weapon_index];
+	    active_weapon_index = (active_weapon_index + 1) mod weapon_count;
+	    active_weapon = weapons[| active_weapon_index];
 	}
 }
 

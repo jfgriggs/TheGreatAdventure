@@ -36,6 +36,15 @@ bob_phase += bob_speed;
 
 y = base_y + sin(bob_phase) * bob_amplitude;
 
+life--;
+
+// =========================
+// REMOVE ITEM if life reaches 0
+// =========================
+if (life == 0) {
+    instance_destroy();
+	exit;
+}
 
 /// =========================
 /// PLAYER PICKUP
@@ -64,7 +73,7 @@ if (point_distance(x, y, p.x, p.y) < pickup_radius) {
     */
 
     // =========================
-    // FEEDBACK (OPTIONAL)
+    // FEEDBACK
     // =========================
 
     // Sound

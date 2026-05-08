@@ -108,15 +108,14 @@ trap_cooldown = 60; // frames (~2 sec)
 weapons = ds_list_create();
 
 ds_list_add(weapons, Weapon_Create(WEAPON.SLINGSHOT));
-ds_list_add(weapons, Weapon_Create(WEAPON.SPREAD));
+ds_list_add(weapons, Weapon_Create(WEAPON.SHOTGUN));
 ds_list_add(weapons, Weapon_Create(WEAPON.BOOMERANG));
 ds_list_add(weapons, Weapon_Create(WEAPON.TRAP));
 ds_list_add(weapons, Weapon_Create(WEAPON.BOW));
 
-weapon_index = 0;
-weapon = weapons[| weapon_index];
-
-weapon_cooldown = 0;
+active_weapon_index = 0;
+active_weapon = weapons[| active_weapon_index];
+active_weapon_cooldown = 0;
 
 
 /// =========================

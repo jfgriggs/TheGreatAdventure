@@ -113,6 +113,7 @@ ds_list_add(weapons, Weapon_Create(WEAPON.BOOMERANG));
 ds_list_add(weapons, Weapon_Create(WEAPON.TRAP));
 ds_list_add(weapons, Weapon_Create(WEAPON.BOW));
 
+
 active_weapon_index = 0;
 active_weapon = weapons[| active_weapon_index];
 active_weapon_cooldown = 0;
@@ -121,14 +122,19 @@ active_weapon_cooldown = 0;
 /// =========================
 /// INVENTORY
 /// =========================
-inventory = ds_list_create();
+inventory = ds_map_create();
+inventory_max_items = 20;
+
+active_item_name = "";
+active_item = undefined;
+
 
 // Pre-populated inventory items
-ds_list_add(inventory, Item_Create(ITEM.CARROT));
-ds_list_add(inventory, Item_Create(ITEM.CORN));
+Inventory_Add_Item(self, Item_Create(ITEM.CARROT));
+Inventory_Add_Item(self, Item_Create(ITEM.CORN));
 
-active_item_index = 0;
-active_item = inventory[| active_item_index];
+//active_item_index = 0;
+//active_item = inventory[| active_item_index];
 
 
 // ============================================================================

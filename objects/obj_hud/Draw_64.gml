@@ -148,61 +148,131 @@ draw_set_valign(fa_top);
 /// =========================
 /// INVENTORY
 /// =========================
-var inv_count = ds_list_size(player.inventory);
 
-if (inv_count > 0) {
-	var inv_x = margin;
-	var inv_y = margin + 200;
+var item_keys = ds_map_keys_to_array(player.inventory);
+var unique_count = array_length(item_keys);
 
-	var inv_panel_w = slot_size + panel_pad * 2;
-	var inv_panel_h = inv_count * (slot_size + gap) - gap + panel_pad * 2;
+if (unique_count > 0) {
 
-	draw_set_color(c_black);
-	draw_panel_rounded_fn(inv_x, inv_y, inv_x + inv_panel_w, inv_y + inv_panel_h, 40, 0.5);
-	draw_set_color(c_white);
+    var inv_x = margin;
+    var inv_y = margin + 200;
 
-	var slot_center_x = inv_x + inv_panel_w / 2;
+    var inv_panel_w = slot_size + panel_pad * 2;
+    var inv_panel_h = unique_count * (slot_size + gap) - gap + panel_pad * 2;
 
-	for (var i = 0; i < inv_count; i++) {
+    draw_set_color(c_black);
 
-	    var item = player.inventory[| i];
+    draw_panel_rounded_fn(
+        inv_x,
+        inv_y,
+        inv_x + inv_panel_w,
+        inv_y + inv_panel_h,
+        40,
+        0.5
+    );
 
-	    var vy = inv_y + panel_pad + i * (slot_size + gap);
+    draw_set_color(c_white);
 
-	    var center_y = vy + slot_size / 2;
+    var slot_center_x = inv_x + inv_panel_w / 2;
 
-	    // Highlight active
-	    if (i == player.active_item_index) {
-	        draw_set_alpha(0.5);
-			draw_set_color(c_yellow);
 
-	        draw_rectangle(
-	            slot_center_x - slot_size / 2 - 2,
-	            center_y - slot_size / 2 - 2,
-	            slot_center_x + slot_size / 2 + 2,
-	            center_y + slot_size / 2 + 2,
-	            false
-	        );
-			draw_set_alpha(1);
-	    }
+    // -------------------------------------------------
+    // Draw inventory stacks
+    // -------------------------------------------------
 
-	    draw_set_color(c_white);
+    for (var i = 0; i < unique_count; i++) {
 
-	    // Slight scale for active item (polish)
-	    var scale = (i == player.active_item_index) ? 1.2 : 1;
+        var key = item_keys[i];
 
-	    draw_sprite_ext(
-	        item.sprite_large,
-	        0,
-	        slot_center_x,
-	        center_y,
-	        scale,
-	        scale,
-	        0,
-	        c_white,
-	        1
-	    );
-	}
+        var stack = player.inventory[? key];
+
+        var count = ds_list_size(stack);
+
+        if (count <= 0) {
+            continue;
+        }
+
+        var item = stack[| 0];
+
+        var vy = inv_y + panel_pad + i * (slot_size + gap);
+        var center_y = vy + slot_size / 2;
+
+
+        // -------------------------------------------------
+        // Active item highlight
+        // -------------------------------------------------
+
+        var is_active = (
+            is_struct(player.active_item)
+            && player.active_item_name == key
+        );
+
+        if (is_active) {
+
+            draw_set_alpha(0.5);
+            draw_set_color(c_yellow);
+
+            draw_rectangle(
+                slot_center_x - slot_size / 2 - 2,
+                center_y - slot_size / 2 - 2,
+                slot_center_x + slot_size / 2 + 2,
+                center_y + slot_size / 2 + 2,
+                false
+            );
+
+            draw_set_alpha(1);
+        }
+
+
+        // -------------------------------------------------
+        // Draw item sprite
+        // -------------------------------------------------
+
+        draw_set_color(c_white);
+
+        var scale = is_active ? 1.2 : 1;
+
+        draw_sprite_ext(
+            item.sprite_large,
+            0,
+            slot_center_x,
+            center_y,
+            scale,
+            scale,
+            0,
+            c_white,
+            1
+        );
+
+
+        // -------------------------------------------------
+        // Draw quantity overlay
+        // -------------------------------------------------
+
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
+
+        // Shadow
+        draw_set_color(c_black);
+
+        draw_text(
+            slot_center_x + slot_size / 2 - 2,
+            center_y + slot_size / 2 - 2,
+            string(count)
+        );
+
+        // Main text
+        draw_set_color(c_white);
+
+        draw_text(
+            slot_center_x + slot_size / 2 - 4,
+            center_y + slot_size / 2 - 4,
+            string(count)
+        );
+
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+    }
 }
 
 
@@ -212,54 +282,65 @@ if (inv_count > 0) {
 var weap_count = ds_list_size(player.weapons);
 
 if (weap_count > 0) {
-	var weap_x = w - margin - (slot_size + panel_pad * 2);
-	var weap_y = margin + 200;
 
-	var weap_panel_w = slot_size + panel_pad * 2;
-	var weap_panel_h = weap_count * (slot_size + gap) - gap + panel_pad * 2;
+    var weap_x = w - margin - (slot_size + panel_pad * 2);
+    var weap_y = margin + 200;
 
-	draw_set_color(c_black);
-	draw_panel_rounded_fn(weap_x, weap_y, weap_x + weap_panel_w, weap_y + weap_panel_h, 40, 0.5);
-	draw_set_color(c_white);
+    var weap_panel_w = slot_size + panel_pad * 2;
+    var weap_panel_h = weap_count * (slot_size + gap) - gap + panel_pad * 2;
 
-	var slot_center_x = weap_x + weap_panel_w / 2;
+    draw_set_color(c_black);
 
-	for (var i = 0; i < weap_count; i++) {
+    draw_panel_rounded_fn(
+        weap_x,
+        weap_y,
+        weap_x + weap_panel_w,
+        weap_y + weap_panel_h,
+        40,
+        0.5
+    );
 
-	    var weapon = player.weapons[| i];
+    draw_set_color(c_white);
 
-	    var vy = weap_y + panel_pad + i * (slot_size + gap);
+    var slot_center_x = weap_x + weap_panel_w / 2;
 
-	    var center_y = vy + slot_size / 2;
+    for (var i = 0; i < weap_count; i++) {
 
-	    if (i == player.active_weapon_index) {
-	        draw_set_alpha(0.5);
-			draw_set_color(c_aqua);
+        var weapon = player.weapons[| i];
 
-	        draw_rectangle(
-	            slot_center_x - slot_size / 2 - 2,
-	            center_y - slot_size / 2 - 2,
-	            slot_center_x + slot_size / 2 + 2,
-	            center_y + slot_size / 2 + 2,
-	            false
-	        );
-			draw_set_alpha(1);
-	    }
+        var vy = weap_y + panel_pad + i * (slot_size + gap);
+        var center_y = vy + slot_size / 2;
 
-	    draw_set_color(c_white);
+        if (i == player.active_weapon_index) {
 
-	    var scale = (i == player.active_weapon_index) ? 1.2 : 1;
+            draw_set_alpha(0.5);
+            draw_set_color(c_aqua);
 
-	    draw_sprite_ext(
-	        weapon.sprite_large,
-	        0,
-	        slot_center_x,
-	        center_y,
-	        scale,
-	        scale,
-	        0,
-	        c_white,
-	        1
-	    );
-	}
+            draw_rectangle(
+                slot_center_x - slot_size / 2 - 2,
+                center_y - slot_size / 2 - 2,
+                slot_center_x + slot_size / 2 + 2,
+                center_y + slot_size / 2 + 2,
+                false
+            );
+
+            draw_set_alpha(1);
+        }
+
+        draw_set_color(c_white);
+
+        var scale = (i == player.active_weapon_index) ? 1.2 : 1;
+
+        draw_sprite_ext(
+            weapon.sprite_large,
+            0,
+            slot_center_x,
+            center_y,
+            scale,
+            scale,
+            0,
+            c_white,
+            1
+        );
+    }
 }

@@ -55,15 +55,12 @@ if (!instance_exists(p)) exit;
 
 // Distance check
 if (point_distance(x, y, p.x, p.y) < pickup_radius) {
-    // Limit inventory size
-    if (ds_list_size(p.inventory) > 6) return;
-
     // Add to inventory
-    ds_list_add(p.inventory, item);
-
-    // Auto-select newest item
-    p.active_item_index = ds_list_size(p.inventory) - 1;
-    p.active_item = p.inventory[| p.active_item_index];
+    Inventory_Add_Item(p, item);
+    
+	// Auto-select newest item
+    //p.active_item_index = ds_list_size(p.inventory) - 1;
+    //p.active_item = p.inventory[| p.active_item_index];
 
     // OPTIONAL: prevent duplicates
     /*

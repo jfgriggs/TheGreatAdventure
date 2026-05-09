@@ -15,9 +15,13 @@
 /// - Shared item utility functions
 ///
 /// Public API:
-/// - Item_Create()
-/// - Item_Throw()
-///
+/// - Item_Create(_type)
+/// - Item_Throw(_o)
+/// - Inventory_Select_Next_Active_Item(_player, _previous_item_name)
+/// - Inventory_Add_Item(_player, _item)
+/// - Inventory_Remove_Active_Item(_player)
+/// - Inventory_Select_Next_Stack(_player)
+/// 
 /// Notes:
 /// - Item definitions should remain data-driven
 /// - Shared interaction logic should remain centralized
@@ -117,13 +121,10 @@ function Item_Throw(_o) {
     var o = _o;
 
     if (!instance_exists(o)) return;
-	//if (!variable_instance_exists(id, "start_x")) return;
-	
-    if (ds_list_size(o.inventory) <= 0) return;
+    if (ds_map_size(o.inventory) <= 0) return;
+    if (o.active_item = undefined) return;
 
-    var item = o.inventory[| o.active_item_index];
-    if (item == undefined) return;
-
+	item = o.active_item;
 
     /// =========================
     /// CREATE OBJECT (SAFE)
@@ -164,16 +165,159 @@ function Item_Throw(_o) {
     /// =========================
     /// REMOVE ITEM
     /// =========================
-    item.count--;
+    Inventory_Remove_Active_Item(o);
+}
 
-    if (item.count <= 0) {
+// =============================================================================
+// FUNCTION:    Inventory_Select_Next_Active_Item
+// SYSTEM:      Inventory
+// =============================================================================
 
-        ds_list_delete(o.inventory, o.active_item_index);
+/// @function Inventory_Select_Next_Active_Item(player, previous_item_name)
+///
+/// @description
+/// Selects the next active inventory item after one is removed/thrown.
+///
+/// Priority:
+/// 1. Another item of the same type
+/// 2. Next valid inventory index
+/// 3. Clear active item if inventory empty
+///
+/// @param {instance} player
+/// @param {string} previous_item_name
 
-        if (ds_list_size(o.inventory) > 0) {
-            o.active_item_index = clamp(o.active_item_index, 0, ds_list_size(o.inventory) - 1);
-        } else {
-            o.active_item_index = 0;
+function Inventory_Select_Next_Active_Item(_player, _previous_item_name) {
+
+    var inventory = _player.inventory;
+    var count = ds_list_size(inventory);
+
+    // -------------------------------------------------
+    // Empty inventory
+    // -------------------------------------------------
+
+    if (count <= 0) {
+        _player.active_item_index = -1;
+        _player.active_item = undefined;
+        return;
+    }
+
+
+    // -------------------------------------------------
+    // Prefer same item type
+    // -------------------------------------------------
+
+    for (var i = 0; i < count; i++) {
+
+        var item = inventory[| i];
+
+        if (item.name == _previous_item_name) {
+
+            _player.active_item_index = i;
+            _player.active_item = item;
+
+            return;
         }
     }
+
+
+    // -------------------------------------------------
+    // Fallback:
+    // clamp to valid index
+    // -------------------------------------------------
+
+    _player.active_item_index = clamp(
+        _player.active_item_index,
+        0,
+        count - 1
+    );
+
+    _player.active_item = inventory[| _player.active_item_index];
+}
+
+
+function Inventory_Add_Item(_player, _item) {
+    var key = _item.name;
+
+    // -------------------------------------------------
+    // Create stack if missing
+    // -------------------------------------------------
+    if (!ds_map_exists(_player.inventory, key)) {
+        var stack = ds_list_create();
+        ds_map_add(
+            _player.inventory,
+            key,
+            stack
+        );
+    }
+
+    // -------------------------------------------------
+    // Add item to stack
+    // -------------------------------------------------
+    var stack = _player.inventory[? key];
+    ds_list_add(stack, _item);
+
+    // -------------------------------------------------
+    // Auto-select if none active
+    // -------------------------------------------------
+    if (!is_struct(_player.active_item)) {
+        _player.active_item_name = key;
+        _player.active_item = stack[| 0];
+    }
+}
+
+function Inventory_Remove_Active_Item(_player) {
+    // -------------------------------------------------
+    // Safety
+    // -------------------------------------------------
+    if (!is_struct(_player.active_item)) {
+        return undefined;
+    }
+
+    var key = _player.active_item_name;
+
+    if (!ds_map_exists(_player.inventory, key)) {
+        return undefined;
+    }
+
+    var stack = _player.inventory[? key];
+
+    if (ds_list_size(stack) <= 0) {
+        return undefined;
+    }
+
+    // -------------------------------------------------
+    // Remove first item from stack
+    // -------------------------------------------------
+    var item = stack[| 0];
+    ds_list_delete(stack, 0);
+
+    // -------------------------------------------------
+    // Empty stack cleanup
+    // -------------------------------------------------
+    if (ds_list_size(stack) <= 0) {
+        ds_list_destroy(stack);
+        ds_map_delete(_player.inventory, key);
+        Inventory_Select_Next_Stack(_player)
+    } else {
+        _player.active_item = stack[| 0];
+    }
+
+    return item;
+}
+
+function Inventory_Select_Next_Stack(_player) {
+    var keys = ds_map_keys_to_array(_player.inventory);
+    if (array_length(keys) <= 0) {
+        _player.active_item_name = "";
+        _player.active_item = undefined;
+        return;
+    }
+
+    // -------------------------------------------------
+    // Select first available stack
+    // -------------------------------------------------
+    var key = keys[0];
+    var stack = _player.inventory[? key];
+    _player.active_item_name = key;
+    _player.active_item = stack[| 0];
 }

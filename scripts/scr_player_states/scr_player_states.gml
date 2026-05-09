@@ -48,14 +48,14 @@ function Player_Idle(_sm) {
                 return;
             }
 
-            if (owner.input_attack) {
+            if (owner.input_attack && ds_list_size(owner.weapons) > 0) {
+				show_debug_message("Player changing to ATTACK state");
                 sm.change(Player_Attack(sm));
                 return;
             }
 
-			if (owner.input_throw) {
-				show_debug_message("Player entered THROW state");
-				show_debug_message("sm exists=" + string(!is_undefined(sm)));
+			if (owner.input_throw && ds_map_size(owner.inventory) > 0) {
+				show_debug_message("Player changing to THROW state");
 			    sm.change(Player_Throw(sm));
 			    return;
 			}
@@ -121,11 +121,11 @@ function Player_Move(_sm) {
                 return;
             }
 						
-			if (owner.input_throw) {
+			if (owner.input_throw && ds_map_size(owner.inventory) > 0) {
 			    sm.change(Player_Throw(sm));
 			    return;
 			}
-        }
+		}
     };
 }
 
@@ -226,12 +226,6 @@ function Player_Attack(_sm) {
 				+ ", weapon=" + string(owner.active_weapon.name)
 				+ ", cooldown=" + string(owner.active_weapon_cooldown)
 				);
-			
-            // Prevent firing if no weapons
-            if (ds_list_size(owner.weapons) <= 0) {
-                sm.change(Player_Idle(sm));
-                return;
-            }
 
 			if (owner.active_weapon_cooldown > 0) return;
 
@@ -270,17 +264,12 @@ function Player_Throw(_sm) {
 		owner: _sm.owner,
 
         enter: function() {
-			show_debug_message("Player entered THROW state - enter() - sm_exists=" + string(!is_undefined(sm))
-				+ ", item=" + string(owner.active_item.name)
-				+ ", throw_timer=" + string(owner.throw_timer)
-				);
+			//if (owner.active_item == undefined) return;
+			//show_debug_message("Player entered THROW state - enter() - sm_exists=" + string(!is_undefined(sm))
+			//	+ ", item=" + string(owner.active_item.name)
+			//	+ ", throw_timer=" + string(owner.throw_timer)
+			//	);
 
-            // Prevent throwing if no items
-            if (ds_list_size(owner.inventory) <= 0) {
-                sm.change(Player_Idle(sm));
-                return;
-            }
-			
             // Perform throw
             Item_Throw(owner);
 
@@ -289,16 +278,20 @@ function Player_Throw(_sm) {
         },
 		
         update: function() {
-			show_debug_message("Player entered THROW state - update() - sm_exists=" + string(!is_undefined(sm))
-				+ ", item=" + string(owner.active_item.name)
-				+ ", throw_timer=" + string(owner.throw_timer)
-				);
+			//if (owner.active_item == undefined) {
+			//	sm.change(Player_Idle(sm));
+			//	return;
+			//}
+			//show_debug_message("Player entered THROW state - update() - sm_exists=" + string(!is_undefined(sm))
+			//	+ ", item=" + string(owner.active_item.name)
+			//	+ ", throw_timer=" + string(owner.throw_timer)
+			//	);
 
-            owner.throw_timer--;
+	        owner.throw_timer--;
 
-            if (owner.throw_timer <= 0) {
-                sm.change(Player_Idle(sm));
-            }
+	        if (owner.throw_timer <= 0) {
+	            sm.change(Player_Idle(sm));
+	        }
         }
     };
 }

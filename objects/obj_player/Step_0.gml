@@ -152,9 +152,33 @@ if (keyboard_check_pressed(vk_space) && active_weapon_cooldown == 0) {
 /// ITEM SWITCH
 /// =========================
 if (keyboard_check_pressed(vk_tab)) {
-	item_count = ds_list_size(inventory)
-	if (item_count > 0) {
-	    active_item_index = (active_item_index + 1) mod item_count;
-	    active_item = inventory[| active_item_index];
-	}
+    var keys = ds_map_keys_to_array(inventory);
+    var stack_count = array_length(keys);
+
+    if (stack_count > 0) {
+        // -------------------------------------------------
+        // Find current stack index
+        // -------------------------------------------------
+        var current_index = 0;
+
+        for (var i = 0; i < stack_count; i++) {
+            if (keys[i] == active_item_name) {
+                current_index = i;
+                break;
+            }
+        }
+
+        // -------------------------------------------------
+        // Advance to next stack
+        // -------------------------------------------------
+        var next_index = (current_index + 1) mod stack_count;
+        var next_key = keys[next_index];
+        var stack = inventory[? next_key];
+
+        // -------------------------------------------------
+        // Update active item
+        // -------------------------------------------------
+        active_item_name = next_key;
+        active_item = stack[| 0];
+    }
 }

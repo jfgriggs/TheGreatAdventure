@@ -46,30 +46,44 @@ if (!instance_exists(p)) exit;
 
 // Distance check
 if (point_distance(x, y, p.x, p.y) < pickup_radius) {
-    // Limit weapons size
-    if (ds_list_size(p.weapons) > 6) return;
+    // =========================
+    // WEAPON LIMIT
+    // =========================
+    if (ds_list_size(p.weapons) >= 6) return;
 
-    // Add to weapons
-    ds_list_add(p.weapons, weapon);
+    // =========================
+    // DUPLICATE CHECK
+    // =========================
+    var already_owned = false;
 
-    // Auto-select newest weapon
-    p.active_weapon_index = ds_list_size(p.weapons) - 1;
-    p.active_weapon = p.weapons[| p.active_weapon_index];
-
-    // OPTIONAL: prevent duplicates
-    if (ds_list_find_index(p.weapons, weapon_type) == -1) {
-        ds_list_add(p.weapons, weapon_Create(weapon_type));
+    for (var i = 0; i < ds_list_size(p.weapons); i++) {
+        var w = p.weapons[| i];
+        if (w.weapon_id == weapon_type) {
+            already_owned = true;
+            break;
+        }
     }
 
     // =========================
-    // FEEDBACK (OPTIONAL)
+    // ADD WEAPON
     // =========================
+    if (!already_owned) {
 
-    // Sound
-    audio_play_sound(snd_weapon_pickup, 1, false);
+        ds_list_add(
+            p.weapons,
+            Weapon_Create(weapon_type)
+        );
 
-    // Visual effect
-    effect_create_layer("Effects", ef_spark, x, y, 1, c_yellow);
+        // Auto-select newest weapon
+        p.active_weapon_index = ds_list_size(p.weapons) - 1;
+        p.active_weapon = p.weapons[| p.active_weapon_index];
+
+        // Sound
+        audio_play_sound(snd_weapon_pickup, 1, false);
+
+        // Visual effect
+	    effect_create_layer("Effects", ef_spark, x, y, 1, c_yellow);
+    }
 
     // =========================
     // REMOVE weapon

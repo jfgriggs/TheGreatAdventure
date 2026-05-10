@@ -33,6 +33,9 @@ input_y = keyboard_check(vk_down) - keyboard_check(vk_up);
 input_attack = mouse_check_button_pressed(mb_left);
 input_throw = mouse_check_button_pressed(mb_right);
 
+input_switch_item = keyboard_check_pressed(vk_tab)
+input_switch_weapon = keyboard_check_pressed(vk_space);
+
 // Store previous position BEFORE movement
 prev_x = x;
 prev_y = y;
@@ -139,7 +142,7 @@ sprite_index = sprite[face];
 /// =========================
 /// WEAPON SWITCH
 /// =========================
-if (keyboard_check_pressed(vk_space) && active_weapon_cooldown == 0) {
+if (input_switch_weapon && active_weapon_cooldown == 0) {
 	weapon_count = ds_list_size(weapons)
 	if (weapon_count > 0) {
 	    active_weapon_index = (active_weapon_index + 1) mod weapon_count;
@@ -151,7 +154,7 @@ if (keyboard_check_pressed(vk_space) && active_weapon_cooldown == 0) {
 /// =========================
 /// ITEM SWITCH
 /// =========================
-if (keyboard_check_pressed(vk_tab)) {
+if (input_switch_item) {
     var keys = ds_map_keys_to_array(inventory);
     var stack_count = array_length(keys);
 

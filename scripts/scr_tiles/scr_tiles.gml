@@ -73,3 +73,7 @@ function Tile_Is_Blocking(_tile) {
 function Tile_Is_Blocking_Thrown_Item(_tile) {
     return (_tile == TILE.WALL);
 }
+
+function Tile_Is_Blocking_Fired_Weapon(_tile) {
+    return (_tile == TILE.WALL);
+}

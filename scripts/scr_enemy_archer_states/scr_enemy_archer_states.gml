@@ -72,7 +72,7 @@ function Archer_Shoot(_sm) {
             var p = obj_player;
 
             if (_sm.time mod o.fire_rate == 0) {
-                var proj = instance_create_layer(o.x,o.y,"Instances",obj_weapon_projectile);
+                var proj = instance_create_layer(o.x,o.y,"Instances",obj_projectile_pellets);
                 proj.direction = point_direction(o.x,o.y,p.x,p.y);
             }
 

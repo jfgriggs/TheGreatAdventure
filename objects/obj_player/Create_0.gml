@@ -112,11 +112,26 @@ ds_list_add(weapons, Weapon_Create(WEAPON.SHOTGUN));
 ds_list_add(weapons, Weapon_Create(WEAPON.BOOMERANG));
 ds_list_add(weapons, Weapon_Create(WEAPON.TRAP));
 ds_list_add(weapons, Weapon_Create(WEAPON.BOW));
+ds_list_add(weapons, Weapon_Create(WEAPON.MAGIC_STAFF));
 
 
 active_weapon_index = 0;
 active_weapon = weapons[| active_weapon_index];
 active_weapon_cooldown = 0;
+
+/// =========================
+/// PROJECTILE SPAWN
+/// =========================
+projectile_spawn_forward = 0;
+projectile_spawn_height = -16;
+
+get_projectile_spawn_x = function(_dir = image_angle) {
+    return x + lengthdir_x(projectile_spawn_forward, _dir);
+};
+
+get_projectile_spawn_y = function(_dir = image_angle) {
+    return y + projectile_spawn_height + lengthdir_y(projectile_spawn_forward,_dir);
+};
 
 
 /// =========================

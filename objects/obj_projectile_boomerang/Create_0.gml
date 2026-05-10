@@ -9,6 +9,12 @@
 /// =========================
 owner = noone;
 
+/// =========================
+/// LOCK PLAYER MOVEMENT
+/// =========================
+if (instance_exists(obj_player)) {
+    obj_player.movement_locked = true;
+}
 
 /// =========================
 /// FLIGHT

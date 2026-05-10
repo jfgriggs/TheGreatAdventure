@@ -140,9 +140,17 @@ sprite_index = sprite[face];
 
 
 /// =========================
+/// COMBAT TIMERS
+/// =========================
+if (active_weapon_cooldown > 0) {
+    active_weapon_cooldown--;
+}
+
+
+/// =========================
 /// WEAPON SWITCH
 /// =========================
-if (input_switch_weapon && active_weapon_cooldown == 0) {
+if (input_switch_weapon) {
 	weapon_count = ds_list_size(weapons)
 	if (weapon_count > 0) {
 	    active_weapon_index = (active_weapon_index + 1) mod weapon_count;

@@ -143,9 +143,19 @@ function Weapon_Fire(_o) {
     if (ds_list_size(o.weapons) <= 0) return;
     if (o.active_weapon == undefined) return;
 	
-    var dir = point_direction(o.x, o.y, Mouse_GetWorldX(), Mouse_GetWorldY());
-	var spawn_x = o.get_projectile_spawn_x(dir);
-	var spawn_y = o.get_projectile_spawn_y(dir);
+	/// =========================
+	/// AIM
+	/// =========================
+
+	// Temporary aim direction from player center
+	var aim_dir = point_direction(o.x, o.y, Mouse_GetWorldX(), Mouse_GetWorldY());
+
+	// Calculate projectile spawn position
+	var spawn_x = o.get_projectile_spawn_x(aim_dir);
+	var spawn_y = o.get_projectile_spawn_y(aim_dir);
+
+	// Final corrected direction from spawn point
+	var dir = point_direction(spawn_x, spawn_y, Mouse_GetWorldX(), Mouse_GetWorldY());
 
 	show_debug_message("Weapon_Fire() - " + string(o.active_weapon.name));
 			

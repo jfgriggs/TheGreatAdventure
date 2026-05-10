@@ -78,38 +78,40 @@ function Player_Move(_sm) {
         enter: function() {},
 		
         update: function() {
-            var tile = Tile_Get(owner.x, owner.y);
+			if (!owner.movement_locked) {
+	            var tile = Tile_Get(owner.x, owner.y);
 
-            var speed_factor = 1
-			if (tile == TILE.MUD) speed_factor = 0.1;
+	            var speed_factor = 1
+				if (tile == TILE.MUD) speed_factor = 0.1;
 
-            if (tile == TILE.HOLE) {
-				sm.change(Player_Teleport(sm));
-				return;
-			}
+	            if (tile == TILE.HOLE) {
+					sm.change(Player_Teleport(sm));
+					return;
+				}
 			
-			if (tile == TILE.TRAP) {
-				owner.hp -= 10;
-				owner.invincible_timer = 5
-			}
+				if (tile == TILE.TRAP) {
+					owner.hp -= 10;
+					owner.invincible_timer = 5
+				}
 
-			var vx = lengthdir_x(owner.move_speed * speed_factor, owner.move_dir);
-			var vy = lengthdir_y(owner.move_speed * speed_factor, owner.move_dir);
+				var vx = lengthdir_x(owner.move_speed * speed_factor, owner.move_dir);
+				var vy = lengthdir_y(owner.move_speed * speed_factor, owner.move_dir);
 			
-			//show_debug_message("EMPTY=" + string(TILE.EMPTY)
-			//	+ " WALL=" + string(TILE.WALL)
-			//	+ " WATER=" + string(TILE.WATER)
-			//	+ " MUD=" + string(TILE.MUD)
-			//	+ " TRAP=" + string(TILE.TRAP)
-			//	+ " HOLE=" + string(TILE.HOLE)
-			//	+ " EXPANSION1=" + string(TILE.EXPANSION1)
-			//	+ " EXPANSION2=" + string(TILE.EXPANSION2)
-			//	+ " EXPANSION3=" + string(TILE.EXPANSION3)
-			//	);
-			//show_debug_message("tile=" + string(tile) + " speed_factor=" + string(speed_factor) + " vx=" + string(vx) + " vy=" + string(vy));
+				//show_debug_message("EMPTY=" + string(TILE.EMPTY)
+				//	+ " WALL=" + string(TILE.WALL)
+				//	+ " WATER=" + string(TILE.WATER)
+				//	+ " MUD=" + string(TILE.MUD)
+				//	+ " TRAP=" + string(TILE.TRAP)
+				//	+ " HOLE=" + string(TILE.HOLE)
+				//	+ " EXPANSION1=" + string(TILE.EXPANSION1)
+				//	+ " EXPANSION2=" + string(TILE.EXPANSION2)
+				//	+ " EXPANSION3=" + string(TILE.EXPANSION3)
+				//	);
+				//show_debug_message("tile=" + string(tile) + " speed_factor=" + string(speed_factor) + " vx=" + string(vx) + " vy=" + string(vy));
 
-			show_debug_message(instance_exists(owner));
-            owner.apply_movement(vx, vy);
+				show_debug_message(instance_exists(owner));
+	            owner.apply_movement(vx, vy);
+			}
 
             if (owner.input_x == 0 && owner.input_y == 0) {
                 sm.change(Player_Idle(sm));
@@ -242,12 +244,17 @@ function Player_Attack(_sm) {
 				+ ", cooldown=" + string(owner.active_weapon_cooldown)
 				);
 
-            owner.active_weapon_cooldown--;
-
-            if (owner.active_weapon_cooldown <= 0) {
-                sm.change(Player_Idle(sm));
+            // Cooldown continues independently
+            if (owner.active_weapon_cooldown > 0) {
+                owner.active_weapon_cooldown--;
             }
 
+            // Immediately return to movement orchestration
+            if (owner.input_x != 0 || owner.input_y != 0) {
+                sm.change(Player_Move(sm));
+            } else {
+                sm.change(Player_Idle(sm));
+            }
 		}
     };
 }

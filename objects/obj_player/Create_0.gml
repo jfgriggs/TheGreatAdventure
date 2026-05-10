@@ -96,6 +96,12 @@ flash_visible = true;      // toggle state
 
 
 /// =========================
+/// MOVEMENT LOCK
+/// =========================
+movement_locked = false;
+
+
+/// =========================
 /// TRAPS
 /// =========================
 trap_timer = 0;

@@ -24,6 +24,7 @@
 // REGION: Game States
 // =============================================================================
 enum GAME_STATE {
+	CHARACTER_SELECT,
 	START,
 	PLAYING,
 	PAUSED,
@@ -33,7 +34,15 @@ enum GAME_STATE {
 // =============================================================================
 // REGION: Global Variables
 // =============================================================================
-global.game_state = GAME_STATE.START
+// If game_state already set globally then do not reset - for Game_Reset() to work correctly
+if (!variable_global_exists("game_state")) {
+    global.game_state = GAME_STATE.START;
+}
+
+if (!variable_global_exists("player_object")) {
+	global.player_object = obj_player_ben;
+}
+
 global.game_time = 0;
 global.points = 0;
 global.best_time = 0;
@@ -41,6 +50,11 @@ global.target_fps = game_get_speed(gamespeed_fps);
 
 // Store controller reference
 global.controller = id;
+
+global.player_spawn_x = 200;
+global.player_spawn_y = 200;
+
+spawn_player_pending = true;
 
 // Screen fade overlay
 // 1 = fully black
@@ -106,16 +120,17 @@ part_type_speed(pt_spark, 3, 7, 0, 0);
 // Full radial burst
 part_type_direction(pt_spark, 0, 360, 0, 0);
 
-// Sligh float
+// Slight float
 part_type_gravity(pt_spark, 0.08, 270);
 
 // Glow effect
 part_type_blend(pt_spark, true);
 
 // =============================================================================
-// REGION: Audio
+// REGION: Audio - Play background music
 // =============================================================================
-audio_play_sound(snd_game_start, 1, false);
-music_id = audio_play_sound(snd_music, 1, true);
-audio_sound_gain(snd_music, 1, 120);
+if (!variable_global_exists("music_id") || !audio_is_playing(global.music_id)) {
+	global.music_id = audio_play_sound(snd_music, 1, true);
+	audio_sound_gain(snd_music, 1, 120);
+}
 

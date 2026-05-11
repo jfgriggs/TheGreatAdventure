@@ -1,6 +1,6 @@
 // File: oBuildingParent.gml
 
-var p = obj_player;
+var p = global.player_object;
 
 //depth = -y;
 // Depth

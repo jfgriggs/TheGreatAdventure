@@ -20,7 +20,7 @@
 /// - Keep rendering logic presentation-focused
 /// - Avoid gameplay/state modification during drawing
 
-var p = obj_player;
+var p = global.player_object;
 
 if (!instance_exists(p)) exit;
 

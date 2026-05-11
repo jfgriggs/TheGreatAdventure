@@ -33,12 +33,15 @@ if (global.game_state == GAME_STATE.START) {
 		draw_set_font(fnt_large);
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
-		
-		draw_set_color(c_yellow);
-		draw_text(cx, cy - 70, "PRESS SPACE");
 
 		draw_set_color(c_white);
-		draw_text(cx, cy + 70, "TO START");
+		draw_text(cx, cy - 210, "TO START");
+		
+		draw_set_color(c_blue);
+		draw_text(cx, cy - 70, "PRESS 'B' for Ben");
+
+		draw_set_color(c_yellow);
+		draw_text(cx, cy + 70, "PRESS 'L' for Leni");
 	}
 }
 

@@ -50,16 +50,17 @@ image_blend = c_white;
 draw_set_font(fnt_debug_small);
 draw_set_color(c_white);
 
-//draw_text(x - 40, y - 75, "State: " + string(sm.current));
+//draw_text(x - 40, y - 85, "State: " + string(sm.current));
+draw_text(x - 40, y - 75, "Position: " + string(x) + "," + string(y));
 draw_text(x - 40, y - 65, "Input: " + string(input_x) + "," + string(input_y));
 draw_text(x - 40, y - 55, "Move: " + string(input_x) + "," + string(input_y) + "," + string(move_dir) + "," + string(move_speed));
 draw_text(x - 40, y - 45, "HP: " + string(hp));
 draw_text(x - 40, y - 35, "Locked: " + string(movement_locked));
  
-if (variable_instance_exists(id, "weapon")) {
-	draw_text(x - 40, y - 25, "Wpn: " + string(weapon.name));
-}
+//if (variable_instance_exists(id, "weapon")) {
+//	draw_text(x - 40, y - 25, "Wpn: " + string(weapon.name));
+//}
 
-if (variable_instance_exists(id, "active_item")) {
-	draw_text(x - 40, y - 15, "Item: " + string(active_item.name));
-}
+//if (variable_instance_exists(id, "active_item")) {
+//	draw_text(x - 40, y - 15, "Item: " + string(active_item.name));
+//}

@@ -48,7 +48,7 @@ function Player_Idle(_sm) {
                 return;
             }
 
-            if (owner.input_attack && ds_list_size(owner.weapons) > 0) {
+            if (owner.input_attack) {
 				show_debug_message("Player changing to ATTACK state");
                 sm.change(Player_Attack(sm));
                 return;
@@ -224,10 +224,16 @@ function Player_Attack(_sm) {
 		owner: _sm.owner,
 
         enter: function() {
-			show_debug_message("Player entered ATTACK state - enter() - sm_exists=" + string(!is_undefined(sm))
-				+ ", weapon=" + string(owner.active_weapon.name)
-				+ ", cooldown=" + string(owner.active_weapon_cooldown)
-				);
+			//show_debug_message("Player entered ATTACK state - enter() - sm_exists=" + string(!is_undefined(sm))
+			//	+ ", weapon=" + string(owner.active_weapon.name)
+			//	+ ", cooldown=" + string(owner.active_weapon_cooldown)
+			//	);
+
+			// If no weapons the cannot fire then reset cooldown
+			if (ds_list_size(owner.weapons) == 0) {
+				owner.active_weapon_cooldown = 0;
+				return;
+			}
 
 			if (owner.active_weapon_cooldown > 0) return;
 
@@ -239,10 +245,10 @@ function Player_Attack(_sm) {
         },
 
 		update: function() {
-			show_debug_message("Player entered ATTACK state - update() - sm_exists=" + string(!is_undefined(sm))
-				+ ", weapon=" + string(owner.active_weapon.name)
-				+ ", cooldown=" + string(owner.active_weapon_cooldown)
-				);
+			//show_debug_message("Player entered ATTACK state - update() - sm_exists=" + string(!is_undefined(sm))
+			//	+ ", weapon=" + string(owner.active_weapon.name)
+			//	+ ", cooldown=" + string(owner.active_weapon_cooldown)
+			//	);
 
             // Cooldown continues independently
             if (owner.active_weapon_cooldown > 0) {

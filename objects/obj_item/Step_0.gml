@@ -49,7 +49,7 @@ if (life == 0) {
 /// =========================
 /// PLAYER PICKUP
 /// =========================
-var p = obj_player;
+var p = global.player_object;
 
 if (!instance_exists(p)) exit;
 
@@ -58,17 +58,6 @@ if (point_distance(x, y, p.x, p.y) < pickup_radius) {
     // Add to inventory
     Inventory_Add_Item(p, item);
     
-	// Auto-select newest item
-    //p.active_item_index = ds_list_size(p.inventory) - 1;
-    //p.active_item = p.inventory[| p.active_item_index];
-
-    // OPTIONAL: prevent duplicates
-    /*
-    if (ds_list_find_index(p.inventory, item_type) == -1) {
-        ds_list_add(p.inventory, Item_Create(item_type));
-    }
-    */
-
     // =========================
     // FEEDBACK
     // =========================

@@ -29,13 +29,19 @@ switch(global.game_state) {
 	// REGION: Start State
 	// =============================================================================
 	case GAME_STATE.START:
-		if (keyboard_check_pressed(vk_space)) {
+	    if (keyboard_check_pressed(ord("B"))) {
 			// reset room to spawn everything fresh
 	        Game_Reset();
-
+	        global.player_object = obj_player_ben;
 			fade_target = 1;
-			global.game_state = GAME_STATE.PLAYING;
-			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));	    }
+	    }
+
+	    if (keyboard_check_pressed(ord("L"))) {
+			// reset room to spawn everything fresh
+	        Game_Reset();
+	        global.player_object = obj_player_leni;
+			fade_target = 1;
+	    }
 		break;
 
 	// =============================================================================
@@ -58,8 +64,6 @@ switch(global.game_state) {
 	case GAME_STATE.PAUSED:
 		// YES → quit to start
 	    if (keyboard_check_pressed(ord("Y"))) {
-	        Game_Reset();
-			fade_target = 1;
 			global.game_state = GAME_STATE.START;
 			show_debug_message("global.game_state == GAME_STATE.START == " + string(global.game_state));
 	    }
@@ -79,9 +83,7 @@ switch(global.game_state) {
 	case GAME_STATE.GAME_OVER:
 		show_debug_message("global.game_state == GAME_STATE.GAME_OVER == " + string(global.game_state));
 	    if (keyboard_check_pressed(ord("R"))) {
-	        Game_Reset();
-			fade_target = 1;
-			global.game_state = GAME_STATE.PLAYING;
+			global.game_state = GAME_STATE.START;
 			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));
 	    }
 		break;

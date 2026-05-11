@@ -26,7 +26,7 @@ if (global.game_state != GAME_STATE.PLAYING) {
 }
 
 
-var player = obj_player;
+var player = global.player_object;
 var ctrl   = obj_controller;
 
 if (!instance_exists(player)) exit;

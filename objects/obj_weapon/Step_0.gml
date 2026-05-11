@@ -1,14 +1,14 @@
 // =============================================================================
 // OBJECT:      obj_weapon
 // EVENT:       Step
-// SYSTEM:      weapon Runtime Update
+// SYSTEM:      Weapon Runtime Update
 // =============================================================================
 
 /// @description Updates weapon runtime behavior and interaction logic.
 ///
 /// Child Objects:
-/// - obj_weapon_carrot
-/// - obj_weapon_corn
+/// - obj_weapon_slignshot
+/// - obj_weapon_shotgun
 /// - obj_weapon_*
 ///
 /// Responsibilities:
@@ -40,7 +40,7 @@ y = base_y + sin(bob_phase) * bob_amplitude;
 /// =========================
 /// PLAYER PICKUP
 /// =========================
-var p = obj_player;
+var p = global.player_object;
 
 if (!instance_exists(p)) exit;
 
@@ -68,11 +68,7 @@ if (point_distance(x, y, p.x, p.y) < pickup_radius) {
     // ADD WEAPON
     // =========================
     if (!already_owned) {
-
-        ds_list_add(
-            p.weapons,
-            Weapon_Create(weapon_type)
-        );
+        ds_list_add(p.weapons, Weapon_Create(weapon_type));
 
         // Auto-select newest weapon
         p.active_weapon_index = ds_list_size(p.weapons) - 1;

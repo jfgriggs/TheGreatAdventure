@@ -37,7 +37,7 @@ function Archer_Patrol(_sm) {
 
         update: function() {
             var o = _sm.owner;
-            var p = obj_player;
+            var p = global.player_object;
 
             o.apply_movement(lengthdir_x(o.speed,o.wander_dir), lengthdir_y(o.speed,o.wander_dir));
 
@@ -52,7 +52,7 @@ function Archer_Chase(_sm) {
     return {
         update: function() {
             var o = _sm.owner;
-            var p = obj_player;
+            var p = global.player_object;
 
             var dir = point_direction(o.x,o.y,p.x,p.y);
 
@@ -69,7 +69,7 @@ function Archer_Shoot(_sm) {
     return {
         update: function() {
             var o = _sm.owner;
-            var p = obj_player;
+            var p = global.player_object;
 
             if (_sm.time mod o.fire_rate == 0) {
                 var proj = instance_create_layer(o.x,o.y,"Instances",obj_projectile_pellets);

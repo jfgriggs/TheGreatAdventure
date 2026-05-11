@@ -24,10 +24,10 @@
 // Sprite index (down right)
 face = 3;
 
-sprite[0] = sPlayerRightBoy;
-sprite[1] = sPlayerUpBoy;
-sprite[2] = sPlayerLeftBoy;
-sprite[3] = sPlayerDownBoy;
+sprite[0] = sPlayerRightGirl;
+sprite[1] = sPlayerUpGirl;
+sprite[2] = sPlayerLeftGirl;
+sprite[3] = sPlayerDownGirl;
 
 	
 /// =========================
@@ -113,12 +113,12 @@ trap_cooldown = 60; // frames (~2 sec)
 /// =========================
 weapons = ds_list_create();
 
-ds_list_add(weapons, Weapon_Create(WEAPON.SLINGSHOT));
-ds_list_add(weapons, Weapon_Create(WEAPON.SHOTGUN));
-ds_list_add(weapons, Weapon_Create(WEAPON.BOOMERANG));
-ds_list_add(weapons, Weapon_Create(WEAPON.TRAP));
-ds_list_add(weapons, Weapon_Create(WEAPON.BOW));
-ds_list_add(weapons, Weapon_Create(WEAPON.MAGIC_STAFF));
+//ds_list_add(weapons, Weapon_Create(WEAPON.SLINGSHOT));
+//ds_list_add(weapons, Weapon_Create(WEAPON.SHOTGUN));
+//ds_list_add(weapons, Weapon_Create(WEAPON.BOOMERANG));
+//ds_list_add(weapons, Weapon_Create(WEAPON.TRAP));
+//ds_list_add(weapons, Weapon_Create(WEAPON.BOW));
+//ds_list_add(weapons, Weapon_Create(WEAPON.MAGIC_STAFF));
 
 
 active_weapon_index = 0;

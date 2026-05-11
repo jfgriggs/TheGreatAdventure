@@ -198,7 +198,7 @@ function Animal_FindTarget(o) {
     }
 
     /// PRIORITY 2: PLAYER
-    var p = obj_player;
+    var p = global.player_object;
 
     if (instance_exists(p)) {
 

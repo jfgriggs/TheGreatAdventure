@@ -58,9 +58,13 @@ function Tile_Get(_x, _y) {
         case 3: return TILE.MUD;
         case 4: return TILE.TRAP;
         case 5: return TILE.HOLE;
-        case 6: return TILE.EXPANSION1;
-        case 7: return TILE.EXPANSION2;
-        case 8: return TILE.EXPANSION3;
+        case 6: return TILE.CHICKEN_COOP;
+        case 7: return TILE.COW_PASTURE;
+        case 8: return TILE.PIG_PEN;
+        case 9: return TILE.SHEEP_PASTURE;
+        case 10: return TILE.EXPANSION1;
+        case 11: return TILE.EXPANSION2;
+        case 12: return TILE.EXPANSION3;
     }
 
     return TILE.EMPTY;
@@ -76,4 +80,20 @@ function Tile_Is_Blocking_Thrown_Item(_tile) {
 
 function Tile_Is_Blocking_Fired_Weapon(_tile) {
     return (_tile == TILE.WALL);
+}
+
+function Tile_Is_Animal_Chicken_Coop(_tile) {
+    return (_tile == TILE.CHICKEN_COOP);
+}
+
+function Tile_Is_Animal_Cow_Pasture(_tile) {
+    return (_tile == TILE.COW_PASTURE);
+}
+
+function Tile_Is_Animal_Pig_Pen(_tile) {
+    return (_tile == TILE.PIG_PEN);
+}
+
+function Tile_Is_Animal_Sheep_Pasture(_tile) {
+    return (_tile == TILE.SHEEP_PASTURE);
 }

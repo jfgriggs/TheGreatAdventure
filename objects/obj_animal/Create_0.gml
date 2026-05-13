@@ -29,79 +29,83 @@
 /// - Shared movement logic belongs in scr_movement
 /// - Animal data should remain data-driven
 /// - Avoid species-specific logic in parent object
-show_debug_message("Animal created: " + object_get_name(object_index));
+
 
 /// =========================
-///  --- STATE MACHINE ---
-/// =========================
-//sm = new StateMachine(id);
-//sm.change(Animal_Idle(sm));
-
-/// =========================
-/// ANIMAL SETUP
+/// ANIMAL DATA
 /// =========================
 
-// Sprite index (facing right)
-face = 3;
+animal = undefined;
 
-animal = undefined // change per instance
+// ==========================
+// HEALTH
+// ==========================
+hp = 100;
+max_hp = 100;
 
-// Runtime
-//input_x = 0;
-//input_y = 0;
-target = noone;
-target_type = "none";
+// ==========================
+// SPRITE INDEX
+// ==========================
+face = 3
 
-lose_timer = 0;
-eat_timer = 0;
+// ==========================
+// MOVEMENT
+// ==========================
+vx = 0
+vy = 0
 
-wander_dir = irandom(359);
-wander_timer = 0;
+/// =========================
+/// RUNTIME
+/// =========================
 
-// Movement helper
+initialized = false;
+
+/// =========================
+/// STATE MACHINE
+/// =========================
+
+sm = undefined;
+
+
+// ============================================================================
+// Movement Handler
+// ============================================================================
+
 apply_movement = function(_vx, _vy) {
-    var o = self;
-
-	//show_debug_message("(x,y)=" + string(o.x) + "," + string(o.y) + " (vx,vy)=" + string(_vx) + "," + string(_vy));
-
-	// --- X ---
+    // ------------------------------------------------------------------------
+    // Horizontal Movement
+    // ------------------------------------------------------------------------
     if (_vx != 0) {
-        var new_x = o.x + _vx;
-        var tile = Tile_Get(new_x, o.y);
+        var new_x = x + _vx;
+        var tile = Tile_Get(new_x, y);
 
         if (!Tile_Is_Blocking(tile)) {
-            o.x = new_x;
+            x = new_x;
         } else {
 			// If inside a tile move out of it
 			var step = sign(_vx);
-            while (!Tile_Is_Blocking(Tile_Get(o.x + step, o.y))) {
-                o.x += step;
+            while (!Tile_Is_Blocking(Tile_Get(x + step, y))) {
+                x += step;
             }
         }
     }
 
-    // --- Y ---
+
+    // ------------------------------------------------------------------------
+    // Vertical Movement
+    // ------------------------------------------------------------------------
     if (_vy != 0) {
-        var new_y = o.y + _vy;
-        var tile = Tile_Get(o.x, new_y);
+        var new_y = y + _vy;
+        var tile = Tile_Get(x, new_y);
 
         if (!Tile_Is_Blocking(tile)) {
-            o.y = new_y;
+            y = new_y;
         } else {
 			// If inside a tile move out of it
             var step = sign(_vy);
-            while (!Tile_Is_Blocking(Tile_Get(o.x, o.y + step))) {
-                o.y += step;
+            while (!Tile_Is_Blocking(Tile_Get(x, y + step))) {
+                y += step;
             }
         }
     }
 };
-
-
-// ============================================================================
-// State Machine
-// ============================================================================
-
-sm = new StateMachine(id);
-sm.change(Animal_Idle(sm));
-

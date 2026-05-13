@@ -41,10 +41,10 @@ function Animal_Create(_type) {
 
         case ANIMAL.CHICKEN:
             return {
-
                 name: "chicken",
 
-                move_speed: 2,
+                hp: 100,
+				move_speed: 0.1,
 				point_value: 50,
 
                 vision_range: 180,
@@ -74,7 +74,8 @@ function Animal_Create(_type) {
 
                 name: "cow",
 
-                move_speed: 2.5,
+                hp: 100,
+				move_speed: 0.3,
 				point_value: 200,
 
                 vision_range: 220,
@@ -100,7 +101,8 @@ function Animal_Create(_type) {
 
                 name: "pig",
 
-                move_speed: 2.5,
+                hp: 100,
+				move_speed: 0.2,
 				point_value: 150,
 
                 vision_range: 220,
@@ -126,7 +128,8 @@ function Animal_Create(_type) {
 
                 name: "sheep",
 
-                move_speed: 2.5,
+                hp: 100,
+				move_speed: 0.3,
 				point_value: 100,
 
                 vision_range: 220,
@@ -147,6 +150,94 @@ function Animal_Create(_type) {
                 sprite_large: spr_animal_sheep_large
             };
 	}
+}
+
+
+function Animal_Initialize(_animal) {
+    if (_animal.initialized) {
+        return;
+    }
+
+    if (is_undefined(_animal.animal_type)) {
+        return;
+    }
+
+    _animal.initialized = true;
+
+    // =========================================================
+    // CREATE DATA STRUCT
+    // =========================================================
+    _animal.animal = Animal_Create(_animal.animal_type);
+
+    // =========================================================
+    // VISUALS
+    // =========================================================
+    // Set animal sprite - use mask of sprite 3
+	_animal.face = 3;
+	_animal.mask_index = _animal.animal.sprite[3];
+	_animal.sprite_index = _animal.animal.sprite[face];
+
+    // =========================================================
+    // MOVEMENT
+    // =========================================================
+    _animal.wander_speed = _animal.animal.move_speed;
+
+    // =========================================================
+    // HEALTH
+    // =========================================================
+    _animal.hp = _animal.animal.hp;
+    _animal.max_hp = _animal.animal.hp;
+
+    // =========================================================
+    // WANDER
+    // =========================================================
+    _animal.wander_move_time_min = Seconds(3);
+    _animal.wander_move_time_max = Seconds(6);
+
+    _animal.wander_idle_time_min = Seconds(4);
+    _animal.wander_idle_time_max = Seconds(10);
+
+    // =========================================================
+    // SAFETY
+    // =========================================================
+    _animal.is_safe = false;
+
+    // =========================================================
+    // STATE MACHINE
+    // =========================================================
+    _animal.sm = new StateMachine(_animal);
+    _animal.sm.change(Animal_Idle(_animal.sm));
+}
+
+
+function Animal_Update_Facing(_animal) {
+    // =========================================================
+    // DETERMINE FACING
+    // =========================================================
+    if (_animal.vx != 0 || _animal.vy != 0) {
+        var dir = point_direction(0, 0, _animal.vx, _animal.vy);
+
+        var face = round(dir / 90);
+
+        if (face == 4) {
+            face = 0;
+        }
+
+        _animal.face = face;
+    }
+
+    // =========================================================
+    // SPRITES
+    // =========================================================
+    _animal.mask_index = _animal.animal.sprite[3];
+    _animal.sprite_index = _animal.animal.sprite[_animal.face];
+
+    // =========================================================
+    // IDLE FRAME
+    // =========================================================
+    if (_animal.vx == 0 && _animal.vy == 0) {
+        _animal.image_index = 0;
+    }
 }
 
 
@@ -219,4 +310,43 @@ function Animal_FindTarget(o) {
 
 function Animal_IsSafe(o) {
 	return false;
+}
+
+
+
+function Animal_Get_Pen_Tile(_animal_type) {
+    switch (_animal_type) {
+        case ANIMAL.CHICKEN: return TILE.CHICKEN_COOP;
+        case ANIMAL.COW:     return TILE.COW_PASTURE;
+        case ANIMAL.PIG:     return TILE.PIG_PEN;
+        case ANIMAL.SHEEP:   return TILE.SHEEP_PASTURE;
+    }
+
+    return TILE.EMPTY;
+}
+
+function Animal_Is_In_Correct_Pen(_animal) {
+    var tile = Tile_Get(_animal.x, _animal.y);
+    return (tile == Animal_Get_Pen_Tile(_animal.animal.type));
+}
+
+function Animal_Find_Desired_Item(_animal) {
+    var nearest = noone;
+    var nearest_dist = 999999;
+
+    with (obj_item_thrown) {
+        if (item.item_type == other.animal.favorite_food) {
+            var dist = point_distance(x, y, other.x, other.y);
+            if (dist <= other.animal.attract_range) {
+                // Optional LOS hook later
+                // collision_line(...)
+                if (dist < nearest_dist) {
+                    nearest_dist = dist;
+                    nearest = id;
+                }
+            }
+        }
+    }
+
+    return nearest;
 }

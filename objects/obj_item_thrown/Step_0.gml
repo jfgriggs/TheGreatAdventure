@@ -75,6 +75,8 @@ if (!landed) {
 	    i.item = item;
 	    i.sprite_index = item.sprite;
 		i.life = item.life;
+		i.max_hp = item.hp;
+		i.hp = item.hp;
 
 	    instance_destroy();
 	}

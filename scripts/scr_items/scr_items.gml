@@ -52,7 +52,11 @@ function Item_Create(_type) {
 		        throw_speed: 12,
 		        throw_distance: 260,
 		        drag: 0.985,
-				life: 2400
+				life: 2400,
+				
+				hp: 60,
+				max_hp: 60,				
+				nutrition: 1
 		    };
 
 		case ITEM.CORN:
@@ -65,7 +69,11 @@ function Item_Create(_type) {
 		        throw_speed: 10,
 		        throw_distance: 220,
 		        drag: 0.975,
-				life: 2400
+				life: 2400,
+				
+				hp: 60,
+				max_hp: 60,				
+				nutrition: 1
 		    };
 
 		case ITEM.TOMATO:
@@ -78,7 +86,11 @@ function Item_Create(_type) {
 		        throw_speed: 9,
 		        throw_distance: 180,
 		        drag: 0.96,
-				life: 1800
+				life: 1800,
+				
+				hp: 60,
+				max_hp: 60,				
+				nutrition: 1
 		    };
 
 		case ITEM.PUMPKIN:
@@ -91,7 +103,11 @@ function Item_Create(_type) {
 		        throw_speed: 7,
 		        throw_distance: 130,
 		        drag: 0.93,
-				life: 3600
+				life: 3600,
+				
+				hp: 60,
+				max_hp: 60,				
+				nutrition: 1
 		    };
 
 		case ITEM.WATERMELON:
@@ -104,7 +120,11 @@ function Item_Create(_type) {
 		        throw_speed: 6,
 		        throw_distance: 100,
 		        drag: 0.90,
-				life: 3600
+				life: 3600,
+				
+				hp: 60,
+				max_hp: 60,				
+				nutrition: 1
 		    };
 	}
 	return {
@@ -114,6 +134,15 @@ function Item_Create(_type) {
 		count: 1,
 		throw_distance: 50
 	};
+}
+
+function Item_Take_Damage(_item, _amount) {
+
+    _item.hp -= _amount;
+
+    if (_item.hp <= 0) {
+        instance_destroy(_item);
+    }
 }
 
 function Item_Throw(_o) {

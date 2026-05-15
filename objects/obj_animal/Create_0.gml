@@ -17,54 +17,84 @@
 /// - Configure movement settings
 /// - Setup AI behavior variables
 /// - Initialize animal state machine
-/// - Configure terrain interaction
-/// - Setup follow/target tracking
-/// - Initialize wandering behavior
-/// - Configure pen/safe tracking
 ///
 /// Notes:
 /// - Child objects assign animal_type
 /// - Species-specific configuration belongs in child objects
 /// - Shared AI logic belongs in scr_animal_states
-/// - Shared movement logic belongs in scr_movement
-/// - Animal data should remain data-driven
 /// - Avoid species-specific logic in parent object
 
 
 /// =========================
-/// ANIMAL DATA
+/// IDENTITY
 /// =========================
 
-animal = undefined;
+animal_type = -1;
 
-// ==========================
-// HEALTH
-// ==========================
+/// =========================
+/// HEALTH
+/// =========================
+
 hp = 100;
 max_hp = 100;
 
-// ==========================
-// SPRITE INDEX
-// ==========================
-face = 3
+/// =========================
+/// MOVEMENT
+/// =========================
 
-// ==========================
-// MOVEMENT
-// ==========================
-vx = 0
-vy = 0
+vx = 0;
+vy = 0;
+
+move_speed = 0.2;
+
+/// =========================
+/// VISUALS
+/// =========================
+
+face = 3;
+
+sprite_set = [];
+sprite_large = -1;
+
+/// =========================
+/// AI
+/// =========================
+
+vision_range = 180;
+lose_range = 220;
+lose_time_max = Seconds(4);
+
+desired_items = [];
+
+point_value = 50;
+
+/// =========================
+/// WANDER
+/// =========================
+
+wander_speed = move_speed;
+
+wander_move_time_min = Seconds(3);
+wander_move_time_max = Seconds(6);
+
+wander_idle_time_min = Seconds(4);
+wander_idle_time_max = Seconds(10);
 
 /// =========================
 /// RUNTIME
 /// =========================
 
-initialized = false;
+target = noone;
+target_type = "";
+
+is_safe = false;
 
 /// =========================
 /// STATE MACHINE
 /// =========================
 
-sm = undefined;
+sm = new StateMachine(self);
+sm.change(Animal_Idle(sm));
 
 
 // ============================================================================
@@ -109,3 +139,13 @@ apply_movement = function(_vx, _vy) {
         }
     }
 };
+
+
+// ============================================================================
+// Initial Visual Setup
+// ============================================================================
+
+if (array_length(sprite_set) > 0) {
+    mask_index = sprite_set[3];
+    sprite_index = sprite_set[3];
+}

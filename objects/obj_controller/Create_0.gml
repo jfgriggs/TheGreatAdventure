@@ -20,23 +20,14 @@
 /// - Avoid placing gameplay-specific logic here
 /// - Shared systems should remain modularized
 
-// =============================================================================
-// REGION: Game States
-// =============================================================================
-enum GAME_STATE {
-	CHARACTER_SELECT,
-	START,
-	PLAYING,
-	PAUSED,
-	GAME_OVER
-}
+
 
 // =============================================================================
 // REGION: Global Variables
 // =============================================================================
 // If game_state already set globally then do not reset - for Game_Reset() to work correctly
 if (!variable_global_exists("game_state")) {
-    global.game_state = GAME_STATE.START;
+    global.game_state = GAME_STATE.STARTING;
 }
 
 if (!variable_global_exists("player_object")) {

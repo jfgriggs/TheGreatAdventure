@@ -143,6 +143,7 @@
     {"name":"scr_enemy_archer_states","order":11,"path":"scripts/scr_enemy_archer_states/scr_enemy_archer_states.yy",},
     {"name":"scr_enemy_predator_states","order":12,"path":"scripts/scr_enemy_predator_states/scr_enemy_predator_states.yy",},
     {"name":"scr_game_utils","order":5,"path":"scripts/scr_game_utils/scr_game_utils.yy",},
+    {"name":"scr_globals","order":20,"path":"scripts/scr_globals/scr_globals.yy",},
     {"name":"scr_items","order":17,"path":"scripts/scr_items/scr_items.yy",},
     {"name":"scr_player_states","order":9,"path":"scripts/scr_player_states/scr_player_states.yy",},
     {"name":"scr_state_machine","order":1,"path":"scripts/scr_state_machine/scr_state_machine.yy",},

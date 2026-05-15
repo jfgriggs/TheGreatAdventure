@@ -169,6 +169,7 @@
     {"id":{"name":"scr_enemy_archer_states","path":"scripts/scr_enemy_archer_states/scr_enemy_archer_states.yy",},},
     {"id":{"name":"scr_enemy_predator_states","path":"scripts/scr_enemy_predator_states/scr_enemy_predator_states.yy",},},
     {"id":{"name":"scr_game_utils","path":"scripts/scr_game_utils/scr_game_utils.yy",},},
+    {"id":{"name":"scr_globals","path":"scripts/scr_globals/scr_globals.yy",},},
     {"id":{"name":"scr_items","path":"scripts/scr_items/scr_items.yy",},},
     {"id":{"name":"scr_player_states","path":"scripts/scr_player_states/scr_player_states.yy",},},
     {"id":{"name":"scr_state_machine","path":"scripts/scr_state_machine/scr_state_machine.yy",},},

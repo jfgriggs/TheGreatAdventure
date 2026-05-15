@@ -20,25 +20,38 @@
 /// - Avoid hardcoding item-specific logic directly here
 
 /// =========================
-/// ITEM SETUP
+/// ITEM DATA
 /// =========================
 
-// What type of item this is
 item = undefined;
+item_type = -1;
 
-// =========================
-// BOB ANIMATION (POLISH)
-// =========================
+
+/// =========================
+/// RUNTIME
+/// =========================
+
+life = -1;
+
+vx = 0;
+vy = 0;
+
 base_y = y;
+
+drag = 1;
+
+
+/// =========================
+/// PICKUP
+/// =========================
+
+pickup_radius = 16;
+
+
+/// =========================
+/// BOB ANIMATION
+/// =========================
 
 bob_amplitude = 1;
 bob_speed = 0.1;
 bob_phase = random(1000);
-
-
-// =========================
-// PICKUP SETTINGS
-// =========================
-pickup_radius = 16;
-
-life = -1;

@@ -29,14 +29,6 @@
 /// - Avoid duplicating item logic across objects
 /// - Supports inventory and world item systems
 
-enum ITEM {
-	CARROT,
-    CORN,
-    TOMATO,
-	PUMPKIN,
-    WATERMELON
-}
-
 
 function Item_Create(_type) {
 

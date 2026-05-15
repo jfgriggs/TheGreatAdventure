@@ -28,7 +28,7 @@ switch(global.game_state) {
 	// =============================================================================
 	// REGION: Start State
 	// =============================================================================
-	case GAME_STATE.START:
+	case GAME_STATE.STARTING:
 	    if (keyboard_check_pressed(ord("B"))) {
 			// reset room to spawn everything fresh
 	        Game_Reset();
@@ -64,8 +64,8 @@ switch(global.game_state) {
 	case GAME_STATE.PAUSED:
 		// YES → quit to start
 	    if (keyboard_check_pressed(ord("Y"))) {
-			global.game_state = GAME_STATE.START;
-			show_debug_message("global.game_state == GAME_STATE.START == " + string(global.game_state));
+			global.game_state = GAME_STATE.STARTING;
+			show_debug_message("global.game_state == GAME_STATE.STARTING == " + string(global.game_state));
 	    }
 
 	    // NO → resume game
@@ -83,7 +83,7 @@ switch(global.game_state) {
 	case GAME_STATE.GAME_OVER:
 		show_debug_message("global.game_state == GAME_STATE.GAME_OVER == " + string(global.game_state));
 	    if (keyboard_check_pressed(ord("R"))) {
-			global.game_state = GAME_STATE.START;
+			global.game_state = GAME_STATE.STARTING;
 			show_debug_message("global.game_state == GAME_STATE.PLAYING == " + string(global.game_state));
 	    }
 		break;

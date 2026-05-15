@@ -28,25 +28,6 @@
 /// - Avoid embedding species-specific logic directly in states
 
 
-function xAnimal_Idle(_sm) {
-	return {
-		sm: _sm,
-		owner: _sm.owner,
-        
-		enter: function() {
-			owner.wander_dir = irandom(359);
-        },
-
-        update: function() {
-			owner.vx = lengthdir_x(owner.speed, owner.wander_dir);
-            owner.vy = lengthdir_y(owner.speed, owner.wander_dir);
-
-            owner.apply_movement(owner.vx, owner.vy);
-			Animal_Update_Facing(owner);
-        }
-    };
-}
-
 function Animal_Idle(_sm) {
     return {
         sm: _sm,
@@ -72,7 +53,7 @@ function Animal_Idle(_sm) {
             // =============================================================
             // LOOK FOR FOOD
             // =============================================================
-            var food = Animal_Find_Desired_Item(owner);
+            var food =  (owner);
 
             if (food != noone) {
                 owner.target = food;

@@ -17,18 +17,34 @@
 /// - Initialize sheep visuals/animation settings
 ///
 /// Notes:
-/// - Inherits shared animal behavior from obj_animal_parent
+/// - Inherits shared animal behavior from obj_animal (parent)
 /// - Shared AI logic belongs in scr_animal_states
-/// - Shared movement logic belongs in scr_movement
-/// - Animal definitions should remain data-driven
 /// - Avoid duplicating shared animal logic here
+
 
 event_inherited();
 
-animal = Animal_Create(ANIMAL.SHEEP);
+animal_type = ANIMAL.SHEEP;
 
-// Sprite index (down right)
-face = 3;
-sprite = animal.sprite;
+move_speed = 0.3;
+wander_speed = move_speed;
 
-show_debug_message("ANIMAL CREATED: " + string(animal));
+point_value = 100;
+
+vision_range = 220;
+lose_range = 260;
+lose_time_max = 180;
+
+desired_items = [ITEM.CARROT];
+
+sprite_set = [
+    spr_animal_sheep_right,
+    spr_animal_sheep_up,
+    spr_animal_sheep_left,
+    spr_animal_sheep_down
+];
+
+sprite_large = spr_animal_sheep_large;
+
+mask_index = sprite_set[3];
+sprite_index = sprite_set[3];

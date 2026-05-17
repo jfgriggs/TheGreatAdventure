@@ -65,3 +65,7 @@ function Game_Reset() {
 
 	room_restart();
 }
+
+function Seconds(_seconds) {
+    return round(game_get_speed(gamespeed_fps) * _seconds);
+}

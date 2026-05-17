@@ -33,7 +33,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.5.1055",
+    "IDEVersion":"2024.1400.5.1065",
   },
   "name":"TheGreatAdventure",
   "resources":[
@@ -65,6 +65,7 @@
     {"id":{"name":"obj_pen","path":"objects/obj_pen/obj_pen.yy",},},
     {"id":{"name":"obj_player_ben","path":"objects/obj_player_ben/obj_player_ben.yy",},},
     {"id":{"name":"obj_player_leni","path":"objects/obj_player_leni/obj_player_leni.yy",},},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_projectile_arrow","path":"objects/obj_projectile_arrow/obj_projectile_arrow.yy",},},
     {"id":{"name":"obj_projectile_boomerang","path":"objects/obj_projectile_boomerang/obj_projectile_boomerang.yy",},},
     {"id":{"name":"obj_projectile_magic","path":"objects/obj_projectile_magic/obj_projectile_magic.yy",},},
@@ -169,6 +170,7 @@
     {"id":{"name":"scr_enemy_archer_states","path":"scripts/scr_enemy_archer_states/scr_enemy_archer_states.yy",},},
     {"id":{"name":"scr_enemy_predator_states","path":"scripts/scr_enemy_predator_states/scr_enemy_predator_states.yy",},},
     {"id":{"name":"scr_game_utils","path":"scripts/scr_game_utils/scr_game_utils.yy",},},
+    {"id":{"name":"scr_globals","path":"scripts/scr_globals/scr_globals.yy",},},
     {"id":{"name":"scr_items","path":"scripts/scr_items/scr_items.yy",},},
     {"id":{"name":"scr_player_states","path":"scripts/scr_player_states/scr_player_states.yy",},},
     {"id":{"name":"scr_state_machine","path":"scripts/scr_state_machine/scr_state_machine.yy",},},

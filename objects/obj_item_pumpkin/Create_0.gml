@@ -24,4 +24,26 @@
 
 event_inherited();
 
-item = Item_Create(ITEM.PUMPKIN);
+
+/// =========================
+/// ITEM DEFINITION
+/// =========================
+
+item_type = ITEM.PUMPKIN;
+
+item = Item_Create(item_type);
+
+
+/// =========================
+/// RUNTIME
+/// =========================
+
+life = item.life;
+
+
+/// =========================
+/// VISUALS
+/// =========================
+
+sprite_index = item.sprite;
+mask_index = item.sprite;

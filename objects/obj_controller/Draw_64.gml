@@ -22,7 +22,7 @@ var cy = display_get_gui_height() / 2;
 // =============================================================================
 // REGION: Start Screen
 // =============================================================================
-if (global.game_state == GAME_STATE.START) {
+if (global.game_state == GAME_STATE.STARTING) {
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
 	draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);

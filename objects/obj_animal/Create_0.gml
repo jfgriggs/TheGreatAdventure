@@ -17,81 +17,124 @@
 /// - Configure movement settings
 /// - Setup AI behavior variables
 /// - Initialize animal state machine
-/// - Configure terrain interaction
-/// - Setup follow/target tracking
-/// - Initialize wandering behavior
-/// - Configure pen/safe tracking
 ///
 /// Notes:
 /// - Child objects assign animal_type
 /// - Species-specific configuration belongs in child objects
 /// - Shared AI logic belongs in scr_animal_states
-/// - Shared movement logic belongs in scr_movement
-/// - Animal data should remain data-driven
 /// - Avoid species-specific logic in parent object
-show_debug_message("Animal created: " + object_get_name(object_index));
+
 
 /// =========================
-///  --- STATE MACHINE ---
-/// =========================
-//sm = new StateMachine(id);
-//sm.change(Animal_Idle(sm));
-
-/// =========================
-/// ANIMAL SETUP
+/// IDENTITY
 /// =========================
 
-// Sprite index (facing right)
+animal_type = -1;
+
+/// =========================
+/// HEALTH
+/// =========================
+
+hp = 100;
+max_hp = 100;
+
+/// =========================
+/// MOVEMENT
+/// =========================
+
+vx = 0;
+vy = 0;
+
+move_speed = 0.2;
+
+/// =========================
+/// VISUALS
+/// =========================
+
 face = 3;
 
-animal = undefined // change per instance
+sprite_set = [];
+sprite_large = -1;
 
-// Runtime
-//input_x = 0;
-//input_y = 0;
+/// =========================
+/// AI
+/// =========================
+
+vision_range = 180;
+lose_range = 220;
+lose_time_max = Seconds(4);
+
+desired_items = [];
+
+point_value = 50;
+
+/// =========================
+/// WANDER
+/// =========================
+
+wander_speed = move_speed;
+
+wander_move_time_min = Seconds(3);
+wander_move_time_max = Seconds(6);
+
+wander_idle_time_min = Seconds(4);
+wander_idle_time_max = Seconds(10);
+
+/// =========================
+/// RUNTIME
+/// =========================
+
 target = noone;
-target_type = "none";
+target_type = "";
 
-lose_timer = 0;
-eat_timer = 0;
+is_safe = false;
 
-wander_dir = irandom(359);
-wander_timer = 0;
+/// =========================
+/// STATE MACHINE
+/// =========================
 
-// Movement helper
+sm = new StateMachine(self);
+sm.change(Animal_Idle(sm));
+
+
+// ============================================================================
+// Movement Handler
+// ============================================================================
+
 apply_movement = function(_vx, _vy) {
-    var o = self;
-
-	//show_debug_message("(x,y)=" + string(o.x) + "," + string(o.y) + " (vx,vy)=" + string(_vx) + "," + string(_vy));
-
-	// --- X ---
+    // ------------------------------------------------------------------------
+    // Horizontal Movement
+    // ------------------------------------------------------------------------
     if (_vx != 0) {
-        var new_x = o.x + _vx;
-        var tile = Tile_Get(new_x, o.y);
+        var new_x = x + _vx;
+        var tile = Tile_Get(new_x, y);
 
         if (!Tile_Is_Blocking(tile)) {
-            o.x = new_x;
+            x = new_x;
         } else {
 			// If inside a tile move out of it
 			var step = sign(_vx);
-            while (!Tile_Is_Blocking(Tile_Get(o.x + step, o.y))) {
-                o.x += step;
+            while (!Tile_Is_Blocking(Tile_Get(x + step, y))) {
+                x += step;
             }
         }
     }
 
-    // --- Y ---
+
+    // ------------------------------------------------------------------------
+    // Vertical Movement
+    // ------------------------------------------------------------------------
     if (_vy != 0) {
-        var new_y = o.y + _vy;
-        var tile = Tile_Get(o.x, new_y);
+        var new_y = y + _vy;
+        var tile = Tile_Get(x, new_y);
 
         if (!Tile_Is_Blocking(tile)) {
-            o.y = new_y;
+            y = new_y;
         } else {
 			// If inside a tile move out of it
             var step = sign(_vy);
-            while (!Tile_Is_Blocking(Tile_Get(o.x, o.y + step))) {
-                o.y += step;
+            while (!Tile_Is_Blocking(Tile_Get(x, y + step))) {
+                y += step;
             }
         }
     }
@@ -99,9 +142,10 @@ apply_movement = function(_vx, _vy) {
 
 
 // ============================================================================
-// State Machine
+// Initial Visual Setup
 // ============================================================================
 
-sm = new StateMachine(id);
-sm.change(Animal_Idle(sm));
-
+if (array_length(sprite_set) > 0) {
+    mask_index = sprite_set[3];
+    sprite_index = sprite_set[3];
+}

@@ -28,125 +28,35 @@
 /// - Avoid duplicating species logic across objects
 /// - Supports all obj_animal_* child objects
 
-enum ANIMAL {
-    CHICKEN,
-    COW,
-	PIG,
-	SHEEP
-}
 
-function Animal_Create(_type) {
+function Animal_Update_Facing(_animal) {
+    // =========================================================
+    // DETERMINE FACING
+    // =========================================================
+    if (_animal.vx != 0 || _animal.vy != 0) {
+        var dir = point_direction(0, 0, _animal.vx, _animal.vy);
 
-    switch(_type) {
+        var face = round(dir / 90);
 
-        case ANIMAL.CHICKEN:
-            return {
+        if (face == 4) {
+            face = 0;
+        }
 
-                name: "chicken",
+        _animal.face = face;
+    }
 
-                move_speed: 2,
-				point_value: 50,
+    // =========================================================
+    // SPRITES
+    // =========================================================
+    _animal.mask_index = _animal.sprite_set[3];
+    _animal.sprite_index = _animal.sprite_set[_animal.face];
 
-                vision_range: 180,
-                lose_range: 220,
-                lose_time_max: 240,
-
-                eat_time_required: 600,
-
-                // MULTIPLE FOODS
-                desired_items: [ITEM.CORN, ITEM.TOMATO],
-
-                // DIRECTIONAL SPRITES
-                // 0:right, 1:up, 2:left, 3:down
-                sprite: [
-                    spr_animal_chicken_right,
-                    spr_animal_chicken_up,
-                    spr_animal_chicken_left,
-                    spr_animal_chicken_down
-                ],
-
-                // HUD
-                sprite_large: spr_animal_chicken_large
-            };
-
-        case ANIMAL.COW:
-            return {
-
-                name: "cow",
-
-                move_speed: 2.5,
-				point_value: 200,
-
-                vision_range: 220,
-                lose_range: 260,
-                lose_time_max: 180,
-
-                eat_time_required: 480,
-
-                desired_items: [ITEM.CARROT, ITEM.CORN, ITEM.TOMATO],
-
-                sprite: [
-                    spr_animal_cow_right,
-                    spr_animal_cow_up,
-                    spr_animal_cow_left,
-                    spr_animal_cow_down
-                ],
-
-                sprite_large: spr_animal_cow_large
-            };
-			
-        case ANIMAL.PIG:
-            return {
-
-                name: "pig",
-
-                move_speed: 2.5,
-				point_value: 150,
-
-                vision_range: 220,
-                lose_range: 260,
-                lose_time_max: 180,
-
-                eat_time_required: 480,
-
-                desired_items: [ITEM.CARROT, ITEM.CORN, ITEM.TOMATO, ITEM.PUMPKIN, ITEM.WATERMELON],
-
-                sprite: [
-                    spr_animal_pig_right,
-                    spr_animal_pig_up,
-                    spr_animal_pig_left,
-                    spr_animal_pig_down
-                ],
-
-                sprite_large: spr_animal_pig_large
-            };
-
-        case ANIMAL.SHEEP:
-            return {
-
-                name: "sheep",
-
-                move_speed: 2.5,
-				point_value: 100,
-
-                vision_range: 220,
-                lose_range: 260,
-                lose_time_max: 180,
-
-                eat_time_required: 480,
-
-                desired_items: [ITEM.CARROT],
-
-                sprite: [
-                    spr_animal_sheep_right,
-                    spr_animal_sheep_up,
-                    spr_animal_sheep_left,
-                    spr_animal_sheep_down
-                ],
-
-                sprite_large: spr_animal_sheep_large
-            };
-	}
+    // =========================================================
+    // IDLE FRAME
+    // =========================================================
+    if (_animal.vx == 0 && _animal.vy == 0) {
+        _animal.image_index = 0;
+    }
 }
 
 
@@ -156,8 +66,8 @@ function Animal_LikesItem(o, item_struct) {
 
     var item_type = item_struct.type;
 
-    for (var i = 0; i < array_length(o.animal.desired_items); i++) {
-        if (o.animal.desired_items[i] == item_type) {
+    for (var i = 0; i < array_length(o.desired_items); i++) {
+        if (o.desired_items[i] == item_type) {
             return true;
         }
     }
@@ -183,7 +93,7 @@ function Animal_FindTarget(o) {
 
         var d = point_distance(x, y, o.x, o.y);
 
-        if (d < best_dist && d < o.animal.vision_range) {
+        if (d < best_dist && d < o.vision_range) {
 
             if (Animal_Animal_HasLineOfSight(o.x, o.y, x, y)) {
                 best = id;
@@ -206,7 +116,7 @@ function Animal_FindTarget(o) {
 
             var d = point_distance(o.x, o.y, p.x, p.y);
 
-            if (d < o.animal.vision_range && Animal_Animal_HasLineOfSight(o.x, o.y, p.x, p.y)) {
+            if (d < o.vision_range && Animal_Animal_HasLineOfSight(o.x, o.y, p.x, p.y)) {
                 o.target_type = "player";
                 return p;
             }
@@ -219,4 +129,43 @@ function Animal_FindTarget(o) {
 
 function Animal_IsSafe(o) {
 	return false;
+}
+
+
+
+function Animal_Get_Pen_Tile(_animal_type) {
+    switch (_animal_type) {
+        case ANIMAL.CHICKEN: return TILE.CHICKEN_COOP;
+        case ANIMAL.COW:     return TILE.COW_PASTURE;
+        case ANIMAL.PIG:     return TILE.PIG_PEN;
+        case ANIMAL.SHEEP:   return TILE.SHEEP_PASTURE;
+    }
+
+    return TILE.EMPTY;
+}
+
+function Animal_Is_In_Correct_Pen(_animal) {
+    var tile = Tile_Get(_animal.x, _animal.y);
+    return (tile == Animal_Get_Pen_Tile(_animal.animal_type));
+}
+
+function Animal_Find_Desired_Item(_animal) {
+    var nearest = noone;
+    var nearest_dist = 999999;
+
+    with (obj_item_thrown) {
+        if (item.item_type == other.favorite_food) {
+            var dist = point_distance(x, y, other.x, other.y);
+            if (dist <= other.attract_range) {
+                // Optional LOS hook later
+                // collision_line(...)
+                if (dist < nearest_dist) {
+                    nearest_dist = dist;
+                    nearest = id;
+                }
+            }
+        }
+    }
+
+    return nearest;
 }

@@ -24,4 +24,19 @@
 
 event_inherited();
 
+
+/// =========================
+/// WEAPON DEFINITION
+/// =========================
+
 weapon_type = WEAPON.MAGIC_STAFF;
+
+weapon = Weapon_Create(weapon_type);
+
+
+/// =========================
+/// VISUALS
+/// =========================
+
+sprite_index = weapon.sprite;
+mask_index = weapon.sprite;

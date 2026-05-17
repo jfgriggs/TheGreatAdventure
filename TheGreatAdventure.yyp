@@ -33,7 +33,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.5.1055",
+    "IDEVersion":"2024.1400.5.1065",
   },
   "name":"TheGreatAdventure",
   "resources":[
@@ -65,6 +65,7 @@
     {"id":{"name":"obj_pen","path":"objects/obj_pen/obj_pen.yy",},},
     {"id":{"name":"obj_player_ben","path":"objects/obj_player_ben/obj_player_ben.yy",},},
     {"id":{"name":"obj_player_leni","path":"objects/obj_player_leni/obj_player_leni.yy",},},
+    {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_projectile_arrow","path":"objects/obj_projectile_arrow/obj_projectile_arrow.yy",},},
     {"id":{"name":"obj_projectile_boomerang","path":"objects/obj_projectile_boomerang/obj_projectile_boomerang.yy",},},
     {"id":{"name":"obj_projectile_magic","path":"objects/obj_projectile_magic/obj_projectile_magic.yy",},},

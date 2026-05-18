@@ -36,6 +36,7 @@ function Item_Create(_type) {
 
 		case ITEM.CARROT:
 		    return {
+				type: _type,
 		        name: "carrot",
 		        sprite: spr_item_carrot,
 		        sprite_large: spr_item_carrot_large,
@@ -53,6 +54,7 @@ function Item_Create(_type) {
 
 		case ITEM.CORN:
 		    return {
+				type: _type,
 		        name: "corn",
 		        sprite: spr_item_corn,
 		        sprite_large: spr_item_corn_large,
@@ -70,6 +72,7 @@ function Item_Create(_type) {
 
 		case ITEM.TOMATO:
 		    return {
+				type: _type,
 		        name: "tomato",
 		        sprite: spr_item_tomato,
 		        sprite_large: spr_item_tomato_large,
@@ -87,8 +90,9 @@ function Item_Create(_type) {
 
 		case ITEM.PUMPKIN:
 		    return {
+				type: _type,
 		        name: "pumpkin",
-		        sprite: spr_item_pumpkin,
+				sprite: spr_item_pumpkin,
 		        sprite_large: spr_item_pumpkin_large,
 		        count: 1,
 
@@ -104,6 +108,7 @@ function Item_Create(_type) {
 
 		case ITEM.WATERMELON:
 		    return {
+				type: _type,
 		        name: "watermelon",
 		        sprite: spr_item_watermelon,
 		        sprite_large: spr_item_watermelon_large,
@@ -130,10 +135,36 @@ function Item_Create(_type) {
 
 function Item_Take_Damage(_item, _amount) {
 
-    _item.hp -= _amount;
+    // =========================================================
+    // WORLD ITEM INSTANCE
+    // =========================================================
+    if (instance_exists(_item)) {
 
-    if (_item.hp <= 0) {
-        instance_destroy(_item);
+        if (!variable_instance_exists(_item, "item")) {
+            return;
+        }
+
+        if (!is_struct(_item.item)) {
+            return;
+        }
+
+        _item.item.hp -= _amount;
+        if (_item.item.hp <= 0) {
+            instance_destroy(_item);
+        }
+
+        return;
+    }
+
+
+    // =========================================================
+    // ITEM STRUCT ONLY
+    // =========================================================
+    if (is_struct(_item)) {
+        if (!variable_struct_exists(_item, "hp")) {
+            return;
+        }
+        _item.hp -= _amount;
     }
 }
 

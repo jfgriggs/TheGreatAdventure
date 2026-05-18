@@ -82,7 +82,7 @@ function Player_Move(_sm) {
 	            var tile = Tile_Get(owner.x, owner.y);
 
 	            var speed_factor = 1
-				if (tile == TILE.MUD) speed_factor = 0.1;
+				if (tile == TILE.MUD || tile == TILE.PIG_PEN) speed_factor = 0.1;
 
 	            if (tile == TILE.HOLE) {
 					sm.change(Player_Teleport(sm));

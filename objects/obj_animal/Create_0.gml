@@ -101,42 +101,118 @@ sm.change(Animal_Idle(sm));
 // Movement Handler
 // ============================================================================
 
-apply_movement = function(_vx, _vy) {
-    // ------------------------------------------------------------------------
-    // Horizontal Movement
-    // ------------------------------------------------------------------------
-    if (_vx != 0) {
-        var new_x = x + _vx;
-        var tile = Tile_Get(new_x, y);
+//apply_movement = function(_vx, _vy) {
+//    // ------------------------------------------------------------------------
+//    // Horizontal Movement
+//    // ------------------------------------------------------------------------
+//    if (_vx != 0) {
+//        var new_x = x + _vx;
+//        var tile = Tile_Get(new_x, y);
 
-        if (!Tile_Is_Blocking(tile)) {
-            x = new_x;
-        } else {
-			// If inside a tile move out of it
-			var step = sign(_vx);
-            while (!Tile_Is_Blocking(Tile_Get(x + step, y))) {
-                x += step;
-            }
-        }
+//        if (!Tile_Is_Blocking(tile)) {
+//            x = new_x;
+//        } else {
+//			// If inside a tile move out of it
+//			var step = sign(_vx);
+//            while (!Tile_Is_Blocking(Tile_Get(x + step, y))) {
+//                x += step;
+//            }
+//        }
+//    }
+
+
+//    // ------------------------------------------------------------------------
+//    // Vertical Movement
+//    // ------------------------------------------------------------------------
+//    if (_vy != 0) {
+//        var new_y = y + _vy;
+//        var tile = Tile_Get(x, new_y);
+
+//        if (!Tile_Is_Blocking(tile)) {
+//            y = new_y;
+//        } else {
+//			// If inside a tile move out of it
+//            var step = sign(_vy);
+//            while (!Tile_Is_Blocking(Tile_Get(x, y + step))) {
+//                y += step;
+//            }
+//        }
+//    }
+//};
+
+apply_movement = function(_vx, _vy) {
+	// =========================================================
+	// TERRAIN MODIFIERS
+	// =========================================================
+	var tile = Tile_Get(x, y);
+	var speed_factor = 1
+	if (tile == TILE.MUD || tile == TILE.PIG_PEN) speed_factor = 0.1;
+
+    // =========================================================
+    // TARGET POSITION
+    // =========================================================
+    var target_x = x + (_vx * speed_factor);
+	var target_y = y + (_vy * speed_factor);
+
+    // =========================================================
+    // DIRECT MOVE
+    // =========================================================
+    if (Animal_Can_Move_To(id, target_x, target_y)) {
+        x = target_x;
+        y = target_y;
+        return;
     }
 
+    // =========================================================
+    // TRY X ONLY
+    // =========================================================
+    if (Animal_Can_Move_To(id, target_x, y)) {
+        x = target_x;
+        return;
+    }
 
-    // ------------------------------------------------------------------------
-    // Vertical Movement
-    // ------------------------------------------------------------------------
-    if (_vy != 0) {
-        var new_y = y + _vy;
-        var tile = Tile_Get(x, new_y);
+    // =========================================================
+    // TRY Y ONLY
+    // =========================================================
+    if (Animal_Can_Move_To(id, x, target_y)) {
+        y = target_y;
+        return;
+    }
 
-        if (!Tile_Is_Blocking(tile)) {
-            y = new_y;
-        } else {
-			// If inside a tile move out of it
-            var step = sign(_vy);
-            while (!Tile_Is_Blocking(Tile_Get(x, y + step))) {
-                y += step;
-            }
-        }
+    // =========================================================
+    // TRY SLIDE RIGHT
+    // =========================================================
+    if (Animal_Can_Move_To(id, target_x, y - 1)) {
+        x = target_x;
+        y -= 1;
+        return;
+    }
+
+    // =========================================================
+    // TRY SLIDE LEFT
+    // =========================================================
+    if (Animal_Can_Move_To(id, target_x, y + 1)) {
+        x = target_x;
+        y += 1;
+        return;
+    }
+
+    // =========================================================
+    // TRY SLIDE UP
+    // =========================================================
+    if (Animal_Can_Move_To(id, x - 1, target_y)) {
+        x -= 1;
+        y = target_y;
+        return;
+    }
+
+    // =========================================================
+    // TRY SLIDE DOWN
+    // =========================================================
+    if (Animal_Can_Move_To(id, x + 1, target_y)) {
+        x += 1;
+        y = target_y;
+        return;
     }
 };
 

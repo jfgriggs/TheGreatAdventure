@@ -303,6 +303,7 @@
     {"id":{"name":"spr_weapon_slingshot","path":"sprites/spr_weapon_slingshot/spr_weapon_slingshot.yy",},},
     {"id":{"name":"spr_weapon_trap_large","path":"sprites/spr_weapon_trap_large/spr_weapon_trap_large.yy",},},
     {"id":{"name":"spr_weapon_trap","path":"sprites/spr_weapon_trap/spr_weapon_trap.yy",},},
+    {"id":{"name":"Sprite157","path":"sprites/Sprite157/Sprite157.yy",},},
     {"id":{"name":"Sprite32","path":"sprites/Sprite32/Sprite32.yy",},},
     {"id":{"name":"sPumpkin","path":"sprites/sPumpkin/sPumpkin.yy",},},
     {"id":{"name":"sPumpkinCrate","path":"sprites/sPumpkinCrate/sPumpkinCrate.yy",},},

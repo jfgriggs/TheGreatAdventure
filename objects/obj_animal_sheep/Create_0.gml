@@ -26,8 +26,14 @@ event_inherited();
 
 animal_type = ANIMAL.SHEEP;
 
-move_speed = 0.3;
-wander_speed = move_speed;
+move_speed = 1.2;
+wander_speed = 0.8;
+
+wander_move_time_min = 15;
+wander_move_time_max = 45;
+
+wander_idle_time_min = 10;
+wander_idle_time_max = 30;
 
 point_value = 100;
 
@@ -35,7 +41,10 @@ vision_range = 220;
 lose_range = 260;
 lose_time_max = 180;
 
-desired_items = [ITEM.CARROT];
+desired_items = {
+    carrot : 1,
+    corn   : 2
+};
 
 sprite_set = [
     spr_animal_sheep_right,

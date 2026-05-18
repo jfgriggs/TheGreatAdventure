@@ -43,8 +43,14 @@ point_value = 50;
 /// MOVEMENT
 /// =========================
 
-move_speed = 0.25;
-wander_speed = move_speed;
+move_speed = 1.2;
+wander_speed = 0.8;
+
+wander_move_time_min = 15;
+wander_move_time_max = 45;
+
+wander_idle_time_min = 10;
+wander_idle_time_max = 30;
 
 
 /// =========================
@@ -55,9 +61,9 @@ vision_range = 180;
 lose_range = 220;
 lose_time_max = Seconds(4);
 
-desired_items = [
-    ITEM.CORN
-];
+desired_items = {
+    corn   : 2
+};
 
 
 /// =========================

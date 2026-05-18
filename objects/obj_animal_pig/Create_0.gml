@@ -43,8 +43,14 @@ point_value = 125;
 /// MOVEMENT
 /// =========================
 
-move_speed = 0.22;
-wander_speed = move_speed;
+move_speed = 1.2;
+wander_speed = 0.8;
+
+wander_move_time_min = 15;
+wander_move_time_max = 45;
+
+wander_idle_time_min = 10;
+wander_idle_time_max = 30;
 
 
 /// =========================
@@ -55,10 +61,13 @@ vision_range = 240;
 lose_range = 300;
 lose_time_max = Seconds(5);
 
-desired_items = [
-    ITEM.CORN,
-    ITEM.CARROT
-];
+desired_items = {
+    carrot : 2,
+    corn   : 2,
+    tomato : 4,
+	pumpkin: 1,
+	watermelon: 1
+};
 
 
 /// =========================

@@ -70,10 +70,15 @@ function Animal_Update_Facing(_animal) {
     // =========================================================
     // UPDATE SPRITES
     // =========================================================
-    if (array_length(_animal.sprite_set) > 0) {
-        _animal.sprite_index = _animal.sprite_set[_animal.face];
-        _animal.mask_index = _animal.sprite_set[3];
-    }
+	if (array_length(_animal.sprite_set) > 0) {
+	    var new_sprite = _animal.sprite_set[_animal.face];
+
+	    if (_animal.sprite_index != new_sprite) {
+	        _animal.sprite_index = new_sprite;
+	    }
+
+	    _animal.mask_index = _animal.sprite_set[3];
+	}
 	
     // =========================================================
     // STOP WALK ANIMATION WHEN IDLE

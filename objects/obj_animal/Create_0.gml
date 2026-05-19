@@ -157,7 +157,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // DIRECT MOVE
     // =========================================================
-    if (Animal_Can_Move_To(id, target_x, target_y)) {
+    if (Animal_Can_Move_To(self, target_x, target_y)) {
         x = target_x;
         y = target_y;
         return;
@@ -166,7 +166,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // TRY X ONLY
     // =========================================================
-    if (Animal_Can_Move_To(id, target_x, y)) {
+    if (Animal_Can_Move_To(self, target_x, y)) {
         x = target_x;
         return;
     }
@@ -174,7 +174,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // TRY Y ONLY
     // =========================================================
-    if (Animal_Can_Move_To(id, x, target_y)) {
+    if (Animal_Can_Move_To(self, x, target_y)) {
         y = target_y;
         return;
     }
@@ -182,7 +182,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // TRY SLIDE RIGHT
     // =========================================================
-    if (Animal_Can_Move_To(id, target_x, y - 1)) {
+    if (Animal_Can_Move_To(self, target_x, y - 1)) {
         x = target_x;
         y -= 1;
         return;
@@ -191,7 +191,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // TRY SLIDE LEFT
     // =========================================================
-    if (Animal_Can_Move_To(id, target_x, y + 1)) {
+    if (Animal_Can_Move_To(self, target_x, y + 1)) {
         x = target_x;
         y += 1;
         return;
@@ -200,7 +200,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // TRY SLIDE UP
     // =========================================================
-    if (Animal_Can_Move_To(id, x - 1, target_y)) {
+    if (Animal_Can_Move_To(self, x - 1, target_y)) {
         x -= 1;
         y = target_y;
         return;
@@ -209,7 +209,7 @@ apply_movement = function(_vx, _vy) {
     // =========================================================
     // TRY SLIDE DOWN
     // =========================================================
-    if (Animal_Can_Move_To(id, x + 1, target_y)) {
+    if (Animal_Can_Move_To(self, x + 1, target_y)) {
         x += 1;
         y = target_y;
         return;

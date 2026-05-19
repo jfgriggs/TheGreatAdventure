@@ -276,6 +276,180 @@ if (unique_count > 0) {
 }
 
 
+
+
+/// =========================
+/// SAFE ANIMALS HUD
+/// =========================
+
+var animal_data = [];
+
+
+// =========================================================
+// COUNT SAFE/TOTAL ANIMALS
+// ONLY ADD TYPES THAT HAVE BEEN SAVED
+// =========================================================
+with (obj_animal) {
+
+    // -----------------------------------------------------
+    // ONLY TRACK TYPES THAT HAVE AT LEAST ONE SAFE ANIMAL
+    // -----------------------------------------------------
+    if (!is_safe) {
+        continue;
+    }
+
+    var found = false;
+
+
+    // -----------------------------------------------------
+    // LOOK FOR EXISTING ENTRY
+    // -----------------------------------------------------
+    for (var i = 0; i < array_length(animal_data); i++) {
+
+        if (animal_data[i].animal_type == animal_type) {
+
+            animal_data[i].safe++;
+
+            found = true;
+            break;
+        }
+    }
+
+
+    // -----------------------------------------------------
+    // NEW ENTRY
+    // -----------------------------------------------------
+    if (!found) {
+
+        var total_count = 0;
+
+        with (obj_animal) {
+
+            if (animal_type == other.animal_type) {
+                total_count++;
+            }
+        }
+
+        array_push(animal_data, {
+
+            animal_type : animal_type,
+            safe        : 1,
+            total       : total_count,
+            sprite      : sprite_large
+        });
+    }
+}
+
+
+// =========================================================
+// DRAW SAFE ANIMAL BAR
+// =========================================================
+if (array_length(animal_data) > 0) {
+
+    var animal_x = margin;
+
+    var animal_y =
+        h
+        - margin
+        - slot_size
+        - panel_pad * 2;
+
+    var animal_panel_w =
+        array_length(animal_data)
+        * (slot_size + gap)
+        - gap
+        + panel_pad * 2;
+
+    var animal_panel_h =
+        slot_size
+        + panel_pad * 2;
+
+
+    // -----------------------------------------------------
+    // PANEL
+    // -----------------------------------------------------
+    draw_set_color(c_black);
+
+    draw_panel_rounded_fn(
+        animal_x,
+        animal_y,
+        animal_x + animal_panel_w,
+        animal_y + animal_panel_h,
+        40,
+        0.5
+    );
+
+    draw_set_color(c_white);
+
+
+    // =====================================================
+    // DRAW ANIMAL SLOTS
+    // =====================================================
+    for (var i = 0; i < array_length(animal_data); i++) {
+
+        var entry = animal_data[i];
+
+        var slot_x =
+            animal_x
+            + panel_pad
+            + i * (slot_size + gap);
+
+        var slot_y =
+            animal_y + panel_pad;
+
+
+        // -------------------------------------------------
+        // SLOT BACKGROUND
+        // -------------------------------------------------
+        draw_set_color(c_dkgray);
+
+        draw_roundrect_ext(
+            slot_x,
+            slot_y,
+            slot_x + slot_size,
+            slot_y + slot_size,
+            8,
+            8,
+            false
+        );
+
+        draw_set_color(c_white);
+
+
+        // -------------------------------------------------
+        // CENTERED ANIMAL ICON
+        // -------------------------------------------------
+        draw_sprite_ext(
+            entry.sprite,
+            0,
+            slot_x + slot_size * 0.5,
+            slot_y + slot_size * 0.5,
+            UI_SCALE,
+            UI_SCALE,
+            0,
+            c_white,
+            1
+        );
+
+
+        // -------------------------------------------------
+        // SAFE/TOTAL TEXT
+        // -------------------------------------------------
+        draw_set_halign(fa_right);
+        draw_set_valign(fa_bottom);
+
+        draw_text(
+            slot_x + slot_size - 4,
+            slot_y + slot_size - 2,
+            string(entry.safe)
+        );
+
+        draw_set_halign(fa_left);
+        draw_set_valign(fa_top);
+    }
+}
+
+
 /// =========================
 /// WEAPONS
 /// =========================

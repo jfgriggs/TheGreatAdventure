@@ -218,34 +218,88 @@ function Animal_FindTarget(o) {
         return best;
     }
 
-    /// PRIORITY 2: PLAYER
-	/// This cause a problem because active_item is a struct
-	/// instead of an object.   When an animal eats the active_item
-	/// the player will die instead of an item object
-	
-    //var p = global.player_object;
-
-    //if (instance_exists(p)) {
-
-    //    if (Animal_Get_Item_Desire(o, p.active_item)) {
-
-    //        var d = point_distance(o.x, o.y, p.x, p.y);
-
-    //        if (d < o.vision_range && Animal_HasLineOfSight(o.x, o.y, p.x, p.y)) {
-    //            o.target_type = "player";
-    //            return p;
-    //        }
-    //    }
-    //}
-
     return noone;
 }
 
 
-function Animal_IsSafe(o) {
-	return false;
+function Animal_IsSafe(_animal) {
+    // =========================================================
+    // CURRENT TILE
+    // =========================================================
+    var tile = Tile_Get(_animal.x, _animal.y);
+
+    // =========================================================
+    // CHICKEN
+    // =========================================================
+    if (_animal.animal_type == ANIMAL.CHICKEN) {
+        return Tile_Is_Animal_Chicken_Coop(tile);
+    }
+
+    // =========================================================
+    // COW
+    // =========================================================
+    if (_animal.animal_type == ANIMAL.COW) {
+        return Tile_Is_Animal_Cow_Pasture(tile);
+    }
+
+    // =========================================================
+    // PIG
+    // =========================================================
+    if (_animal.animal_type == ANIMAL.PIG) {
+        return Tile_Is_Animal_Pig_Pen(tile);
+    }
+
+    // =========================================================
+    // SHEEP
+    // =========================================================
+    if (_animal.animal_type == ANIMAL.SHEEP) {
+        return Tile_Is_Animal_Sheep_Pasture(tile);
+    }
+
+    return false;
 }
 
+
+function Animal_Can_Move_To(_animal, _x, _y) {
+
+    // =========================================================
+    // TILE CHECK
+    // =========================================================
+    var tile = Tile_Get(_x, _y);
+
+
+    // =========================================================
+    // BLOCKING TERRAIN
+    // =========================================================
+    if (Tile_Is_Blocking(tile)) {
+        return false;
+    }
+
+
+    // =========================================================
+    // SAFE ANIMALS STAY INSIDE PEN
+    // =========================================================
+    if (_animal.is_safe) {
+
+        switch (_animal.animal_type) {
+
+            case ANIMAL.CHICKEN:
+                return Tile_Is_Animal_Chicken_Coop(tile);
+
+            case ANIMAL.COW:
+                return Tile_Is_Animal_Cow_Pasture(tile);
+
+            case ANIMAL.PIG:
+                return Tile_Is_Animal_Pig_Pen(tile);
+
+            case ANIMAL.SHEEP:
+                return Tile_Is_Animal_Sheep_Pasture(tile);
+        }
+    }
+
+
+    return true;
+}
 
 
 function Animal_Get_Pen_Tile(_animal_type) {
@@ -283,33 +337,4 @@ function Animal_Find_Desired_Item(_animal) {
     }
 
     return nearest;
-}
-
-function Animal_Can_Move_To(_animal, _x, _y) {
-    // =========================================================
-    // TILE COLLISION
-    // =========================================================
-    var tile = Tile_Get(_x, _y);
-
-    if (Tile_Is_Blocking(tile)) {
-        return false;
-    }
-
-    // =========================================================
-    // ANIMAL SEPARATION
-    // =========================================================
-    with (obj_animal) {
-        // Ignore self
-        if (id == _animal.id) {
-            continue;
-        }
-
-        var d = point_distance(_x, _y, x, y);
-
-        // Minimum spacing between animals
-        if (d < 16) {
-            return false;
-        }
-    }
-    return true;
 }

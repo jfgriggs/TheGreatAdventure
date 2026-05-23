@@ -21,7 +21,8 @@ enum GAME_STATE {
 /// =========================
 
 enum ANIMAL {
-    CHICKEN,
+    NONE,
+	CHICKEN,
     COW,
     PIG,
     SHEEP
@@ -33,7 +34,8 @@ enum ANIMAL {
 /// =========================
 
 enum ENEMY {
-    WOLF,
+    NONE,
+	WOLF,
     BEAR,
     ARCHER,
     HUNTER
@@ -45,9 +47,17 @@ enum ENEMY {
 /// =========================
 
 enum ITEM {
+	NONE,
 	CARROT,
     CORN,
     TOMATO,
 	PUMPKIN,
     WATERMELON
+}
+
+enum PLANT_STAGE {
+    SPROUT,
+    YOUNG,
+    FRUITING,
+    HARVESTED
 }

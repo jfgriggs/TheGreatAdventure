@@ -14,8 +14,8 @@
   "frames":[
     {"$GMSpriteFrame":"v1","%Name":"90548af9-9746-415f-bbfa-915f8574fcd8","name":"90548af9-9746-415f-bbfa-915f8574fcd8","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"161fdf3c-48a8-4209-ad00-0c342858d9b1","name":"161fdf3c-48a8-4209-ad00-0c342858d9b1","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"f9378eb6-949d-4fe9-9e33-b4c169b2af7b","name":"f9378eb6-949d-4fe9-9e33-b4c169b2af7b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"v1","%Name":"8eb81cfd-d14e-41ee-966f-8823e3d755a9","name":"8eb81cfd-d14e-41ee-966f-8823e3d755a9","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f9378eb6-949d-4fe9-9e33-b4c169b2af7b","name":"f9378eb6-949d-4fe9-9e33-b4c169b2af7b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -26,7 +26,7 @@
   ],
   "name":"spr_garden_tomato",
   "nineSlice":null,
-  "origin":0,
+  "origin":4,
   "parent":{
     "name":"Sprites",
     "path":"folders/Sprites.yy",
@@ -78,17 +78,17 @@
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"161fdf3c-48a8-4209-ad00-0c342858d9b1","path":"sprites/spr_garden_tomato/spr_garden_tomato.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"6fea7092-d4f6-464c-8d59-7d5567c78c3e","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f9378eb6-949d-4fe9-9e33-b4c169b2af7b","path":"sprites/spr_garden_tomato/spr_garden_tomato.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"0963177a-738b-45cd-804f-b62c8f92703b","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"8eb81cfd-d14e-41ee-966f-8823e3d755a9","path":"sprites/spr_garden_tomato/spr_garden_tomato.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"e277530d-651f-49c2-aff3-6e7d44ff1b88","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+              },"Disabled":false,"id":"e277530d-651f-49c2-aff3-6e7d44ff1b88","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f9378eb6-949d-4fe9-9e33-b4c169b2af7b","path":"sprites/spr_garden_tomato/spr_garden_tomato.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"0963177a-738b-45cd-804f-b62c8f92703b","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":0,
-    "yorigin":0,
+    "xorigin":16,
+    "yorigin":24,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

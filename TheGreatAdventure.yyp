@@ -33,7 +33,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1400.5.1065",
+    "IDEVersion":"2026.0.0.15",
   },
   "name":"TheGreatAdventure",
   "resources":[
@@ -274,6 +274,14 @@
     {"id":{"name":"spr_animal_sheep_left","path":"sprites/spr_animal_sheep_left/spr_animal_sheep_left.yy",},},
     {"id":{"name":"spr_animal_sheep_right","path":"sprites/spr_animal_sheep_right/spr_animal_sheep_right.yy",},},
     {"id":{"name":"spr_animal_sheep_up","path":"sprites/spr_animal_sheep_up/spr_animal_sheep_up.yy",},},
+    {"id":{"name":"spr_garden_cabbage","path":"sprites/spr_garden_cabbage/spr_garden_cabbage.yy",},},
+    {"id":{"name":"spr_garden_carrot","path":"sprites/spr_garden_carrot/spr_garden_carrot.yy",},},
+    {"id":{"name":"spr_garden_corn","path":"sprites/spr_garden_corn/spr_garden_corn.yy",},},
+    {"id":{"name":"spr_garden_pepper","path":"sprites/spr_garden_pepper/spr_garden_pepper.yy",},},
+    {"id":{"name":"spr_garden_pumpkin","path":"sprites/spr_garden_pumpkin/spr_garden_pumpkin.yy",},},
+    {"id":{"name":"spr_garden_tomato","path":"sprites/spr_garden_tomato/spr_garden_tomato.yy",},},
+    {"id":{"name":"spr_garden_watermelon","path":"sprites/spr_garden_watermelon/spr_garden_watermelon.yy",},},
+    {"id":{"name":"spr_garden_zucchini","path":"sprites/spr_garden_zucchini/spr_garden_zucchini.yy",},},
     {"id":{"name":"spr_item_carrot_large","path":"sprites/spr_item_carrot_large/spr_item_carrot_large.yy",},},
     {"id":{"name":"spr_item_carrot","path":"sprites/spr_item_carrot/spr_item_carrot.yy",},},
     {"id":{"name":"spr_item_corn_large","path":"sprites/spr_item_corn_large/spr_item_corn_large.yy",},},

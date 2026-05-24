@@ -20,7 +20,6 @@
 
 event_inherited();
 
-
 /// =========================
 /// WEAPON DEFINITION
 /// =========================
@@ -28,7 +27,6 @@ event_inherited();
 weapon_type = WEAPON.BOOMERANG;
 
 weapon = Weapon_Create(weapon_type);
-
 
 /// =========================
 /// VISUALS

@@ -1,6 +1,5 @@
 /// @description obj_garden_plant : Step Event
 
-
 // --------------------------------------------------
 // Growth Timer
 // --------------------------------------------------
@@ -8,55 +7,47 @@
 growth_timer--;
 
 if (growth_timer <= 0) {
+	switch (image_index) {
+		// ------------------------------------------
+		// Sprout -> Young
+		// ------------------------------------------
 
-    switch (image_index) {
+		case PLANT_STAGE.SPROUT: {
+			image_index = PLANT_STAGE.YOUNG;
 
-        // ------------------------------------------
-        // Sprout -> Young
-        // ------------------------------------------
+			growth_timer = growth_time;
 
-        case PLANT_STAGE.SPROUT:
-        {
-            image_index = PLANT_STAGE.YOUNG;
+			break;
+		}
 
-            growth_timer = growth_time;
+		// ------------------------------------------
+		// Young -> Fruiting
+		// ------------------------------------------
 
-            break;
-        }
+		case PLANT_STAGE.YOUNG: {
+			image_index = PLANT_STAGE.FRUITING;
 
+			// Pause indefinitely until harvested.
+			growth_timer = -1;
 
-        // ------------------------------------------
-        // Young -> Fruiting
-        // ------------------------------------------
+			break;
+		}
 
-        case PLANT_STAGE.YOUNG:
-        {
-            image_index = PLANT_STAGE.FRUITING;
+		// ------------------------------------------
+		// Harvested -> Sprout
+		// ------------------------------------------
 
-            // Pause indefinitely until harvested.
-            growth_timer = -1;
+		case PLANT_STAGE.HARVESTED: {
+			image_index = PLANT_STAGE.SPROUT;
 
-            break;
-        }
+			growth_timer = growth_time;
 
+			harvested = false;
 
-        // ------------------------------------------
-        // Harvested -> Sprout
-        // ------------------------------------------
-
-        case PLANT_STAGE.HARVESTED:
-        {
-            image_index = PLANT_STAGE.SPROUT;
-
-            growth_timer = growth_time;
-
-            harvested = false;
-
-            break;
-        }
-    }
+			break;
+		}
+	}
 }
-
 
 // --------------------------------------------------
 // Harvest Logic
@@ -64,49 +55,37 @@ if (growth_timer <= 0) {
 
 // Only harvest while fruiting.
 if (image_index == PLANT_STAGE.FRUITING) {
+	var _player = collision_circle(x, y, pickup_radius, obj_player, false, true);
 
-    var _player = collision_circle(
-        x,
-        y,
-        pickup_radius,
-        obj_player,
-        false,
-        true
-    );
-
-    if (instance_exists(_player)) {
-
-        // --------------------------------------
-        // Add Inventory Item
-        // --------------------------------------
+	if (instance_exists(_player)) {
+		// --------------------------------------
+		// Add Inventory Item
+		// --------------------------------------
 
 		var _item = Item_Create(item_type);
 
-	    // --------------------------------------
-	    // Attempt Pickup
-	    // --------------------------------------
-	
+		// --------------------------------------
+		// Attempt Pickup
+		// --------------------------------------
+
 		if (Inventory_Add_Item(_player, _item)) {
+			// ----------------------------------
+			// Harvest Sound
+			// ----------------------------------
 
-		    // ----------------------------------
-		    // Harvest Sound
-		    // ----------------------------------
+			if (harvest_sound != noone) {
+				audio_play_sound(harvest_sound, 1, false);
+			}
 
-		    if (harvest_sound != noone) {
+			// ----------------------------------
+			// Enter Harvested State
+			// ----------------------------------
 
-		        audio_play_sound(harvest_sound, 1, false);
-		    }
+			harvested = true;
 
+			image_index = PLANT_STAGE.HARVESTED;
 
-		    // ----------------------------------
-		    // Enter Harvested State
-		    // ----------------------------------
-
-		    harvested = true;
-
-		    image_index = PLANT_STAGE.HARVESTED;
-
-		    growth_timer = growth_time;
+			growth_timer = growth_time;
 		}
-    }
+	}
 }

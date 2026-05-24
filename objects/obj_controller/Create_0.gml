@@ -20,14 +20,12 @@
 /// - Avoid placing gameplay-specific logic here
 /// - Shared systems should remain modularized
 
-
-
 // =============================================================================
 // REGION: Global Variables
 // =============================================================================
 // If game_state already set globally then do not reset - for Game_Reset() to work correctly
 if (!variable_global_exists("game_state")) {
-    global.game_state = GAME_STATE.STARTING;
+	global.game_state = GAME_STATE.STARTING;
 }
 
 if (!variable_global_exists("player_object")) {
@@ -51,9 +49,9 @@ spawn_player_pending = true;
 // 1 = fully black
 // 0 = fully visible
 // Starts partially visible and fades to black during startup
-fade_alpha  = 0.5;   // starting fade value
-fade_target = 1;     // where we want to go
-fade_speed  = 0.05;  // how fast it fades
+fade_alpha = 0.5; // starting fade value
+fade_target = 1; // where we want to go
+fade_speed = 0.05; // how fast it fades
 
 next_state = undefined;
 
@@ -71,13 +69,13 @@ cam = view_camera[0];
 var layer_id = layer_get_id("Tiles");
 
 if (layer_id != -1) {
-    tilemap = layer_tilemap_get_id(layer_id);
+	tilemap = layer_tilemap_get_id(layer_id);
 
-    if (tilemap == -1) {
-        show_debug_message("ERROR: Layer found but no tilemap assigned!");
-    }
+	if (tilemap == -1) {
+		show_debug_message("ERROR: Layer found but no tilemap assigned!");
+	}
 } else {
-    show_debug_message("ERROR: Tile layer missing!");
+	show_debug_message("ERROR: Tile layer missing!");
 }
 
 // =============================================================================
@@ -93,7 +91,7 @@ pt_spark = part_type_create();
 // Big, bright sparks
 part_type_shape(pt_spark, pt_shape_pixel);
 
-// Much larger 
+// Much larger
 part_type_size(pt_spark, 1.2, 5.5, 0, 0);
 
 // Bright flash in -> fade out
@@ -124,4 +122,3 @@ if (!variable_global_exists("music_id") || !audio_is_playing(global.music_id)) {
 	global.music_id = audio_play_sound(snd_music, 1, true);
 	audio_sound_gain(snd_music, 1, 120);
 }
-

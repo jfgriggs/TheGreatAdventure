@@ -3,44 +3,40 @@
 // SYSTEM:      Global Enums & Constants
 // =============================================================================
 
-
 /// =========================
 /// GAME STATES
 /// =========================
 
 enum GAME_STATE {
-    STARTING,
-    PLAYING,
-    PAUSED,
-    GAME_OVER
+	STARTING,
+	PLAYING,
+	PAUSED,
+	GAME_OVER,
 }
-
 
 /// =========================
 /// ANIMALS
 /// =========================
 
 enum ANIMAL {
-    NONE,
+	NONE,
 	CHICKEN,
-    COW,
-    PIG,
-    SHEEP
+	COW,
+	PIG,
+	SHEEP,
 }
-
 
 /// =========================
 /// ENEMIES
 /// =========================
 
 enum ENEMY {
-    NONE,
+	NONE,
 	WOLF,
-    BEAR,
-    ARCHER,
-    HUNTER
+	BEAR,
+	ARCHER,
+	HUNTER,
 }
-
 
 /// =========================
 /// ITEMS
@@ -50,17 +46,17 @@ enum ITEM {
 	NONE,
 	CABBAGE,
 	CARROT,
-    CORN,
+	CORN,
 	EGGPLANT,
-    TOMATO,
+	TOMATO,
 	PEPPER,
 	PUMPKIN,
-    WATERMELON
+	WATERMELON,
 }
 
 enum PLANT_STAGE {
-    SPROUT,
-    YOUNG,
-    FRUITING,
-    HARVESTED
+	SPROUT,
+	YOUNG,
+	FRUITING,
+	HARVESTED,
 }

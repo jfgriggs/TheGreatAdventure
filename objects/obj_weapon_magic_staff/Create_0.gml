@@ -24,7 +24,6 @@
 
 event_inherited();
 
-
 /// =========================
 /// WEAPON DEFINITION
 /// =========================
@@ -32,7 +31,6 @@ event_inherited();
 weapon_type = WEAPON.MAGIC_STAFF;
 
 weapon = Weapon_Create(weapon_type);
-
 
 /// =========================
 /// VISUALS

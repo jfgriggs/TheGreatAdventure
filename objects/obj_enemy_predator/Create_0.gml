@@ -16,5 +16,5 @@ knockback_force = 5;
 sm.change(Predator_Roam(sm));
 
 apply_movement = function(_vx, _vy) {
-    var o = self;
+	var o = self;
 };

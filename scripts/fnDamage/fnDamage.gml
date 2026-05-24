@@ -1,15 +1,17 @@
 // Damage calculation
 function get_damaged_create(_hp = 10, _iframes = false) {
 	hp = _hp;
-	
+
 	// Get the iframes
-	if _iframes == true {
+	if (_iframes == true) {
 		iframeTimer = 0;
 		iframeNumber = 90;
 	}
-	
+
 	// Create damage list
-	if _iframes == false damageList = ds_list_create();
+	if (_iframes == false) {
+		damageList = ds_list_create();
+	}
 }
 
 /*

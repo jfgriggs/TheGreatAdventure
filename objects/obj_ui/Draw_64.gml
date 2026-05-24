@@ -22,7 +22,9 @@
 
 var p = global.player_object;
 
-if (!instance_exists(p)) exit;
+if (!instance_exists(p)) {
+	exit;
+}
 
 // HP
 draw_text(20, 20, "HP: " + string(p.hp));

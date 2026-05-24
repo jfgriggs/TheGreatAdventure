@@ -12,8 +12,8 @@ var ny = y + vy;
 
 // Wall collision
 if (Tile_Is_Blocking_Fired_Weapon(Tile_Get(nx, ny))) {
-    instance_destroy();
-    exit;
+	instance_destroy();
+	exit;
 }
 
 x = nx;
@@ -21,17 +21,17 @@ y = ny;
 
 // Hit enemies
 with (obj_enemy_archer) {
-    if (point_distance(x,y,other.x,other.y) < 10) {
-        Damage_Apply(id, other.damage, other);
-        instance_destroy(other);
-    }
+	if (point_distance(x, y, other.x, other.y) < 10) {
+		Damage_Apply(id, other.damage, other);
+		instance_destroy(other);
+	}
 }
 
 with (obj_enemy_predator) {
-    if (point_distance(x,y,other.x,other.y) < 10) {
-        Damage_Apply(id, other.damage, other);
-        instance_destroy(other);
-    }
+	if (point_distance(x, y, other.x, other.y) < 10) {
+		Damage_Apply(id, other.damage, other);
+		instance_destroy(other);
+	}
 }
 
 // Distance traveled

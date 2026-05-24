@@ -6,7 +6,6 @@
 
 event_inherited();
 
-
 /// =========================
 /// MAGIC MOTION
 /// =========================
@@ -22,7 +21,6 @@ wave_frequency = 0.70;
 
 // Side-to-side width
 wave_amplitude = 3;
-
 
 // =========================
 // POSITION TRACKING

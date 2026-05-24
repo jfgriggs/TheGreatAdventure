@@ -31,72 +31,65 @@
 /// =========================
 /// PLAYER STATE: IDLE
 function Player_Idle(_sm) {
-
-    return {
-        name: "idle",
-
+	return {
+		name: "idle",
 		sm: _sm,
 		owner: _sm.owner,
+		on_update: function() {
+			var mx = owner.input_x;
+			var my = owner.input_y;
 
-		update: function() {
+			if (mx != 0 || my != 0) {
+				sm.change(Player_Move(sm));
+				return;
+			}
 
-            var mx = owner.input_x;
-            var my = owner.input_y;
-
-            if (mx != 0 || my != 0) {
-                sm.change(Player_Move(sm));
-                return;
-            }
-
-            if (owner.input_attack) {
+			if (owner.input_attack) {
 				show_debug_message("Player changing to ATTACK state");
-                sm.change(Player_Attack(sm));
-                return;
-            }
+				sm.change(Player_Attack(sm));
+				return;
+			}
 
 			if (owner.input_throw && ds_map_size(owner.inventory) > 0) {
 				show_debug_message("Player changing to THROW state");
-			    sm.change(Player_Throw(sm));
-			    return;
+				sm.change(Player_Throw(sm));
+				return;
 			}
-		}
-    };
+		},
+	};
 }
-
-
 
 /// =========================
 /// PLAYER STATE: MOVE
 /// =========================
 function Player_Move(_sm) {
-    return {
-        name: "move",
-		
+	return {
+		name: "move",
 		sm: _sm,
 		owner: _sm.owner,
-
-        enter: function() {},
-		
-        update: function() {
+		on_enter: function() {},
+		on_update: function() {
 			if (!owner.movement_locked) {
-	            var tile = Tile_Get(owner.x, owner.y);
+				var tile = Tile_Get(owner.x, owner.y);
 
-	            var speed_factor = 1
-				if (tile == TILE.MUD || tile == TILE.PIG_PEN) speed_factor = 0.1;
+				var speed_factor = 1;
+				if (tile == TILE.MUD || tile == TILE.PIG_PEN) {
+					speed_factor = 0.1;
+				}
 
-	            if (tile == TILE.HOLE) {
+				if (tile == TILE.HOLE) {
 					sm.change(Player_Teleport(sm));
 					return;
 				}
-			
+
 				if (tile == TILE.TRAP) {
 					owner.hp -= 10;
-					owner.invincible_timer = 5
+					owner.invincible_timer = 5;
 				}
 
 				var vx = lengthdir_x(owner.move_speed * speed_factor, owner.move_dir);
 				var vy = lengthdir_y(owner.move_speed * speed_factor, owner.move_dir);
-			
+
 				//show_debug_message("EMPTY=" + string(TILE.EMPTY)
 				//	+ " WALL=" + string(TILE.WALL)
 				//	+ " WATER=" + string(TILE.WATER)
@@ -110,77 +103,73 @@ function Player_Move(_sm) {
 				//show_debug_message("tile=" + string(tile) + " speed_factor=" + string(speed_factor) + " vx=" + string(vx) + " vy=" + string(vy));
 
 				show_debug_message(instance_exists(owner));
-	            owner.apply_movement(vx, vy);
+				owner.apply_movement(vx, vy);
 			}
 
-            if (owner.input_x == 0 && owner.input_y == 0) {
-                sm.change(Player_Idle(sm));
-                return;
-            }
+			if (owner.input_x == 0 && owner.input_y == 0) {
+				sm.change(Player_Idle(sm));
+				return;
+			}
 
-            if (owner.input_attack) {
-                sm.change(Player_Attack(sm));
-                return;
-            }
-						
+			if (owner.input_attack) {
+				sm.change(Player_Attack(sm));
+				return;
+			}
+
 			if (owner.input_throw && ds_map_size(owner.inventory) > 0) {
-			    sm.change(Player_Throw(sm));
-			    return;
+				sm.change(Player_Throw(sm));
+				return;
 			}
-		}
-    };
+		},
+	};
 }
 
 /// =========================
 /// PLAYER STATE: TELEPORT
 /// =========================
 function Player_Teleport(_sm) {
-    return {
-        name: "teleport",
-
+	return {
+		name: "teleport",
 		sm: _sm,
 		owner: _sm.owner,
+		on_enter: function() {
+			owner.teleport_timer = 60; // total duration (2 phases)
+			owner.teleport_phase = 0; // 0 = before, 1 = after
+			owner.teleport_done = false;
 
-        enter: function() {
-            owner.teleport_timer = 60;   // total duration (2 phases)
-            owner.teleport_phase = 0;    // 0 = before, 1 = after
-            owner.teleport_done = false;
-			
 			owner.flash_timer = 60;
-			
+
 			// Particle effect at original position
 			Spark_Spawn(owner.x, owner.y);
 			Spark_Spawn(owner.x, owner.y);
 			Screen_Shake(3, 8);
 
-            // Play sound
-            audio_play_sound(snd_hole, 1, false);
-        },
+			// Play sound
+			audio_play_sound(snd_hole, 1, false);
+		},
+		on_update: function() {
+			owner.teleport_timer--;
 
-        update: function() {
-            owner.teleport_timer--;
-
-			switch(owner.teleport_phase) {
+			switch (owner.teleport_phase) {
 				/// ==============================
 				/// PHASE 0: DISAPPEAR
 				/// ==============================
 				case 0:
 					if (owner.teleport_timer <= 0) {
 						//Move player - find a position that is not blocked by a wall, water, or trap.
-					    var tile_size = 16; // match your tileset
-					    var attempts = 50;
+						var tile_size = 16; // match your tileset
+						var attempts = 50;
 
-					    repeat (attempts) {
+						repeat (attempts) {
+							var tx = irandom(room_width div tile_size) * tile_size;
+							var ty = irandom(room_height div tile_size) * tile_size;
 
-					        var tx = irandom(room_width div tile_size) * tile_size;
-					        var ty = irandom(room_height div tile_size) * tile_size;
+							var tile = Tile_Get(tx, ty);
 
-					        var tile = Tile_Get(tx, ty);
-
-					        if (!Tile_Is_Blocking(tile)) {
-					            owner.x = tx;
+							if (!Tile_Is_Blocking(tile)) {
+								owner.x = tx;
 								owner.y = ty;
-							
+
 								// Particle effect at destination
 								Spark_Spawn(owner.x, owner.y);
 								Spark_Spawn(owner.x, owner.y);
@@ -188,13 +177,13 @@ function Player_Teleport(_sm) {
 								// Switch to reappear
 								owner.teleport_phase = 1;
 								owner.telport_timer = 60;
-								owner.flash_timer = 60;								
-								
+								owner.flash_timer = 60;
+
 								break;
-					        }
+							}
 						}
 					}
-				break;
+					break;
 
 				/// ==============================
 				/// PHASE 1: REAPPEAR
@@ -203,27 +192,21 @@ function Player_Teleport(_sm) {
 					if (owner.teleport_timer <= 0) {
 						sm.change(Player_Idle(sm));
 					}
-				break;
-				
-
+					break;
 			}
-        }
-    };
+		},
+	};
 }
-
-
 
 /// =========================
 /// PLAYER STATE: ATTACK
 /// =========================
 function Player_Attack(_sm) {
-    return {
-        name: "attack",
-
+	return {
+		name: "attack",
 		sm: _sm,
 		owner: _sm.owner,
-
-        enter: function() {
+		on_enter: function() {
 			//show_debug_message("Player entered ATTACK state - enter() - sm_exists=" + string(!is_undefined(sm))
 			//	+ ", weapon=" + string(owner.active_weapon.name)
 			//	+ ", cooldown=" + string(owner.active_weapon_cooldown)
@@ -235,62 +218,59 @@ function Player_Attack(_sm) {
 				return;
 			}
 
-			if (owner.active_weapon_cooldown > 0) return;
+			if (owner.active_weapon_cooldown > 0) {
+				return;
+			}
 
 			// Fire weapon
-            Weapon_Fire(owner);
-			
-			// Small cooldown period to reload
-            owner.active_weapon_cooldown = owner.active_weapon.cooldown;
-        },
+			Weapon_Fire(owner);
 
-		update: function() {
+			// Small cooldown period to reload
+			owner.active_weapon_cooldown = owner.active_weapon.cooldown;
+		},
+		on_update: function() {
 			//show_debug_message("Player entered ATTACK state - update() - sm_exists=" + string(!is_undefined(sm))
 			//	+ ", weapon=" + string(owner.active_weapon.name)
 			//	+ ", cooldown=" + string(owner.active_weapon_cooldown)
 			//	);
 
-            // Cooldown continues independently
-            if (owner.active_weapon_cooldown > 0) {
-                owner.active_weapon_cooldown--;
-            }
+			// Cooldown continues independently
+			if (owner.active_weapon_cooldown > 0) {
+				owner.active_weapon_cooldown--;
+			}
 
-            // Immediately return to movement orchestration
-            if (owner.input_x != 0 || owner.input_y != 0) {
-                sm.change(Player_Move(sm));
-            } else {
-                sm.change(Player_Idle(sm));
-            }
-		}
-    };
+			// Immediately return to movement orchestration
+			if (owner.input_x != 0 || owner.input_y != 0) {
+				sm.change(Player_Move(sm));
+			} else {
+				sm.change(Player_Idle(sm));
+			}
+		},
+	};
 }
-
 
 /// =========================
 /// PLAYER STATE: THROW
 /// =========================
 function Player_Throw(_sm) {
-    return {
-        name: "throw",
-
+	return {
+		name: "throw",
 		sm: _sm,
 		owner: _sm.owner,
-
-        enter: function() {
+		on_enter: function() {
 			//if (owner.active_item == undefined) return;
 			//show_debug_message("Player entered THROW state - enter() - sm_exists=" + string(!is_undefined(sm))
 			//	+ ", item=" + string(owner.active_item.name)
 			//	+ ", throw_timer=" + string(owner.throw_timer)
 			//	);
 
-            // Perform throw
-            Item_Throw(owner);
+			// Perform throw
+			Item_Throw(owner);
 
-            // Small delay so it feels intentional
-            owner.throw_timer = 8;
-        },
-		
-        update: function() {
+			// Small delay so it feels intentional
+			owner.throw_timer = 8;
+		},
+		on_update: function() {
 			//if (owner.active_item == undefined) {
 			//	sm.change(Player_Idle(sm));
 			//	return;
@@ -300,37 +280,33 @@ function Player_Throw(_sm) {
 			//	+ ", throw_timer=" + string(owner.throw_timer)
 			//	);
 
-	        owner.throw_timer--;
+			owner.throw_timer--;
 
-	        if (owner.throw_timer <= 0) {
-	            sm.change(Player_Idle(sm));
-	        }
-        }
-    };
+			if (owner.throw_timer <= 0) {
+				sm.change(Player_Idle(sm));
+			}
+		},
+	};
 }
-
 
 /// =========================
 /// PLAYER STATE: HIT
 /// =========================
 function Player_Hit(_sm) {
-    return {
-        name: "hit",
-
+	return {
+		name: "hit",
 		sm: _sm,
 		owner: _sm.owner,
+		on_enter: function() {
+			owner.hit_timer = 60; // frames of control lock
+		},
+		on_update: function() {
+			owner.hit_timer--;
 
-        enter: function() {
-            owner.hit_timer = 60; // frames of control lock
-        },
-
-        update: function() {
-            owner.hit_timer--;
-
-            // Allow knockback but no input
-            if (owner.hit_timer <= 0) {
-                sm.change(Player_Idle(sm));
-            }
-        }
-    };
+			// Allow knockback but no input
+			if (owner.hit_timer <= 0) {
+				sm.change(Player_Idle(sm));
+			}
+		},
+	};
 }

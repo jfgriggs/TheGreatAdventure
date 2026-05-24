@@ -22,8 +22,13 @@
 /// DEFERRED PLAYER SPAWN
 /// =========================
 if (spawn_player_pending) {
-    spawn_player_pending = false;
-	instance_create_layer(global.player_spawn_x, global.player_spawn_y, "Instances", global.player_object);
+	spawn_player_pending = false;
+	instance_create_layer(
+		global.player_spawn_x,
+		global.player_spawn_y,
+		"Instances",
+		global.player_object
+	);
 }
 
 if (!is_undefined(global.player_object)) {
@@ -57,14 +62,13 @@ if (!is_undefined(global.player_object)) {
 		// SCREEN SHAKE (APPLY LAST)
 		// =========================
 		if (shake_timer > 0) {
+			shake_timer--;
 
-		    shake_timer--;
+			cx += random_range(-shake_strength, shake_strength);
+			cy += random_range(-shake_strength, shake_strength);
 
-		    cx += random_range(-shake_strength, shake_strength);
-		    cy += random_range(-shake_strength, shake_strength);
-
-		    // decay
-		    shake_strength *= 0.9;
+			// decay
+			shake_strength *= 0.9;
 		}
 
 		// =========================

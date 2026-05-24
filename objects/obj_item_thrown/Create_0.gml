@@ -21,7 +21,6 @@
 /// - Item definitions belong in scr_items
 /// - Avoid hardcoding vegetable-specific behavior here
 
-
 // Horizontal movement
 vx = 0;
 vy = 0;
@@ -36,7 +35,7 @@ start_x = x;
 start_y = y;
 
 // lifetime before becoming pickup
-life = 60;   // 1 second
+life = 60; // 1 second
 
 // Owner (who threw it)
 owner = noone;

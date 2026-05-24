@@ -32,5 +32,5 @@
 
 // If game not playing stop
 if (global.game_state != GAME_STATE.PLAYING) {
-    exit;
+	exit;
 }

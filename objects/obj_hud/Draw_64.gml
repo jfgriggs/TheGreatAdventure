@@ -22,15 +22,18 @@
 
 // If game not playing do not show
 if (global.game_state != GAME_STATE.PLAYING) {
-    exit;
+	exit;
 }
 
-
 var player = global.player_object;
-var ctrl   = obj_controller;
+var ctrl = obj_controller;
 
-if (!instance_exists(player)) exit;
-if (!instance_exists(ctrl)) exit;
+if (!instance_exists(player)) {
+	exit;
+}
+if (!instance_exists(ctrl)) {
+	exit;
+}
 
 var w = display_get_gui_width();
 var h = display_get_gui_height();
@@ -46,7 +49,6 @@ var gap = 8 * UI_SCALE;
 draw_set_font(fnt_normal);
 draw_set_color(c_white);
 draw_set_alpha(1);
-
 
 /// =========================
 /// HEALTH BAR
@@ -84,15 +86,10 @@ draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-draw_text(
-    hp_x1 + hp_panel_w / 2,
-    bar_y + bar_h + 20,
-    "HP: " + string(player.hp)
-);
+draw_text(hp_x1 + hp_panel_w / 2, bar_y + bar_h + 20, "HP: " + string(player.hp));
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
-
 
 /// =========================
 /// TIMER
@@ -103,17 +100,16 @@ var total_seconds = floor(global.game_time / global.target_fps);
 
 // Split into minutes + seconds
 var minutes = total_seconds div 60;
-var seconds = total_seconds mod 60;
+var seconds = total_seconds % 60;
 
 // Format seconds with leading zero
 var sec_str = string(seconds);
 if (seconds < 10) {
-    sec_str = "0" + sec_str;
+	sec_str = "0" + sec_str;
 }
 
 // Final string
 var time_text = string(minutes) + ":" + sec_str;
-
 
 // Measure text
 var tw = string_width(time_text);
@@ -134,16 +130,11 @@ draw_set_color(c_white);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-draw_text(
-    tx + panel_w / 2,
-    ty + panel_h / 2,
-    time_text
-);
+draw_text(tx + panel_w / 2, ty + panel_h / 2, time_text);
 
 // Reset alignment
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
-
 
 /// =========================
 /// INVENTORY
@@ -153,130 +144,117 @@ var item_keys = ds_map_keys_to_array(player.inventory);
 var unique_count = array_length(item_keys);
 
 if (unique_count > 0) {
+	var inv_x = margin;
+	var inv_y = margin + 200;
 
-    var inv_x = margin;
-    var inv_y = margin + 200;
+	var inv_panel_w = slot_size + panel_pad * 2;
+	var inv_panel_h = unique_count * (slot_size + gap) - gap + panel_pad * 2;
 
-    var inv_panel_w = slot_size + panel_pad * 2;
-    var inv_panel_h = unique_count * (slot_size + gap) - gap + panel_pad * 2;
+	draw_set_color(c_black);
 
-    draw_set_color(c_black);
+	draw_panel_rounded_fn(
+		inv_x,
+		inv_y,
+		inv_x + inv_panel_w,
+		inv_y + inv_panel_h,
+		40,
+		0.5
+	);
 
-    draw_panel_rounded_fn(
-        inv_x,
-        inv_y,
-        inv_x + inv_panel_w,
-        inv_y + inv_panel_h,
-        40,
-        0.5
-    );
+	draw_set_color(c_white);
 
-    draw_set_color(c_white);
+	var slot_center_x = inv_x + inv_panel_w / 2;
 
-    var slot_center_x = inv_x + inv_panel_w / 2;
+	// -------------------------------------------------
+	// Draw inventory stacks
+	// -------------------------------------------------
 
+	for (var i = 0; i < unique_count; i++) {
+		var key = item_keys[i];
 
-    // -------------------------------------------------
-    // Draw inventory stacks
-    // -------------------------------------------------
+		var stack = player.inventory[? key];
 
-    for (var i = 0; i < unique_count; i++) {
+		var count = ds_list_size(stack);
 
-        var key = item_keys[i];
+		if (count <= 0) {
+			continue;
+		}
 
-        var stack = player.inventory[? key];
+		var item = stack[| 0];
 
-        var count = ds_list_size(stack);
+		var vy = inv_y + panel_pad + i * (slot_size + gap);
+		var center_y = vy + slot_size / 2;
 
-        if (count <= 0) {
-            continue;
-        }
+		// -------------------------------------------------
+		// Active item highlight
+		// -------------------------------------------------
 
-        var item = stack[| 0];
+		var is_active = is_struct(player.active_item) && player.active_item_name == key;
 
-        var vy = inv_y + panel_pad + i * (slot_size + gap);
-        var center_y = vy + slot_size / 2;
+		if (is_active) {
+			draw_set_alpha(0.5);
+			draw_set_color(c_yellow);
 
+			draw_rectangle(
+				slot_center_x - slot_size / 2 - 2,
+				center_y - slot_size / 2 - 2,
+				slot_center_x + slot_size / 2 + 2,
+				center_y + slot_size / 2 + 2,
+				false
+			);
 
-        // -------------------------------------------------
-        // Active item highlight
-        // -------------------------------------------------
+			draw_set_alpha(1);
+		}
 
-        var is_active = (
-            is_struct(player.active_item)
-            && player.active_item_name == key
-        );
+		// -------------------------------------------------
+		// Draw item sprite
+		// -------------------------------------------------
 
-        if (is_active) {
+		draw_set_color(c_white);
 
-            draw_set_alpha(0.5);
-            draw_set_color(c_yellow);
+		var scale = is_active ? 1.2 : 1;
 
-            draw_rectangle(
-                slot_center_x - slot_size / 2 - 2,
-                center_y - slot_size / 2 - 2,
-                slot_center_x + slot_size / 2 + 2,
-                center_y + slot_size / 2 + 2,
-                false
-            );
+		draw_sprite_ext(
+			item.sprite_large,
+			0,
+			slot_center_x,
+			center_y,
+			scale,
+			scale,
+			0,
+			c_white,
+			1
+		);
 
-            draw_set_alpha(1);
-        }
+		// -------------------------------------------------
+		// Draw quantity overlay
+		// -------------------------------------------------
 
+		draw_set_halign(fa_right);
+		draw_set_valign(fa_bottom);
 
-        // -------------------------------------------------
-        // Draw item sprite
-        // -------------------------------------------------
+		// Shadow
+		draw_set_color(c_black);
 
-        draw_set_color(c_white);
+		draw_text(
+			slot_center_x + slot_size / 2 - 2,
+			center_y + slot_size / 2 - 2,
+			string(count)
+		);
 
-        var scale = is_active ? 1.2 : 1;
+		// Main text
+		draw_set_color(c_white);
 
-        draw_sprite_ext(
-            item.sprite_large,
-            0,
-            slot_center_x,
-            center_y,
-            scale,
-            scale,
-            0,
-            c_white,
-            1
-        );
+		draw_text(
+			slot_center_x + slot_size / 2 - 4,
+			center_y + slot_size / 2 - 4,
+			string(count)
+		);
 
-
-        // -------------------------------------------------
-        // Draw quantity overlay
-        // -------------------------------------------------
-
-        draw_set_halign(fa_right);
-        draw_set_valign(fa_bottom);
-
-        // Shadow
-        draw_set_color(c_black);
-
-        draw_text(
-            slot_center_x + slot_size / 2 - 2,
-            center_y + slot_size / 2 - 2,
-            string(count)
-        );
-
-        // Main text
-        draw_set_color(c_white);
-
-        draw_text(
-            slot_center_x + slot_size / 2 - 4,
-            center_y + slot_size / 2 - 4,
-            string(count)
-        );
-
-        draw_set_halign(fa_left);
-        draw_set_valign(fa_top);
-    }
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_top);
+	}
 }
-
-
-
 
 /// =========================
 /// SAFE ANIMALS HUD
@@ -284,171 +262,136 @@ if (unique_count > 0) {
 
 var animal_data = [];
 
-
 // =========================================================
 // COUNT SAFE/TOTAL ANIMALS
 // ONLY ADD TYPES THAT HAVE BEEN SAVED
 // =========================================================
 with (obj_animal) {
+	// -----------------------------------------------------
+	// ONLY TRACK TYPES THAT HAVE AT LEAST ONE SAFE ANIMAL
+	// -----------------------------------------------------
+	if (!is_safe) {
+		continue;
+	}
 
-    // -----------------------------------------------------
-    // ONLY TRACK TYPES THAT HAVE AT LEAST ONE SAFE ANIMAL
-    // -----------------------------------------------------
-    if (!is_safe) {
-        continue;
-    }
+	var found = false;
 
-    var found = false;
+	// -----------------------------------------------------
+	// LOOK FOR EXISTING ENTRY
+	// -----------------------------------------------------
+	for (var i = 0; i < array_length(animal_data); i++) {
+		if (animal_data[i].animal_type == animal_type) {
+			animal_data[i].safe++;
 
+			found = true;
+			break;
+		}
+	}
 
-    // -----------------------------------------------------
-    // LOOK FOR EXISTING ENTRY
-    // -----------------------------------------------------
-    for (var i = 0; i < array_length(animal_data); i++) {
+	// -----------------------------------------------------
+	// NEW ENTRY
+	// -----------------------------------------------------
+	if (!found) {
+		var total_count = 0;
 
-        if (animal_data[i].animal_type == animal_type) {
+		with (obj_animal) {
+			if (animal_type == other.animal_type) {
+				total_count++;
+			}
+		}
 
-            animal_data[i].safe++;
-
-            found = true;
-            break;
-        }
-    }
-
-
-    // -----------------------------------------------------
-    // NEW ENTRY
-    // -----------------------------------------------------
-    if (!found) {
-
-        var total_count = 0;
-
-        with (obj_animal) {
-
-            if (animal_type == other.animal_type) {
-                total_count++;
-            }
-        }
-
-        array_push(animal_data, {
-
-            animal_type : animal_type,
-            safe        : 1,
-            total       : total_count,
-            sprite      : sprite_large
-        });
-    }
+		array_push(
+			animal_data,
+			{animal_type: animal_type, safe: 1, total: total_count, sprite: sprite_large}
+		);
+	}
 }
-
 
 // =========================================================
 // DRAW SAFE ANIMAL BAR
 // =========================================================
 if (array_length(animal_data) > 0) {
+	var animal_x = margin;
 
-    var animal_x = margin;
+	var animal_y = h - margin - slot_size - panel_pad * 2;
 
-    var animal_y =
-        h
-        - margin
-        - slot_size
-        - panel_pad * 2;
+	var animal_panel_w =
+		array_length(animal_data) * (slot_size + gap)
+		- gap
+		+ panel_pad * 2;
 
-    var animal_panel_w =
-        array_length(animal_data)
-        * (slot_size + gap)
-        - gap
-        + panel_pad * 2;
+	var animal_panel_h = slot_size + panel_pad * 2;
 
-    var animal_panel_h =
-        slot_size
-        + panel_pad * 2;
+	// -----------------------------------------------------
+	// PANEL
+	// -----------------------------------------------------
+	draw_set_color(c_black);
 
+	draw_panel_rounded_fn(
+		animal_x,
+		animal_y,
+		animal_x + animal_panel_w,
+		animal_y + animal_panel_h,
+		40,
+		0.5
+	);
 
-    // -----------------------------------------------------
-    // PANEL
-    // -----------------------------------------------------
-    draw_set_color(c_black);
+	draw_set_color(c_white);
 
-    draw_panel_rounded_fn(
-        animal_x,
-        animal_y,
-        animal_x + animal_panel_w,
-        animal_y + animal_panel_h,
-        40,
-        0.5
-    );
+	// =====================================================
+	// DRAW ANIMAL SLOTS
+	// =====================================================
+	for (var i = 0; i < array_length(animal_data); i++) {
+		var entry = animal_data[i];
 
-    draw_set_color(c_white);
+		var slot_x = animal_x + panel_pad + i * (slot_size + gap);
 
+		var slot_y = animal_y + panel_pad;
 
-    // =====================================================
-    // DRAW ANIMAL SLOTS
-    // =====================================================
-    for (var i = 0; i < array_length(animal_data); i++) {
+		// -------------------------------------------------
+		// SLOT BACKGROUND
+		// -------------------------------------------------
+		draw_set_color(c_dkgray);
 
-        var entry = animal_data[i];
+		draw_roundrect_ext(
+			slot_x,
+			slot_y,
+			slot_x + slot_size,
+			slot_y + slot_size,
+			8,
+			8,
+			false
+		);
 
-        var slot_x =
-            animal_x
-            + panel_pad
-            + i * (slot_size + gap);
+		draw_set_color(c_white);
 
-        var slot_y =
-            animal_y + panel_pad;
+		// -------------------------------------------------
+		// CENTERED ANIMAL ICON
+		// -------------------------------------------------
+		draw_sprite_ext(
+			entry.sprite,
+			0,
+			slot_x + slot_size * 0.5,
+			slot_y + slot_size * 0.5,
+			UI_SCALE,
+			UI_SCALE,
+			0,
+			c_white,
+			1
+		);
 
+		// -------------------------------------------------
+		// SAFE/TOTAL TEXT
+		// -------------------------------------------------
+		draw_set_halign(fa_right);
+		draw_set_valign(fa_bottom);
 
-        // -------------------------------------------------
-        // SLOT BACKGROUND
-        // -------------------------------------------------
-        draw_set_color(c_dkgray);
+		draw_text(slot_x + slot_size - 4, slot_y + slot_size - 2, string(entry.safe));
 
-        draw_roundrect_ext(
-            slot_x,
-            slot_y,
-            slot_x + slot_size,
-            slot_y + slot_size,
-            8,
-            8,
-            false
-        );
-
-        draw_set_color(c_white);
-
-
-        // -------------------------------------------------
-        // CENTERED ANIMAL ICON
-        // -------------------------------------------------
-        draw_sprite_ext(
-            entry.sprite,
-            0,
-            slot_x + slot_size * 0.5,
-            slot_y + slot_size * 0.5,
-            UI_SCALE,
-            UI_SCALE,
-            0,
-            c_white,
-            1
-        );
-
-
-        // -------------------------------------------------
-        // SAFE/TOTAL TEXT
-        // -------------------------------------------------
-        draw_set_halign(fa_right);
-        draw_set_valign(fa_bottom);
-
-        draw_text(
-            slot_x + slot_size - 4,
-            slot_y + slot_size - 2,
-            string(entry.safe)
-        );
-
-        draw_set_halign(fa_left);
-        draw_set_valign(fa_top);
-    }
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_top);
+	}
 }
-
 
 /// =========================
 /// WEAPONS
@@ -456,65 +399,62 @@ if (array_length(animal_data) > 0) {
 var weap_count = ds_list_size(player.weapons);
 
 if (weap_count > 0) {
+	var weap_x = w - margin - (slot_size + panel_pad * 2);
+	var weap_y = margin + 200;
 
-    var weap_x = w - margin - (slot_size + panel_pad * 2);
-    var weap_y = margin + 200;
+	var weap_panel_w = slot_size + panel_pad * 2;
+	var weap_panel_h = weap_count * (slot_size + gap) - gap + panel_pad * 2;
 
-    var weap_panel_w = slot_size + panel_pad * 2;
-    var weap_panel_h = weap_count * (slot_size + gap) - gap + panel_pad * 2;
+	draw_set_color(c_black);
 
-    draw_set_color(c_black);
+	draw_panel_rounded_fn(
+		weap_x,
+		weap_y,
+		weap_x + weap_panel_w,
+		weap_y + weap_panel_h,
+		40,
+		0.5
+	);
 
-    draw_panel_rounded_fn(
-        weap_x,
-        weap_y,
-        weap_x + weap_panel_w,
-        weap_y + weap_panel_h,
-        40,
-        0.5
-    );
+	draw_set_color(c_white);
 
-    draw_set_color(c_white);
+	var slot_center_x = weap_x + weap_panel_w / 2;
 
-    var slot_center_x = weap_x + weap_panel_w / 2;
+	for (var i = 0; i < weap_count; i++) {
+		var weapon = player.weapons[| i];
 
-    for (var i = 0; i < weap_count; i++) {
+		var vy = weap_y + panel_pad + i * (slot_size + gap);
+		var center_y = vy + slot_size / 2;
 
-        var weapon = player.weapons[| i];
+		if (i == player.active_weapon_index) {
+			draw_set_alpha(0.5);
+			draw_set_color(c_aqua);
 
-        var vy = weap_y + panel_pad + i * (slot_size + gap);
-        var center_y = vy + slot_size / 2;
+			draw_rectangle(
+				slot_center_x - slot_size / 2 - 2,
+				center_y - slot_size / 2 - 2,
+				slot_center_x + slot_size / 2 + 2,
+				center_y + slot_size / 2 + 2,
+				false
+			);
 
-        if (i == player.active_weapon_index) {
+			draw_set_alpha(1);
+		}
 
-            draw_set_alpha(0.5);
-            draw_set_color(c_aqua);
+		draw_set_color(c_white);
 
-            draw_rectangle(
-                slot_center_x - slot_size / 2 - 2,
-                center_y - slot_size / 2 - 2,
-                slot_center_x + slot_size / 2 + 2,
-                center_y + slot_size / 2 + 2,
-                false
-            );
+		var scale = (i == player.active_weapon_index) ? 1.2 : 1;
 
-            draw_set_alpha(1);
-        }
-
-        draw_set_color(c_white);
-
-        var scale = (i == player.active_weapon_index) ? 1.2 : 1;
-
-        draw_sprite_ext(
-            weapon.sprite_large,
-            0,
-            slot_center_x,
-            center_y,
-            scale,
-            scale,
-            0,
-            c_white,
-            1
-        );
-    }
+		draw_sprite_ext(
+			weapon.sprite_large,
+			0,
+			slot_center_x,
+			center_y,
+			scale,
+			scale,
+			0,
+			c_white,
+			1
+		);
+	}
 }

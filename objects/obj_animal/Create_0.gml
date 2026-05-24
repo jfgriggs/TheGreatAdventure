@@ -24,7 +24,6 @@
 /// - Shared AI logic belongs in scr_animal_states
 /// - Avoid species-specific logic in parent object
 
-
 /// =========================
 /// IDENTITY
 /// =========================
@@ -96,7 +95,6 @@ is_safe = false;
 sm = new StateMachine(self);
 sm.change(Animal_Idle(sm));
 
-
 // ============================================================================
 // Movement Handler
 // ============================================================================
@@ -119,7 +117,6 @@ sm.change(Animal_Idle(sm));
 //            }
 //        }
 //    }
-
 
 //    // ------------------------------------------------------------------------
 //    // Vertical Movement
@@ -145,83 +142,84 @@ apply_movement = function(_vx, _vy) {
 	// TERRAIN MODIFIERS
 	// =========================================================
 	var tile = Tile_Get(x, y);
-	var speed_factor = 1
-	if (tile == TILE.MUD || tile == TILE.PIG_PEN) speed_factor = 0.1;
+	var speed_factor = 1;
+	if (tile == TILE.MUD || tile == TILE.PIG_PEN) {
+		speed_factor = 0.1;
+	}
 
-    // =========================================================
-    // TARGET POSITION
-    // =========================================================
-    var target_x = x + (_vx * speed_factor);
+	// =========================================================
+	// TARGET POSITION
+	// =========================================================
+	var target_x = x + (_vx * speed_factor);
 	var target_y = y + (_vy * speed_factor);
 
-    // =========================================================
-    // DIRECT MOVE
-    // =========================================================
-    if (Animal_Can_Move_To(self, target_x, target_y)) {
-        x = target_x;
-        y = target_y;
-        return;
-    }
+	// =========================================================
+	// DIRECT MOVE
+	// =========================================================
+	if (Animal_Can_Move_To(self, target_x, target_y)) {
+		x = target_x;
+		y = target_y;
+		return;
+	}
 
-    // =========================================================
-    // TRY X ONLY
-    // =========================================================
-    if (Animal_Can_Move_To(self, target_x, y)) {
-        x = target_x;
-        return;
-    }
+	// =========================================================
+	// TRY X ONLY
+	// =========================================================
+	if (Animal_Can_Move_To(self, target_x, y)) {
+		x = target_x;
+		return;
+	}
 
-    // =========================================================
-    // TRY Y ONLY
-    // =========================================================
-    if (Animal_Can_Move_To(self, x, target_y)) {
-        y = target_y;
-        return;
-    }
+	// =========================================================
+	// TRY Y ONLY
+	// =========================================================
+	if (Animal_Can_Move_To(self, x, target_y)) {
+		y = target_y;
+		return;
+	}
 
-    // =========================================================
-    // TRY SLIDE RIGHT
-    // =========================================================
-    if (Animal_Can_Move_To(self, target_x, y - 1)) {
-        x = target_x;
-        y -= 1;
-        return;
-    }
+	// =========================================================
+	// TRY SLIDE RIGHT
+	// =========================================================
+	if (Animal_Can_Move_To(self, target_x, y - 1)) {
+		x = target_x;
+		y -= 1;
+		return;
+	}
 
-    // =========================================================
-    // TRY SLIDE LEFT
-    // =========================================================
-    if (Animal_Can_Move_To(self, target_x, y + 1)) {
-        x = target_x;
-        y += 1;
-        return;
-    }
+	// =========================================================
+	// TRY SLIDE LEFT
+	// =========================================================
+	if (Animal_Can_Move_To(self, target_x, y + 1)) {
+		x = target_x;
+		y += 1;
+		return;
+	}
 
-    // =========================================================
-    // TRY SLIDE UP
-    // =========================================================
-    if (Animal_Can_Move_To(self, x - 1, target_y)) {
-        x -= 1;
-        y = target_y;
-        return;
-    }
+	// =========================================================
+	// TRY SLIDE UP
+	// =========================================================
+	if (Animal_Can_Move_To(self, x - 1, target_y)) {
+		x -= 1;
+		y = target_y;
+		return;
+	}
 
-    // =========================================================
-    // TRY SLIDE DOWN
-    // =========================================================
-    if (Animal_Can_Move_To(self, x + 1, target_y)) {
-        x += 1;
-        y = target_y;
-        return;
-    }
+	// =========================================================
+	// TRY SLIDE DOWN
+	// =========================================================
+	if (Animal_Can_Move_To(self, x + 1, target_y)) {
+		x += 1;
+		y = target_y;
+		return;
+	}
 };
-
 
 // ============================================================================
 // Initial Visual Setup
 // ============================================================================
 
 if (array_length(sprite_set) > 0) {
-    mask_index = sprite_set[3];
-    sprite_index = sprite_set[3];
+	mask_index = sprite_set[3];
+	sprite_index = sprite_set[3];
 }

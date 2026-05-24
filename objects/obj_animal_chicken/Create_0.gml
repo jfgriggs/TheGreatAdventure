@@ -24,20 +24,17 @@
 
 event_inherited();
 
-
 /// =========================
 /// IDENTITY
 /// =========================
 
 animal_type = ANIMAL.CHICKEN;
 
-
 /// =========================
 /// GAMEPLAY
 /// =========================
 
 point_value = 50;
-
 
 /// =========================
 /// MOVEMENT
@@ -52,7 +49,6 @@ wander_move_time_max = 45;
 wander_idle_time_min = 10;
 wander_idle_time_max = 30;
 
-
 /// =========================
 /// AI
 /// =========================
@@ -61,24 +57,20 @@ vision_range = 180;
 lose_range = 220;
 lose_time_max = Seconds(4);
 
-desired_items = {
-    corn   : 2
-};
-
+desired_items = {corn: 2};
 
 /// =========================
 /// VISUALS
 /// =========================
 
 sprite_set = [
-    spr_animal_chicken_right,
-    spr_animal_chicken_up,
-    spr_animal_chicken_left,
-    spr_animal_chicken_down
+	spr_animal_chicken_right,
+	spr_animal_chicken_up,
+	spr_animal_chicken_left,
+	spr_animal_chicken_down
 ];
 
 sprite_large = spr_animal_chicken_large;
-
 
 /// =========================
 /// INITIAL VISUAL SETUP

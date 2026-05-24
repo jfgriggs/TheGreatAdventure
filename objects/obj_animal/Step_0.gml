@@ -21,22 +21,21 @@
 /// - Avoid embedding complex AI logic directly here
 
 // If game not playing stop
-if (global.game_state != GAME_STATE.PLAYING) exit;
+if (global.game_state != GAME_STATE.PLAYING) {
+	exit;
+}
 
 /// =========================================================
 /// STATE MACHINE
 /// =========================================================
 sm.update();
 
-
 /// =========================================================
 /// SAFE AREA CHECK
 /// =========================================================
 is_safe = Animal_IsSafe(self);
 
-
 /// =========================================================
 /// DEPTH SORTING
 /// =========================================================
 depth = -y;
-

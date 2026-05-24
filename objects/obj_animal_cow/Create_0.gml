@@ -24,20 +24,17 @@
 
 event_inherited();
 
-
 /// =========================
 /// IDENTITY
 /// =========================
 
 animal_type = ANIMAL.COW;
 
-
 /// =========================
 /// GAMEPLAY
 /// =========================
 
 point_value = 150;
-
 
 /// =========================
 /// MOVEMENT
@@ -51,7 +48,6 @@ wander_move_time_max = 45;
 wander_idle_time_min = 10;
 wander_idle_time_max = 30;
 
-
 /// =========================
 /// AI
 /// =========================
@@ -60,28 +56,20 @@ vision_range = 260;
 lose_range = 320;
 lose_time_max = Seconds(5);
 
-desired_items = {
-    carrot : 1,
-    corn   : 2,
-    tomato : 4,
-	pumpkin: 1,
-	watermelon: 1
-};
-
+desired_items = {carrot: 1, corn: 2, tomato: 4, pumpkin: 1, watermelon: 1};
 
 /// =========================
 /// VISUALS
 /// =========================
 
 sprite_set = [
-    spr_animal_cow_right,
-    spr_animal_cow_up,
-    spr_animal_cow_left,
-    spr_animal_cow_down
+	spr_animal_cow_right,
+	spr_animal_cow_up,
+	spr_animal_cow_left,
+	spr_animal_cow_down
 ];
 
 sprite_large = spr_animal_cow_large;
-
 
 /// =========================
 /// INITIAL VISUAL SETUP

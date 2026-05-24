@@ -5,9 +5,8 @@
 // =============================================================================
 
 if (global.game_state != GAME_STATE.PLAYING) {
-    exit;
+	exit;
 }
-
 
 /// =========================
 /// BOB ANIMATION
@@ -17,7 +16,6 @@ bob_phase += bob_speed;
 
 y = base_y + sin(bob_phase) * bob_amplitude;
 
-
 /// =========================
 /// PLAYER PICKUP
 /// =========================
@@ -25,80 +23,59 @@ y = base_y + sin(bob_phase) * bob_amplitude;
 var p = global.player_object;
 
 if (!instance_exists(p)) {
-    exit;
+	exit;
 }
-
 
 /// =========================
 /// PICKUP DISTANCE
 /// =========================
 
 if (point_distance(x, y, p.x, p.y) < pickup_radius) {
+	/// =========================
+	/// WEAPON LIMIT
+	/// =========================
 
-    /// =========================
-    /// WEAPON LIMIT
-    /// =========================
+	if (ds_list_size(p.weapons) >= 6) {
+		exit;
+	}
 
-    if (ds_list_size(p.weapons) >= 6) {
-        exit;
-    }
+	/// =========================
+	/// DUPLICATE CHECK
+	/// =========================
 
+	var already_owned = false;
 
-    /// =========================
-    /// DUPLICATE CHECK
-    /// =========================
+	for (var i = 0; i < ds_list_size(p.weapons); i++) {
+		var w = p.weapons[| i];
 
-    var already_owned = false;
+		if (w.weapon_id == weapon_type) {
+			already_owned = true;
+			break;
+		}
+	}
 
-    for (var i = 0; i < ds_list_size(p.weapons); i++) {
+	/// =========================
+	/// ADD WEAPON
+	/// =========================
 
-        var w = p.weapons[| i];
+	if (!already_owned) {
+		ds_list_add(p.weapons, weapon);
 
-        if (w.weapon_id == weapon_type) {
-            already_owned = true;
-            break;
-        }
-    }
+		// Auto-select newest weapon
+		p.active_weapon_index = ds_list_size(p.weapons) - 1;
 
+		p.active_weapon = p.weapons[| p.active_weapon_index];
 
-    /// =========================
-    /// ADD WEAPON
-    /// =========================
+		// Sound
+		audio_play_sound(snd_weapon_pickup, 1, false);
 
-    if (!already_owned) {
+		// Visual Effect
+		effect_create_layer("Effects", ef_spark, x, y, 1, c_yellow);
+	}
 
-        ds_list_add(
-            p.weapons,
-            weapon
-        );
+	/// =========================
+	/// REMOVE WORLD PICKUP
+	/// =========================
 
-        // Auto-select newest weapon
-        p.active_weapon_index = ds_list_size(p.weapons) - 1;
-
-        p.active_weapon = p.weapons[| p.active_weapon_index];
-
-        // Sound
-        audio_play_sound(
-            snd_weapon_pickup,
-            1,
-            false
-        );
-
-        // Visual Effect
-        effect_create_layer(
-            "Effects",
-            ef_spark,
-            x,
-            y,
-            1,
-            c_yellow
-        );
-    }
-
-
-    /// =========================
-    /// REMOVE WORLD PICKUP
-    /// =========================
-
-    instance_destroy();
+	instance_destroy();
 }

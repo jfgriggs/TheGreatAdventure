@@ -26,18 +26,20 @@
 /// - Prevent duplication of common helper logic
 
 function Mouse_GetWorldX() {
-    var cam = view_camera[0];
-    return camera_get_view_x(cam) + (window_mouse_get_x() / window_get_width()) * camera_get_view_width(cam);
+	var cam = view_camera[0];
+	return camera_get_view_x(cam)
+		+ (window_mouse_get_x() / window_get_width()) * camera_get_view_width(cam);
 }
 
 function Mouse_GetWorldY() {
-    var cam = view_camera[0];
-    return camera_get_view_y(cam) + (window_mouse_get_y() / window_get_height()) * camera_get_view_height(cam);
+	var cam = view_camera[0];
+	return camera_get_view_y(cam)
+		+ (window_mouse_get_y() / window_get_height()) * camera_get_view_height(cam);
 }
 
 function Screen_Shake(amount, duration) {
 	var c = obj_controller;
-	
+
 	if (instance_exists(c)) {
 		c.shake_strength = amount;
 		c.shake_timer = duration;
@@ -45,27 +47,29 @@ function Screen_Shake(amount, duration) {
 }
 
 function Spark_Spawn(_x, _y) {
-    if (!instance_exists(obj_controller)) return;
+	if (!instance_exists(obj_controller)) {
+		return;
+	}
 
-    var ps = obj_controller.ps;
-    var pt = obj_controller.pt_spark;
+	var ps = obj_controller.ps;
+	var pt = obj_controller.pt_spark;
 
 	// Core burst
-    part_particles_create(ps, _x, _y, pt, 40);
-	
+	part_particles_create(ps, _x, _y, pt, 40);
+
 	// Outer burst (slightly offset)
-	part_particles_create(ps, _x + random_range(-6,6), _y + random_range(-6, 6), pt, 20);
+	part_particles_create(ps, _x + random_range(-6, 6), _y + random_range(-6, 6), pt, 20);
 }
 
 function Game_Reset() {
-    /// -------------------------
-    /// RESET GAME STATE
-    /// -------------------------
-    global.game_state = GAME_STATE.PLAYING;
+	/// -------------------------
+	/// RESET GAME STATE
+	/// -------------------------
+	global.game_state = GAME_STATE.PLAYING;
 
 	room_restart();
 }
 
 function Seconds(_seconds) {
-    return round(game_get_speed(gamespeed_fps) * _seconds);
+	return round(game_get_speed(gamespeed_fps) * _seconds);
 }

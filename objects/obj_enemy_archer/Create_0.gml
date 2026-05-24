@@ -45,5 +45,5 @@ knockback_force = 4;
 sm.change(Archer_Patrol(sm));
 
 apply_movement = function(_vx, _vy) {
-    var o = self;
+	var o = self;
 };

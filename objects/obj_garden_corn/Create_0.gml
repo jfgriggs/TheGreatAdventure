@@ -2,7 +2,6 @@
 
 event_inherited();
 
-
 // --------------------------------------------------
 // Crop Configuration
 // --------------------------------------------------
@@ -10,13 +9,11 @@ event_inherited();
 // Inventory item granted on harvest.
 item_type = ITEM.CORN;
 
-
 // --------------------------------------------------
 // Visuals
 // --------------------------------------------------
 
 sprite_index = spr_garden_corn;
-
 
 // --------------------------------------------------
 // Audio
@@ -24,7 +21,6 @@ sprite_index = spr_garden_corn;
 
 // Replace with your actual sound resource.
 harvest_sound = snd_item_pickup;
-
 
 // --------------------------------------------------
 // Optional Crop Tuning
@@ -36,4 +32,4 @@ harvest_sound = snd_item_pickup;
 // growth_time = room_speed * 5;
 //
 // Slower crops:
-// growth_time = room_speed * 20;
+// growth_time = room_speed * 20; 

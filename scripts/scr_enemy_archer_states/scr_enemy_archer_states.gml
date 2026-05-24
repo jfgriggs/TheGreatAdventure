@@ -30,55 +30,62 @@
 /// - Keep states focused on orchestration and transitions
 
 function Archer_Patrol(_sm) {
-    return {
-        enter: function() {
-            _sm.owner.wander_dir = irandom(359);
-        },
+	return {
+		on_enter: function() {
+			_sm.owner.wander_dir = irandom(359);
+		},
+		on_update: function() {
+			var o = _sm.owner;
+			var p = global.player_object;
 
-        update: function() {
-            var o = _sm.owner;
-            var p = global.player_object;
+			o.apply_movement(
+				lengthdir_x(o.speed, o.wander_dir),
+				lengthdir_y(o.speed, o.wander_dir)
+			);
 
-            o.apply_movement(lengthdir_x(o.speed,o.wander_dir), lengthdir_y(o.speed,o.wander_dir));
-
-            if (point_distance(o.x,o.y,p.x,p.y) < o.vision_range) {
-                _sm.change(Archer_Chase(_sm));
-            }
-        }
-    };
+			if (point_distance(o.x, o.y, p.x, p.y) < o.vision_range) {
+				_sm.change(Archer_Chase(_sm));
+			}
+		},
+	};
 }
 
 function Archer_Chase(_sm) {
-    return {
-        update: function() {
-            var o = _sm.owner;
-            var p = global.player_object;
+	return {
+		on_update: function() {
+			var o = _sm.owner;
+			var p = global.player_object;
 
-            var dir = point_direction(o.x,o.y,p.x,p.y);
+			var dir = point_direction(o.x, o.y, p.x, p.y);
 
-            o.apply_movement(lengthdir_x(o.speed,dir), lengthdir_y(o.speed,dir));
+			o.apply_movement(lengthdir_x(o.speed, dir), lengthdir_y(o.speed, dir));
 
-            if (point_distance(o.x,o.y,p.x,p.y) < o.attack_range) {
-                _sm.change(Archer_Attack(_sm));
-            }
-        }
-    };
+			if (point_distance(o.x, o.y, p.x, p.y) < o.attack_range) {
+				_sm.change(Archer_Attack(_sm));
+			}
+		},
+	};
 }
 
 function Archer_Shoot(_sm) {
-    return {
-        update: function() {
-            var o = _sm.owner;
-            var p = global.player_object;
+	return {
+		on_update: function() {
+			var o = _sm.owner;
+			var p = global.player_object;
 
-            if (_sm.time mod o.fire_rate == 0) {
-                var proj = instance_create_layer(o.x,o.y,"Instances",obj_projectile_pellets);
-                proj.direction = point_direction(o.x,o.y,p.x,p.y);
-            }
+			if (_sm.time % o.fire_rate == 0) {
+				var proj = instance_create_layer(
+					o.x,
+					o.y,
+					"Instances",
+					obj_projectile_pellets
+				);
+				proj.direction = point_direction(o.x, o.y, p.x, p.y);
+			}
 
-            if (point_distance(o.x,o.y,p.x,p.y) > o.attack_range) {
-                _sm.change(Archer_Chase(_sm));
-            }
-        }
-    };
+			if (point_distance(o.x, o.y, p.x, p.y) > o.attack_range) {
+				_sm.change(Archer_Chase(_sm));
+			}
+		},
+	};
 }

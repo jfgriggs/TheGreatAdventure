@@ -26,74 +26,87 @@
 /// - Tilemap references should be initialized by obj_controller
 
 enum TILE {
-    EMPTY,                 // 0
-    WALL,                  // 1
-    WATER,                 // 2
-	MUD,                   // 3
-    TRAP,                  // 4
-    HOLE,                  // 5
-	CHICKEN_COOP,          // 6
-	COW_PASTURE,           // 7
-	PIG_PEN,               // 8
-	SHEEP_PASTURE,         // 9
-	EXPANSION1,            // 10
-	EXPANSION2,            // 11
-	EXPANSION3             // 12
+	EMPTY, // 0
+	WALL, // 1
+	WATER, // 2
+	MUD, // 3
+	TRAP, // 4
+	HOLE, // 5
+	CHICKEN_COOP, // 6
+	COW_PASTURE, // 7
+	PIG_PEN, // 8
+	SHEEP_PASTURE, // 9
+	EXPANSION1, // 10
+	EXPANSION2, // 11
+	EXPANSION3, // 12
 }
 
 function Tile_Get(_x, _y) {
+	var ctrl = instance_find(obj_controller, 0);
 
-    var ctrl = instance_find(obj_controller, 0);
+	if (ctrl == noone) {
+		return TILE.EMPTY;
+	}
 
-    if (ctrl == noone) return TILE.EMPTY;
+	var tilemap = ctrl.tilemap;
 
-    var tilemap = ctrl.tilemap;
+	var tile = tilemap_get_at_pixel(tilemap, _x, _y);
+	var index = tile_get_index(tile);
 
-    var tile = tilemap_get_at_pixel(tilemap, _x, _y);
-    var index = tile_get_index(tile);
+	switch (index) {
+		case 1:
+			return TILE.WALL;
+		case 2:
+			return TILE.WATER;
+		case 3:
+			return TILE.MUD;
+		case 4:
+			return TILE.TRAP;
+		case 5:
+			return TILE.HOLE;
+		case 6:
+			return TILE.CHICKEN_COOP;
+		case 7:
+			return TILE.COW_PASTURE;
+		case 8:
+			return TILE.PIG_PEN;
+		case 9:
+			return TILE.SHEEP_PASTURE;
+		case 10:
+			return TILE.EXPANSION1;
+		case 11:
+			return TILE.EXPANSION2;
+		case 12:
+			return TILE.EXPANSION3;
+	}
 
-    switch(index) {
-        case 1: return TILE.WALL;
-        case 2: return TILE.WATER;
-        case 3: return TILE.MUD;
-        case 4: return TILE.TRAP;
-        case 5: return TILE.HOLE;
-        case 6: return TILE.CHICKEN_COOP;
-        case 7: return TILE.COW_PASTURE;
-        case 8: return TILE.PIG_PEN;
-        case 9: return TILE.SHEEP_PASTURE;
-        case 10: return TILE.EXPANSION1;
-        case 11: return TILE.EXPANSION2;
-        case 12: return TILE.EXPANSION3;
-    }
-
-    return TILE.EMPTY;
+	return TILE.EMPTY;
 }
 
 function Tile_Is_Blocking(_tile) {
-    return (_tile == TILE.WALL || _tile == TILE.WATER);
+	return _tile == TILE.WALL || _tile == TILE.WATER;
 }
 
 function Tile_Is_Blocking_Thrown_Item(_tile) {
-    return (_tile == TILE.WALL);
+	return _tile == TILE.WALL;
 }
 
 function Tile_Is_Blocking_Fired_Weapon(_tile) {
-    return (_tile == TILE.WALL);
+	return _tile == TILE.WALL;
 }
 
 function Tile_Is_Animal_Chicken_Coop(_tile) {
-    return (_tile == TILE.CHICKEN_COOP);
+	return _tile == TILE.CHICKEN_COOP;
 }
 
 function Tile_Is_Animal_Cow_Pasture(_tile) {
-    return (_tile == TILE.COW_PASTURE);
+	return _tile == TILE.COW_PASTURE;
 }
 
 function Tile_Is_Animal_Pig_Pen(_tile) {
-    return (_tile == TILE.PIG_PEN);
+	return _tile == TILE.PIG_PEN;
 }
 
 function Tile_Is_Animal_Sheep_Pasture(_tile) {
-    return (_tile == TILE.SHEEP_PASTURE);
+	return _tile == TILE.SHEEP_PASTURE;
 }

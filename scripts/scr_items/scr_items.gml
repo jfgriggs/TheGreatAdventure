@@ -21,7 +21,7 @@
 /// - Inventory_Add_Item(_player, _item)
 /// - Inventory_Remove_Active_Item(_player)
 /// - Inventory_Select_Next_Stack(_player)
-/// 
+///
 /// Notes:
 /// - Item definitions should remain data-driven
 /// - Shared interaction logic should remain centralized
@@ -29,250 +29,230 @@
 /// - Avoid duplicating item logic across objects
 /// - Supports inventory and world item systems
 
-
 function Item_Create(_type) {
-
-    switch(_type) {
-
+	switch (_type) {
 		case ITEM.CABBAGE:
-		    return {
+			return {
 				type: _type,
-		        name: "cabbage",
-		        sprite: spr_item_cabbage,
-		        sprite_large: spr_item_cabbage_large,
-		        count: 1,
-
-		        throw_speed: 12,
-		        throw_distance: 260,
-		        drag: 0.985,
+				name: "cabbage",
+				sprite: spr_item_cabbage,
+				sprite_large: spr_item_cabbage_large,
+				count: 1,
+				throw_speed: 12,
+				throw_distance: 260,
+				drag: 0.985,
 				life: 2400,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
+				max_hp: 60,
+				nutrition: 1,
+			};
 
 		case ITEM.CARROT:
-		    return {
+			return {
 				type: _type,
-		        name: "carrot",
-		        sprite: spr_item_carrot,
-		        sprite_large: spr_item_carrot_large,
-		        count: 1,
-
-		        throw_speed: 12,
-		        throw_distance: 260,
-		        drag: 0.985,
+				name: "carrot",
+				sprite: spr_item_carrot,
+				sprite_large: spr_item_carrot_large,
+				count: 1,
+				throw_speed: 12,
+				throw_distance: 260,
+				drag: 0.985,
 				life: 2400,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
+				max_hp: 60,
+				nutrition: 1,
+			};
 
 		case ITEM.CORN:
-		    return {
+			return {
 				type: _type,
-		        name: "corn",
-		        sprite: spr_item_corn,
-		        sprite_large: spr_item_corn_large,
-		        count: 1,
-
-		        throw_speed: 10,
-		        throw_distance: 220,
-		        drag: 0.975,
+				name: "corn",
+				sprite: spr_item_corn,
+				sprite_large: spr_item_corn_large,
+				count: 1,
+				throw_speed: 10,
+				throw_distance: 220,
+				drag: 0.975,
 				life: 2400,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
+				max_hp: 60,
+				nutrition: 1,
+			};
 
 		case ITEM.EGGPLANT:
-		    return {
+			return {
 				type: _type,
-		        name: "cabbage",
-		        sprite: spr_item_eggplant,
-		        sprite_large: spr_item_eggplant_large,
-		        count: 1,
-
-		        throw_speed: 12,
-		        throw_distance: 260,
-		        drag: 0.985,
+				name: "cabbage",
+				sprite: spr_item_eggplant,
+				sprite_large: spr_item_eggplant_large,
+				count: 1,
+				throw_speed: 12,
+				throw_distance: 260,
+				drag: 0.985,
 				life: 2400,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
-
+				max_hp: 60,
+				nutrition: 1,
+			};
 
 		case ITEM.PEPPER:
-		    return {
+			return {
 				type: _type,
-		        name: "pepper",
-		        sprite: spr_item_pepper,
-		        sprite_large: spr_item_pepper_large,
-		        count: 1,
-
-		        throw_speed: 12,
-		        throw_distance: 260,
-		        drag: 0.985,
+				name: "pepper",
+				sprite: spr_item_pepper,
+				sprite_large: spr_item_pepper_large,
+				count: 1,
+				throw_speed: 12,
+				throw_distance: 260,
+				drag: 0.985,
 				life: 2400,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
-			
-		case ITEM.TOMATO:
-		    return {
-				type: _type,
-		        name: "tomato",
-		        sprite: spr_item_tomato,
-		        sprite_large: spr_item_tomato_large,
-		        count: 1,
+				max_hp: 60,
+				nutrition: 1,
+			};
 
-		        throw_speed: 9,
-		        throw_distance: 180,
-		        drag: 0.96,
+		case ITEM.TOMATO:
+			return {
+				type: _type,
+				name: "tomato",
+				sprite: spr_item_tomato,
+				sprite_large: spr_item_tomato_large,
+				count: 1,
+				throw_speed: 9,
+				throw_distance: 180,
+				drag: 0.96,
 				life: 1800,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
+				max_hp: 60,
+				nutrition: 1,
+			};
 
 		case ITEM.PUMPKIN:
-		    return {
+			return {
 				type: _type,
-		        name: "pumpkin",
+				name: "pumpkin",
 				sprite: spr_item_pumpkin,
-		        sprite_large: spr_item_pumpkin_large,
-		        count: 1,
-
-		        throw_speed: 7,
-		        throw_distance: 130,
-		        drag: 0.93,
+				sprite_large: spr_item_pumpkin_large,
+				count: 1,
+				throw_speed: 7,
+				throw_distance: 130,
+				drag: 0.93,
 				life: 3600,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
+				max_hp: 60,
+				nutrition: 1,
+			};
 
 		case ITEM.WATERMELON:
-		    return {
+			return {
 				type: _type,
-		        name: "watermelon",
-		        sprite: spr_item_watermelon,
-		        sprite_large: spr_item_watermelon_large,
-		        count: 1,
-
-		        throw_speed: 6,
-		        throw_distance: 100,
-		        drag: 0.90,
+				name: "watermelon",
+				sprite: spr_item_watermelon,
+				sprite_large: spr_item_watermelon_large,
+				count: 1,
+				throw_speed: 6,
+				throw_distance: 100,
+				drag: 0.90,
 				life: 3600,
-				
 				hp: 60,
-				max_hp: 60,				
-				nutrition: 1
-		    };
+				max_hp: 60,
+				nutrition: 1,
+			};
 	}
 	return {
 		name: "Forgot to add new item to scr_items",
 		sprite: spr_item_watermelon,
 		sprite_large: spr_item_watermelon_large,
 		count: 1,
-		throw_distance: 50
+		throw_distance: 50,
 	};
 }
 
 function Item_Take_Damage(_item, _amount) {
+	// =========================================================
+	// WORLD ITEM INSTANCE
+	// =========================================================
+	if (instance_exists(_item)) {
+		if (!variable_instance_exists(_item, "item")) {
+			return;
+		}
 
-    // =========================================================
-    // WORLD ITEM INSTANCE
-    // =========================================================
-    if (instance_exists(_item)) {
+		if (!is_struct(_item.item)) {
+			return;
+		}
 
-        if (!variable_instance_exists(_item, "item")) {
-            return;
-        }
+		_item.item.hp -= _amount;
+		if (_item.item.hp <= 0) {
+			instance_destroy(_item);
+		}
 
-        if (!is_struct(_item.item)) {
-            return;
-        }
+		return;
+	}
 
-        _item.item.hp -= _amount;
-        if (_item.item.hp <= 0) {
-            instance_destroy(_item);
-        }
-
-        return;
-    }
-
-
-    // =========================================================
-    // ITEM STRUCT ONLY
-    // =========================================================
-    if (is_struct(_item)) {
-        if (!variable_struct_exists(_item, "hp")) {
-            return;
-        }
-        _item.hp -= _amount;
-    }
+	// =========================================================
+	// ITEM STRUCT ONLY
+	// =========================================================
+	if (is_struct(_item)) {
+		if (!variable_struct_exists(_item, "hp")) {
+			return;
+		}
+		_item.hp -= _amount;
+	}
 }
 
 function Item_Throw(_o) {
+	var o = _o;
 
-    var o = _o;
-
-    if (!instance_exists(o)) return;
-    if (ds_map_size(o.inventory) <= 0) return;
-    if (o.active_item = undefined) return;
+	if (!instance_exists(o)) {
+		return;
+	}
+	if (ds_map_size(o.inventory) <= 0) {
+		return;
+	}
+	if (o.active_item == undefined) {
+		return;
+	}
 
 	item = o.active_item;
 
-    /// =========================
-    /// CREATE OBJECT (SAFE)
-    /// =========================
-    var t = instance_create_layer(o.x, o.y, "Instances", obj_item_thrown);
+	/// =========================
+	/// CREATE OBJECT (SAFE)
+	/// =========================
+	var t = instance_create_layer(o.x, o.y, "Instances", obj_item_thrown);
 
-    t.item = item;
-    t.sprite_index = item.sprite;
+	t.item = item;
+	t.sprite_index = item.sprite;
 	t.drag = item.drag;
 	t.start_x = o.x;
 	t.start_y = o.y;
 
-    /// =========================
-    /// AIM
-    /// =========================
-    var mx = Mouse_GetWorldX();
-    var my = Mouse_GetWorldY();
+	/// =========================
+	/// AIM
+	/// =========================
+	var mx = Mouse_GetWorldX();
+	var my = Mouse_GetWorldY();
 
-    var dir = point_direction(o.x, o.y, mx, my);
+	var dir = point_direction(o.x, o.y, mx, my);
 
-	// If the mouse location is less that the throw_distance 
+	// If the mouse location is less that the throw_distance
 	// throw to the mouse location, otherwise, it travels the
 	// full throw_distance
 	t.max_distance = min(item.throw_distance, point_distance(o.x, o.y, mx, my));
 
+	/// =========================
+	/// VELOCITY
+	/// =========================
+	var ispeed = item.throw_speed;
 
-    /// =========================
-    /// VELOCITY
-    /// =========================
-    var ispeed = item.throw_speed;
+	t.vx = lengthdir_x(ispeed, dir);
+	t.vy = lengthdir_y(ispeed, dir);
 
-    t.vx = lengthdir_x(ispeed, dir);
-    t.vy = lengthdir_y(ispeed, dir);
+	t.image_angle = dir;
 
-    t.image_angle = dir;
-
-
-    /// =========================
-    /// REMOVE ITEM
-    /// =========================
-    Inventory_Remove_Active_Item(o);
+	/// =========================
+	/// REMOVE ITEM
+	/// =========================
+	Inventory_Remove_Active_Item(o);
 }
 
 // =============================================================================
@@ -294,189 +274,160 @@ function Item_Throw(_o) {
 /// @param {string} previous_item_name
 
 function Inventory_Select_Next_Active_Item(_player, _previous_item_name) {
+	var inventory = _player.inventory;
+	var count = ds_list_size(inventory);
 
-    var inventory = _player.inventory;
-    var count = ds_list_size(inventory);
+	// -------------------------------------------------
+	// Empty inventory
+	// -------------------------------------------------
 
-    // -------------------------------------------------
-    // Empty inventory
-    // -------------------------------------------------
+	if (count <= 0) {
+		_player.active_item_index = -1;
+		_player.active_item = undefined;
+		return;
+	}
 
-    if (count <= 0) {
-        _player.active_item_index = -1;
-        _player.active_item = undefined;
-        return;
-    }
+	// -------------------------------------------------
+	// Prefer same item type
+	// -------------------------------------------------
 
+	for (var i = 0; i < count; i++) {
+		var item = inventory[| i];
 
-    // -------------------------------------------------
-    // Prefer same item type
-    // -------------------------------------------------
+		if (item.name == _previous_item_name) {
+			_player.active_item_index = i;
+			_player.active_item = item;
 
-    for (var i = 0; i < count; i++) {
+			return;
+		}
+	}
 
-        var item = inventory[| i];
+	// -------------------------------------------------
+	// Fallback:
+	// clamp to valid index
+	// -------------------------------------------------
 
-        if (item.name == _previous_item_name) {
+	_player.active_item_index = clamp(_player.active_item_index, 0, count - 1);
 
-            _player.active_item_index = i;
-            _player.active_item = item;
-
-            return;
-        }
-    }
-
-
-    // -------------------------------------------------
-    // Fallback:
-    // clamp to valid index
-    // -------------------------------------------------
-
-    _player.active_item_index = clamp(
-        _player.active_item_index,
-        0,
-        count - 1
-    );
-
-    _player.active_item = inventory[| _player.active_item_index];
+	_player.active_item = inventory[| _player.active_item_index];
 }
-
 
 function Inventory_Add_Item(_player, _item) {
-    var key = _item.name;
+	var key = _item.name;
 
-    var MAX_INVENTORY_TYPES = 6;
-    var MAX_STACK_SIZE = 5;
+	var MAX_INVENTORY_TYPES = 6;
+	var MAX_STACK_SIZE = 5;
 
+	// -------------------------------------------------
+	// Existing Stack
+	// -------------------------------------------------
 
-    // -------------------------------------------------
-    // Existing Stack
-    // -------------------------------------------------
+	if (ds_map_exists(_player.inventory, key)) {
+		var stack = _player.inventory[? key];
 
-    if (ds_map_exists(_player.inventory, key)) {
+		// ---------------------------------------------
+		// Stack Full
+		// ---------------------------------------------
 
-        var stack = _player.inventory[? key];
+		if (ds_list_size(stack) >= MAX_STACK_SIZE) {
+			return false;
+		}
 
+		// ---------------------------------------------
+		// Add To Existing Stack
+		// ---------------------------------------------
 
-        // ---------------------------------------------
-        // Stack Full
-        // ---------------------------------------------
+		ds_list_add(stack, _item);
+	} else {
+		// -------------------------------------------------
+		// New Stack
+		// -------------------------------------------------
+		// ---------------------------------------------
+		// Inventory Full
+		// ---------------------------------------------
 
-        if (ds_list_size(stack) >= MAX_STACK_SIZE) {
+		if (ds_map_size(_player.inventory) >= MAX_INVENTORY_TYPES) {
+			return false;
+		}
 
-            return false;
-        }
+		// ---------------------------------------------
+		// Create New Stack
+		// ---------------------------------------------
 
+		var stack = ds_list_create();
 
-        // ---------------------------------------------
-        // Add To Existing Stack
-        // ---------------------------------------------
+		ds_list_add(stack, _item);
 
-        ds_list_add(stack, _item);
-    }
+		ds_map_add(_player.inventory, key, stack);
+	}
 
+	// -------------------------------------------------
+	// Auto Select
+	// -------------------------------------------------
 
-    // -------------------------------------------------
-    // New Stack
-    // -------------------------------------------------
+	if (!is_struct(_player.active_item)) {
+		var stack = _player.inventory[? key];
 
-    else {
+		_player.active_item_name = key;
+		_player.active_item = stack[| 0];
+	}
 
-        // ---------------------------------------------
-        // Inventory Full
-        // ---------------------------------------------
-
-        if (ds_map_size(_player.inventory) >= MAX_INVENTORY_TYPES) {
-
-            return false;
-        }
-
-
-        // ---------------------------------------------
-        // Create New Stack
-        // ---------------------------------------------
-
-        var stack = ds_list_create();
-
-        ds_list_add(stack, _item);
-
-        ds_map_add(
-            _player.inventory,
-            key,
-            stack
-        );
-    }
-
-
-    // -------------------------------------------------
-    // Auto Select
-    // -------------------------------------------------
-
-    if (!is_struct(_player.active_item)) {
-
-        var stack = _player.inventory[? key];
-
-        _player.active_item_name = key;
-        _player.active_item = stack[| 0];
-    }
-
-    return true;
+	return true;
 }
 
-
 function Inventory_Remove_Active_Item(_player) {
-    // -------------------------------------------------
-    // Safety
-    // -------------------------------------------------
-    if (!is_struct(_player.active_item)) {
-        return undefined;
-    }
+	// -------------------------------------------------
+	// Safety
+	// -------------------------------------------------
+	if (!is_struct(_player.active_item)) {
+		return undefined;
+	}
 
-    var key = _player.active_item_name;
+	var key = _player.active_item_name;
 
-    if (!ds_map_exists(_player.inventory, key)) {
-        return undefined;
-    }
+	if (!ds_map_exists(_player.inventory, key)) {
+		return undefined;
+	}
 
-    var stack = _player.inventory[? key];
+	var stack = _player.inventory[? key];
 
-    if (ds_list_size(stack) <= 0) {
-        return undefined;
-    }
+	if (ds_list_size(stack) <= 0) {
+		return undefined;
+	}
 
-    // -------------------------------------------------
-    // Remove first item from stack
-    // -------------------------------------------------
-    var item = stack[| 0];
-    ds_list_delete(stack, 0);
+	// -------------------------------------------------
+	// Remove first item from stack
+	// -------------------------------------------------
+	var item = stack[| 0];
+	ds_list_delete(stack, 0);
 
-    // -------------------------------------------------
-    // Empty stack cleanup
-    // -------------------------------------------------
-    if (ds_list_size(stack) <= 0) {
-        ds_list_destroy(stack);
-        ds_map_delete(_player.inventory, key);
-        Inventory_Select_Next_Stack(_player)
-    } else {
-        _player.active_item = stack[| 0];
-    }
+	// -------------------------------------------------
+	// Empty stack cleanup
+	// -------------------------------------------------
+	if (ds_list_size(stack) <= 0) {
+		ds_list_destroy(stack);
+		ds_map_delete(_player.inventory, key);
+		Inventory_Select_Next_Stack(_player);
+	} else {
+		_player.active_item = stack[| 0];
+	}
 
-    return item;
+	return item;
 }
 
 function Inventory_Select_Next_Stack(_player) {
-    var keys = ds_map_keys_to_array(_player.inventory);
-    if (array_length(keys) <= 0) {
-        _player.active_item_name = "";
-        _player.active_item = undefined;
-        return;
-    }
+	var keys = ds_map_keys_to_array(_player.inventory);
+	if (array_length(keys) <= 0) {
+		_player.active_item_name = "";
+		_player.active_item = undefined;
+		return;
+	}
 
-    // -------------------------------------------------
-    // Select first available stack
-    // -------------------------------------------------
-    var key = keys[0];
-    var stack = _player.inventory[? key];
-    _player.active_item_name = key;
-    _player.active_item = stack[| 0];
+	// -------------------------------------------------
+	// Select first available stack
+	// -------------------------------------------------
+	var key = keys[0];
+	var stack = _player.inventory[? key];
+	_player.active_item_name = key;
+	_player.active_item = stack[| 0];
 }

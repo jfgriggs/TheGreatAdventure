@@ -24,7 +24,6 @@
 
 event_inherited();
 
-
 /// =========================
 /// ITEM DEFINITION
 /// =========================
@@ -33,13 +32,11 @@ item_type = ITEM.EGGPLANT;
 
 item = Item_Create(item_type);
 
-
 /// =========================
 /// RUNTIME
 /// =========================
 
 life = item.life;
-
 
 /// =========================
 /// VISUALS

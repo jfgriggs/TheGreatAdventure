@@ -47,13 +47,13 @@ function StateMachine(_owner) constructor {
 			return false;
 		}
 
-		if (!variable_struct_exists(_state, "update")) {
-			show_error("StateMachine Error: State missing update() method.", true);
+		if (!variable_struct_exists(_state, "on_update")) {
+			show_error("StateMachine Error: State missing on_update() method.", true);
 			return false;
 		}
 
-		if (!is_callable(_state.update)) {
-			show_error("StateMachine Error: update is not callable.", true);
+		if (!is_callable(_state.on_update)) {
+			show_error("StateMachine Error: on_update is not callable.", true);
 			return false;
 		}
 
@@ -96,6 +96,10 @@ function StateMachine(_owner) constructor {
 			return;
 		}
 
-		current.on_update();
+		if (variable_struct_exists(current, "on_update")) {
+			current.on_update();
+		} else {
+			show_error("StateMachine Error: State missing on_update() method.", true);
+		}
 	};
 }

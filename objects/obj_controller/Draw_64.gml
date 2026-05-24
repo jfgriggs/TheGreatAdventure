@@ -43,8 +43,8 @@ if (global.game_state == GAME_STATE.STARTING) {
 		draw_set_color(c_yellow);
 		draw_text(cx, cy + 70, "PRESS 'L' for Leni");
 	}
-} else // ============================================================================= // REGION: Pause / Quit Screen // =============================================================================
-if (global.game_state == GAME_STATE.PAUSED) {
+} else if (global.game_state == GAME_STATE.PAUSED) {
+	// ============================================================================= // REGION: Pause / Quit Screen // =============================================================================
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
 	draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);
@@ -62,8 +62,8 @@ if (global.game_state == GAME_STATE.PAUSED) {
 		draw_set_color(c_white);
 		draw_text(cx, cy + 70, "Y = YES   N = NO");
 	}
-} else // ============================================================================= // REGION: Game Over Screen // =============================================================================
-if (global.game_state == GAME_STATE.GAME_OVER) {
+} else if (global.game_state == GAME_STATE.GAME_OVER) {
+	// ============================================================================= // REGION: Game Over Screen // =============================================================================
 	draw_set_color(c_black);
 	draw_set_alpha(fade_alpha);
 	draw_rectangle(0, 0, display_get_gui_width(), display_get_gui_height(), false);

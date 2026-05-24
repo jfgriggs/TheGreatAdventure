@@ -95,6 +95,13 @@ function Tile_Is_Blocking_Fired_Weapon(_tile) {
 	return _tile == TILE.WALL;
 }
 
+function Tile_Is_Blocking_Animal(_tile) {
+	return _tile == TILE.WALL
+		|| _tile == TILE.WATER
+		|| _type == TILE.HOLE
+		|| _type == TILE.TRAP;
+}
+
 function Tile_Is_Animal_Chicken_Coop(_tile) {
 	return _tile == TILE.CHICKEN_COOP;
 }

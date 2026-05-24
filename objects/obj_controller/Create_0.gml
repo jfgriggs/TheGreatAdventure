@@ -40,8 +40,8 @@ global.target_fps = game_get_speed(gamespeed_fps);
 // Store controller reference
 global.controller = id;
 
-global.player_spawn_x = 200;
-global.player_spawn_y = 200;
+global.player_spawn_x = 1000;
+global.player_spawn_y = 250;
 
 spawn_player_pending = true;
 
@@ -122,3 +122,36 @@ if (!variable_global_exists("music_id") || !audio_is_playing(global.music_id)) {
 	global.music_id = audio_play_sound(snd_music, 1, true);
 	audio_sound_gain(snd_music, 1, 120);
 }
+
+// --------------------------------------------------
+// Animal Spawning
+// --------------------------------------------------
+
+var animal_spawns = [
+	{
+		object: obj_animal_chicken,
+		count: 8,
+		tile_check_safe: Tile_Is_Animal_Chicken_Coop,
+		tile_check_blocking: Tile_Is_Blocking,
+	},
+	{
+		object: obj_animal_cow,
+		count: 4,
+		tile_check_safe: Tile_Is_Animal_Cow_Pasture,
+		tile_check_blocking: Tile_Is_Blocking,
+	},
+	{
+		object: obj_animal_pig,
+		count: 4,
+		tile_check_safe: Tile_Is_Animal_Pig_Pen,
+		tile_check_blocking: Tile_Is_Blocking,
+	},
+	{
+		object: obj_animal_sheep,
+		count: 4,
+		tile_check_safe: Tile_Is_Animal_Sheep_Pasture,
+		tile_check_blocking: Tile_Is_Blocking,
+	}
+];
+
+Animal_Spawn(animal_spawns);

@@ -312,3 +312,95 @@ function Animal_Find_Desired_Item(_animal) {
 
 	return nearest;
 }
+
+function Animal_Find_Spawn_Position(
+	_tile_check_safe,
+	_tile_check_blocking,
+	_attempts = 1000
+) {
+	// --------------------------------------------------
+	// Attempt Random Positions
+	// --------------------------------------------------
+
+	for (var i = 0; i < _attempts; i++) {
+		// ----------------------------------------------
+		// Random Position
+		// ----------------------------------------------
+
+		var _x = irandom(room_width - 1);
+		var _y = irandom(room_height - 1);
+
+		// ----------------------------------------------
+		// Tile Lookup
+		// ----------------------------------------------
+
+		var _tile = Tile_Get(_x, _y);
+
+		// ----------------------------------------------
+		// Blocking Terrain
+		// ----------------------------------------------
+
+		if (_tile_check_blocking(_tile)) {
+			continue;
+		}
+
+		// ----------------------------------------------
+		// Invalid Safe Area
+		// ----------------------------------------------
+
+		if (_tile_check_safe(_tile)) {
+			continue;
+		}
+
+		// ----------------------------------------------
+		// Prevent Animal Overlap
+		// ----------------------------------------------
+
+		if (collision_circle(_x, _y, 24, obj_animal, false, true)) {
+			continue;
+		}
+
+		// ----------------------------------------------
+		// Valid Position
+		// ----------------------------------------------
+
+		return {x: _x, y: _y};
+	}
+
+	// --------------------------------------------------
+	// Failed
+	// --------------------------------------------------
+
+	show_debug_message("Spawn_Find_Random_Position failed.");
+
+	return undefined;
+}
+
+// --------------------------------------------------
+// Animal Spawning
+// --------------------------------------------------
+
+function Animal_Spawn(_spawn_defs) {
+	// --------------------------------------------------
+	// Spawn Each Animal Definition
+	// --------------------------------------------------
+
+	for (var i = 0; i < array_length(_spawn_defs); i++) {
+		var _spawn = _spawn_defs[i];
+
+		// ----------------------------------------------
+		// Spawn Requested Count
+		// ----------------------------------------------
+
+		for (var j = 0; j < _spawn.count; j++) {
+			var _pos = Animal_Find_Spawn_Position(
+				_spawn.tile_check_safe,
+				_spawn.tile_check_blocking
+			);
+
+			if (is_struct(_pos)) {
+				instance_create_layer(_pos.x, _pos.y, "Instances", _spawn.object);
+			}
+		}
+	}
+}

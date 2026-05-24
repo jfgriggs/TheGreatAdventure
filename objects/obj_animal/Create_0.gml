@@ -37,6 +37,8 @@ animal_type = -1;
 hp = 100;
 max_hp = 100;
 
+dead = false;
+
 /// =========================
 /// MOVEMENT
 /// =========================
@@ -45,6 +47,37 @@ vx = 0;
 vy = 0;
 
 move_speed = 0.2;
+
+/// =========================
+/// Damage Flash
+/// =========================
+
+flash_timer = 0;
+flash_time = 6;
+
+/// =========================
+/// WANDER
+/// =========================
+
+wander_speed = move_speed;
+
+wander_move_time_min = Seconds(3);
+wander_move_time_max = Seconds(6);
+
+wander_idle_time_min = Seconds(4);
+wander_idle_time_max = Seconds(10);
+
+/// =========================
+/// Aggro / Flee
+/// =========================
+
+is_aggressive = false;
+flee_source = noone;
+flee_timer = 0;
+flee_time = Seconds(3);
+flee_speed = wander_speed * 15;
+flee_speed_current = 0;
+flee_slowdown = 0.08;
 
 /// =========================
 /// VISUALS
@@ -66,18 +99,6 @@ lose_time_max = Seconds(4);
 desired_items = [];
 
 point_value = 50;
-
-/// =========================
-/// WANDER
-/// =========================
-
-wander_speed = move_speed;
-
-wander_move_time_min = Seconds(3);
-wander_move_time_max = Seconds(6);
-
-wander_idle_time_min = Seconds(4);
-wander_idle_time_max = Seconds(10);
 
 /// =========================
 /// RUNTIME

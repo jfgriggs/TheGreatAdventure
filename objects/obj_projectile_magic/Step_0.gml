@@ -68,3 +68,5 @@ y = next_y;
 /// =========================
 //image_angle += 8;
 image_angle += image_angle_speed;
+
+event_inherited();

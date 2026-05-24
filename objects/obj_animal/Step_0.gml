@@ -26,6 +26,29 @@ if (global.game_state != GAME_STATE.PLAYING) {
 }
 
 /// =========================================================
+/// Flash Timer
+/// =========================================================
+
+if (flash_timer > 0) {
+	flash_timer--;
+}
+
+/// =========================================================
+/// Flee Timer
+/// =========================================================
+
+if (flee_timer > 0) {
+	flee_timer--;
+
+	// Gradually slow down.
+	flee_speed_current = max(wander_speed, flee_speed_current - flee_slowdown);
+} else {
+	flee_source = noone;
+
+	flee_speed_current = wander_speed;
+}
+
+/// =========================================================
 /// STATE MACHINE
 /// =========================================================
 sm.update();

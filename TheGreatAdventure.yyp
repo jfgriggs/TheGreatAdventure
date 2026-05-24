@@ -83,6 +83,7 @@
     {"id":{"name":"obj_projectile_magic","path":"objects/obj_projectile_magic/obj_projectile_magic.yy",},},
     {"id":{"name":"obj_projectile_pellets","path":"objects/obj_projectile_pellets/obj_projectile_pellets.yy",},},
     {"id":{"name":"obj_projectile_slug","path":"objects/obj_projectile_slug/obj_projectile_slug.yy",},},
+    {"id":{"name":"obj_projectile","path":"objects/obj_projectile/obj_projectile.yy",},},
     {"id":{"name":"obj_trap","path":"objects/obj_trap/obj_trap.yy",},},
     {"id":{"name":"obj_ui","path":"objects/obj_ui/obj_ui.yy",},},
     {"id":{"name":"obj_weapon_boomerang","path":"objects/obj_weapon_boomerang/obj_weapon_boomerang.yy",},},

@@ -24,6 +24,29 @@ function Animal_Idle(_sm) {
 		},
 		on_update: function() {
 			// =========================================================
+			// Flee Behavior
+			// =========================================================
+
+			if (instance_exists(owner.flee_source)) {
+				var _dir = point_direction(
+					owner.flee_source.x,
+					owner.flee_source.y,
+					owner.x,
+					owner.y
+				);
+
+				owner.vx = lengthdir_x(owner.flee_speed_current, _dir);
+
+				owner.vy = lengthdir_y(owner.flee_speed_current, _dir);
+
+				owner.apply_movement(owner.vx, owner.vy);
+
+				Animal_Update_Facing(owner);
+
+				return;
+			}
+
+			// =========================================================
 			// LOOK FOR FOOD
 			// =========================================================
 			var food = Animal_FindTarget(owner);

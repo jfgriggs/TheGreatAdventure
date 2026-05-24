@@ -404,3 +404,69 @@ function Animal_Spawn(_spawn_defs) {
 		}
 	}
 }
+
+function Animal_Take_Damage(_animal, _damage, _source) {
+	// --------------------------------------------------
+	// Ignore Dead Animals
+	// --------------------------------------------------
+
+	if (_animal.dead) {
+		return;
+	}
+
+	// --------------------------------------------------
+	// Apply Damage
+	// --------------------------------------------------
+
+	_animal.hp -= _damage;
+
+	// --------------------------------------------------
+	// Hit Flash
+	// --------------------------------------------------
+
+	_animal.flash_timer = _animal.flash_time;
+
+	// --------------------------------------------------
+	// Flee Reaction
+	// --------------------------------------------------
+
+	_animal.flee_timer = _animal.flee_time;
+
+	_animal.flee_source = _source;
+
+	_animal.flee_speed_current = _animal.flee_speed;
+
+	// --------------------------------------------------
+	// Debug
+	// --------------------------------------------------
+
+	show_debug_message(
+		object_get_name(_animal.object_index) + " fleeing from " + string(_source)
+	);
+
+	// --------------------------------------------------
+	// Death
+	// --------------------------------------------------
+
+	if (_animal.hp <= 0) {
+		_animal.dead = true;
+
+		// ----------------------------------------------
+		// Death Effect
+		// ----------------------------------------------
+
+		Animal_Death_Effect(_animal);
+
+		// ----------------------------------------------
+		// Destroy Animal
+		// ----------------------------------------------
+
+		instance_destroy(_animal);
+
+		return;
+	}
+}
+
+function Animal_Death_Effect(_animal) {
+	Spark_Spawn(_animal.x, _animal.y);
+}

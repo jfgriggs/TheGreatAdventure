@@ -1,6 +1,8 @@
 // File: obj_projectile.gml
 // Event: create
 
+event_inherited();
+
 speed = 1;
 direction = 0;
 damage = 5;

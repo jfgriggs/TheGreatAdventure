@@ -4,6 +4,10 @@
 // SYSTEM:      Boomerang Initialization
 // =============================================================================
 
+event_inherited();
+
+damage = 5;
+
 /// =========================
 /// OWNER
 /// =========================
@@ -35,6 +39,7 @@ ellipse_b = 20;
 // FOCI
 // =========================
 focus1_x = x;
+focus1_y = y;
 focus1_y = y;
 
 focus2_x = x;
@@ -70,3 +75,5 @@ spin_speed = 30;
 /// INITIALIZATION
 /// =========================
 initialized = false;
+
+event_inherited();

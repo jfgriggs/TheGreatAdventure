@@ -37,3 +37,5 @@ var remaining = max_distance - dist;
 if (remaining <= 0) {
 	instance_destroy();
 }
+
+event_inherited();

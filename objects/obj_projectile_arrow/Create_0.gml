@@ -1,6 +1,8 @@
 // File: obj_projectile_arrow.gml
 // Event: create
 
+event_inherited();
+
 speed = 0.01;
 direction = 0;
 damage = 5;

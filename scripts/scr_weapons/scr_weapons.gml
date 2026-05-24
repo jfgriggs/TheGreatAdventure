@@ -170,6 +170,7 @@ function Weapon_Fire(_o) {
 				"Instances",
 				obj_projectile_slug
 			);
+			p.owner = _o;
 			p.direction = dir;
 			p.speed = o.active_weapon.projectile_speed;
 			p.damage = o.active_weapon.damage;
@@ -222,6 +223,7 @@ function Weapon_Fire(_o) {
 				var speed_variance = random_range(0.90, 1.10);
 				var pellet_speed = o.active_weapon.projectile_speed * speed_variance;
 
+				p.owner = _o;
 				p.direction = angle;
 				p.speed = pellet_speed;
 				p.damage = o.active_weapon.damage;
@@ -236,13 +238,16 @@ function Weapon_Fire(_o) {
 				"Instances",
 				obj_projectile_boomerang
 			);
+			p.owner = _o;
 			p.target_x = Mouse_GetWorldX();
 			p.target_y = Mouse_GetWorldY();
 			p.owner = o;
 			break;
 
 		case WEAPON.TRAP:
+			var p;
 			instance_create_layer(spawn_x, spawn_y, "Instances", obj_trap);
+			p.owner = _o;
 			break;
 
 		case WEAPON.BOW:
@@ -252,6 +257,7 @@ function Weapon_Fire(_o) {
 				"Instances",
 				obj_projectile_arrow
 			);
+			p.owner = _o;
 			p.direction = dir;
 			p.speed = o.active_weapon.projectile_speed;
 			p.damage = o.active_weapon.damage * 2;
@@ -295,6 +301,7 @@ function Weapon_Fire(_o) {
 				var speed_variance = random_range(0.90, 1.10);
 				var pellet_speed = o.active_weapon.projectile_speed * speed_variance;
 
+				p.owner = _o;
 				p.direction = angle;
 				p.travel_dir = angle;
 				p.speed = pellet_speed;

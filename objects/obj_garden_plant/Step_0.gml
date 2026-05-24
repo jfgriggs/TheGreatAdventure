@@ -80,29 +80,33 @@ if (image_index == PLANT_STAGE.FRUITING) {
         // Add Inventory Item
         // --------------------------------------
 
-        var _item = Item_Create(item_type);
+		var _item = Item_Create(item_type);
 
-        Inventory_Add_Item(_player, _item);
+	    // --------------------------------------
+	    // Attempt Pickup
+	    // --------------------------------------
+	
+		if (Inventory_Add_Item(_player, _item)) {
+
+		    // ----------------------------------
+		    // Harvest Sound
+		    // ----------------------------------
+
+		    if (harvest_sound != noone) {
+
+		        audio_play_sound(harvest_sound, 1, false);
+		    }
 
 
-        // --------------------------------------
-        // Harvest Audio
-        // --------------------------------------
+		    // ----------------------------------
+		    // Enter Harvested State
+		    // ----------------------------------
 
-        if (harvest_sound != noone) {
+		    harvested = true;
 
-            audio_play_sound(harvest_sound, 1, false);
-        }
+		    image_index = PLANT_STAGE.HARVESTED;
 
-
-        // --------------------------------------
-        // Enter Harvested State
-        // --------------------------------------
-
-        harvested = true;
-
-        image_index = PLANT_STAGE.HARVESTED;
-
-        growth_timer = growth_time;
+		    growth_timer = growth_time;
+		}
     }
 }

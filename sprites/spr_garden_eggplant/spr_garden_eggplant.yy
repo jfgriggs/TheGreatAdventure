@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"spr_garden_zucchini",
+  "%Name":"spr_garden_eggplant",
   "bboxMode":0,
   "bbox_bottom":26,
   "bbox_left":4,
@@ -24,7 +24,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"fa16ca02-0aa2-4b65-a158-1d080781835a","blendMode":0,"displayName":"default","isLocked":false,"name":"fa16ca02-0aa2-4b65-a158-1d080781835a","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"spr_garden_zucchini",
+  "name":"spr_garden_eggplant",
   "nineSlice":null,
   "origin":4,
   "parent":{
@@ -36,7 +36,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"spr_garden_zucchini",
+    "%Name":"spr_garden_eggplant",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"spr_garden_zucchini",
+    "name":"spr_garden_eggplant",
     "playback":1,
     "playbackSpeed":0.1,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f89e7223-69b6-4fb6-98dd-cbb8d1460b17","path":"sprites/spr_garden_zucchini/spr_garden_zucchini.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"f89e7223-69b6-4fb6-98dd-cbb8d1460b17","path":"sprites/spr_garden_eggplant/spr_garden_eggplant.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"fa3d0b67-8c31-4b7c-9f6e-7d19ee3f29cf","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"96a70e37-3263-4c9a-bff1-1c9ad307029f","path":"sprites/spr_garden_zucchini/spr_garden_zucchini.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"96a70e37-3263-4c9a-bff1-1c9ad307029f","path":"sprites/spr_garden_eggplant/spr_garden_eggplant.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"485fe7b5-26a1-43d8-94f5-0270c1d04343","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7325f7de-6216-4b9e-868e-8b6382041b85","path":"sprites/spr_garden_zucchini/spr_garden_zucchini.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"7325f7de-6216-4b9e-868e-8b6382041b85","path":"sprites/spr_garden_eggplant/spr_garden_eggplant.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"dc1df33b-17c1-4ea3-9631-97b98d8d01f2","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5e88d672-b17b-4488-b3ba-0a21e083f503","path":"sprites/spr_garden_zucchini/spr_garden_zucchini.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5e88d672-b17b-4488-b3ba-0a21e083f503","path":"sprites/spr_garden_eggplant/spr_garden_eggplant.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"ae005618-a202-464a-9b90-41ebd605f61c","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

@@ -48,9 +48,12 @@ enum ENEMY {
 
 enum ITEM {
 	NONE,
+	CABBAGE,
 	CARROT,
     CORN,
+	EGGPLANT,
     TOMATO,
+	PEPPER,
 	PUMPKIN,
     WATERMELON
 }

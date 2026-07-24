@@ -1,63 +1,83 @@
 // =============================================================================
-// OBJECT:      obj_animal
-// EVENT:       Create
-// SYSTEM:      Animal Base Initialization
+// OBJECT:       obj_animal
+// EVENT:        Create
+// SYSTEM:       Animal Base Initialization
+// ARCHITECTURE: Animal System
+//
+// DESCRIPTION:
+// Initializes the common variables and systems shared by all animal types.
+//
+// Child animal objects configure species-specific values after calling
+// event_inherited().
+//
+// This object provides the default movement interface required by the shared
+// movement subsystem (scr_movement).
 // =============================================================================
 
-/// @description Initializes shared animal systems, runtime variables, AI configuration, movement settings, and state machine behavior for all animal child objects.
-///
-/// Child Objects:
-/// - obj_animal_chicken
-/// - obj_animal_cow
-/// - obj_animal_sheep
-/// - obj_animal_*
-///
-/// Responsibilities:
-/// - Initialize shared animal variables
-/// - Configure movement settings
-/// - Setup AI behavior variables
-/// - Initialize animal state machine
-///
-/// Notes:
-/// - Child objects assign animal_type
-/// - Species-specific configuration belongs in child objects
-/// - Shared AI logic belongs in scr_animal_states
-/// - Avoid species-specific logic in parent object
 
-/// =========================
-/// IDENTITY
-/// =========================
+// -----------------------------------------------------------------------------
+// Identity
+// -----------------------------------------------------------------------------
 
 animal_type = -1;
 
-/// =========================
-/// HEALTH
-/// =========================
 
-hp = 100;
+// -----------------------------------------------------------------------------
+// Health & Damage
+// -----------------------------------------------------------------------------
+
 max_hp = 100;
+hp = max_hp;
 
 dead = false;
 
-/// =========================
-/// MOVEMENT
-/// =========================
 
-vx = 0;
-vy = 0;
+// -----------------------------------------------------------------------------
+// Movement Interface
+// -----------------------------------------------------------------------------
+//
+// Standard interface expected by the shared movement subsystem.
+// Child objects override these defaults as needed.
+//
+
+tile_check_blocking = Tile_Is_Blocking_Animal;
+tile_check_safe     = undefined;
+
+stay_in_safe_area = false;
+is_safe           = false;
+
+
+// -----------------------------------------------------------------------------
+// Movement Configuration
+// -----------------------------------------------------------------------------
+
+move_input_x = 0;
+move_input_y = 0;
+
+velocity_x = 0;
+velocity_y = 0;
+
+impulse_x = 0;
+impulse_y = 0;
 
 move_speed = 0.2;
+max_speed  = move_speed;
 
-/// =========================
-/// Damage Flash
-/// =========================
+acceleration = 0.15;
+friction    = 0.18;
+
+
+// -----------------------------------------------------------------------------
+// Visual Effects
+// -----------------------------------------------------------------------------
 
 flash_timer = 0;
-flash_time = 6;
+flash_time  = 6;
 
-/// =========================
-/// WANDER
-/// =========================
+
+// -----------------------------------------------------------------------------
+// Wander Behavior
+// -----------------------------------------------------------------------------
 
 wander_speed = move_speed;
 
@@ -67,32 +87,39 @@ wander_move_time_max = Seconds(6);
 wander_idle_time_min = Seconds(4);
 wander_idle_time_max = Seconds(10);
 
-/// =========================
-/// Aggro / Flee
-/// =========================
+
+// -----------------------------------------------------------------------------
+// Aggro / Flee
+// -----------------------------------------------------------------------------
 
 is_aggressive = false;
+
 flee_source = noone;
+
 flee_timer = 0;
 flee_time = Seconds(3);
+
 flee_speed = wander_speed * 15;
 flee_speed_current = 0;
 flee_slowdown = 0.08;
 
-/// =========================
-/// VISUALS
-/// =========================
+
+// -----------------------------------------------------------------------------
+// Visual Configuration
+// -----------------------------------------------------------------------------
 
 face = 3;
 
 sprite_set = [];
 sprite_large = -1;
 
-/// =========================
-/// AI
-/// =========================
+
+// -----------------------------------------------------------------------------
+// AI Configuration
+// -----------------------------------------------------------------------------
 
 vision_range = 180;
+
 lose_range = 220;
 lose_time_max = Seconds(4);
 
@@ -100,147 +127,33 @@ desired_items = [];
 
 point_value = 50;
 
-/// =========================
-/// RUNTIME
-/// =========================
+
+// -----------------------------------------------------------------------------
+// Runtime State
+// -----------------------------------------------------------------------------
 
 target = noone;
 target_type = "";
 
-is_safe = false;
 
-/// =========================
-/// STATE MACHINE
-/// =========================
+// -----------------------------------------------------------------------------
+// State Machine
+// -----------------------------------------------------------------------------
+//
+// Controls all common animal behavior.
+// Individual states are implemented in scr_animal_states.
+//
 
 sm = new StateMachine(self);
 sm.change(Animal_Idle(sm));
 
-// ============================================================================
-// Movement Handler
-// ============================================================================
 
-//apply_movement = function(_vx, _vy) {
-//    // ------------------------------------------------------------------------
-//    // Horizontal Movement
-//    // ------------------------------------------------------------------------
-//    if (_vx != 0) {
-//        var new_x = x + _vx;
-//        var tile = Tile_Get(new_x, y);
-
-//        if (!Tile_Is_Blocking(tile)) {
-//            x = new_x;
-//        } else {
-//			// If inside a tile move out of it
-//			var step = sign(_vx);
-//            while (!Tile_Is_Blocking(Tile_Get(x + step, y))) {
-//                x += step;
-//            }
-//        }
-//    }
-
-//    // ------------------------------------------------------------------------
-//    // Vertical Movement
-//    // ------------------------------------------------------------------------
-//    if (_vy != 0) {
-//        var new_y = y + _vy;
-//        var tile = Tile_Get(x, new_y);
-
-//        if (!Tile_Is_Blocking(tile)) {
-//            y = new_y;
-//        } else {
-//			// If inside a tile move out of it
-//            var step = sign(_vy);
-//            while (!Tile_Is_Blocking(Tile_Get(x, y + step))) {
-//                y += step;
-//            }
-//        }
-//    }
-//};
-
-apply_movement = function(_vx, _vy) {
-	// =========================================================
-	// TERRAIN MODIFIERS
-	// =========================================================
-	var tile = Tile_Get(x, y);
-	var speed_factor = 1;
-	if (tile == TILE.MUD || tile == TILE.PIG_PEN) {
-		speed_factor = 0.1;
-	}
-
-	// =========================================================
-	// TARGET POSITION
-	// =========================================================
-	var target_x = x + (_vx * speed_factor);
-	var target_y = y + (_vy * speed_factor);
-
-	// =========================================================
-	// DIRECT MOVE
-	// =========================================================
-	if (Animal_Can_Move_To(self, target_x, target_y)) {
-		x = target_x;
-		y = target_y;
-		return;
-	}
-
-	// =========================================================
-	// TRY X ONLY
-	// =========================================================
-	if (Animal_Can_Move_To(self, target_x, y)) {
-		x = target_x;
-		return;
-	}
-
-	// =========================================================
-	// TRY Y ONLY
-	// =========================================================
-	if (Animal_Can_Move_To(self, x, target_y)) {
-		y = target_y;
-		return;
-	}
-
-	// =========================================================
-	// TRY SLIDE RIGHT
-	// =========================================================
-	if (Animal_Can_Move_To(self, target_x, y - 1)) {
-		x = target_x;
-		y -= 1;
-		return;
-	}
-
-	// =========================================================
-	// TRY SLIDE LEFT
-	// =========================================================
-	if (Animal_Can_Move_To(self, target_x, y + 1)) {
-		x = target_x;
-		y += 1;
-		return;
-	}
-
-	// =========================================================
-	// TRY SLIDE UP
-	// =========================================================
-	if (Animal_Can_Move_To(self, x - 1, target_y)) {
-		x -= 1;
-		y = target_y;
-		return;
-	}
-
-	// =========================================================
-	// TRY SLIDE DOWN
-	// =========================================================
-	if (Animal_Can_Move_To(self, x + 1, target_y)) {
-		x += 1;
-		y = target_y;
-		return;
-	}
-};
-
-// ============================================================================
+// -----------------------------------------------------------------------------
 // Initial Visual Setup
-// ============================================================================
+// -----------------------------------------------------------------------------
 
-if (array_length(sprite_set) > 0) {
+if (array_length(sprite_set) > 0)
+{
 	mask_index = sprite_set[3];
 	sprite_index = sprite_set[3];
 }

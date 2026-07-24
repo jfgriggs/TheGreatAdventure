@@ -35,11 +35,13 @@ function Animal_Idle(_sm) {
 					owner.y
 				);
 
-				owner.vx = lengthdir_x(owner.flee_speed_current, _dir);
+				//owner.vx = lengthdir_x(owner.flee_speed_current, _dir);
+				//owner.vy = lengthdir_y(owner.flee_speed_current, _dir);
+				//owner.apply_movement(owner.vx, owner.vy);
 
-				owner.vy = lengthdir_y(owner.flee_speed_current, _dir);
-
-				owner.apply_movement(owner.vx, owner.vy);
+				owner.max_speed = owner.flee_speed_current;
+				owner.move_input_x = lengthdir_x(1, _dir);
+				owner.move_input_y = lengthdir_y(1, _dir);
 
 				Animal_Update_Facing(owner);
 
@@ -97,18 +99,19 @@ function Animal_Idle(_sm) {
 			// MOVEMENT
 			// =========================================================
 			if (owner.wander_state == "move") {
-				owner.vx = lengthdir_x(owner.wander_speed, owner.wander_dir);
+				//owner.vx = lengthdir_x(owner.wander_speed, owner.wander_dir);
+				//owner.vy = lengthdir_y(owner.wander_speed, owner.wander_dir);
+				//owner.apply_movement(owner.vx, owner.vy);
 
-				owner.vy = lengthdir_y(owner.wander_speed, owner.wander_dir);
-
+				owner.max_speed = owner.wander_speed;
+				owner.move_input_x = lengthdir_x(1, owner.wander_dir);
+				owner.move_input_y = lengthdir_y(1, owner.wander_dir);
 				owner.image_speed = 1;
-
-				owner.apply_movement(owner.vx, owner.vy);
 
 				Animal_Update_Facing(owner);
 			} else {
-				owner.vx = 0;
-				owner.vy = 0;
+				owner.move_input_x = 0;
+				owner.move_input_y = 0;
 
 				Animal_Update_Facing(owner);
 			}
@@ -140,8 +143,11 @@ function Animal_Follow(_sm) {
 			var dist = point_distance(owner.x, owner.y, owner.target.x, owner.target.y);
 
 			if (dist <= 12) {
-				owner.vx = 0;
-				owner.vy = 0;
+				//owner.vx = 0;
+				//owner.vy = 0;
+
+				owner.move_input_x = 0;
+				owner.move_input_y = 0;
 
 				sm.change(Animal_Eat(sm));
 				return;
@@ -152,11 +158,13 @@ function Animal_Follow(_sm) {
 			// =========================================================
 			var dir = point_direction(owner.x, owner.y, owner.target.x, owner.target.y);
 
-			owner.vx = lengthdir_x(owner.move_speed, dir);
+			//owner.vx = lengthdir_x(owner.move_speed, dir);
+			//owner.vy = lengthdir_y(owner.move_speed, dir);
+			//owner.apply_movement(owner.vx, owner.vy);`
 
-			owner.vy = lengthdir_y(owner.move_speed, dir);
-
-			owner.apply_movement(owner.vx, owner.vy);
+			owner.max_speed = owner.move_speed;
+			owner.move_input_x = lengthdir_x(1, dir);
+			owner.move_input_y = lengthdir_y(1, dir);
 
 			Animal_Update_Facing(owner);
 		},
@@ -173,9 +181,10 @@ function Animal_Eat(_sm) {
 		on_enter: function() {
 			owner.eat_timer = game_get_speed(gamespeed_fps) div 4;
 
-			owner.vx = 0;
-			owner.vy = 0;
-
+			//owner.vx = 0;
+			//owner.vy = 0;
+			owner.move_input_x = 0;
+			owner.move_input_y = 0;
 			owner.image_speed = 0;
 			owner.image_index = 0;
 

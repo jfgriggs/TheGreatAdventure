@@ -1,43 +1,22 @@
 // =============================================================================
 // SCRIPT:      scr_animals
-// TYPE:        Animal Subsystem
+// SYSTEM:      Animal Management
+//
+// DESCRIPTION:
+// Contains shared helper functions for spawning, locating, and managing
+// animal instances.
 // =============================================================================
-
-/// @description Centralized animal management, configuration, and shared animal utility system.
-///
-/// Responsibilities:
-/// - Animal data creation
-/// - Animal configuration lookup
-/// - Preferred food handling
-/// - Follow behavior helpers
-/// - Pen validation support
-/// - Shared animal utility functions
-/// - Runtime animal state support
-///
-/// Public API:
-/// - Animal_Create()
-/// - Animal_LikesItem()
-/// - Animal_HasLineOfSight()
-/// - Animal_FindTarget()
-/// - Animal_IsSafe() - TBD
-///
-/// Notes:
-/// - Animal definitions should remain data-driven
-/// - Shared AI behavior belongs in scr_animal_states
-/// - Shared movement logic belongs in scr_movement
-/// - Avoid duplicating species logic across objects
-/// - Supports all obj_animal_* child objects
 
 function Animal_Update_Facing(_animal) {
 	// =========================================================
 	// DETERMINE FACING
 	// =========================================================
-	if (_animal.vx != 0 || _animal.vy != 0) {
+	if (_animal.velocity_x != 0 || _animal.velocity_y != 0) {
 		var dir = point_direction(
 			_animal.x,
 			_animal.y,
-			_animal.x + _animal.vx,
-			_animal.y + _animal.vy
+			_animal.x + _animal.velocity_x,
+			_animal.y + _animal.velocity_y
 		);
 
 		// =====================================================
@@ -82,7 +61,7 @@ function Animal_Update_Facing(_animal) {
 	// =========================================================
 	// STOP WALK ANIMATION WHEN IDLE
 	// =========================================================
-	if (_animal.vx == 0 && _animal.vy == 0) {
+	if (_animal.velocity_x == 0 && _animal.velocity_y == 0) {
 		_animal.image_index = 0;
 	}
 }
@@ -376,9 +355,13 @@ function Animal_Find_Spawn_Position(
 	return undefined;
 }
 
-// --------------------------------------------------
-// Animal Spawning
-// --------------------------------------------------
+/// @function Animal_Spawn
+/// @description
+/// Creates a new animal instance at a valid spawn location.
+///
+/// @param animal_object
+/// @param spawn_region
+/// @return Instance ID
 
 function Animal_Spawn(_spawn_defs) {
 	// --------------------------------------------------

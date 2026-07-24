@@ -49,6 +49,9 @@ wander_move_time_max = 45;
 wander_idle_time_min = 10;
 wander_idle_time_max = 30;
 
+tile_check_safe      = Tile_Is_Animal_Pig_Pen;
+tile_check_blocking  = Tile_Is_Blocking_Animal;
+
 /// =========================
 /// AI
 /// =========================
@@ -58,6 +61,10 @@ lose_range = 300;
 lose_time_max = Seconds(5);
 
 desired_items = {carrot: 2, corn: 2, tomato: 4, pumpkin: 1, watermelon: 1};
+
+// Once this animal reaches its designated safe area,
+// movement will prevent it from leaving.
+stay_in_safe_area = true;
 
 /// =========================
 /// VISUALS

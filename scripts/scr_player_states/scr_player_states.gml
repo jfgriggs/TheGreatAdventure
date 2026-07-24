@@ -69,13 +69,8 @@ function Player_Move(_sm) {
 		owner: _sm.owner,
 		on_enter: function() {},
 		on_update: function() {
-			if (!owner.movement_locked) {
+			if (!owner.control_locked) {
 				var tile = Tile_Get(owner.x, owner.y);
-
-				var speed_factor = 1;
-				if (tile == TILE.MUD || tile == TILE.PIG_PEN) {
-					speed_factor = 0.1;
-				}
 
 				if (tile == TILE.HOLE) {
 					sm.change(Player_Teleport(sm));
@@ -86,24 +81,6 @@ function Player_Move(_sm) {
 					owner.hp -= 10;
 					owner.invincible_timer = 5;
 				}
-
-				var vx = lengthdir_x(owner.move_speed * speed_factor, owner.move_dir);
-				var vy = lengthdir_y(owner.move_speed * speed_factor, owner.move_dir);
-
-				//show_debug_message("EMPTY=" + string(TILE.EMPTY)
-				//	+ " WALL=" + string(TILE.WALL)
-				//	+ " WATER=" + string(TILE.WATER)
-				//	+ " MUD=" + string(TILE.MUD)
-				//	+ " TRAP=" + string(TILE.TRAP)
-				//	+ " HOLE=" + string(TILE.HOLE)
-				//	+ " EXPANSION1=" + string(TILE.EXPANSION1)
-				//	+ " EXPANSION2=" + string(TILE.EXPANSION2)
-				//	+ " EXPANSION3=" + string(TILE.EXPANSION3)
-				//	);
-				//show_debug_message("tile=" + string(tile) + " speed_factor=" + string(speed_factor) + " vx=" + string(vx) + " vy=" + string(vy));
-
-				show_debug_message(instance_exists(owner));
-				owner.apply_movement(vx, vy);
 			}
 
 			if (owner.input_x == 0 && owner.input_y == 0) {
@@ -133,22 +110,28 @@ function Player_Teleport(_sm) {
 		sm: _sm,
 		owner: _sm.owner,
 		on_enter: function() {
-			owner.teleport_timer = 60; // total duration (2 phases)
-			owner.teleport_phase = 0; // 0 = before, 1 = after
-			owner.teleport_done = false;
+			owner.teleport_timer = Seconds(1);
+			owner.teleport_phase = 0;
 
-			owner.flash_timer = 60;
+			owner.control_locked = true;
 
-			// Particle effect at original position
+			owner.velocity_x = 0;
+			owner.velocity_y = 0;
+
+			owner.flash_timer = Seconds(1);
+
 			Spark_Spawn(owner.x, owner.y);
 			Spark_Spawn(owner.x, owner.y);
+
 			Screen_Shake(3, 8);
 
-			// Play sound
 			audio_play_sound(snd_hole, 1, false);
+
+			show_debug_message("Teleport timer = " + string(owner.teleport_timer));
 		},
 		on_update: function() {
 			owner.teleport_timer--;
+			show_debug_message("Teleport timer = " + string(owner.teleport_timer));
 
 			switch (owner.teleport_phase) {
 				/// ==============================
@@ -156,17 +139,22 @@ function Player_Teleport(_sm) {
 				/// ==============================
 				case 0:
 					if (owner.teleport_timer <= 0) {
+						show_debug_message("Teleporting...");
+
 						//Move player - find a position that is not blocked by a wall, water, or trap.
 						var tile_size = 16; // match your tileset
 						var attempts = 50;
+
+						var teleported = false;
 
 						repeat (attempts) {
 							var tx = irandom(room_width div tile_size) * tile_size;
 							var ty = irandom(room_height div tile_size) * tile_size;
 
 							var tile = Tile_Get(tx, ty);
+							show_debug_message("Teleport tile: " + string(tile));
 
-							if (!Tile_Is_Blocking(tile)) {
+							if (Tile_Is_Player_Safe(tile)) {
 								owner.x = tx;
 								owner.y = ty;
 
@@ -175,12 +163,23 @@ function Player_Teleport(_sm) {
 								Spark_Spawn(owner.x, owner.y);
 
 								// Switch to reappear
+								// Switch to reappear
 								owner.teleport_phase = 1;
-								owner.telport_timer = 60;
-								owner.flash_timer = 60;
+								owner.teleport_timer = Seconds(1);
+								owner.flash_timer = Seconds(1);
+
+								teleported = true;
 
 								break;
 							}
+						}
+
+						if (!teleported) {
+							show_debug_message("Teleport failed: no safe tile found");
+
+							owner.control_locked = false;
+
+							sm.change(Player_Idle(sm));
 						}
 					}
 					break;
@@ -190,6 +189,8 @@ function Player_Teleport(_sm) {
 				/// ==============================
 				case 1:
 					if (owner.teleport_timer <= 0) {
+						show_debug_message("Teleportation complete");
+						owner.control_locked = false;
 						sm.change(Player_Idle(sm));
 					}
 					break;

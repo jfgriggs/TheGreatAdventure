@@ -25,25 +25,63 @@
 /// - Enemy definitions should remain data-driven
 /// - Avoid duplicating shared enemy functionality here
 
-sm = new StateMachine(id);
+// =============================================================================
+// OBJECT:      obj_enemy_archer
+// EVENT:       Create
+// =============================================================================
 
-speed = 2;
+event_inherited();
 
-vision_range = 300;
-attack_range = 200;
-fire_rate = 30;
+/// =========================================================
+/// IDENTITY
+/// =========================================================
 
-// Health
-hp = 20;
-iframes = 10;
-invincible_timer = 0;
+enemy_type = ENEMY.ARCHER;
 
-knockback_x = 0;
-knockback_y = 0;
-knockback_force = 4;
+/// =========================================================
+/// STATS
+/// =========================================================
 
-sm.change(Archer_Patrol(sm));
+hp_max = 6;
+hp = hp_max;
 
-apply_movement = function(_vx, _vy) {
-	var o = self;
-};
+move_speed = 1.0;
+
+vision_range = 320;
+lose_range = 380;
+
+attack_range = 220;
+
+attack_damage = 2;
+
+attack_rate = Seconds(2);
+
+/// =========================================================
+/// COMBAT
+/// =========================================================
+
+uses_projectiles = true;
+
+projectile_object = obj_projectile_arrow;
+
+/// =========================================================
+/// LOOT
+/// =========================================================
+
+can_pickup_treasure = true;
+
+inventory = Enemy_Inventory_Create();
+
+/// =========================================================
+/// VISUALS
+/// =========================================================
+
+sprite_set = [
+	spr_enemy_archer_right,
+	spr_enemy_archer_up,
+	spr_enemy_archer_left,
+	spr_enemy_archer_down
+];
+
+mask_index = sprite_set[3];
+sprite_index = sprite_set[3];

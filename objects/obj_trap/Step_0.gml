@@ -36,7 +36,7 @@ with (obj_enemy_archer) {
 	}
 }
 
-with (obj_enemy_predator) {
+with (obj_enemy_wolf) {
 	if (point_distance(x, y, other.x, other.y) < other.radius) {
 		speed *= 0.9;
 	}

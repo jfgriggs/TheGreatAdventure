@@ -83,6 +83,21 @@ function Tile_Get(_x, _y) {
 	return TILE.EMPTY;
 }
 
+function Tile_Is_Player_Safe(_tile) {
+	if (Tile_Is_Blocking(_tile)) {
+		return false;
+	}
+
+	switch (_tile) {
+		case TILE.HOLE:
+		case TILE.WATER:
+		case TILE.TRAP:
+			return false;
+	}
+
+	return true;
+}
+
 function Tile_Is_Blocking(_tile) {
 	return _tile == TILE.WALL || _tile == TILE.WATER;
 }
@@ -98,8 +113,8 @@ function Tile_Is_Blocking_Fired_Weapon(_tile) {
 function Tile_Is_Blocking_Animal(_tile) {
 	return _tile == TILE.WALL
 		|| _tile == TILE.WATER
-		|| _type == TILE.HOLE
-		|| _type == TILE.TRAP;
+		|| _tile == TILE.HOLE
+		|| _tile == TILE.TRAP;
 }
 
 function Tile_Is_Animal_Chicken_Coop(_tile) {

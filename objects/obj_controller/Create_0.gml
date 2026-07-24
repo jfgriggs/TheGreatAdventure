@@ -132,25 +132,29 @@ var animal_spawns = [
 		object: obj_animal_chicken,
 		count: 8,
 		tile_check_safe: Tile_Is_Animal_Chicken_Coop,
-		tile_check_blocking: Tile_Is_Blocking,
+		tile_check_blocking: Tile_Is_Blocking_Animal,
+		stay_in_safe_area: true,
 	},
 	{
 		object: obj_animal_cow,
 		count: 4,
 		tile_check_safe: Tile_Is_Animal_Cow_Pasture,
-		tile_check_blocking: Tile_Is_Blocking,
+		tile_check_blocking: Tile_Is_Blocking_Animal,
+		stay_in_safe_area: true,
 	},
 	{
 		object: obj_animal_pig,
 		count: 4,
 		tile_check_safe: Tile_Is_Animal_Pig_Pen,
-		tile_check_blocking: Tile_Is_Blocking,
+		tile_check_blocking: Tile_Is_Blocking_Animal,
+		stay_in_safe_area: true,
 	},
 	{
 		object: obj_animal_sheep,
 		count: 4,
 		tile_check_safe: Tile_Is_Animal_Sheep_Pasture,
-		tile_check_blocking: Tile_Is_Blocking,
+		tile_check_blocking: Tile_Is_Blocking_Animal,
+		stay_in_safe_area: true,
 	}
 ];
 

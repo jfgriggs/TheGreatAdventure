@@ -6,5 +6,5 @@
 /// =============================================================================
 
 if (instance_exists(owner)) {
-	owner.movement_locked = false;
+	owner.control_locked = false;
 }

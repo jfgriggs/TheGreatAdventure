@@ -17,7 +17,7 @@ owner = noone;
 /// LOCK PLAYER MOVEMENT
 /// =========================
 if (instance_exists(global.player_object)) {
-	global.player_object.movement_locked = true;
+	global.player_object.control_locked = true;
 }
 
 /// =========================

@@ -27,25 +27,40 @@ if (global.game_state != GAME_STATE.PLAYING) {
 /// =========================
 /// INPUT (MUST BE FIRST)
 /// =========================
-input_x = keyboard_check(vk_right) - keyboard_check(vk_left);
-input_y = keyboard_check(vk_down) - keyboard_check(vk_up);
 
-input_attack = mouse_check_button_pressed(mb_left);
-input_throw = mouse_check_button_pressed(mb_right);
+if (control_locked) {
+	input_x = 0;
+	input_y = 0;
 
-input_switch_item = keyboard_check_pressed(vk_tab);
-input_switch_weapon = keyboard_check_pressed(vk_space);
+	move_input_x = 0;
+	move_input_y = 0;
+
+	input_attack = false;
+	input_throw = false;
+
+	input_switch_item = false;
+	input_switch_weapon = false;
+} else {
+	input_x = keyboard_check(vk_right) - keyboard_check(vk_left);
+	input_y = keyboard_check(vk_down) - keyboard_check(vk_up);
+
+	input_attack = mouse_check_button_pressed(mb_left);
+	input_throw = mouse_check_button_pressed(mb_right);
+
+	input_switch_item = keyboard_check_pressed(vk_tab);
+	input_switch_weapon = keyboard_check_pressed(vk_space);
+}
+
+// Get move direction
+
+move_input_x = input_x;
+move_input_y = input_y;
+
+max_speed = move_speed_default;
 
 // Store previous position BEFORE movement
 prev_x = x;
 prev_y = y;
-
-// Get move direction
-move_dir = point_direction(0, 0, input_x, input_y);
-
-var input_level = point_distance(0, 0, input_x, input_y);
-input_level = clamp(input_level, 0, 1);
-move_speed = move_speed_default * input_level;
 
 // Depth
 //depth = -bbox_bottom;
@@ -61,6 +76,11 @@ if (sm != undefined) {
 }
 
 /// =========================
+/// MOVEMENT
+/// =========================
+apply_movement();
+
+/// =========================
 /// INVINCIBILITY
 /// =========================
 if (invincible_timer > 0) {
@@ -71,7 +91,8 @@ if (invincible_timer > 0) {
 /// KNOCKBACK
 /// =========================
 if (abs(knockback_x) > 0.1 || abs(knockback_y) > 0.1) {
-	self.apply_movement(knockback_x, knockback_y);
+	impulse_x += knockback_x * 0.20;
+	impulse_y += knockback_y * 0.20;
 
 	knockback_x *= 0.8;
 	knockback_y *= 0.8;

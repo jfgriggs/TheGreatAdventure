@@ -27,7 +27,7 @@ with (obj_enemy_archer) {
 	}
 }
 
-with (obj_enemy_predator) {
+with (obj_enemy_wolf) {
 	if (point_distance(x, y, other.x, other.y) < 10) {
 		Damage_Apply(id, other.damage, other);
 		instance_destroy(other);

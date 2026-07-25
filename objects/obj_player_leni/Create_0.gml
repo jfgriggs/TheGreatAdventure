@@ -10,10 +10,10 @@ event_inherited();
 /// SPRITES
 /// =========================
 
-sprite[0] = sPlayerRightGirl;
-sprite[1] = sPlayerUpGirl;
-sprite[2] = sPlayerLeftGirl;
-sprite[3] = sPlayerDownGirl;
+sprite[0] = spr_player_right_leni;
+sprite[1] = spr_player_up_leni;
+sprite[2] = spr_player_left_leni;
+sprite[3] = spr_player_down_leni;
 
 acceleration = 0.28;
 movement_damping = 0.06;

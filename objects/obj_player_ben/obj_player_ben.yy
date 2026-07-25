@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sPlayerDownBoy",
-    "path":"sprites/sPlayerDownBoy/sPlayerDownBoy.yy",
+    "name":"spr_player_down_ben",
+    "path":"sprites/spr_player_down_ben/spr_player_down_ben.yy",
   },
   "spriteMaskId":null,
   "visible":true,

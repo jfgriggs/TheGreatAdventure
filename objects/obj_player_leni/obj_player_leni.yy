@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sPlayerDownGirl",
-    "path":"sprites/sPlayerDownGirl/sPlayerDownGirl.yy",
+    "name":"spr_player_down_leni",
+    "path":"sprites/spr_player_down_leni/spr_player_down_leni.yy",
   },
   "spriteMaskId":null,
   "visible":true,

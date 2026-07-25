@@ -1,16 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"oPig",
-  "eventList":[],
+  "%Name":"obj_camera",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oPig",
+  "name":"obj_camera",
   "overriddenProperties":[],
   "parent":{
-    "name":"Animals",
-    "path":"folders/Animals.yy",
+    "name":"TheGreatAdventure",
+    "path":"TheGreatAdventure.yyp",
   },
   "parentObjectId":null,
-  "persistent":false,
+  "persistent":true,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,
@@ -27,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sPig",
-    "path":"sprites/sPig/sPig.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

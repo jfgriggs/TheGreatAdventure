@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"oWatermelonPlant",
+  "%Name":"spr_treefrog",
   "eventList":[],
   "managed":true,
-  "name":"oWatermelonPlant",
+  "name":"spr_treefrog",
   "overriddenProperties":[],
   "parent":{
-    "name":"Vegetables",
-    "path":"folders/Items/Vegetables.yy",
+    "name":"Sprites",
+    "path":"folders/Sprites.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -28,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sWatermelonPlant",
-    "path":"sprites/sWatermelonPlant/sWatermelonPlant.yy",
+    "name":"sTreefrog",
+    "path":"sprites/sTreefrog/sTreefrog.yy",
   },
   "spriteMaskId":null,
   "visible":true,

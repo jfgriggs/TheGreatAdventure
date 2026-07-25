@@ -12,8 +12,8 @@
     "path":"folders/Objects.yy",
   },
   "parentObjectId":{
-    "name":"oWall",
-    "path":"objects/oWall/oWall.yy",
+    "name":"obj_obstacle",
+    "path":"objects/obj_obstacle/obj_obstacle.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

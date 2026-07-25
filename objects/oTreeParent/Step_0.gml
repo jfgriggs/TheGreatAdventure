@@ -4,7 +4,7 @@ var p = global.player_object;
 // Depth
 depth = -bbox_bottom;
 
-with (oWall) {
+with (obj_obstacle) {
 	var target = 1;
 
 	if (instance_exists(p)) {

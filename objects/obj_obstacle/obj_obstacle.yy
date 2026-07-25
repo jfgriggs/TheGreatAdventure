@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"oWater",
+  "%Name":"obj_obstacle",
   "eventList":[],
   "managed":true,
-  "name":"oWater",
+  "name":"obj_obstacle",
   "overriddenProperties":[],
   "parent":{
-    "name":"Obstacles",
-    "path":"folders/Obstacles.yy",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -26,11 +26,8 @@
   "properties":[],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
-  "solid":false,
-  "spriteId":{
-    "name":"sWater",
-    "path":"sprites/sWater/sWater.yy",
-  },
+  "solid":true,
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

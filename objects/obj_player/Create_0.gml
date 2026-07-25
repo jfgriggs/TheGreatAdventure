@@ -65,7 +65,7 @@ impulse_x = 0;
 impulse_y = 0;
 
 acceleration = 0.45;
-friction = 0.10;
+movement_damping = 0.10;
 
 max_speed = move_speed;
 

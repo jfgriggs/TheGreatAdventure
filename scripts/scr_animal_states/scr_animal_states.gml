@@ -55,7 +55,6 @@ function Animal_Idle(_sm) {
 
 			if (food != noone) {
 				owner.target = food;
-				owner.target_type = "food";
 
 				sm.change(Animal_Follow(sm));
 				return;

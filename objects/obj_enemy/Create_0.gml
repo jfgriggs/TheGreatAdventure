@@ -18,10 +18,9 @@ faction = FACTION.ENEMY;
 /// RUNTIME
 /// =========================================================
 
-dead = false;
+is_dead = false;
 
 target = noone;
-target_type = "";
 
 /// =========================================================
 /// HEALTH

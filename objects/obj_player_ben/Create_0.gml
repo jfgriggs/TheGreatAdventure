@@ -20,6 +20,6 @@ sprite[3] = sPlayerDownBoy;
 /// =========================================================
 
 acceleration = 0.32;
-friction = 0.04;
+movement_damping = 0.04;
 max_speed = move_speed;
 impulse_decay = 0.55;

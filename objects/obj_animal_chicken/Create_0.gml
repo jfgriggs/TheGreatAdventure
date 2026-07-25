@@ -4,84 +4,11 @@
 // SYSTEM:      Chicken Configuration
 // =============================================================================
 
-/// @description Configures chicken-specific gameplay tuning.
+/// @description
+/// Identifies this instance as a chicken.
 ///
-/// Parent Object:
-/// - obj_animal
-///
-/// Responsibilities:
-/// - Assign chicken animal identity
-/// - Configure chicken movement tuning
-/// - Configure chicken AI tuning
-/// - Configure preferred food
-/// - Configure chicken visuals
-///
-/// Notes:
-/// - Shared AI logic belongs in scr_animal_states
-/// - Shared movement logic belongs in scr_movement
-/// - Shared runtime behavior belongs in obj_animal
-/// - This object should only configure species-specific values
-
-event_inherited();
-
-/// =========================
-/// IDENTITY
-/// =========================
+/// All species configuration is loaded by the parent object using
+/// Animal_Get_Definition(animal_type).
 
 animal_type = ANIMAL.CHICKEN;
-
-/// =========================
-/// GAMEPLAY
-/// =========================
-
-point_value = 50;
-
-/// =========================
-/// MOVEMENT
-/// =========================
-
-move_speed = 1.2;
-wander_speed = 0.8;
-
-wander_move_time_min = 15;
-wander_move_time_max = 45;
-
-wander_idle_time_min = 10;
-wander_idle_time_max = 30;
-
-tile_check_safe      = Tile_Is_Animal_Chicken_Coop;
-tile_check_blocking  = Tile_Is_Blocking_Animal;
-
-/// =========================
-/// AI
-/// =========================
-
-vision_range = 180;
-lose_range = 220;
-lose_time_max = Seconds(4);
-
-desired_items = {corn: 2};
-
-// Once this animal reaches its designated safe area,
-// movement will prevent it from leaving.
-stay_in_safe_area = true;
-
-/// =========================
-/// VISUALS
-/// =========================
-
-sprite_set = [
-	spr_animal_chicken_right,
-	spr_animal_chicken_up,
-	spr_animal_chicken_left,
-	spr_animal_chicken_down
-];
-
-sprite_large = spr_animal_chicken_large;
-
-/// =========================
-/// INITIAL VISUAL SETUP
-/// =========================
-
-mask_index = sprite_set[3];
-sprite_index = sprite_set[3];
+event_inherited();

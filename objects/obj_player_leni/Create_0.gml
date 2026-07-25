@@ -16,6 +16,6 @@ sprite[2] = sPlayerLeftGirl;
 sprite[3] = sPlayerDownGirl;
 
 acceleration = 0.28;
-friction = 0.06;
+movement_damping = 0.06;
 max_speed = move_speed;
 impulse_decay = 0.55;

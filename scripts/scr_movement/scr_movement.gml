@@ -226,8 +226,8 @@ function Movement_Update(_inst)
 	// Friction
 	// -------------------------------------------------------------------------
 
-	_inst.velocity_x = lerp(_inst.velocity_x, 0, _inst.friction);
-	_inst.velocity_y = lerp(_inst.velocity_y, 0, _inst.friction);
+	_inst.velocity_x = lerp(_inst.velocity_x, 0, _inst.movement_damping);
+	_inst.velocity_y = lerp(_inst.velocity_y, 0, _inst.movement_damping);
 
 	if (abs(_inst.velocity_x) < 0.02)
 	{

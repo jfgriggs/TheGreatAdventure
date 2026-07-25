@@ -1,19 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"oBuildingParent",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_building_barn",
+  "eventList":[],
   "managed":true,
-  "name":"oBuildingParent",
+  "name":"obj_building_barn",
   "overriddenProperties":[],
   "parent":{
-    "name":"Buildings",
-    "path":"folders/Buildings.yy",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":{
-    "name":"oWall",
-    "path":"objects/oWall/oWall.yy",
+    "name":"obj_building",
+    "path":"objects/obj_building/obj_building.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -32,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_building_barn",
+    "path":"sprites/spr_building_barn/spr_building_barn.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

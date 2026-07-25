@@ -1,17 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"oBarn",
-  "eventList":[],
+  "%Name":"obj_building",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"oBarn",
+  "name":"obj_building",
   "overriddenProperties":[],
   "parent":{
-    "name":"Buildings",
-    "path":"folders/Buildings.yy",
+    "name":"Objects",
+    "path":"folders/Objects.yy",
   },
   "parentObjectId":{
-    "name":"oBuildingParent",
-    "path":"objects/oBuildingParent/oBuildingParent.yy",
+    "name":"oWall",
+    "path":"objects/oWall/oWall.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -30,10 +32,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sBarn",
-    "path":"sprites/sBarn/sBarn.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

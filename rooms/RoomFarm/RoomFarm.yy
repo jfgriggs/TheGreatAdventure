@@ -697,7 +697,7 @@
           62,-7,-2147483648,-20,0,-3,-2147483648,1,64,-88,-2147483648,1,62,-8,-2147483648,-19,0,-3,-2147483648,
           1,64,-88,-2147483648,32,79,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,48,49,
           48,49,48,49,48,81,-1278,-2147483648,
-        ],"TileDataFormat":1,},"tilesetId":{"name":"tsMainHouse","path":"tilesets/tsMainHouse/tsMainHouse.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+        ],"TileDataFormat":1,},"tilesetId":null,"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRTileLayer":"","%Name":"WaterLv2","depth":500,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"WaterLv2","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":68,"SerialiseWidth":120,"TileCompressedData":[
           -1180,-2147483648,1,273,-5,331,1,274,-112,-2147483648,2,273,332,-5,-2147483648,3,330,331,274,-110,-2147483648,
           1,309,-8,-2147483648,2,330,274,-108,-2147483648,2,273,332,-9,-2147483648,2,330,274,-107,-2147483648,

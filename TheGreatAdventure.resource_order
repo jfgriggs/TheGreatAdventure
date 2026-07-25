@@ -1,6 +1,5 @@
 {
   "FolderOrderSettings":[
-    {"name":"Buildings","order":8,"path":"folders/Buildings.yy",},
     {"name":"fonts","order":16,"path":"folders/fonts.yy",},
     {"name":"Objects","order":13,"path":"folders/Objects.yy",},
     {"name":"Obstacles","order":2,"path":"folders/Obstacles.yy",},
@@ -103,7 +102,6 @@
     {"name":"oWater","order":5,"path":"objects/oWater/oWater.yy",},
     {"name":"oWillowTree1","order":50,"path":"objects/oWillowTree1/oWillowTree1.yy",},
     {"name":"oWillowTree2","order":51,"path":"objects/oWillowTree2/oWillowTree2.yy",},
-    {"name":"spr_treefrog","order":71,"path":"objects/spr_treefrog/spr_treefrog.yy",},
     {"name":"RoomInitialize","order":1,"path":"rooms/RoomInitialize/RoomInitialize.yy",},
     {"name":"scr_animal_states","order":6,"path":"scripts/scr_animal_states/scr_animal_states.yy",},
     {"name":"scr_animals","order":10,"path":"scripts/scr_animals/scr_animals.yy",},
@@ -145,7 +143,6 @@
     {"name":"sFruitTree4","order":14,"path":"sprites/sFruitTree4/sFruitTree4.yy",},
     {"name":"sFruitTree5","order":15,"path":"sprites/sFruitTree5/sFruitTree5.yy",},
     {"name":"sGround","order":4,"path":"sprites/sGround/sGround.yy",},
-    {"name":"sMainHouse","order":10,"path":"sprites/sMainHouse/sMainHouse.yy",},
     {"name":"sMapleTree1","order":7,"path":"sprites/sMapleTree1/sMapleTree1.yy",},
     {"name":"sMapleTree2","order":10,"path":"sprites/sMapleTree2/sMapleTree2.yy",},
     {"name":"sMapleTree3","order":12,"path":"sprites/sMapleTree3/sMapleTree3.yy",},
@@ -250,7 +247,6 @@
     {"name":"tsForestObjects","order":15,"path":"tilesets/tsForestObjects/tsForestObjects.yy",},
     {"name":"tsForestWaterDetail1","order":17,"path":"tilesets/tsForestWaterDetail1/tsForestWaterDetail1.yy",},
     {"name":"tsForestWaterDetail2","order":19,"path":"tilesets/tsForestWaterDetail2/tsForestWaterDetail2.yy",},
-    {"name":"tsMainHouse","order":11,"path":"tilesets/tsMainHouse/tsMainHouse.yy",},
     {"name":"tsTrees","order":3,"path":"tilesets/tsTrees/tsTrees.yy",},
     {"name":"tsTreesMore","order":5,"path":"tilesets/tsTreesMore/tsTreesMore.yy",},
     {"name":"tsWaterCoast","order":16,"path":"tilesets/tsWaterCoast/tsWaterCoast.yy",},

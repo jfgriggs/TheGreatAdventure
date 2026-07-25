@@ -10,7 +10,6 @@
   },
   "defaultScriptType":1,
   "Folders":[
-    {"$GMFolder":"","%Name":"Buildings","folderPath":"folders/Buildings.yy","name":"Buildings","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"fonts","folderPath":"folders/fonts.yy","name":"fonts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Obstacles","folderPath":"folders/Obstacles.yy","name":"Obstacles","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -170,7 +169,6 @@
     {"id":{"name":"sFruitTree4","path":"sprites/sFruitTree4/sFruitTree4.yy",},},
     {"id":{"name":"sFruitTree5","path":"sprites/sFruitTree5/sFruitTree5.yy",},},
     {"id":{"name":"sGround","path":"sprites/sGround/sGround.yy",},},
-    {"id":{"name":"sMainHouse","path":"sprites/sMainHouse/sMainHouse.yy",},},
     {"id":{"name":"sMapleTree1","path":"sprites/sMapleTree1/sMapleTree1.yy",},},
     {"id":{"name":"sMapleTree2","path":"sprites/sMapleTree2/sMapleTree2.yy",},},
     {"id":{"name":"sMapleTree3","path":"sprites/sMapleTree3/sMapleTree3.yy",},},
@@ -279,7 +277,6 @@
     {"id":{"name":"tsForestObjects","path":"tilesets/tsForestObjects/tsForestObjects.yy",},},
     {"id":{"name":"tsForestWaterDetail1","path":"tilesets/tsForestWaterDetail1/tsForestWaterDetail1.yy",},},
     {"id":{"name":"tsForestWaterDetail2","path":"tilesets/tsForestWaterDetail2/tsForestWaterDetail2.yy",},},
-    {"id":{"name":"tsMainHouse","path":"tilesets/tsMainHouse/tsMainHouse.yy",},},
     {"id":{"name":"tsTrees","path":"tilesets/tsTrees/tsTrees.yy",},},
     {"id":{"name":"tsTreesMore","path":"tilesets/tsTreesMore/tsTreesMore.yy",},},
     {"id":{"name":"tsWaterCoast","path":"tilesets/tsWaterCoast/tsWaterCoast.yy",},},

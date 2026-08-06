@@ -1,6 +1,7 @@
 // =============================================================================
 // OBJECT:       obj_animal
 // EVENT:        Create
+// REVISION:     1.2.0
 // SYSTEM:       Animal Base Initialization
 // ARCHITECTURE: Animal System
 //
@@ -16,7 +17,7 @@
 
 
 // -----------------------------------------------------------------------------
-// Species Configuration
+// Configuration
 // -----------------------------------------------------------------------------
 
 // Load immutable species configuration
@@ -42,13 +43,14 @@ stay_in_safe_area = cfg.stay_in_safe_area;
 vision_range = cfg.vision_range;
 lose_range = cfg.lose_range;
 lose_time_max = cfg.lose_time_max;
-desired_items = cfg.desired_items;
+food_preferences = cfg.food_preferences;
 
-/// Visuals
+// -----------------------------------------------------------------------------
+// Sprite Configuration
+// -----------------------------------------------------------------------------
+
 sprite_set = cfg.sprite_set;
 sprite_large = cfg.sprite_large;
-
-face = FACE.DOWN;
 
 
 // -----------------------------------------------------------------------------
@@ -110,6 +112,7 @@ flee_slowdown = 0.08;
 // -----------------------------------------------------------------------------
 
 target = noone;
+face = FACE.DOWN;
 
 
 // -----------------------------------------------------------------------------

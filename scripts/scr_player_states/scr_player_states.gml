@@ -15,7 +15,7 @@
 /// - Coordinate movement/combat requests
 ///
 /// States:
-/// - Playey_Idle
+/// - Player_Idle
 /// - Player_Move
 /// - Player_Throw
 /// - Player_Attack
@@ -142,14 +142,13 @@ function Player_Teleport(_sm) {
 						show_debug_message("Teleporting...");
 
 						//Move player - find a position that is not blocked by a wall, water, or trap.
-						var tile_size = 16; // match your tileset
 						var attempts = 50;
 
 						var teleported = false;
 
 						repeat (attempts) {
-							var tx = irandom(room_width div tile_size) * tile_size;
-							var ty = irandom(room_height div tile_size) * tile_size;
+							var tx = irandom(room_width div global.tile_size) * global.tile_size;
+							var ty = irandom(room_height div global.tile_size) * global.tile_size;
 
 							var tile = Tile_Get(tx, ty);
 							show_debug_message("Teleport tile: " + string(tile));
@@ -162,7 +161,6 @@ function Player_Teleport(_sm) {
 								Spark_Spawn(owner.x, owner.y);
 								Spark_Spawn(owner.x, owner.y);
 
-								// Switch to reappear
 								// Switch to reappear
 								owner.teleport_phase = 1;
 								owner.teleport_timer = Seconds(1);

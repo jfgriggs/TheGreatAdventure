@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------------====================
+// =============================================================================
 // SCRIPT:       scr_animals
 // REVISION:     1.3.0
 // SYSTEM:       Animal Management
@@ -9,7 +9,7 @@
 // and managing animal instances.
 //
 // Revision History
-// -----------------------------------------------------------------------------
+// =============================================================================
 // 1.3.0
 // • Continued documentation standardization.
 // • Prepared subsystem for object-owned animal configuration.
@@ -19,7 +19,7 @@
 // • Removed obsolete Animal_Get_Pen_Tile().
 // • Removed obsolete Animal_Is_In_Correct_Pen().
 // • Began standardizing documentation.
-// -----------------------------------------------------------------------------====================
+// =============================================================================
 
 /// @function Animal_Get_Definition
 /// @description
@@ -68,12 +68,8 @@ function Animal_Get_Definition(_animal_type)
 			],
 			
 			// Loot
-			desired_items: {
-				carrot: 1,
+			food_preferences: {
 				corn: 2,
-				tomato: 4,
-				pumpkin: 1,
-				watermelon: 1
 			}
         },
 
@@ -108,12 +104,16 @@ function Animal_Get_Definition(_animal_type)
 				spr_animal_cow_right,
 				spr_animal_cow_up,
 				spr_animal_cow_left,
-				spr_animal_cow_down
+				spr_animal_cow_down,
 			],
 			
 			// Loot
-			desired_items: {
-				corn: 2
+			food_preferences: {
+				carrot: 1,
+				corn: 2,
+				tomato: 4,
+				pumpkin: 1,
+				watermelon: 1,
 			}
 		},
 
@@ -148,16 +148,16 @@ function Animal_Get_Definition(_animal_type)
 				spr_animal_pig_right,
 				spr_animal_pig_up,
 				spr_animal_pig_left,
-				spr_animal_pig_down
+				spr_animal_pig_down,
 			],
 			
 			// Loot
-			desired_items: {
+			food_preferences: {
 				carrot: 2,
 				corn: 2,
 				tomato: 4,
 				pumpkin: 1,
-				watermelon: 1
+				watermelon: 1,
 			}
 		},
 
@@ -192,13 +192,13 @@ function Animal_Get_Definition(_animal_type)
 				spr_animal_sheep_right,
 				spr_animal_sheep_up,
 				spr_animal_sheep_left,
-				spr_animal_sheep_down
+				spr_animal_sheep_down,
 			],
 			
 			// Loot
-			desired_items: {
+			food_preferences: {
 				carrot: 1,
-				corn: 2
+				corn: 2,
 			}
 		}
     ];
@@ -325,8 +325,8 @@ function Animal_Get_Item_Desire(_animal, _item) {
 	// -----------------------------------------------------------------------------
 	// LOOKUP DESIRE
 	// -----------------------------------------------------------------------------
-	if (variable_struct_exists(_animal.desired_items, item_name)) {
-		return _animal.desired_items[$ item_name];
+	if (variable_struct_exists(_animal.food_preferences, item_name)) {
+		return _animal.food_preferences[$ item_name];
 	}
 
 	return 0;

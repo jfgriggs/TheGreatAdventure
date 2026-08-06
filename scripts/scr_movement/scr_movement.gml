@@ -9,7 +9,23 @@
 //
 // Objects using this system are expected to initialize the standard movement
 // interface during their Create event.
+//
+// Objects using this system should initialize:
+//   move_input_x
+//   move_input_y
+//   velocity_x
+//   velocity_y
+//   impulse_x
+//   impulse_y
+//   acceleration
+//   max_speed
+//   movement_damping
+//   tile_check_blocking
+//   tile_check_safe
+//   stay_in_safe_area
+//   is_safe
 // =============================================================================
+
 
 /// @function Movement_Get_Terrain_Speed_Factor
 /// @description
@@ -102,8 +118,6 @@ function Movement_Can_Move_To(_inst, _x, _y)
 /// @param _vy
 function Movement_Resolve(_inst, _vx, _vy)
 {
-	var speed_factor = Movement_Get_Terrain_Speed_Factor(_inst);
-
 	// NOTE:
 	// Terrain currently affects acceleration and maximum speed. Direct movement
 	// scaling remains disabled to preserve existing movement feel.
@@ -153,8 +167,8 @@ function Movement_Resolve(_inst, _vx, _vy)
 /// - Acceleration
 /// - Speed limiting
 /// - External impulses
-/// - Friction
-/// - Safety validation
+/// - Movement Damping
+/// - Velocity Validation
 /// - Collision resolution
 ///
 /// @param _inst
@@ -223,7 +237,7 @@ function Movement_Update(_inst)
 	}
 
 	// -------------------------------------------------------------------------
-	// Friction
+	// Movement Damping
 	// -------------------------------------------------------------------------
 
 	_inst.velocity_x = lerp(_inst.velocity_x, 0, _inst.movement_damping);
@@ -240,7 +254,7 @@ function Movement_Update(_inst)
 	}
 
 	// -------------------------------------------------------------------------
-	// Safety Validation
+	// Velocity Validation
 	// -------------------------------------------------------------------------
 
 	if (is_nan(_inst.velocity_x) || !is_real(_inst.velocity_x))

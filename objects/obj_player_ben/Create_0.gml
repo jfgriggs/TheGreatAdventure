@@ -10,10 +10,10 @@ event_inherited();
 /// SPRITES
 /// =========================
 
-sprite[0] = spr_player_right_ben;
-sprite[1] = spr_player_up_ben;
-sprite[2] = spr_player_left_ben;
-sprite[3] = spr_player_down_ben;
+sprite[FACE.RIGHT] = spr_player_right_ben;
+sprite[FACE.UP]    = spr_player_up_ben;
+sprite[FACE.LEFT]  = spr_player_left_ben;
+sprite[FACE.DOWN]  = spr_player_down_ben;
 
 /// =========================================================
 /// MOVEMENT STATS

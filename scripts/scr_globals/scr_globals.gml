@@ -25,15 +25,60 @@
 // • Initial implementation.
 //
 
+// =============================================================================
+// World Constants
+// =============================================================================
+
+
+/// @function Globals_Initialize()
+/// @description
+/// Initializes game-wide global variables and constants. Safe to call once
+/// during game startup.
+function Globals_Initialize()
+{
+	
+    // -------------------------------------------------------------------------
+    // Game Configuration
+    // -------------------------------------------------------------------------
+
+	global.tile_size = 16;
+    global.target_fps = game_get_speed(gamespeed_fps);
+
+    // -------------------------------------------------------------------------
+    // Player Configuration
+    // -------------------------------------------------------------------------
+
+    global.player_object = obj_player_ben;
+
+    // -------------------------------------------------------------------------
+    // New Game State
+    // -------------------------------------------------------------------------
+    
+	// If game_state already exists globally then do not reset.
+	// Allows Game_Reset() to preserve state correctly.
+	if (!variable_global_exists("game_state"))
+	{
+	    global.game_state = GAME_STATE.STARTING;
+	}
+
+	global.game_time = 0;
+    global.points = 0;
+    global.best_time = 0;
+
+    global.player_spawn_x = 1000;
+    global.player_spawn_y = 250;
+}
+
+
 // -----------------------------------------------------------------------------
 // Facing Direction
 // -----------------------------------------------------------------------------
 
 enum FACE {
-    UP,
     RIGHT,
-    DOWN,
+    UP,
     LEFT,
+	DOWN,
 }
 
 // -----------------------------------------------------------------------------

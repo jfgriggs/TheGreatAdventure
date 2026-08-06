@@ -31,23 +31,7 @@
 // -----------------------------------------------------------------------------
 // Global Variables
 // -----------------------------------------------------------------------------
-
-// If game_state already exists globally then do not reset.
-// Allows Game_Reset() to preserve state correctly.
-if (!variable_global_exists("game_state"))
-{
-    global.game_state = GAME_STATE.STARTING;
-}
-
-if (!variable_global_exists("player_object"))
-{
-    global.player_object = obj_player_ben;
-}
-
-global.game_time = 0;
-global.points = 0;
-global.best_time = 0;
-global.target_fps = game_get_speed(gamespeed_fps);
+Globals_Initialize();
 
 // Cache controller instance for shared systems.
 global.controller = id;

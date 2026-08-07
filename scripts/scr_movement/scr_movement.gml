@@ -20,6 +20,7 @@
 //   acceleration
 //   max_speed
 //   movement_damping
+//   movement_speed_multiplier
 //   tile_check_blocking
 //   tile_check_safe
 //   stay_in_safe_area
@@ -178,13 +179,11 @@ function Movement_Update(_inst)
 	// Input Damping
 	// -------------------------------------------------------------------------
 
-	if (_inst.move_input_x == 0)
-	{
+	if (_inst.move_input_x == 0) {
 		_inst.velocity_x = lerp(_inst.velocity_x, 0, 0.35);
 	}
 
-	if (_inst.move_input_y == 0)
-	{
+	if (_inst.move_input_y == 0) {
 		_inst.velocity_y = lerp(_inst.velocity_y, 0, 0.35);
 	}
 
@@ -194,22 +193,33 @@ function Movement_Update(_inst)
 
 	var terrain_factor = Movement_Get_Terrain_Speed_Factor(_inst);
 
-	_inst.velocity_x += _inst.move_input_x * _inst.acceleration * terrain_factor;
-	_inst.velocity_y += _inst.move_input_y * _inst.acceleration * terrain_factor;
+	_inst.velocity_x += _inst.move_input_x 
+		* _inst.acceleration
+		* _inst.movement_acceleration_multiplier
+		* terrain_factor;
+	_inst.velocity_y += _inst.move_input_y 
+		* _inst.acceleration 
+		* _inst.movement_acceleration_multiplier 
+		* terrain_factor;
 
 	// -------------------------------------------------------------------------
 	// Speed Limit
 	// -------------------------------------------------------------------------
-
+	
 	var velocity = point_distance(0, 0, _inst.velocity_x, _inst.velocity_y);
-	var terrain_max_speed = _inst.max_speed * terrain_factor;
-
-	if (velocity > terrain_max_speed)
+	var effective_max_speed = _inst.max_speed * _inst.movement_speed_multiplier * terrain_factor;
+	
+	//show_debug_message(
+	//    "velocity=" + string(velocity)
+	//    + " effective_max=" + string(effective_max_speed)
+	//);
+	
+	if (velocity > effective_max_speed)
 	{
 		var dir = point_direction(0, 0, _inst.velocity_x, _inst.velocity_y);
 
-		_inst.velocity_x = lengthdir_x(terrain_max_speed, dir);
-		_inst.velocity_y = lengthdir_y(terrain_max_speed, dir);
+		_inst.velocity_x = lengthdir_x(effective_max_speed, dir);
+		_inst.velocity_y = lengthdir_y(effective_max_speed, dir);
 	}
 
 	// -------------------------------------------------------------------------
@@ -226,13 +236,11 @@ function Movement_Update(_inst)
 	_inst.impulse_x *= 0.55;
 	_inst.impulse_y *= 0.55;
 
-	if (abs(_inst.impulse_x) < 0.01)
-	{
+	if (abs(_inst.impulse_x) < 0.01) {
 		_inst.impulse_x = 0;
 	}
 
-	if (abs(_inst.impulse_y) < 0.01)
-	{
+	if (abs(_inst.impulse_y) < 0.01) {
 		_inst.impulse_y = 0;
 	}
 
@@ -240,16 +248,11 @@ function Movement_Update(_inst)
 	// Movement Damping
 	// -------------------------------------------------------------------------
 
-	_inst.velocity_x = lerp(_inst.velocity_x, 0, _inst.movement_damping);
-	_inst.velocity_y = lerp(_inst.velocity_y, 0, _inst.movement_damping);
-
-	if (abs(_inst.velocity_x) < 0.02)
-	{
+	if (abs(_inst.velocity_x) < 0.02) {
 		_inst.velocity_x = 0;
 	}
 
-	if (abs(_inst.velocity_y) < 0.02)
-	{
+	if (abs(_inst.velocity_y) < 0.02) {
 		_inst.velocity_y = 0;
 	}
 

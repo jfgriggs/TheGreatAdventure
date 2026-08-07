@@ -34,19 +34,40 @@ if (flash_timer > 0) {
 }
 
 /// =========================================================
-/// Flee Timer
+/// Flee Runtime
 /// =========================================================
 
-if (flee_timer > 0) {
-	flee_timer--;
+if (flee_timer > 0)
+{
+    flee_timer--;
 
-	// Gradually slow down.
-	flee_speed_current = max(wander_speed, flee_speed_current - flee_slowdown);
-} else {
-	flee_source = noone;
+    var panic_time = flee_time * 0.80;
 
-	flee_speed_current = wander_speed;
+    if (flee_timer > (flee_time - panic_time))
+    {
+        // Initial panic burst.
+        flee_speed_current = flee_speed_multiplier;
+    }
+    else
+    {
+        // Gradually calm down.
+        var t = flee_timer / (flee_time - panic_time);
+
+        flee_speed_current = lerp(
+            1.0,
+            flee_speed_multiplier,
+            t
+        );
+    }
+
+    movement_speed_multiplier = flee_speed_current;
 }
+else
+{
+    flee_speed_current = 1.0;
+    movement_speed_multiplier = 1.0;
+}
+
 
 /// =========================================================
 /// CLEAR MOVEMENT INTENT
@@ -67,6 +88,13 @@ is_safe = Animal_IsSafe(self);
 /// =========================================================
 /// SHARED MOVEMENT
 /// =========================================================
+//show_debug_message(
+//    "flee_speed_multiplier=" + string(flee_speed_multiplier)
+//    + " current=" + string(flee_speed_current)
+//    + " multiplier=" + string(movement_speed_multiplier)
+//    + " max=" + string(max_speed)
+//);
+
 Movement_Update(self);
 
 /// =========================================================

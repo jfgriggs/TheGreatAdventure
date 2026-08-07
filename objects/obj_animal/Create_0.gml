@@ -80,8 +80,10 @@ impulse_y = 0;
 max_speed  = move_speed;
 
 acceleration = 0.15;
-movement_damping = 0.18;
+movement_acceleration_multiplier = 1.0;
 
+movement_damping = 0.18;
+movement_speed_multiplier = 1.0;
 
 // -----------------------------------------------------------------------------
 // Visual Effects
@@ -92,7 +94,7 @@ flash_time  = 6;
 
 
 // -----------------------------------------------------------------------------
-// Aggro / Flee
+// Threat Response
 // -----------------------------------------------------------------------------
 
 is_aggressive = false;
@@ -102,9 +104,9 @@ flee_source = noone;
 flee_timer = 0;
 flee_time = Seconds(3);
 
-flee_speed = wander_speed * 15;
+flee_acceleration_multiplier = 3.0;
+flee_speed_multiplier = 3.0;
 flee_speed_current = 0;
-flee_slowdown = 0.08;
 
 
 // -----------------------------------------------------------------------------
@@ -124,7 +126,7 @@ face = FACE.DOWN;
 //
 
 sm = new StateMachine(self);
-sm.change(Animal_Idle(sm));
+sm.change(Animal_Decide(sm));
 
 
 // -----------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 // SCRIPT: scr_animal_states
 // =============================================================================
 
-function Animal_Idle(_sm) {
+function Animal_Decide(_sm) {
 	return {
 		sm: _sm,
 		owner: _sm.owner,
@@ -23,31 +23,6 @@ function Animal_Idle(_sm) {
 			}
 		},
 		on_update: function() {
-			// =========================================================
-			// Flee Behavior
-			// =========================================================
-
-			if (instance_exists(owner.flee_source)) {
-				var _dir = point_direction(
-					owner.flee_source.x,
-					owner.flee_source.y,
-					owner.x,
-					owner.y
-				);
-
-				//owner.vx = lengthdir_x(owner.flee_speed_current, _dir);
-				//owner.vy = lengthdir_y(owner.flee_speed_current, _dir);
-				//owner.apply_movement(owner.vx, owner.vy);
-
-				owner.max_speed = owner.flee_speed_current;
-				owner.move_input_x = lengthdir_x(1, _dir);
-				owner.move_input_y = lengthdir_y(1, _dir);
-
-				Animal_Update_Facing(owner);
-
-				return;
-			}
-
 			// =========================================================
 			// LOOK FOR FOOD
 			// =========================================================
@@ -132,7 +107,7 @@ function Animal_Follow(_sm) {
 			if (!instance_exists(owner.target)) {
 				owner.target = noone;
 
-				sm.change(Animal_Idle(sm));
+				sm.change(Animal_Decide(sm));
 				return;
 			}
 
@@ -196,7 +171,7 @@ function Animal_Eat(_sm) {
 			if (!instance_exists(owner.target)) {
 				owner.target = noone;
 
-				sm.change(Animal_Idle(sm));
+				sm.change(Animal_Decide(sm));
 				return;
 			}
 
@@ -236,8 +211,66 @@ function Animal_Eat(_sm) {
 			if (!instance_exists(owner.target)) {
 				owner.target = noone;
 
-				sm.change(Animal_Idle(sm));
+				sm.change(Animal_Decide(sm));
 			}
+		},
+	};
+}
+
+// =============================================================================
+// FLEE
+// =============================================================================
+function Animal_Flee(_sm) {
+	return {
+		sm: _sm,
+		owner: _sm.owner,
+
+		on_enter: function() {
+			// Abandon any current task while fleeing.
+			owner.target = noone;
+
+			// Resume normal animation while moving.
+			owner.image_speed = 1;
+			
+			owner.flee_speed_current = owner.flee_speed_multiplier;
+			owner.movement_speed_multiplier = owner.flee_speed_current;
+
+			// Panic burst.
+			owner.movement_acceleration_multiplier = owner.flee_acceleration_multiplier;
+		},
+
+		on_update: function() {
+
+			// =========================================================
+			// FLEE COMPLETE
+			// =========================================================
+			if (owner.flee_timer <= 0 || !instance_exists(owner.flee_source)) {
+				owner.flee_source = noone;
+				owner.move_input_x = 0;
+				owner.move_input_y = 0;
+				owner.movement_speed_multiplier = 1.0;
+				sm.change(Animal_Decide(sm));
+				return;
+			}
+
+			// =========================================================
+			// MOVE AWAY FROM THREAT
+			// =========================================================
+			var dir = point_direction(
+				owner.flee_source.x,
+				owner.flee_source.y,
+				owner.x,
+				owner.y
+			);
+
+			owner.move_input_x = lengthdir_x(1, dir);
+			owner.move_input_y = lengthdir_y(1, dir);
+			Animal_Update_Facing(owner);
+		},
+		
+		on_exit: function() {
+			owner.movement_speed_multiplier = 1.0;
+			owner.movement_acceleration_multiplier = 1.0;
 		},
 	};
 }

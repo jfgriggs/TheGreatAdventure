@@ -556,31 +556,23 @@ function Animal_Take_Damage(_animal, _damage, _source) {
 	}
 
 	// --------------------------------------------------
+	// Flee from danger
+	// --------------------------------------------------
+	Animal_Start_Flee(_animal, _source);
+
+	// --------------------------------------------------
 	// Apply Damage
 	// --------------------------------------------------
-
 	_animal.hp -= _damage;
 
 	// --------------------------------------------------
 	// Hit Flash
 	// --------------------------------------------------
-
 	_animal.flash_timer = _animal.flash_time;
-
-	// --------------------------------------------------
-	// Flee Reaction
-	// --------------------------------------------------
-
-	_animal.flee_timer = _animal.flee_time;
-
-	_animal.flee_source = _source;
-
-	_animal.flee_speed_current = _animal.flee_speed;
 
 	// --------------------------------------------------
 	// Debug
 	// --------------------------------------------------
-
 	show_debug_message(
 		object_get_name(_animal.object_index) + " fleeing from " + string(_source)
 	);
@@ -588,24 +580,35 @@ function Animal_Take_Damage(_animal, _damage, _source) {
 	// --------------------------------------------------
 	// Death
 	// --------------------------------------------------
-
 	if (_animal.hp <= 0) {
 		_animal.is_dead = true;
 
 		// ----------------------------------------------
 		// Death Effect
 		// ----------------------------------------------
-
 		Animal_Death_Effect(_animal);
 
 		// ----------------------------------------------
 		// Destroy Animal
 		// ----------------------------------------------
-
 		instance_destroy(_animal);
 
 		return;
 	}
+}
+
+/// @function Animal_Start_Flee
+/// @description TODO: Document.
+function Animal_Start_Flee(_animal, _source)
+{
+    _animal.flee_source = _source;
+    _animal.flee_timer = _animal.flee_time;
+    //_animal.flee_speed_current = _animal.flee_speed;
+	//_animal.movement_speed_multiplier = _animal.flee_speed_current;
+
+    //_animal.target = noone;
+
+    _animal.sm.change(Animal_Flee(_animal.sm));
 }
 
 /// @function Animal_Death_Effect

@@ -61,7 +61,11 @@ impulse_x = 0;
 impulse_y = 0;
 
 acceleration = 0.45;
+movement_acceleration_multiplier = 1.0;
+flee_acceleration_multiplier = 3.0;
+
 movement_damping = 0.10;
+movement_speed_multiplier = 1.0;
 
 max_speed = move_speed;
 

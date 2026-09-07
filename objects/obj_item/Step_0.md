@@ -20,3 +20,6 @@ Ownership means deciding which object currently controls a resource or item. Col
 
 ## Known notes
 Thrown items use a separate child object and can have different movement behavior.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -1,6 +1,15 @@
-///// @description obj_garden_plant : Draw Event
+// ===========================================================================
+// OBJECT:       obj_garden_plant
+// EVENT:        Draw
+// REVISION:     1.0.0
+// SYSTEM:       Garden Plant Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Draws the plant using its current sprite and growth image so its visual stage is visible in the room.
+//
+// ===========================================================================
 
-// Draw crop sprite normally.
 draw_self();
 
 //// --------------------------------------------------
@@ -29,3 +38,8 @@ draw_self();
 //// Progress percentage.
 //draw_text(x, y,
 //    "progress: " + string_format(_progress, 1, 2)); 
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

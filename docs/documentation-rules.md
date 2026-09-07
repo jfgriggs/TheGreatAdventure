@@ -17,6 +17,8 @@ Each companion document should explain:
 
 When GML changes, update its companion document in the same change. Update central guides when an architecture rule, object relationship, public contract, or workflow changes.
 
+Update the relevant `.drawio` diagram when a system relationship, object hierarchy, state transition, or update flow shown in that diagram changes.
+
 Use the source file's base name for its companion: `Create_0.gml` becomes `Create_0.md` in the same folder. A companion document is not a copy of the source. It is a learning guide that explains what the source does and why it belongs there.
 
 Do not claim that code does something it does not do. If behavior is unusual, label it as intentional, defective, or legacy only when there is evidence.

@@ -20,3 +20,6 @@ A radius defines an area around a point. Lifetime controls how long an object re
 
 ## Known notes
 The trap's values are direct configuration fields rather than a separate definition struct.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

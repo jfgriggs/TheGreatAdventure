@@ -1,8 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_projectile_magic
-// EVENT:       Create
-// SYSTEM:      Magic Projectile Initialization
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_projectile_magic
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Magic Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures a magic projectile's inherited fields and magic-specific speed, damage, direction, range, and origin.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -42,3 +48,8 @@ image_angle = random(360);
 
 // Random spin direction/speed
 image_angle_speed = random_range(-12, 12);
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -20,3 +20,6 @@ Centralized data keeps related objects consistent. A projectile is a separate ob
 
 ## Known notes
 Child objects remain intentionally small because this script owns shared weapon configuration.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

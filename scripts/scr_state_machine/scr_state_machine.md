@@ -20,3 +20,6 @@ A state machine is a traffic controller for behavior such as chasing or attackin
 
 ## Known notes
 A state must be a struct with a callable `on_update`; `on_enter` and `on_exit` are optional. Invalid states raise an error when changing state.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

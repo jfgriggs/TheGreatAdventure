@@ -20,3 +20,6 @@ A Step event is a repeating update. Gating means checking whether the game is al
 
 ## Known notes
 The event uses the shared animal movement path; species-specific configuration remains in child Create events.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

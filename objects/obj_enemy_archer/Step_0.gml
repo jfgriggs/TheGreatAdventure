@@ -1,5 +1,14 @@
-// File: obj_enemy_archer.gml
-// Event: step
+// ===========================================================================
+// OBJECT:       obj_enemy_archer
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Archer Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Updates the archer's state machine and damage-response movement each frame.
+//
+// ===========================================================================
 
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
@@ -16,3 +25,8 @@ if (abs(knockback_x) > 0.1 || abs(knockback_y) > 0.1) {
 	knockback_x *= 0.8;
 	knockback_y *= 0.8;
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

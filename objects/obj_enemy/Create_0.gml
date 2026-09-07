@@ -1,8 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_enemy
-// EVENT:       Create
-// SYSTEM:      Enemy Base Initialization
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_enemy
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes shared enemy health, damage response, target and movement fields, and enemy runtime state.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -105,3 +111,8 @@ flash_time = 4;
 sm = new StateMachine(self);
 
 sm.change(Enemy_Hunt(sm));
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

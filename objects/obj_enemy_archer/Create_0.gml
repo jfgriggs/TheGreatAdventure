@@ -1,34 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_enemy_archer
-// EVENT:       Create
-// SYSTEM:      Enemy Configuration
-// =============================================================================
-
-/// @description Configures archer-specific enemy data, combat behavior, and AI tuning.
-///
-/// Parent Object:
-/// - obj_enemy_parent
-///
-/// Responsibilities:
-/// - Assign enemy type
-/// - Configure archer data struct
-/// - Setup ranged combat properties
-/// - Configure movement/AI tuning
-/// - Initialize targeting variables
-/// - Configure projectile behavior
-/// - Setup visual/animation configuration
-///
-/// Notes:
-/// - Inherits shared enemy behavior from obj_enemy_parent
-/// - Shared AI logic belongs in scr_enemy_states
-/// - Shared combat logic belongs in scr_combat
-/// - Enemy definitions should remain data-driven
-/// - Avoid duplicating shared enemy functionality here
-
-// =============================================================================
-// OBJECT:      obj_enemy_archer
-// EVENT:       Create
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_enemy_archer
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Archer Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures an archer with health, vision and attack ranges, fire timing, projectile object, inventory, and sprite set after inherited setup.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -85,3 +65,8 @@ sprite_set = [
 
 mask_index = sprite_set[3];
 sprite_index = sprite_set[3];
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

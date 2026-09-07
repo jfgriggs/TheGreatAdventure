@@ -1,34 +1,18 @@
-// =============================================================================
-// SCRIPT:      scr_enemy_archer_states
-// TYPE:        Archer Enemy State Definitions
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_enemy_archer_states
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Archer States System
+// ARCHITECTURE: Shared Enemy Archer States System
+//
+// DESCRIPTION:
+// Defines archer patrol, chase, and shoot states. The shoot state periodically creates and aims an arrow projectile.
+//
+// ===========================================================================
 
-/// @description Contains archer-specific enemy state constructors and shared ranged combat AI behavior.
-///
-/// Responsibilities:
-/// - Define archer AI states
-/// - Handle patrol/chase behavior
-/// - Process target acquisition
-/// - Handle ranged attack behavior
-/// - Coordinate projectile attacks
-/// - Process combat-driven transitions
-/// - Coordinate movement requests
-///
-/// States:
-/// - Archer_Patrol
-/// - Archer_Chase
-/// - Archer_Shoot
-///
-/// Notes:
-/// - States are struct-based
-/// - Transitions use sm.change(NewState(sm))
-/// - Shared movement logic belongs in scr_movement
-/// - Shared combat logic belongs in scr_combat
-/// - Shared AI helpers belong in scr_ai_common
-/// - Projectile spawning should remain centralized
-/// - Avoid embedding large subsystem logic directly in states
-/// - Keep states focused on orchestration and transitions
-
+/// @function Archer_Patrol
+/// @description Handles archer patrol for this file's subsystem.
+/// @param {Any} _sm Input used by Archer_Patrol.
+/// @returns {Any} The result of the operation, when it produces one.
 function Archer_Patrol(_sm) {
 	return {
 		on_enter: function() {
@@ -50,6 +34,10 @@ function Archer_Patrol(_sm) {
 	};
 }
 
+/// @function Archer_Chase
+/// @description Handles archer chase for this file's subsystem.
+/// @param {Any} _sm Input used by Archer_Chase.
+/// @returns {Any} The result of the operation, when it produces one.
 function Archer_Chase(_sm) {
 	return {
 		on_update: function() {
@@ -67,6 +55,10 @@ function Archer_Chase(_sm) {
 	};
 }
 
+/// @function Archer_Shoot
+/// @description Handles archer shoot for this file's subsystem.
+/// @param {Any} _sm Input used by Archer_Shoot.
+/// @returns {Any} The result of the operation, when it produces one.
 function Archer_Shoot(_sm) {
 	return {
 		on_update: function() {
@@ -89,3 +81,8 @@ function Archer_Shoot(_sm) {
 		},
 	};
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

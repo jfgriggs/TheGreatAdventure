@@ -1,21 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_controller
-// EVENT:       Step
-// SYSTEM:      Core Game Controller
-// =============================================================================
-
-/// @description Handles high-level game state updates and transitions.
-///
-/// Responsibilities:
-/// - Update global game states
-/// - Handle pause/game over transitions
-/// - Process fade transitions
-/// - Manage restart/reset flow
-/// - Update global timers
-///
-/// Notes:
-/// - Gameplay-specific logic belongs in subsystem scripts
-/// - Keep this event focused on orchestration
+// ===========================================================================
+// OBJECT:       obj_controller
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Controller Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Advances controller-owned game timing and manages global game-state transitions during active play.
+//
+// ===========================================================================
 
 fade_alpha = lerp(fade_alpha, fade_target, fade_speed);
 
@@ -64,7 +57,7 @@ switch (global.game_state) {
 	// REGION: Pause State
 	// =============================================================================
 	case GAME_STATE.PAUSED:
-		// YES → quit to start
+		   // YES -> quit to start
 		if (keyboard_check_pressed(ord("Y"))) {
 			global.game_state = GAME_STATE.STARTING;
 			show_debug_message(
@@ -72,7 +65,7 @@ switch (global.game_state) {
 			);
 		}
 
-		// NO → resume game
+		   // NO -> resume game
 		if (keyboard_check_pressed(ord("N"))) {
 			fade_target = 1;
 			global.game_state = GAME_STATE.PLAYING;
@@ -97,3 +90,8 @@ switch (global.game_state) {
 		}
 		break;
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

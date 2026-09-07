@@ -1,5 +1,14 @@
-// File: obj_projectile_arrow.gml
-// Event: create
+// ===========================================================================
+// OBJECT:       obj_projectile_arrow
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Arrow Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures an arrow's speed, direction, damage, range, origin, owner, and sprite after inherited projectile setup.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -12,3 +21,8 @@ start_y = y;
 
 vx = 0;
 vy = 0;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

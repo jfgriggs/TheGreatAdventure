@@ -20,3 +20,6 @@ A cooldown is a timer that prevents an action from happening every frame. The we
 
 ## Known notes
 Different weapon types vary through definition data and projectile object selection.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

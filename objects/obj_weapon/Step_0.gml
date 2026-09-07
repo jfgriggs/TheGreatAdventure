@@ -1,8 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_weapon
-// EVENT:       Step
-// SYSTEM:      Weapon Pickup Runtime Update
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_weapon
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Weapon Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Updates shared weapon cooldown and firing behavior based on its owner and selected weapon definition.
+//
+// ===========================================================================
 
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
@@ -79,3 +85,8 @@ if (point_distance(x, y, p.x, p.y) < pickup_radius) {
 
 	instance_destroy();
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -20,3 +20,6 @@ A child configuration value tells shared code which type it should recognize.
 
 ## Known notes
 Simple configuration-only Create event using `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

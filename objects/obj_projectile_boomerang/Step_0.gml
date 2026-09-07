@@ -1,12 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_projectile_boomerang
-// EVENT:       Step
-// SYSTEM:      Boomerang Runtime
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_projectile_boomerang
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Boomerang Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Calculates elliptical boomerang flight, limits its path, checks wall collision, and destroys it after return or timeout.
+//
+// ===========================================================================
 
-/// =========================
-/// INITIALIZE ELLIPSE
-/// =========================
 if (!initialized) {
 	// -------------------------------------------------------------
 	// PLAYER POSITION
@@ -111,3 +114,8 @@ if (instance_exists(owner)) {
 		exit;
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

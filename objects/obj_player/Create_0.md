@@ -20,3 +20,6 @@ A player object is an owner of several pieces of runtime state. A state machine 
 
 ## Known notes
 The child player Create events provide character identity or presentation while this parent handles shared setup.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

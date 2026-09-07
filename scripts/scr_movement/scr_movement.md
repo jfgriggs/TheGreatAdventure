@@ -20,3 +20,6 @@ A helper function is reusable code. A dependency is another system a piece of co
 
 ## Known notes
 The source contains the project's shared movement contract, including optional safe-area checks and impulses. Objects outside this contract may use different legacy fields.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

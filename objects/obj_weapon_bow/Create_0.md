@@ -20,3 +20,6 @@ A definition struct packages settings for one weapon.
 
 ## Known notes
 Configuration-only child event calling `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

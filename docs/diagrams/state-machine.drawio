@@ -1,0 +1,24 @@
+<mxfile host="app.diagrams.net" modified="2026-09-07T00:00:00.000Z" agent="The Great Adventure Documentation" version="24.7.17">
+  <diagram id="state-machine" name="State Machine">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="owner" value="Owner object&#xa;obj_player or obj_animal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1"><mxGeometry x="420" y="30" width="280" height="75" as="geometry" /></mxCell>
+        <mxCell id="machine" value="StateMachine(owner)&#xa;current state + time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1"><mxGeometry x="420" y="170" width="280" height="75" as="geometry" /></mxCell>
+        <mxCell id="idle" value="State struct&#xa;Idle / Decide&#xa;on_update()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="70" y="350" width="220" height="75" as="geometry" /></mxCell>
+        <mxCell id="move" value="State struct&#xa;Move / Wander&#xa;on_update()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="360" y="350" width="220" height="75" as="geometry" /></mxCell>
+        <mxCell id="action" value="State struct&#xa;Attack / Flee&#xa;on_update()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="650" y="350" width="220" height="75" as="geometry" /></mxCell>
+        <mxCell id="shared" value="Shared systems&#xa;Movement, damage, weapons&#xa;perform the requested action" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;" vertex="1" parent="1"><mxGeometry x="350" y="540" width="360" height="80" as="geometry" /></mxCell>
+        <mxCell id="callback" value="Optional callbacks&#xa;on_enter() -> on_update() -> on_exit()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1"><mxGeometry x="820" y="170" width="260" height="75" as="geometry" /></mxCell>
+        <mxCell id="s1" value="creates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="owner" target="machine"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s2" value="changes to" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="machine" target="idle"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s3" value="transitions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="idle" target="move"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s4" value="transitions" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="move" target="action"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s5" value="requests action" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="action" target="shared"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s6" value="updates current state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="machine" target="callback"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="s7" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;" edge="1" parent="1" source="callback" target="machine"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

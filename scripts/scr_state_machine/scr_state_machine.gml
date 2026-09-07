@@ -1,36 +1,18 @@
-// =============================================================================
-// SCRIPT:      scr_state_machine
-// TYPE:        Shared State Machine Subsystem
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_state_machine
+// REVISION:     1.0.0
+// SYSTEM:       State Machine System
+// ARCHITECTURE: Shared State Machine System
+//
+// DESCRIPTION:
+// Defines the StateMachine constructor. It stores the current behavior state, its owner, and time spent in that state.
+//
+// ===========================================================================
 
-/// @description Centralized reusable state machine system used by player, animal, and enemy AI systems.
-///
-/// Responsibilities:
-/// - State creation/management
-/// - State transitions
-/// - Enter/exit callback handling
-/// - State validation
-/// - Update dispatching
-/// - Runtime state tracking
-///
-/// Public API:
-/// - StateMachine()
-/// - sm.change()
-/// - sm.update()
-/// - sm.is_state()
-///
-/// Notes:
-/// - States are struct-based
-/// - States should contain:
-///     name
-///     update
-///     optional enter
-///     optional exit
-/// - Explicit owner injection is required
-/// - Transitions use sm.change(NewState(sm))
-/// - Shared gameplay logic should remain outside state machine core
-/// - Keep this subsystem generic and reusable
-
+/// @function StateMachine
+/// @description Handles statemachine for this file's subsystem.
+/// @param {Any} _owner Input used by StateMachine.
+/// @returns {Any} The result of the operation, when it produces one.
 function StateMachine(_owner) constructor {
 	owner = _owner;
 
@@ -41,6 +23,10 @@ function StateMachine(_owner) constructor {
 	// Validate state
 	// =========================================
 
+/// @function validate_state
+/// @description Handles validate state for this file's subsystem.
+/// @param {Any} _state Input used by validate_state.
+/// @returns {Any} The result of the operation, when it produces one.
 	validate_state = function(_state) {
 		if (!is_struct(_state)) {
 			show_error("StateMachine Error: State is not a struct.", true);
@@ -63,6 +49,10 @@ function StateMachine(_owner) constructor {
 	// =========================================
 	// Change state
 	// =========================================
+/// @function change
+/// @description Handles change for this file's subsystem.
+/// @param {Any} _new_state Input used by change.
+/// @returns {void} The result of the operation, when it produces one.
 	change = function(_new_state) {
 		validate_state(_new_state);
 
@@ -89,6 +79,9 @@ function StateMachine(_owner) constructor {
 	// =========================================
 	// Update current state
 	// =========================================
+/// @function update
+/// @description Handles update for this file's subsystem.
+/// @returns {Any} The result of the operation, when it produces one.
 	update = function() {
 		time++;
 
@@ -103,3 +96,8 @@ function StateMachine(_owner) constructor {
 		}
 	};
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

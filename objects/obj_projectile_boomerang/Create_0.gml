@@ -1,8 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_projectile_boomerang
-// EVENT:       Create
-// SYSTEM:      Boomerang Initialization
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_projectile_boomerang
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Boomerang Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes boomerang damage, owner, elliptical flight geometry, timing, spin, and return tracking after inherited setup.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -77,3 +83,8 @@ spin_speed = 30;
 initialized = false;
 
 event_inherited();
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

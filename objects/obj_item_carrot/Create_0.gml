@@ -1,26 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_item_carrot
-// EVENT:       Create
-// SYSTEM:      Item Configuration
-// =============================================================================
-
-/// @description Configures carrot-specific item behavior and data.
-///
-/// Parent Object:
-/// - obj_item
-///
-/// Responsibilities:
-/// - Assign carrot item type
-/// - Configure item data struct
-/// - Setup vegetable-specific properties
-/// - Configure throw/interactions
-/// - Initialize visual configuration
-///
-/// Notes:
-/// - Inherits shared behavior from obj_item
-/// - Item data should remain data-driven
-/// - Shared item logic belongs in scr_items
-/// - Avoid duplicating generic item functionality here
+// ===========================================================================
+// OBJECT:       obj_item_carrot
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Item Carrot Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures an item as carrot using ITEM.CARROT, its centralized definition, life value, and sprite mask.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -44,3 +32,8 @@ life = item.life;
 
 sprite_index = item.sprite;
 mask_index = item.sprite;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

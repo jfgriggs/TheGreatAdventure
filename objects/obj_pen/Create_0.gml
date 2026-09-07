@@ -1,29 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_pen
-// EVENT:       Create
-// SYSTEM:      Pen Base Initialization
-// =============================================================================
-
-/// @description Initializes shared pen systems, runtime variables, and animal containment behavior for all pen child objects.
-///
-/// Child Objects:
-/// - obj_pen_chicken
-/// - obj_pen_cow
-/// - obj_pen_*
-///
-/// Responsibilities:
-/// - Initialize pen configuration
-/// - Setup accepted animal type
-/// - Configure containment behavior
-/// - Initialize scoring/reward variables
-/// - Setup visual/debug configuration
-/// - Configure interaction settings
-///
-/// Notes:
-/// - Child objects assign supported animal type
-/// - Pens should remain data-driven
-/// - Shared validation logic should remain centralized
-/// - Avoid species-specific logic in parent object
+// ===========================================================================
+// OBJECT:       obj_pen
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Pen Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes shared pen data, including score_value, for animal containment areas.
+//
+// ===========================================================================
 
 show_debug_message("Pen created: " + object_get_name(object_index));
 
@@ -34,3 +19,8 @@ show_debug_message("Pen created: " + object_get_name(object_index));
 //}
 
 score_value = 100;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

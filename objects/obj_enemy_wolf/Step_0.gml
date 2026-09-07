@@ -1,29 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_enemy_predator
-// EVENT:       Create
-// SYSTEM:      Enemy Configuration
-// =============================================================================
-
-/// @description Configures predator-specific enemy data, combat behavior, and AI tuning.
-///
-/// Parent Object:
-/// - obj_enemy_parent
-///
-/// Responsibilities:
-/// - Assign enemy type
-/// - Configure predator data struct
-/// - Setup ranged combat properties
-/// - Configure movement/AI tuning
-/// - Initialize targeting variables
-/// - Configure projectile behavior
-/// - Setup visual/animation configuration
-///
-/// Notes:
-/// - Inherits shared enemy behavior from obj_enemy_parent
-/// - Shared AI logic belongs in scr_enemy_states
-/// - Shared combat logic belongs in scr_combat
-/// - Enemy definitions should remain data-driven
-/// - Avoid duplicating shared enemy functionality here
+// ===========================================================================
+// OBJECT:       obj_enemy_wolf
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Wolf Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Updates wolf behavior, invincibility, knockback, and movement while gameplay is active.
+//
+// ===========================================================================
 
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
@@ -40,3 +25,8 @@ if (abs(knockback_x) > 0.1 || abs(knockback_y) > 0.1) {
 	knockback_x *= 0.8;
 	knockback_y *= 0.8;
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

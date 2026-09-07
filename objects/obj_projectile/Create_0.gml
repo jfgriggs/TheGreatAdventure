@@ -1,8 +1,14 @@
-/// @description obj_projectile : Create Event
-
-// --------------------------------------------------
-// Ownership
-// --------------------------------------------------
+// ===========================================================================
+// OBJECT:       obj_projectile
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes shared projectile fields such as speed, direction, damage, range, origin, owner, and lifetime.
+//
+// ===========================================================================
 
 owner = noone;
 
@@ -32,3 +38,8 @@ max_distance = 0;
 distance_traveled = 0;
 
 destroy_on_hit = true;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

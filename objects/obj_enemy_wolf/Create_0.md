@@ -20,3 +20,6 @@ An instance function can be called by the object's own behavior as a stored call
 
 ## Known notes
 The movement fields are part of the observed legacy enemy implementation.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

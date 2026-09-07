@@ -20,3 +20,6 @@ A path can be described with geometry instead of a straight line. The owner refe
 
 ## Known notes
 The source initializes its path lazily in Step after creation.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

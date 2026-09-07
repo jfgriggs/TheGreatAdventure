@@ -1,8 +1,14 @@
-/// @description obj_garden_plant : Create Event
-
-// --------------------------------------------------
-// Crop Configuration
-// --------------------------------------------------
+// ===========================================================================
+// OBJECT:       obj_garden_plant
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Garden Plant Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes a garden plant's item type, growth timing, harvest sound, sprite, pickup radius, and starting growth stage.
+//
+// ===========================================================================
 
 item_type = ITEM.NONE;
 
@@ -39,3 +45,8 @@ harvested = false;
 image_speed = 0;
 
 image_index = irandom_range(PLANT_STAGE.SPROUT, PLANT_STAGE.HARVESTED);
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

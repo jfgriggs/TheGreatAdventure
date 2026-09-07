@@ -20,3 +20,6 @@ Event order is the sequence in which a game runs different pieces of code each f
 
 ## Known notes
 This event is intentionally separate from the controller's normal Step timing.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

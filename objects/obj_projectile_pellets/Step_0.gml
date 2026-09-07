@@ -1,9 +1,15 @@
-// File: obj_projectile.gml
-// Event: step
+// ===========================================================================
+// OBJECT:       obj_projectile_pellets
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Pellets Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Moves pellets, checks wall collision, tests enemy hits, and removes pellets after their range is used.
+//
+// ===========================================================================
 
-/// =========================
-/// VELOCITY
-/// =========================
 vx = lengthdir_x(speed, direction);
 vy = lengthdir_y(speed, direction);
 
@@ -42,3 +48,8 @@ if (remaining <= 0) {
 }
 
 event_inherited();
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

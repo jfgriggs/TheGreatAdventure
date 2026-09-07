@@ -20,3 +20,6 @@ A parent object is a reusable base. Legacy naming can remain compatible while be
 
 ## Known notes
 The `oTree...` naming is an older project convention.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

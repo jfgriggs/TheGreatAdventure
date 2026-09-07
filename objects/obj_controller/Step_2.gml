@@ -1,26 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_controller
-// EVENT:       End Step
-// SYSTEM:      Camera System
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_controller
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Controller Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Performs a second controller Step event for additional recurring world or camera-related controller work.
+//
+// ===========================================================================
 
-/// @description Updates camera positioning and post-movement effects.
-///
-/// Responsibilities:
-/// - Smooth camera follow
-/// - Camera interpolation
-/// - Screen shake handling
-/// - Final camera positioning
-///
-/// Notes:
-/// - Runs after entity movement is finalized
-/// - Camera effects should be applied here
-
-// Camera follow
-
-/// =========================
-/// DEFERRED PLAYER SPAWN
-/// =========================
 if (spawn_player_pending) {
 	spawn_player_pending = false;
 	instance_create_layer(
@@ -77,3 +66,8 @@ if (!is_undefined(global.player_object)) {
 		camera_set_view_pos(cam, cx, cy);
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -31,8 +31,10 @@ Provide a disciplined, one-file-at-a-time workflow for maintaining The Great Adv
 9. Make the smallest focused edit only when authorized.
 10. Update the matching `.md` companion file in the same directory whenever GML changes.
 11. Update central `docs/` guides when architecture, relationships, public contracts, or workflow changes.
-12. Validate with the narrowest useful test, run, compile, lint, or inspection available.
-13. Report behavior preserved, documentation updated, validation performed, remaining risk, and the next recommended file.
+12. Update the relevant editable `.drawio` diagram when a documented system relationship, object hierarchy, state transition, or update flow changes.
+13. Inspect all related documentation after any file edit. Update affected companions, guides, diagrams, or asset documentation in the same change; if none are affected, explain why.
+14. Validate with the narrowest useful test, run, compile, lint, or inspection available.
+15. Report behavior preserved, documentation updated or intentionally unchanged with rationale, diagram updates when applicable, validation performed, remaining risk, and the next recommended file.
 
 ## Architectural Rules
 
@@ -69,6 +71,8 @@ Before accepting a change, check the applicable items:
 - Are stale names, parent references, event names, and TODO documentation corrected when the file is intentionally reviewed?
 - Does every GML file have a same-directory Markdown companion, and was it updated with the source change?
 - Are central learning guides updated when the architecture or public contract changes?
+- Are relevant Draw.io diagrams updated when the relationships they show change?
+- Was related documentation inspected after every edited file, with affected documents updated in the same change or a reason recorded for leaving them unchanged?
 
 ## Review Standard
 

@@ -20,3 +20,6 @@ Lazy initialization means waiting until the first update to calculate data. A ti
 
 ## Known notes
 The boomerang's movement is intentionally different from straight projectiles.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -1,35 +1,18 @@
-// =============================================================================
-// SCRIPT:      scr_player_states
-// TYPE:        Player State Definitions
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_player_states
+// REVISION:     1.0.0
+// SYSTEM:       Player States System
+// ARCHITECTURE: Shared Player States System
+//
+// DESCRIPTION:
+// Defines player states for movement, attacking, taking damage, and other player-controlled transitions.
+//
+// ===========================================================================
 
-/// @description Contains all player state constructors and shared player state behavior.
-///
-/// Responsibilities:
-/// - Define player state logic
-/// - Handle state transitions
-/// - Process movement state behavior
-/// - Handle attack/throw behavior
-/// - Coordinate animation state updates
-/// - Process input-driven state changes
-/// - Coordinate movement/combat requests
-///
-/// States:
-/// - Player_Idle
-/// - Player_Move
-/// - Player_Throw
-/// - Player_Attack
-///
-/// Notes:
-/// - States are struct-based
-/// - Transitions use sm.change(NewState(sm))
-/// - Shared movement logic belongs in scr_movement
-/// - Shared combat logic belongs in scr_combat
-/// - Avoid embedding large subsystem logic directly in states
-/// - Keep states focused on orchestration and transitions
-
-/// =========================
-/// PLAYER STATE: IDLE
+/// @function Player_Idle
+/// @description Handles player idle for this file's subsystem.
+/// @param {Any} _sm Input used by Player_Idle.
+/// @returns {Any} The result of the operation, when it produces one.
 function Player_Idle(_sm) {
 	return {
 		name: "idle",
@@ -62,6 +45,10 @@ function Player_Idle(_sm) {
 /// =========================
 /// PLAYER STATE: MOVE
 /// =========================
+/// @function Player_Move
+/// @description Handles player move for this file's subsystem.
+/// @param {Any} _sm Input used by Player_Move.
+/// @returns {Any} The result of the operation, when it produces one.
 function Player_Move(_sm) {
 	return {
 		name: "move",
@@ -104,6 +91,10 @@ function Player_Move(_sm) {
 /// =========================
 /// PLAYER STATE: TELEPORT
 /// =========================
+/// @function Player_Teleport
+/// @description Handles player teleport for this file's subsystem.
+/// @param {Any} _sm Input used by Player_Teleport.
+/// @returns {Any} The result of the operation, when it produces one.
 function Player_Teleport(_sm) {
 	return {
 		name: "teleport",
@@ -200,6 +191,10 @@ function Player_Teleport(_sm) {
 /// =========================
 /// PLAYER STATE: ATTACK
 /// =========================
+/// @function Player_Attack
+/// @description Handles player attack for this file's subsystem.
+/// @param {Any} _sm Input used by Player_Attack.
+/// @returns {Any} The result of the operation, when it produces one.
 function Player_Attack(_sm) {
 	return {
 		name: "attack",
@@ -251,6 +246,10 @@ function Player_Attack(_sm) {
 /// =========================
 /// PLAYER STATE: THROW
 /// =========================
+/// @function Player_Throw
+/// @description Handles player throw for this file's subsystem.
+/// @param {Any} _sm Input used by Player_Throw.
+/// @returns {Any} The result of the operation, when it produces one.
 function Player_Throw(_sm) {
 	return {
 		name: "throw",
@@ -291,6 +290,10 @@ function Player_Throw(_sm) {
 /// =========================
 /// PLAYER STATE: HIT
 /// =========================
+/// @function Player_Hit
+/// @description Handles player hit for this file's subsystem.
+/// @param {Any} _sm Input used by Player_Hit.
+/// @returns {Any} The result of the operation, when it produces one.
 function Player_Hit(_sm) {
 	return {
 		name: "hit",
@@ -309,3 +312,8 @@ function Player_Hit(_sm) {
 		},
 	};
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

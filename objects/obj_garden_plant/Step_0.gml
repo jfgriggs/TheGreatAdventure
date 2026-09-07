@@ -1,8 +1,14 @@
-/// @description obj_garden_plant : Step Event
-
-// --------------------------------------------------
-// Growth Timer
-// --------------------------------------------------
+// ===========================================================================
+// OBJECT:       obj_garden_plant
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Garden Plant Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Advances plant growth and lets a nearby player harvest a fruiting plant into inventory.
+//
+// ===========================================================================
 
 growth_timer--;
 
@@ -89,3 +95,8 @@ if (image_index == PLANT_STAGE.FRUITING) {
 		}
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

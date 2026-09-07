@@ -1,39 +1,17 @@
-// =============================================================================
+// ===========================================================================
 // SCRIPT:       scr_globals
 // REVISION:     1.1.0
-// SYSTEM:       Global Enums & Constants
-// ARCHITECTURE: Shared Definitions
+// SYSTEM:       Globals System
+// ARCHITECTURE: Shared Globals System
 //
 // DESCRIPTION:
-// Defines project-wide enumerations and constants shared across multiple
-// subsystems. This script intentionally contains identifiers only and should
-// not contain runtime state or configuration data.
+// Defines shared enums and Globals_Initialize(), which sets the starting game state, timing, score, player object, and spawn position.
 //
-// =============================================================================
+// ===========================================================================
 
-// -----------------------------------------------------------------------------
-// Revision History
-// -----------------------------------------------------------------------------
-//
-// 1.1.0
-// • Standardized file header.
-// • Added revision history.
-// • Standardized section headers.
-// • Clarified architecture responsibilities.
-//
-// 1.0.0
-// • Initial implementation.
-//
-
-// =============================================================================
-// World Constants
-// =============================================================================
-
-
-/// @function Globals_Initialize()
-/// @description
-/// Initializes game-wide global variables and constants. Safe to call once
-/// during game startup.
+/// @function Globals_Initialize
+/// @description Handles globals initialize for this file's subsystem.
+/// @returns {void} The result of the operation, when it produces one.
 function Globals_Initialize()
 {
 	
@@ -154,3 +132,8 @@ enum PLANT_STAGE {
     FRUITING,
     HARVESTED,
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.1.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

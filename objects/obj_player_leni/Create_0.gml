@@ -1,8 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_player_leni
-// EVENT:       Create
-// SYSTEM:      Leni Configuration
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_player_leni
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Player Leni Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the player as Leni and then uses the shared player initialization.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -23,3 +29,8 @@ acceleration = 0.28;
 movement_damping = 0.06;
 max_speed = move_speed;
 impulse_decay = 0.55;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -1,4 +1,14 @@
-// File: oBuildingParent.gml
+// ===========================================================================
+// OBJECT:       obj_building
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Building Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Runs the recurring building interaction or update logic defined for the base building object.
+//
+// ===========================================================================
 
 var p = global.player_object;
 
@@ -17,3 +27,8 @@ with (obj_obstacle) {
 
 	image_alpha = lerp(image_alpha, target, 0.2);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

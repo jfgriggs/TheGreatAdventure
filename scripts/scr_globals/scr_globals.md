@@ -20,3 +20,6 @@ An enum is a list of readable names for numbers. A global value can be read by m
 
 ## Known notes
 Initialization preserves an existing `game_state` when one already exists; otherwise it starts at `GAME_STATE.STARTING`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

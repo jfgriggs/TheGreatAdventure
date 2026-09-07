@@ -20,3 +20,6 @@ A projectile is an object with its own flight state. A parent provides common se
 
 ## Known notes
 Child projectiles may use different flight formulas or target checks.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

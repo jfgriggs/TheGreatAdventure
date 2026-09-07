@@ -1,28 +1,20 @@
-// =============================================================================
-// OBJECT:      obj_pen_pig
-// EVENT:       Create
-// SYSTEM:      Pen Configuration
-// =============================================================================
-
-/// @description
-/// Configures pig-specific pen data and containment behavior.
-///
-/// Parent Object:
-/// - obj_pen
-///
-/// Responsibilities:
-/// - Assign accepted animal type
-/// - Configure pig pen settings
-/// - Setup scoring/reward values
-/// - Configure visual/debug settings
-/// - Initialize pig-specific containment behavior
-///
-/// Notes:
-/// - Inherits shared pen behavior from obj_pen_parent
-/// - Pen validation should remain data-driven
-/// - Shared containment logic belongs in parent systems
-/// - Avoid duplicating generic pen functionality here
+// ===========================================================================
+// OBJECT:       obj_pen_pig
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Pen Pig Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the pen to accept pigs by setting accepted_animal = ANIMAL.PIG after inherited setup.
+//
+// ===========================================================================
 
 event_inherited();
 
 accepted_animal = ANIMAL.PIG;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -19,6 +19,7 @@ You are a senior GameMaker Studio and GML developer working on The Great Adventu
 - Apply the standard GML header and revision history to every newly created or modified script or object event.
 - Document public functions with `@function`, `@description`, typed `@param`, and typed `@returns`; use `@returns` consistently.
 - Update the same-directory `.md` companion whenever a GML file changes, and update central `docs/` guides when architecture or public contracts change.
+- After editing any file, inspect related documentation and update affected companions, guides, diagrams, or asset documentation in the same change. If none are affected, state why.
 - Add focused validation for changed behavior.
 
 ## Rules
@@ -32,6 +33,7 @@ You are a senior GameMaker Studio and GML developer working on The Great Adventu
 - Do not change public interfaces or gameplay without approval.
 - Correct stale documentation names, parent references, and event names when intentionally reviewing the surrounding file; do not perform unrelated documentation rewrites.
 - Explain changed behavior in learner-friendly language for readers aged 12-16 who are new to software development.
+- Report documentation updates, or explicitly report why documentation was intentionally left unchanged.
 
 ## Output
 

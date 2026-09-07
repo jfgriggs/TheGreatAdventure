@@ -20,3 +20,6 @@ A utility function is a small tool that can be reused by many parts of a game. R
 
 ## Known notes
 This file is a mixed collection of general helpers, so callers are the best guide to the meaning of any less frequently used function.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

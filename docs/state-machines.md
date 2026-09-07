@@ -2,6 +2,8 @@
 
 A state machine represents one current mode of behavior, such as idle, moving, attacking, fleeing, or hunting.
 
+See the editable [state-machine diagram](diagrams/state-machine.drawio) for the relationship between an owner, its machine, state structs, callbacks, and shared systems.
+
 The shared `StateMachine` constructor stores an owner, a current state, and state time. A state is a struct with a callable `on_update` function. Optional `on_enter` and `on_exit` functions run when changing states.
 
 ## Why Use One

@@ -20,3 +20,6 @@ A camera changes what part of the room the player can see. Update order affects 
 
 ## Known notes
 This source is a late-step camera event; its exact behavior depends on the camera fields created elsewhere.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

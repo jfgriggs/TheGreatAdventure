@@ -1,7 +1,18 @@
-// =============================================================================
-// SCRIPT: scr_animal_states
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_animal_states
+// REVISION:     1.0.0
+// SYSTEM:       Animal States System
+// ARCHITECTURE: Shared Animal States System
+//
+// DESCRIPTION:
+// Builds animal behavior states such as wandering, fleeing, and returning or resting, using callbacks for updates and transitions.
+//
+// ===========================================================================
 
+/// @function Animal_Decide
+/// @description Handles animal decide for this file's subsystem.
+/// @param {Any} _sm Input used by Animal_Decide.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Decide(_sm) {
 	return {
 		sm: _sm,
@@ -96,6 +107,10 @@ function Animal_Decide(_sm) {
 // =============================================================================
 // FOLLOW
 // =============================================================================
+/// @function Animal_Follow
+/// @description Handles animal follow for this file's subsystem.
+/// @param {Any} _sm Input used by Animal_Follow.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Follow(_sm) {
 	return {
 		sm: _sm,
@@ -148,6 +163,10 @@ function Animal_Follow(_sm) {
 // =============================================================================
 // EAT
 // =============================================================================
+/// @function Animal_Eat
+/// @description Handles animal eat for this file's subsystem.
+/// @param {Any} _sm Input used by Animal_Eat.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Eat(_sm) {
 	return {
 		sm: _sm,
@@ -220,6 +239,10 @@ function Animal_Eat(_sm) {
 // =============================================================================
 // FLEE
 // =============================================================================
+/// @function Animal_Flee
+/// @description Handles animal flee for this file's subsystem.
+/// @param {Any} _sm Input used by Animal_Flee.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Flee(_sm) {
 	return {
 		sm: _sm,
@@ -274,3 +297,8 @@ function Animal_Flee(_sm) {
 		},
 	};
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

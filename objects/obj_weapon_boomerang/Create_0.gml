@@ -1,22 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_weapon_boomerang
-// EVENT:       Create
-// SYSTEM:      Boomerang Configuration
-// =============================================================================
-
-/// @description Configures boomerang pickup data.
-///
-/// Parent Object:
-/// - obj_weapon
-///
-/// Responsibilities:
-/// - Configure boomerang weapon payload
-/// - Configure pickup visuals
-///
-/// Notes:
-/// - Inventory payload remains data-driven
-/// - Shared runtime logic belongs in obj_weapon
-/// - Shared combat logic belongs in scr_weapons
+// ===========================================================================
+// OBJECT:       obj_weapon_boomerang
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Weapon Boomerang Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the weapon as a boomerang using its centralized weapon definition and inherited setup.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -34,3 +26,8 @@ weapon = Weapon_Create(weapon_type);
 
 sprite_index = weapon.sprite;
 mask_index = weapon.sprite;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

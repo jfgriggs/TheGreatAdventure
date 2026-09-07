@@ -1,8 +1,14 @@
-/// @description obj_projectile : Step Event
-
-// --------------------------------------------------
-// Hit Animal
-// --------------------------------------------------
+// ===========================================================================
+// OBJECT:       obj_projectile
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Runs shared projectile travel, tile collision, range or lifetime checks, and hit processing.
+//
+// ===========================================================================
 
 var _animal = instance_place(x, y, obj_animal);
 
@@ -38,3 +44,8 @@ if (max_distance > 0) {
 		exit;
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

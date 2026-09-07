@@ -1,24 +1,23 @@
-// =============================================================================
-// OBJECT:      obj_hud
-// EVENT:       Create
-// SYSTEM:      HUD Initialization
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_hud
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Hud Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Creates HUD drawing helper functions for panels and rounded panels.
+//
+// ===========================================================================
 
-/// @description Initializes HUD configuration, display settings, runtime UI variables, and cached references.
-///
-/// Responsibilities:
-/// - Initialize HUD display variables
-/// - Setup fonts and UI spacing
-/// - Cache player/controller references
-/// - Configure debug display flags
-/// - Initialize temporary UI timers/effects
-///
-/// Notes:
-/// - HUD should remain presentation-only
-/// - Avoid gameplay logic in HUD systems
-/// - Pull gameplay data from centralized systems
-/// - Fullscreen overlays belong in obj_controller
-
+/// @function draw_panel_fn
+/// @description Handles draw panel fn for this file's subsystem.
+/// @param {Any} x1 Input used by draw_panel_fn.
+/// @param {Any} y1 Input used by draw_panel_fn.
+/// @param {Any} x2 Input used by draw_panel_fn.
+/// @param {Any} y2 Input used by draw_panel_fn.
+/// @param {Any} alpha Input used by draw_panel_fn.
+/// @returns {void} The result of the operation, when it produces one.
 draw_panel_fn = function(x1, y1, x2, y2, alpha) {
 	draw_set_color(c_black);
 	draw_set_alpha(alpha);
@@ -26,6 +25,15 @@ draw_panel_fn = function(x1, y1, x2, y2, alpha) {
 	draw_set_alpha(1);
 };
 
+/// @function draw_panel_rounded_fn
+/// @description Handles draw panel rounded fn for this file's subsystem.
+/// @param {Any} x1 Input used by draw_panel_rounded_fn.
+/// @param {Any} y1 Input used by draw_panel_rounded_fn.
+/// @param {Any} x2 Input used by draw_panel_rounded_fn.
+/// @param {Any} y2 Input used by draw_panel_rounded_fn.
+/// @param {Any} radius Input used by draw_panel_rounded_fn.
+/// @param {Any} alpha Input used by draw_panel_rounded_fn.
+/// @returns {void} The result of the operation, when it produces one.
 draw_panel_rounded_fn = function(x1, y1, x2, y2, radius, alpha) {
 	draw_set_alpha(alpha);
 
@@ -48,3 +56,8 @@ draw_panel_rounded_fn = function(x1, y1, x2, y2, radius, alpha) {
 
 	draw_set_alpha(1);
 };
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

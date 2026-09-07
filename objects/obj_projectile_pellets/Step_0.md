@@ -20,3 +20,6 @@ Multiple instances can represent one action, such as a shotgun blast.
 
 ## Known notes
 The target checks are explicit in the source rather than a general target registry.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

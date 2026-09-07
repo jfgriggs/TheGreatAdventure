@@ -4,6 +4,8 @@
 
 A parent object contains behavior that several related objects share. A child object inherits that behavior and supplies identity or configuration.
 
+See the editable [object hierarchy diagram](diagrams/object-hierarchy.drawio) for the animal example and Create-event ordering.
+
 For example:
 
 ```text

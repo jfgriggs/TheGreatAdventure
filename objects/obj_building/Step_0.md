@@ -20,3 +20,6 @@ A parent object can provide one common runtime event for many building types.
 
 ## Known notes
 This event contains shared building behavior; child-specific setup is stored in child objects.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

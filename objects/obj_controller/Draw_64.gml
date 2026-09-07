@@ -1,20 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_controller
-// EVENT:       Draw GUI
-// SYSTEM:      UI / Global Overlay Rendering
-// =============================================================================
-
-/// @description Draws fullscreen overlays and global game-state UI.
-///
-/// Responsibilities:
-/// - Draw pause overlay
-/// - Draw game over screen
-/// - Draw fade transitions
-/// - Draw startup overlays
-///
-/// Notes:
-/// - Gameplay HUD belongs in obj_hud
-/// - Keep this event limited to global overlays
+// ===========================================================================
+// OBJECT:       obj_controller
+// EVENT:        Draw
+// REVISION:     1.0.0
+// SYSTEM:       Controller Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Draws controller-owned debug or world overlay information in the Draw GUI stage.
+//
+// ===========================================================================
 
 var cx = display_get_gui_width() / 2;
 var cy = display_get_gui_height() / 2;
@@ -82,3 +76,8 @@ if (global.game_state == GAME_STATE.STARTING) {
 		draw_text(cx, cy + 70, "Press R to Restart");
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

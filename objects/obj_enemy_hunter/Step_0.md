@@ -20,3 +20,6 @@ A callback lets the current state decide what happens this frame. Shared parent 
 
 ## Known notes
 This uses the observed legacy enemy movement path; it is intentionally documented rather than normalized here.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -1,36 +1,15 @@
-// =============================================================================
+// ===========================================================================
 // OBJECT:       obj_controller
 // EVENT:        Create
 // REVISION:     1.1.0
-// SYSTEM:       Core Game Controller
-// ARCHITECTURE: Central Game Coordinator
+// SYSTEM:       Controller Object
+// ARCHITECTURE: Object Event Architecture
 //
 // DESCRIPTION:
-// Initializes global game systems, controller-owned resources, camera,
-// tilemap, particles, audio, and initial world population.
+// Initializes the controller, global game values, tilemap access, effects, camera, audio, and starting world instances.
 //
-// =============================================================================
+// ===========================================================================
 
-// -----------------------------------------------------------------------------
-// Revision History
-// -----------------------------------------------------------------------------
-//
-// 1.1.0
-// • Standardized file header.
-// • Standardized section headers.
-// • Removed duplicate tile_check_blocking configuration from animal spawning.
-// • Updated documentation.
-//
-// 1.0.0
-// • Initial implementation.
-//
-
-/// @description
-/// Initializes high-level game systems and controller-owned resources.
-
-// -----------------------------------------------------------------------------
-// Global Variables
-// -----------------------------------------------------------------------------
 Globals_Initialize();
 
 // Cache controller instance for shared systems.
@@ -149,3 +128,8 @@ var animal_spawns =
 ];
 
 Animal_Spawn(animal_spawns);
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.1.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

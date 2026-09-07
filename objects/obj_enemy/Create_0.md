@@ -20,3 +20,6 @@ Parent behavior can support different children. A target is another instance an 
 
 ## Known notes
 Enemy movement setup differs from the shared player and animal movement contract.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

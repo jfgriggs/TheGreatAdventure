@@ -20,3 +20,6 @@ Commented code is not executed. An event can exist as a planned extension withou
 
 ## Known notes
 The commented example checks animals, increments saved counts and points, and destroys an instance, but none of that currently runs.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

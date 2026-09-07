@@ -20,3 +20,6 @@ A child object specializes a parent. `event_inherited()` means run the parent's 
 
 ## Known notes
 This is configuration-only behavior, intentionally kept small.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

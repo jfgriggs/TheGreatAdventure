@@ -20,3 +20,6 @@ Shared initialization is placed in a parent so children do not duplicate it. Run
 
 ## Known notes
 Child item types are selected through inherited setup and centralized item definitions.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

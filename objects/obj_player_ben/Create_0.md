@@ -20,3 +20,6 @@ A child object is a specialized version of a parent object.
 
 ## Known notes
 This is primarily a configuration and presentation event that calls `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

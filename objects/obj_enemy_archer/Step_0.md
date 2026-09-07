@@ -20,3 +20,6 @@ A ranged enemy can use one state for movement and another for attacking. The sta
 
 ## Known notes
 Uses the enemy family's unusual legacy movement path rather than the animal/player shared contract.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

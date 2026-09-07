@@ -1,5 +1,14 @@
-// File: obj_enemy_predator.gml
-// Event: create
+// ===========================================================================
+// OBJECT:       obj_enemy_bear
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Bear Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures bear speed, health, invincibility, knockback, and its local movement function after creating shared state-machine data.
+//
+// ===========================================================================
 
 sm = new StateMachine(id);
 
@@ -15,6 +24,16 @@ knockback_force = 5;
 
 sm.change(Predator_Roam(sm));
 
+/// @function apply_movement
+/// @description Handles apply movement for this file's subsystem.
+/// @param {Any} _vx Input used by apply_movement.
+/// @param {Any} _vy Input used by apply_movement.
+/// @returns {void} The result of the operation, when it produces one.
 apply_movement = function(_vx, _vy) {
 	var o = self;
 };
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

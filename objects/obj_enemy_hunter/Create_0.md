@@ -20,3 +20,6 @@ A local function can act as a method for one instance. Tuning fields change beha
 
 ## Known notes
 Hunter movement follows the enemy family's unusual legacy pattern.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

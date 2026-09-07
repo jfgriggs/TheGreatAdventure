@@ -1,20 +1,14 @@
-// =============================================================================
+// ===========================================================================
 // OBJECT:       obj_player
 // EVENT:        Create
-// SYSTEM:       Player Initialization
-// ARCHITECTURE: Player System
+// REVISION:     1.0.0
+// SYSTEM:       Player Object
+// ARCHITECTURE: Object Event Architecture
 //
 // DESCRIPTION:
-// Initializes the player's runtime variables, shared movement interface,
-// combat systems, inventory, projectile helpers, and state machine.
+// Initializes the shared player: movement, health and damage fields, inventory, weapons, state machine, animation, and game-over tracking.
 //
-// The player uses the shared movement subsystem (scr_movement) and therefore
-// initializes the standard movement interface expected by that system.
-// =============================================================================
-
-// -----------------------------------------------------------------------------
-// Sprite Configuration
-// -----------------------------------------------------------------------------
+// ===========================================================================
 
 face = FACE.DOWN;
 sprite = array_create(4);
@@ -161,21 +155,17 @@ projectile_spawn_forward = 0;
 projectile_spawn_height = -16;
 
 /// @function get_projectile_spawn_x
-/// @description
-/// Returns the X coordinate where projectiles should be created.
-///
-/// @param {_dir} Direction in degrees.
-/// @return {Real}
+/// @description Handles get projectile spawn x for this file's subsystem.
+/// @param {Any} _dir Input used by get_projectile_spawn_x.
+/// @returns {Any} The result of the operation, when it produces one.
 get_projectile_spawn_x = function(_dir = image_angle) {
 	return x + lengthdir_x(projectile_spawn_forward, _dir);
 };
 
 /// @function get_projectile_spawn_y
-/// @description
-/// Returns the Y coordinate where projectiles should be created.
-///
-/// @param {_dir} Direction in degrees.
-/// @return {Real}
+/// @description Handles get projectile spawn y for this file's subsystem.
+/// @param {Any} _dir Input used by get_projectile_spawn_y.
+/// @returns {Any} The result of the operation, when it produces one.
 get_projectile_spawn_y = function(_dir = image_angle) {
 	return y + projectile_spawn_height + lengthdir_y(projectile_spawn_forward, _dir);
 };
@@ -202,8 +192,8 @@ Inventory_Add_Item(self, Item_Create(ITEM.CORN));
 //
 
 /// @function apply_movement
-/// @description
-/// Updates player movement using the shared movement subsystem.
+/// @description Handles apply movement for this file's subsystem.
+/// @returns {void} The result of the operation, when it produces one.
 apply_movement = function() {
 	Movement_Update(self);
 };
@@ -218,3 +208,8 @@ apply_movement = function() {
 
 sm = new StateMachine(id);
 sm.change(Player_Idle(sm));
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

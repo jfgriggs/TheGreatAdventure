@@ -20,3 +20,6 @@ Rendering turns stored game data into a picture. Keeping Draw separate makes beh
 
 ## Known notes
 The exact appearance comes from the child sprite configuration.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

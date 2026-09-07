@@ -125,7 +125,11 @@ Every newly created or modified GML script and object event must use the project
 
 Every GML file must have a companion Markdown file with the same base name in the same directory. For example, `scr_movement.gml` has `scr_movement.md`. The companion document explains the file for technology-familiar learners aged 12-16 who are new to software development.
 
-When GML changes, update its companion Markdown file in the same change. Update central guides under `docs/` when architecture, object relationships, public contracts, or workflow changes. Documentation must describe actual behavior and should explain ownership, dependencies, data structures, parent/child relationships, and important learning concepts.
+When GML changes, update its companion Markdown file in the same change. Update central guides under `docs/` when architecture, object relationships, public contracts, or workflow changes. Update the relevant editable `.drawio` diagram when a system relationship, object hierarchy, state transition, or update flow shown in that diagram changes. Documentation must describe actual behavior and should explain ownership, dependencies, data structures, parent/child relationships, and important learning concepts.
+
+## Documentation Completion Rule
+
+After changing any project file, the AI must inspect the related documentation and decide whether it is affected. If the change alters behavior, ownership, interfaces, relationships, workflows, assets, or user-facing meaning, update the affected documentation in the same change. This includes GML companions, central learning guides, Draw.io diagrams, and relevant asset or system documentation. If no documentation update is needed, state that explicitly and explain why before completing the task.
 
 - Major: breaking architectural or public-interface change
 - Minor: new functionality or significant refactoring

@@ -1,29 +1,14 @@
-/// =============================================================================
-/// OBJECT:      obj_animal
-/// EVENT:       Draw
-/// DESCRIPTION:
-///     Draws the animal with runtime visual feedback.
-///
-/// RESPONSIBILITIES:
-///     - draw directional animal sprite
-///     - tint safe animals
-///     - preserve animation playback
-///     - reset draw state afterward
-///
-/// SAFE VISUALS:
-///     Animals inside their correct pen are tinted green
-///     using image_blend.
-///
-/// NOTES:
-///     Gameplay logic remains centralized elsewhere:
-///
-///     - AI/state machine       -> scr_animal_states
-///     - movement/collision     -> apply_movement()
-///     - tile logic             -> scr_tiles
-///     - safety detection       -> Animal_IsSafe()
-///
-///     This Draw Event is presentation-only.
-/// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_animal
+// EVENT:        Draw
+// REVISION:     1.0.0
+// SYSTEM:       Animal Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Draws the animal sprite and its visual state, including direction or status presentation used by the shared animal object.
+//
+// ===========================================================================
 
 if (flash_timer > 0) {
 	image_blend = c_red;
@@ -83,3 +68,8 @@ if (is_safe) {
 
 	gpu_set_blendmode(bm_normal);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

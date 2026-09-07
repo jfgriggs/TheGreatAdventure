@@ -1,27 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_item_thrown
-// EVENT:       Create
-// SYSTEM:      Thrown Item Initialization
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_item_thrown
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Item Thrown Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes an item that is flying after being thrown, including velocity, drag, distance tracking, owner, life, and damage.
+//
+// ===========================================================================
 
-/// @description Initializes thrown-item runtime behavior, physics, movement variables, and interaction state.
-///
-/// Responsibilities:
-/// - Initialize thrown item data
-/// - Configure movement physics
-/// - Setup drag/deceleration
-/// - Configure collision behavior
-/// - Initialize terrain interaction
-/// - Setup ownership/source references
-/// - Configure lifetime/timers
-///
-/// Notes:
-/// - Thrown item properties should remain data-driven
-/// - Shared movement logic belongs in scr_movement
-/// - Item definitions belong in scr_items
-/// - Avoid hardcoding vegetable-specific behavior here
-
-// Horizontal movement
 vx = 0;
 vy = 0;
 
@@ -51,3 +39,8 @@ landed = false;
 
 // Sprite
 sprite_index = spr_item_carrot; // default (will be overridden)
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

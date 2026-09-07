@@ -20,3 +20,6 @@ A parent event can establish common rules before or alongside child behavior.
 
 ## Known notes
 The enemy family uses legacy movement fields and update paths unlike players and animals.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -20,3 +20,6 @@ An existence check prevents code from using an object that has already been remo
 
 ## Known notes
 The event begins by checking for a player before drawing dependent information.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

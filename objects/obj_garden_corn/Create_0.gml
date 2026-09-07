@@ -1,4 +1,14 @@
-/// @description obj_garden_corn : Create Event
+// ===========================================================================
+// OBJECT:       obj_garden_corn
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Garden Corn Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the shared plant as corn with ITEM.CORN, the corn garden sprite, and the pickup sound.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -33,3 +43,8 @@ harvest_sound = snd_item_pickup;
 //
 // Slower crops:
 // growth_time = room_speed * 20; 
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

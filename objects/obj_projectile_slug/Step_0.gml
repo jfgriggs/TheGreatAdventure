@@ -1,9 +1,15 @@
-// File: obj_projectile.gml
-// Event: step
+// ===========================================================================
+// OBJECT:       obj_projectile_slug
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Slug Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Moves the slug, checks wall tiles, tests enemy targets, and destroys it after its travel limit.
+//
+// ===========================================================================
 
-/// =========================
-/// VELOCITY
-/// =========================
 vx = lengthdir_x(speed, direction);
 vy = lengthdir_y(speed, direction);
 
@@ -42,3 +48,8 @@ if (remaining <= 0) {
 }
 
 event_inherited();
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

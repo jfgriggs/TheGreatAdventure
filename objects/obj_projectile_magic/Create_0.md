@@ -20,3 +20,6 @@ Projectile data controls how a shared object behaves.
 
 ## Known notes
 Configuration extends inherited projectile setup.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

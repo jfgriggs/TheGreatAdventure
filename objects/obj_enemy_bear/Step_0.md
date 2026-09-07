@@ -20,3 +20,6 @@ A Step event repeatedly advances both decisions and physical effects.
 
 ## Known notes
 Uses the enemy family's legacy movement fields rather than shared player/animal movement.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

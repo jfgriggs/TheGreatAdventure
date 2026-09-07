@@ -1,28 +1,20 @@
-// =============================================================================
-// OBJECT:      obj_pen_cow
-// EVENT:       Create
-// SYSTEM:      Pen Configuration
-// =============================================================================
-
-/// @description
-/// Configures cow-specific pen data and containment behavior.
-///
-/// Parent Object:
-/// - obj_pen
-///
-/// Responsibilities:
-/// - Assign accepted animal type
-/// - Configure cow pen settings
-/// - Setup scoring/reward values
-/// - Configure visual/debug settings
-/// - Initialize cow-specific containment behavior
-///
-/// Notes:
-/// - Inherits shared pen behavior from obj_pen_parent
-/// - Pen validation should remain data-driven
-/// - Shared containment logic belongs in parent systems
-/// - Avoid duplicating generic pen functionality here
+// ===========================================================================
+// OBJECT:       obj_pen_cow
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Pen Cow Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the pen to accept cows by inheriting the parent event and setting accepted_animal = ANIMAL.COW.
+//
+// ===========================================================================
 
 event_inherited();
 
 accepted_animal = ANIMAL.COW;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

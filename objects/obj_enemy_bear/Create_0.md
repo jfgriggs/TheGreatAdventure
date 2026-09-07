@@ -20,3 +20,6 @@ A function stored on an instance is a method-like callback for that instance.
 
 ## Known notes
 The local movement setup is an observed legacy enemy pattern.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

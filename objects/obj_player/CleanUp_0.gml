@@ -1,21 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_player
-// EVENT:       Clean Up
-// SYSTEM:      Player Resource Management
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_player
+// EVENT:        Cleanup
+// REVISION:     1.0.0
+// SYSTEM:       Player Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Releases player-owned runtime resources when the player instance is destroyed.
+//
+// ===========================================================================
 
-/// @description Cleans up player-owned runtime resources.
-///
-/// Responsibilities:
-/// - Destroy temporary runtime data
-/// - Cleanup dynamic references
-/// - Release owned resources
-///
-/// Notes:
-/// - Only cleanup resources owned by player instance
-/// - Prevent dangling references and memory leaks
-
-// Weapons list
 if (ds_exists(weapons, ds_type_list)) {
 	ds_list_destroy(weapons);
 }
@@ -29,3 +23,8 @@ if (ds_exists(inventory, ds_type_list)) {
 	}
 	ds_map_destroy(inventory);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

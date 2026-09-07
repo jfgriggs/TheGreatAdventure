@@ -1,32 +1,18 @@
-// =============================================================================
-// SCRIPT:      scr_enemy_predator_states
-// TYPE:        Predator Enemy State Definitions
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_enemy_predator_states
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Predator States System
+// ARCHITECTURE: Shared Enemy Predator States System
+//
+// DESCRIPTION:
+// Defines predator enemy states for patrolling, detecting a player, chasing, and attacking at close range.
+//
+// ===========================================================================
 
-/// @description Contains predator-specific enemy state constructors and shared predator AI behavior.
-///
-/// Responsibilities:
-/// - Define predator AI states
-/// - Handle patrol/chase behavior
-/// - Process target acquisition
-/// - Handle melee attack behavior
-/// - Coordinate movement requests
-/// - Process combat-driven transitions
-/// - Handle animal/player pursuit behavior
-///
-/// States:
-/// - Predator_Roam
-/// - Predator_Hunt
-///
-/// Notes:
-/// - States are struct-based
-/// - Transitions use sm.change(NewState(sm))
-/// - Shared movement logic belongs in scr_movement
-/// - Shared combat logic belongs in scr_combat
-/// - Shared AI helpers belong in scr_ai_common
-/// - Avoid embedding large subsystem logic directly in states
-/// - Keep states focused on orchestration and transitions
-
+/// @function Predator_Roam
+/// @description Handles predator roam for this file's subsystem.
+/// @param {Any} _sm Input used by Predator_Roam.
+/// @returns {Any} The result of the operation, when it produces one.
 function Predator_Roam(_sm) {
 	return {
 		on_update: function() {
@@ -41,6 +27,10 @@ function Predator_Roam(_sm) {
 	};
 }
 
+/// @function Predator_Hunt
+/// @description Handles predator hunt for this file's subsystem.
+/// @param {Any} _sm Input used by Predator_Hunt.
+/// @returns {Any} The result of the operation, when it produces one.
 function Predator_Hunt(_sm) {
 	return {
 		on_update: function() {
@@ -65,3 +55,8 @@ function Predator_Hunt(_sm) {
 		},
 	};
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

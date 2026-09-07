@@ -20,3 +20,6 @@ A HUD is an observer: it reports state owned by other objects. GUI coordinates s
 
 ## Known notes
 It formats seconds with leading zeroes and handles missing instances before reading them.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

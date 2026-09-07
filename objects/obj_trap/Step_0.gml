@@ -1,25 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_trap
-// EVENT:       Step
-// SYSTEM:      Trap Runtime Update
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_trap
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Trap Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Counts down a trap, destroys it when its lifetime ends, and damages nearby supported enemies.
+//
+// ===========================================================================
 
-/// @description Updates trap activation, interaction checks, runtime state, and effect processing.
-///
-/// Responsibilities:
-/// - Detect entity interactions
-/// - Process trap activation
-/// - Apply damage/effects
-/// - Update timers/state
-/// - Trigger visual/audio feedback
-/// - Handle reset/cooldown behavior
-///
-/// Notes:
-/// - Shared combat/effect systems should remain centralized
-/// - Avoid embedding entity-specific logic directly here
-/// - Trap effects should remain modular and data-driven
-
-// If game not playing stop
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
 }
@@ -41,3 +31,8 @@ with (obj_enemy_wolf) {
 		speed *= 0.9;
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

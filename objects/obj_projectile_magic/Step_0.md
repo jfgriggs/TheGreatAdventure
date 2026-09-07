@@ -20,3 +20,6 @@ A projectile owns its flight until it reaches a wall, target, or limit.
 
 ## Known notes
 Its behavior is kept separate from the weapon that created it.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

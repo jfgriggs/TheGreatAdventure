@@ -20,3 +20,6 @@ A parent can store a default used by several children.
 
 ## Known notes
 The source contains configuration only; detailed containment logic is not active in this Create event.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

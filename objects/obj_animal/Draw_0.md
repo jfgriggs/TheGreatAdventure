@@ -20,3 +20,6 @@ Drawing is presentation: it shows state without deciding behavior. Inheritance l
 
 ## Known notes
 The visible result depends on the sprite and direction values configured by the animal definition.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

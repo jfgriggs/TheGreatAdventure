@@ -1,29 +1,20 @@
-// =============================================================================
-// SCRIPT:      scr_damage
-// TYPE:        Damage / Combat Subsystem
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_damage
+// REVISION:     1.0.0
+// SYSTEM:       Damage System
+// ARCHITECTURE: Shared Damage System
+//
+// DESCRIPTION:
+// Defines damage helpers that apply hit points, invincibility timing, knockback, and death behavior to damageable instances.
+//
+// ===========================================================================
 
-/// @description Centralized damage handling, combat resolution, and health management system.
-///
-/// Responsibilities:
-/// - Damage application
-/// - Health modification
-/// - Death handling
-/// - Invulnerability processing
-/// - Damage source tracking
-/// - Combat effect triggering
-/// - Shared combat utility functions
-///
-/// Public API:
-/// - Damage_Apply()
-///
-/// Notes:
-/// - Shared combat logic should remain centralized
-/// - Avoid duplicating damage logic across objects
-/// - Supports player, animals, enemies, and traps
-/// - Visual/audio combat feedback should remain modular
-/// - State machines may react to combat state changes
-
+/// @function Damage_Apply
+/// @description Handles damage apply for this file's subsystem.
+/// @param {Any} target Input used by Damage_Apply.
+/// @param {Any} amount Input used by Damage_Apply.
+/// @param {Any} source Input used by Damage_Apply.
+/// @returns {Any} The result of the operation, when it produces one.
 function Damage_Apply(target, amount, source) {
 	show_debug_message(string(amount) + " DAMAGE from " + string(source));
 
@@ -94,7 +85,7 @@ function Damage_Apply(target, amount, source) {
 			target.is_dead = true;
 		}
 
-		// 🔥 Trigger game over globally
+		   // Trigger game over globally
 		if (instance_exists(obj_controller)) {
 			global.game_state = GAME_STATE.GAME_OVER;
 			obj_controller.fade_target = 1;
@@ -103,3 +94,8 @@ function Damage_Apply(target, amount, source) {
 		}
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

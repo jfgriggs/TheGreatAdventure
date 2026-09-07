@@ -20,3 +20,6 @@ The same direction value can control both movement and visual rotation.
 
 ## Known notes
 Rendering is separate from collision and hit behavior.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

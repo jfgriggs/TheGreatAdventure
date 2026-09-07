@@ -20,3 +20,6 @@ Input is intent, while a state decides what that intent means right now. Separat
 
 ## Known notes
 Player-specific callbacks require a player owner; they are not intended for arbitrary objects that merely have an `sm` field.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

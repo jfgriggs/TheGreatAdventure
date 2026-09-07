@@ -1,26 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_hud
-// EVENT:       Draw GUI
-// SYSTEM:      HUD Rendering
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_hud
+// EVENT:        Draw
+// REVISION:     1.0.0
+// SYSTEM:       Hud Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Draws the GUI: game timer, points, inventory, animal counts or goals, weapon information, and state-dependent HUD panels.
+//
+// ===========================================================================
 
-/// @description Draws gameplay HUD elements and runtime player information.
-///
-/// Responsibilities:
-/// - Draw player health
-/// - Draw timer/score
-/// - Draw inventory information
-/// - Draw equipped weapons/items
-/// - Draw ammo/resource counters
-/// - Draw optional debug information
-///
-/// Notes:
-/// - Gameplay overlays belong here
-/// - Global game-state overlays belong in obj_controller
-/// - Rendering should remain presentation-focused
-/// - Avoid modifying gameplay state during rendering
-
-// If game not playing do not show
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
 }
@@ -458,3 +447,8 @@ if (weap_count > 0) {
 		);
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

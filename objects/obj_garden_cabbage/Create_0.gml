@@ -1,4 +1,14 @@
-/// @description obj_garden_corn : Create Event
+// ===========================================================================
+// OBJECT:       obj_garden_cabbage
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Garden Cabbage Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures a plant to grow cabbage by inheriting shared plant setup, then setting ITEM.CABBAGE, spr_garden_cabbage, and the pickup sound.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -33,3 +43,8 @@ harvest_sound = snd_item_pickup;
 //
 // Slower crops:
 // growth_time = room_speed * 20; 
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -20,3 +20,6 @@ A predicate answers a yes/no question. A tilemap is a grid of map cells that can
 
 ## Known notes
 If the controller does not exist, `Tile_Get` returns `TILE.EMPTY`; water blocks normal movement but only walls block thrown items and fired weapons.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

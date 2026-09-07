@@ -1,4 +1,14 @@
-/// @description obj_garden_corn : Create Event
+// ===========================================================================
+// OBJECT:       obj_garden_pepper
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Garden Pepper Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures a pepper plant with ITEM.PEPPER, its garden sprite, and pickup sound.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -33,3 +43,8 @@ harvest_sound = snd_item_pickup;
 //
 // Slower crops:
 // growth_time = room_speed * 20; 
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

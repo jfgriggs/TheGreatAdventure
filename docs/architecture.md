@@ -4,6 +4,8 @@
 
 The game is divided into objects and shared scripts. Objects represent things in the world. Scripts provide reusable rules that many objects can use.
 
+See the editable [architecture diagram](diagrams/architecture.drawio) for a visual map of these layers and the typical frame update.
+
 The main design rule is:
 
 > Parents contain shared behavior. Children contain configuration.

@@ -1,5 +1,14 @@
-// File: obj_projectile_arrow.gml
-// Event: step
+// ===========================================================================
+// OBJECT:       obj_projectile_arrow
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Arrow Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Moves the arrow, checks wall collision and travel distance, and handles its target hit behavior.
+//
+// ===========================================================================
 
 vx = lengthdir_x(speed, direction);
 vy = lengthdir_y(speed, direction);
@@ -39,3 +48,8 @@ if (remaining <= 0) {
 }
 
 event_inherited();
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -20,3 +20,6 @@ A stage sequence is a simple state machine. A collision or radius query checks w
 
 ## Known notes
 Harvesting only happens in the fruiting stage; failed inventory insertion does not mark the plant harvested.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

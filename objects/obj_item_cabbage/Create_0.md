@@ -20,3 +20,6 @@ A mask is the shape used for collision. A data factory keeps item values consist
 
 ## Known notes
 Configuration-focused child Create event that calls `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

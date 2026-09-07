@@ -20,3 +20,6 @@ Health is state stored on an instance. Knockback is an impulse that changes move
 
 ## Known notes
 Targets must initialize the capabilities this script expects. The source also contains legacy defensive checks for missing instance fields.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

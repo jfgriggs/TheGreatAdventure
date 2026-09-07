@@ -1,39 +1,18 @@
-// =============================================================================
+// ===========================================================================
 // SCRIPT:       scr_movement
-// SYSTEM:       Movement
+// REVISION:     1.0.0
+// SYSTEM:       Movement System
 // ARCHITECTURE: Shared Movement System
 //
 // DESCRIPTION:
-// Provides centralized movement, terrain interaction, collision detection,
-// and movement restrictions for all moving entities.
+// Provides shared movement helpers, including Movement_Update, which applies input, acceleration, speed limits, impulses, damping, tile checks, and position changes.
 //
-// Objects using this system are expected to initialize the standard movement
-// interface during their Create event.
-//
-// Objects using this system should initialize:
-//   move_input_x
-//   move_input_y
-//   velocity_x
-//   velocity_y
-//   impulse_x
-//   impulse_y
-//   acceleration
-//   max_speed
-//   movement_damping
-//   movement_speed_multiplier
-//   tile_check_blocking
-//   tile_check_safe
-//   stay_in_safe_area
-//   is_safe
-// =============================================================================
-
+// ===========================================================================
 
 /// @function Movement_Get_Terrain_Speed_Factor
-/// @description
-/// Returns the movement speed multiplier for the terrain beneath an instance.
-///
-/// @param _inst
-/// @return {Real}
+/// @description Handles movement get terrain speed factor for this file's subsystem.
+/// @param {Any} _inst Input used by Movement_Get_Terrain_Speed_Factor.
+/// @returns {Any} The result of the operation, when it produces one.
 function Movement_Get_Terrain_Speed_Factor(_inst)
 {
 	var tile = Tile_Get(_inst.x, _inst.y);
@@ -54,15 +33,11 @@ function Movement_Get_Terrain_Speed_Factor(_inst)
 
 
 /// @function Movement_Can_Move_To
-/// @description
-/// Determines whether an instance may move to the specified position.
-///
-/// Performs tile blocking and optional safe-area validation.
-///
-/// @param _inst
-/// @param _x
-/// @param _y
-/// @return {Boolean}
+/// @description Handles movement can move to for this file's subsystem.
+/// @param {Any} _inst Input used by Movement_Can_Move_To.
+/// @param {Any} _x Input used by Movement_Can_Move_To.
+/// @param {Any} _y Input used by Movement_Can_Move_To.
+/// @returns {Any} The result of the operation, when it produces one.
 function Movement_Can_Move_To(_inst, _x, _y)
 {
 	var tile = Tile_Get(_x, _y);
@@ -110,13 +85,11 @@ function Movement_Can_Move_To(_inst, _x, _y)
 
 
 /// @function Movement_Resolve
-/// @description
-/// Attempts movement using full movement first, then falls back to X-only and
-/// Y-only movement when blocked.
-///
-/// @param _inst
-/// @param _vx
-/// @param _vy
+/// @description Handles movement resolve for this file's subsystem.
+/// @param {Any} _inst Input used by Movement_Resolve.
+/// @param {Any} _vx Input used by Movement_Resolve.
+/// @param {Any} _vy Input used by Movement_Resolve.
+/// @returns {Any} The result of the operation, when it produces one.
 function Movement_Resolve(_inst, _vx, _vy)
 {
 	// NOTE:
@@ -160,19 +133,9 @@ function Movement_Resolve(_inst, _vx, _vy)
 
 
 /// @function Movement_Update
-/// @description
-/// Executes the shared movement pipeline for an object.
-///
-/// Pipeline:
-/// - Input damping
-/// - Acceleration
-/// - Speed limiting
-/// - External impulses
-/// - Movement Damping
-/// - Velocity Validation
-/// - Collision resolution
-///
-/// @param _inst
+/// @description Handles movement update for this file's subsystem.
+/// @param {Any} _inst Input used by Movement_Update.
+/// @returns {void} The result of the operation, when it produces one.
 function Movement_Update(_inst)
 {
 	// -------------------------------------------------------------------------
@@ -276,3 +239,8 @@ function Movement_Update(_inst)
 
 	Movement_Resolve(_inst, _inst.velocity_x, _inst.velocity_y);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

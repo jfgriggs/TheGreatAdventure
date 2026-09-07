@@ -20,3 +20,6 @@ Draw code can use simulation values to make motion visible.
 
 ## Known notes
 The Draw event does not own boomerang path calculations.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

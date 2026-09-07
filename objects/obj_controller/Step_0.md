@@ -20,3 +20,6 @@ A global state is shared information. A single owner prevents several objects fr
 
 ## Known notes
 Gameplay updates elsewhere are expected to gate on `GAME_STATE.PLAYING`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

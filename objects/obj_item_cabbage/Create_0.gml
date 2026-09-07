@@ -1,26 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_item_cabbage
-// EVENT:       Create
-// SYSTEM:      Item Configuration
-// =============================================================================
-
-/// @description Configures cabbage-specific item behavior and data.
-///
-/// Parent Object:
-/// - obj_item
-///
-/// Responsibilities:
-/// - Assign cabbage item type
-/// - Configure item data struct
-/// - Setup vegetable-specific properties
-/// - Configure throw/interactions
-/// - Initialize visual configuration
-///
-/// Notes:
-/// - Inherits shared behavior from obj_item
-/// - Item data should remain data-driven
-/// - Shared item logic belongs in scr_items
-/// - Avoid duplicating generic item functionality here
+// ===========================================================================
+// OBJECT:       obj_item_cabbage
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Item Cabbage Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the shared item as cabbage by selecting ITEM.CABBAGE, creating its definition, copying life, and applying its sprite and mask.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -44,3 +32,8 @@ life = item.life;
 
 sprite_index = item.sprite;
 mask_index = item.sprite;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

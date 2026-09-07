@@ -20,3 +20,6 @@ Configuration values tune behavior without changing the shared enemy framework.
 
 ## Known notes
 The enemy's movement path is legacy and is retained as observed.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -1,30 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_item
-// EVENT:       Step
-// SYSTEM:      Item Runtime Update
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_item
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Item Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Updates item lifetime, movement, tile collision, and nearby pickup interactions.
+//
+// ===========================================================================
 
-/// @description Updates item runtime behavior and interaction logic.
-///
-/// Child Objects:
-/// - obj_item_carrot
-/// - obj_item_corn
-/// - obj_item_*
-///
-/// Responsibilities:
-/// - Handle pickup detection
-/// - Update movement/physics behavior
-/// - Process interaction logic
-/// - Update timers/effects
-/// - Handle terrain interaction
-/// - Update visual state
-///
-/// Notes:
-/// - Shared item systems should remain centralized
-/// - Terrain behavior should route through shared systems
-/// - Avoid duplicating interaction logic across item types
-
-// If game not playing stop
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
 }
@@ -75,3 +60,8 @@ if (point_distance(x, y, p.x, p.y) < pickup_radius) {
 	// =========================
 	instance_destroy();
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

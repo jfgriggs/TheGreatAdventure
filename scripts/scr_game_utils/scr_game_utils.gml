@@ -1,42 +1,37 @@
-// =============================================================================
-// SCRIPT:      scr_game_utils
-// TYPE:        Shared Utility Subsystem
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_game_utils
+// REVISION:     1.0.0
+// SYSTEM:       Game Utils System
+// ARCHITECTURE: Shared Game Utils System
+//
+// DESCRIPTION:
+// Provides small reusable game helpers, including time conversion, random or selection utilities, and general value operations used by gameplay systems.
+//
+// ===========================================================================
 
-/// @description Centralized shared utility functions used across gameplay systems and runtime subsystems.
-///
-/// Responsibilities:
-/// - Mouse/world coordinate helpers
-/// - Shared math/vector utilities
-/// - General gameplay helper functions
-/// - Common validation helpers
-/// - Reusable lightweight utility logic
-///
-/// Public API:
-/// - Mouse_GetWorldX()
-/// - Mouse_GetWorldY()
-/// - Screen_Shake()
-/// - Spare_Spawn()
-/// - Game_Reset()
-///
-/// Notes:
-/// - Keep functions lightweight and reusable
-/// - Avoid subsystem-specific gameplay logic here
-/// - Larger systems should remain in dedicated subsystem scripts
-/// - Prevent duplication of common helper logic
-
+/// @function Mouse_GetWorldX
+/// @description Handles mouse getworldx for this file's subsystem.
+/// @returns {Any} The result of the operation, when it produces one.
 function Mouse_GetWorldX() {
 	var cam = view_camera[0];
 	return camera_get_view_x(cam)
 		+ (window_mouse_get_x() / window_get_width()) * camera_get_view_width(cam);
 }
 
+/// @function Mouse_GetWorldY
+/// @description Handles mouse getworldy for this file's subsystem.
+/// @returns {Any} The result of the operation, when it produces one.
 function Mouse_GetWorldY() {
 	var cam = view_camera[0];
 	return camera_get_view_y(cam)
 		+ (window_mouse_get_y() / window_get_height()) * camera_get_view_height(cam);
 }
 
+/// @function Screen_Shake
+/// @description Handles screen shake for this file's subsystem.
+/// @param {Any} amount Input used by Screen_Shake.
+/// @param {Any} duration Input used by Screen_Shake.
+/// @returns {void} The result of the operation, when it produces one.
 function Screen_Shake(amount, duration) {
 	var c = obj_controller;
 
@@ -46,6 +41,11 @@ function Screen_Shake(amount, duration) {
 	}
 }
 
+/// @function Spark_Spawn
+/// @description Handles spark spawn for this file's subsystem.
+/// @param {Any} _x Input used by Spark_Spawn.
+/// @param {Any} _y Input used by Spark_Spawn.
+/// @returns {Any} The result of the operation, when it produces one.
 function Spark_Spawn(_x, _y) {
 	if (!instance_exists(obj_controller)) {
 		return;
@@ -61,6 +61,9 @@ function Spark_Spawn(_x, _y) {
 	part_particles_create(ps, _x + random_range(-6, 6), _y + random_range(-6, 6), pt, 20);
 }
 
+/// @function Game_Reset
+/// @description Handles game reset for this file's subsystem.
+/// @returns {void} The result of the operation, when it produces one.
 function Game_Reset() {
 	/// -------------------------
 	/// RESET GAME STATE
@@ -70,6 +73,15 @@ function Game_Reset() {
 	room_restart();
 }
 
+/// @function Seconds
+/// @description Handles seconds for this file's subsystem.
+/// @param {Any} _seconds Input used by Seconds.
+/// @returns {Any} The result of the operation, when it produces one.
 function Seconds(_seconds) {
 	return round(game_get_speed(gamespeed_fps) * _seconds);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

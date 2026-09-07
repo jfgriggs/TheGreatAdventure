@@ -20,3 +20,6 @@ A state transition changes the rule currently controlling an object. Distance ch
 
 ## Known notes
 Enemy movement fields and update paths differ from player and animal movement. This is documented legacy behavior, not normalized here.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -11,6 +11,12 @@ This project is a GameMaker game, but it is also a place to learn how larger sof
 3. [Data Structures](data-structures.md) explains structs, arrays, maps, and lists.
 4. [Documentation Rules](documentation-rules.md) explains how code and documentation stay together.
 
+## Diagrams
+
+- [Architecture diagram](diagrams/architecture.drawio) shows the main systems and update flow.
+- [Object hierarchy diagram](diagrams/object-hierarchy.drawio) shows parent behavior, child configuration, and Create-event ordering.
+- [State-machine diagram](diagrams/state-machine.drawio) shows owners, states, callbacks, transitions, and shared systems.
+
 Each `.gml` file has a matching `.md` file in the same folder. For example:
 
 - `scripts/scr_movement/scr_movement.gml`

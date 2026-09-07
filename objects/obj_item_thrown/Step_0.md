@@ -20,3 +20,6 @@ Converting one object into another is a handoff between gameplay states. A frame
 
 ## Known notes
 The event uses its own `vx` and `vy` fields rather than the shared movement contract.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

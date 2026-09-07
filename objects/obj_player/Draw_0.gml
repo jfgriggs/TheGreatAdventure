@@ -1,23 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_player
-// EVENT:       Draw
-// SYSTEM:      Player Rendering
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_player
+// EVENT:        Draw
+// REVISION:     1.0.0
+// SYSTEM:       Player Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Draws the player's current sprite and presentation state, including direction or status effects selected during gameplay.
+//
+// ===========================================================================
 
-/// @description Handles player rendering and visual effects.
-///
-/// Responsibilities:
-/// - Draw player sprite
-/// - Draw weapon/aim visuals
-/// - Draw debug visuals
-/// - Draw temporary effects
-///
-/// Notes:
-/// - HUD rendering belongs in obj_hud
-/// - Debug rendering should remain optional
-/// - Rendering should avoid gameplay logic
-
-// Red flash + blink combo
 if (flash_timer > 0 && !flash_visible) {
 	//	draw_set_color(c_red);
 	image_blend = c_purple;
@@ -72,3 +64,8 @@ draw_self();
 ////if (variable_instance_exists(id, "active_item")) {
 ////	draw_text(x - 40, y - 15, "Item: " + string(active_item.name));
 ////} 
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

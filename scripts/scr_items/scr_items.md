@@ -20,3 +20,6 @@ A struct is a small named data package. A factory function creates consistent pa
 
 ## Known notes
 The source retains a legacy `variable_instance_exists()` check when validating item instances.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

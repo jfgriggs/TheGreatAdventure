@@ -1,34 +1,18 @@
-// =============================================================================
-// SCRIPT:      scr_items
-// TYPE:        Item Subsystem
-// =============================================================================
+// ===========================================================================
+// SCRIPT:       scr_items
+// REVISION:     1.0.0
+// SYSTEM:       Items System
+// ARCHITECTURE: Shared Items System
+//
+// DESCRIPTION:
+// Creates item definition structs and provides item damage, inventory, and throwing helpers.
+//
+// ===========================================================================
 
-/// @description Centralized item management and item utility system.
-///
-/// Responsibilities:
-/// - Item creation/configuration
-/// - Inventory item definitions
-/// - Vegetable/item behavior data
-/// - Item lookup helpers
-/// - Throw configuration data
-/// - Pickup interaction support
-/// - Shared item utility functions
-///
-/// Public API:
-/// - Item_Create(_type)
-/// - Item_Throw(_o)
-/// - Inventory_Select_Next_Active_Item(_player, _previous_item_name)
-/// - Inventory_Add_Item(_player, _item)
-/// - Inventory_Remove_Active_Item(_player)
-/// - Inventory_Select_Next_Stack(_player)
-///
-/// Notes:
-/// - Item definitions should remain data-driven
-/// - Shared interaction logic should remain centralized
-/// - Thrown-item behavior belongs in obj_item_thrown
-/// - Avoid duplicating item logic across objects
-/// - Supports inventory and world item systems
-
+/// @function Item_Create
+/// @description Handles item create for this file's subsystem.
+/// @param {Any} _type Input used by Item_Create.
+/// @returns {Any} The result of the operation, when it produces one.
 function Item_Create(_type) {
 	switch (_type) {
 		case ITEM.CABBAGE:
@@ -168,6 +152,11 @@ function Item_Create(_type) {
 	};
 }
 
+/// @function Item_Take_Damage
+/// @description Handles item take damage for this file's subsystem.
+/// @param {Any} _item Input used by Item_Take_Damage.
+/// @param {Any} _amount Input used by Item_Take_Damage.
+/// @returns {Any} The result of the operation, when it produces one.
 function Item_Take_Damage(_item, _amount) {
 	// =========================================================
 	// WORLD ITEM INSTANCE
@@ -200,6 +189,10 @@ function Item_Take_Damage(_item, _amount) {
 	}
 }
 
+/// @function Item_Throw
+/// @description Handles item throw for this file's subsystem.
+/// @param {Any} _o Input used by Item_Throw.
+/// @returns {Any} The result of the operation, when it produces one.
 function Item_Throw(_o) {
 	var o = _o;
 
@@ -273,6 +266,11 @@ function Item_Throw(_o) {
 /// @param {instance} player
 /// @param {string} previous_item_name
 
+/// @function Inventory_Select_Next_Active_Item
+/// @description Handles inventory select next active item for this file's subsystem.
+/// @param {Any} _player Input used by Inventory_Select_Next_Active_Item.
+/// @param {Any} _previous_item_name Input used by Inventory_Select_Next_Active_Item.
+/// @returns {Any} The result of the operation, when it produces one.
 function Inventory_Select_Next_Active_Item(_player, _previous_item_name) {
 	var inventory = _player.inventory;
 	var count = ds_list_size(inventory);
@@ -312,6 +310,11 @@ function Inventory_Select_Next_Active_Item(_player, _previous_item_name) {
 	_player.active_item = inventory[| _player.active_item_index];
 }
 
+/// @function Inventory_Add_Item
+/// @description Handles inventory add item for this file's subsystem.
+/// @param {Any} _player Input used by Inventory_Add_Item.
+/// @param {Any} _item Input used by Inventory_Add_Item.
+/// @returns {Any} The result of the operation, when it produces one.
 function Inventory_Add_Item(_player, _item) {
 	var key = _item.name;
 
@@ -375,6 +378,10 @@ function Inventory_Add_Item(_player, _item) {
 	return true;
 }
 
+/// @function Inventory_Remove_Active_Item
+/// @description Handles inventory remove active item for this file's subsystem.
+/// @param {Any} _player Input used by Inventory_Remove_Active_Item.
+/// @returns {Any} The result of the operation, when it produces one.
 function Inventory_Remove_Active_Item(_player) {
 	// -------------------------------------------------
 	// Safety
@@ -415,6 +422,10 @@ function Inventory_Remove_Active_Item(_player) {
 	return item;
 }
 
+/// @function Inventory_Select_Next_Stack
+/// @description Handles inventory select next stack for this file's subsystem.
+/// @param {Any} _player Input used by Inventory_Select_Next_Stack.
+/// @returns {Any} The result of the operation, when it produces one.
 function Inventory_Select_Next_Stack(_player) {
 	var keys = ds_map_keys_to_array(_player.inventory);
 	if (array_length(keys) <= 0) {
@@ -431,3 +442,8 @@ function Inventory_Select_Next_Stack(_player) {
 	_player.active_item_name = key;
 	_player.active_item = stack[| 0];
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

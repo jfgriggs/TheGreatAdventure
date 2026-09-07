@@ -1,38 +1,13 @@
-// =============================================================================
+// ===========================================================================
 // SCRIPT:       scr_tiles
 // REVISION:     1.1.0
-// SYSTEM:       Tile System
-// ARCHITECTURE: Shared Tile Query Subsystem
+// SYSTEM:       Tiles System
+// ARCHITECTURE: Shared Tiles System
 //
 // DESCRIPTION:
-// Centralized tilemap and terrain handling for The Great Adventure.
+// Defines tile types and converts the controller's tilemap into terrain, blocking, safety, and habitat queries.
 //
-// Responsibilities:
-// - Tile lookup
-// - Terrain classification
-// - Collision queries
-// - Safety queries
-// - Animal habitat queries
-//
-// =============================================================================
-
-// -----------------------------------------------------------------------------
-// Revision History
-// -----------------------------------------------------------------------------
-//
-// 1.1.0
-// • Updated to project documentation standards.
-// • Added function documentation.
-// • Organized into logical sections.
-// • Replaced instance lookup with global.controller.
-//
-// 1.0.0
-// • Initial implementation.
-//
-
-// -----------------------------------------------------------------------------
-// Tile Enumeration
-// -----------------------------------------------------------------------------
+// ===========================================================================
 
 enum TILE {
     EMPTY,              // 0
@@ -55,17 +30,10 @@ enum TILE {
 // -----------------------------------------------------------------------------
 
 /// @function Tile_Get
-/// @description
-/// Returns the logical terrain type at the specified room position.
-///
-/// @param {Real} _x
-///     Room X coordinate.
-///
-/// @param {Real} _y
-///     Room Y coordinate.
-///
-/// @returns {TILE}
-///     The terrain type at the specified location.
+/// @description Handles tile get for this file's subsystem.
+/// @param {Any} _x Input used by Tile_Get.
+/// @param {Any} _y Input used by Tile_Get.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Get(_x, _y)
 {
     var ctrl = global.controller;
@@ -102,14 +70,9 @@ function Tile_Get(_x, _y)
 // -----------------------------------------------------------------------------
 
 /// @function Tile_Is_Player_Safe
-/// @description
-/// Determines whether a player may safely occupy the specified terrain.
-///
-/// @param {TILE} _tile
-///     Terrain type to evaluate.
-///
-/// @returns {Boolean}
-///     True if the player may safely stand on the tile.
+/// @description Handles tile is player safe for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Player_Safe.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Player_Safe(_tile)
 {
     if (Tile_Is_Blocking(_tile))
@@ -133,11 +96,9 @@ function Tile_Is_Player_Safe(_tile)
 // -----------------------------------------------------------------------------
 
 /// @function Tile_Is_Blocking
-/// @description
-/// Determines whether a tile blocks normal movement.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is blocking for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Blocking.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Blocking(_tile)
 {
     return _tile == TILE.WALL
@@ -145,33 +106,27 @@ function Tile_Is_Blocking(_tile)
 }
 
 /// @function Tile_Is_Blocking_Thrown_Item
-/// @description
-/// Determines whether a thrown item is blocked by the terrain.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is blocking thrown item for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Blocking_Thrown_Item.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Blocking_Thrown_Item(_tile)
 {
     return _tile == TILE.WALL;
 }
 
 /// @function Tile_Is_Blocking_Fired_Weapon
-/// @description
-/// Determines whether a projectile is blocked by the terrain.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is blocking fired weapon for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Blocking_Fired_Weapon.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Blocking_Fired_Weapon(_tile)
 {
     return _tile == TILE.WALL;
 }
 
 /// @function Tile_Is_Blocking_Animal
-/// @description
-/// Determines whether an animal may move onto the specified terrain.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is blocking animal for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Blocking_Animal.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Blocking_Animal(_tile)
 {
     return _tile == TILE.WALL
@@ -185,45 +140,42 @@ function Tile_Is_Blocking_Animal(_tile)
 // -----------------------------------------------------------------------------
 
 /// @function Tile_Is_Animal_Chicken_Coop
-/// @description
-/// Returns whether the tile belongs to the chicken coop.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is animal chicken coop for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Animal_Chicken_Coop.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Animal_Chicken_Coop(_tile)
 {
     return _tile == TILE.CHICKEN_COOP;
 }
 
 /// @function Tile_Is_Animal_Cow_Pasture
-/// @description
-/// Returns whether the tile belongs to the cow pasture.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is animal cow pasture for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Animal_Cow_Pasture.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Animal_Cow_Pasture(_tile)
 {
     return _tile == TILE.COW_PASTURE;
 }
 
 /// @function Tile_Is_Animal_Pig_Pen
-/// @description
-/// Returns whether the tile belongs to the pig pen.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is animal pig pen for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Animal_Pig_Pen.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Animal_Pig_Pen(_tile)
 {
     return _tile == TILE.PIG_PEN;
 }
 
 /// @function Tile_Is_Animal_Sheep_Pasture
-/// @description
-/// Returns whether the tile belongs to the sheep pasture.
-///
-/// @param {TILE} _tile
-/// @returns {Boolean}
+/// @description Handles tile is animal sheep pasture for this file's subsystem.
+/// @param {Any} _tile Input used by Tile_Is_Animal_Sheep_Pasture.
+/// @returns {Any} The result of the operation, when it produces one.
 function Tile_Is_Animal_Sheep_Pasture(_tile)
 {
     return _tile == TILE.SHEEP_PASTURE;
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.1.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

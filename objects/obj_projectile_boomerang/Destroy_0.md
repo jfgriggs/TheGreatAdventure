@@ -20,3 +20,6 @@ Cleanup can also restore gameplay state, not only release memory.
 
 ## Known notes
 The owner existence check protects against a player already being removed.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

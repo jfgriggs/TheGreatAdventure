@@ -20,3 +20,6 @@ A parent can provide a reusable lifecycle while children provide settings.
 
 ## Known notes
 Configuration-only Create event that calls `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

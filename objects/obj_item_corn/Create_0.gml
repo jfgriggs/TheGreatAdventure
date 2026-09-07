@@ -1,26 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_item_corn
-// EVENT:       Create
-// SYSTEM:      Item Configuration
-// =============================================================================
-
-// @description Configures corn-specific item behavior and data.
+// ===========================================================================
+// OBJECT:       obj_item_corn
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Item Corn Object
+// ARCHITECTURE: Object Event Architecture
 //
-// Parent Object:
-// - obj_item
+// DESCRIPTION:
+// Configures a corn item with ITEM.CORN, the centralized item definition, its life, and sprite mask.
 //
-// Responsibilities:
-// - Assign corn item type
-// - Configure item data struct
-// - Setup vegetable-specific properties
-// - Configure throw/interactions
-// - Initialize visual configuration
-//
-// Notes:
-// - Inherits shared behavior from obj_item
-// - Item data should remain data-driven
-// - Shared item logic belongs in scr_items
-// - Avoid duplicating generic item functionality here
+// ===========================================================================
 
 event_inherited();
 
@@ -44,3 +32,8 @@ life = item.life;
 
 sprite_index = item.sprite;
 mask_index = item.sprite;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

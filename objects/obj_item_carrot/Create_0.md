@@ -20,3 +20,6 @@ Children can specialize data without rewriting parent behavior.
 
 ## Known notes
 Calls `event_inherited()` and is otherwise configuration-focused.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

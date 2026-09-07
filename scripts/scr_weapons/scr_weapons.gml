@@ -1,29 +1,13 @@
-// =============================================================================
-// SCRIPT:      scr_weapons
-// TYPE:        Weapon Subsystem
-// =============================================================================
-
-/// @description Centralized weapon handling and combat utility system.
-///
-/// Responsibilities:
-/// - Weapon creation/configuration
-/// - Weapon firing behavior
-/// - Ammo/resource handling
-/// - Damage configuration
-/// - Projectile spawning
-/// - Weapon cooldown management
-/// - Shared combat helpers
-///
-/// Public API:
-/// - Weapon_Create()
-/// - Weapon_Fire()
-///
-/// Notes:
-/// - Weapon definitions should remain data-driven
-/// - Shared combat logic belongs in scr_combat
-/// - Projectile movement should remain centralized
-/// - Avoid duplicating weapon logic across objects
-/// - Supports player and enemy weapon systems
+// ===========================================================================
+// SCRIPT:       scr_weapons
+// REVISION:     1.0.0
+// SYSTEM:       Weapons System
+// ARCHITECTURE: Shared Weapons System
+//
+// DESCRIPTION:
+// Creates centralized weapon definition structs and supplies weapon setup or selection data.
+//
+// ===========================================================================
 
 enum WEAPON {
 	SLINGSHOT,
@@ -39,6 +23,10 @@ enum PROJECTILE_MOTION {
 	SINE,
 }
 
+/// @function Weapon_Create
+/// @description Handles weapon create for this file's subsystem.
+/// @param {Any} _type Input used by Weapon_Create.
+/// @returns {Any} The result of the operation, when it produces one.
 function Weapon_Create(_type) {
 	switch (_type) {
 		case WEAPON.SLINGSHOT:
@@ -133,6 +121,10 @@ function Weapon_Create(_type) {
 	};
 }
 
+/// @function Weapon_Fire
+/// @description Handles weapon fire for this file's subsystem.
+/// @param {Any} _o Input used by Weapon_Fire.
+/// @returns {Any} The result of the operation, when it produces one.
 function Weapon_Fire(_o) {
 	var o = _o;
 
@@ -311,3 +303,8 @@ function Weapon_Fire(_o) {
 			break;
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

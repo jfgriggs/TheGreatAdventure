@@ -20,3 +20,6 @@ Configuration chooses data while inherited code performs behavior.
 
 ## Known notes
 This is a simple child Create event: it calls `event_inherited()` and supplies cabbage settings.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

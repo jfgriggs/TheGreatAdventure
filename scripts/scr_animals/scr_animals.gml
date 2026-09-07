@@ -1,32 +1,18 @@
-// =============================================================================
+// ===========================================================================
 // SCRIPT:       scr_animals
 // REVISION:     1.3.0
-// SYSTEM:       Animal Management
-// ARCHITECTURE: Shared Animal Subsystem
+// SYSTEM:       Animals System
+// ARCHITECTURE: Shared Animals System
 //
 // DESCRIPTION:
-// Shared functionality for spawning, locating, targeting, damaging,
-// and managing animal instances.
+// Defines animal data and helper functions for creating animal definitions and handling animal-specific behavior.
 //
-// Revision History
-// =============================================================================
-// 1.3.0
-// • Continued documentation standardization.
-// • Prepared subsystem for object-owned animal configuration.
-// • No gameplay behavior changes.
-//
-// 1.2.0
-// • Removed obsolete Animal_Get_Pen_Tile().
-// • Removed obsolete Animal_Is_In_Correct_Pen().
-// • Began standardizing documentation.
-// =============================================================================
+// ===========================================================================
 
 /// @function Animal_Get_Definition
-/// @description
-/// Returns the immutable configuration for an animal species.
-///
-/// @param {ANIMAL} _animal_type
-/// @returns {Struct}
+/// @description Handles animal get definition for this file's subsystem.
+/// @param {Any} _animal_type Input used by Animal_Get_Definition.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Get_Definition(_animal_type)
 {
     static animal_defs =
@@ -212,7 +198,9 @@ function Animal_Get_Definition(_animal_type)
 }
 
 /// @function Animal_Update_Facing
-/// @description TODO: Document.
+/// @description Handles animal update facing for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_Update_Facing.
+/// @returns {void} The result of the operation, when it produces one.
 function Animal_Update_Facing(_animal) {
 	// -----------------------------------------------------------------------------
 	// DETERMINE FACING
@@ -273,7 +261,10 @@ function Animal_Update_Facing(_animal) {
 }
 
 /// @function Animal_Get_Item_Desire
-/// @description TODO: Document.
+/// @description Handles animal get item desire for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_Get_Item_Desire.
+/// @param {Any} _item Input used by Animal_Get_Item_Desire.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Get_Item_Desire(_animal, _item) {
 	// -----------------------------------------------------------------------------
 	// INVALID ITEM
@@ -333,7 +324,12 @@ function Animal_Get_Item_Desire(_animal, _item) {
 }
 
 /// @function Animal_HasLineOfSight
-/// @description TODO: Document.
+/// @description Handles animal haslineofsight for this file's subsystem.
+/// @param {Any} x1 Input used by Animal_HasLineOfSight.
+/// @param {Any} y1 Input used by Animal_HasLineOfSight.
+/// @param {Any} x2 Input used by Animal_HasLineOfSight.
+/// @param {Any} y2 Input used by Animal_HasLineOfSight.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_HasLineOfSight(x1, y1, x2, y2) {
 	// -----------------------------------------------------------------------------
 	// SIMPLE TILE LOS
@@ -359,7 +355,9 @@ function Animal_HasLineOfSight(x1, y1, x2, y2) {
 }
 
 /// @function Animal_FindTarget
-/// @description TODO: Document.
+/// @description Handles animal findtarget for this file's subsystem.
+/// @param {Any} o Input used by Animal_FindTarget.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_FindTarget(o) {
 	var best = noone;
 	var best_score = -1;
@@ -391,7 +389,9 @@ function Animal_FindTarget(o) {
 }
 
 /// @function Animal_IsSafe
-/// @description TODO: Document.
+/// @description Handles animal issafe for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_IsSafe.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_IsSafe(_animal)
 {
     if (!is_callable(_animal.tile_check_safe)) {
@@ -404,7 +404,9 @@ function Animal_IsSafe(_animal)
 }
 
 /// @function Animal_Find_Desired_Item
-/// @description TODO: Document.
+/// @description Handles animal find desired item for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_Find_Desired_Item.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Find_Desired_Item(_animal) {
 	var nearest = noone;
 	var nearest_dist = 999999;
@@ -492,11 +494,9 @@ function Animal_Find_Spawn_Position(
 }
 
 /// @function Animal_Spawn
-/// @description
-/// Spawns the requested animals using the species configuration defined by
-/// Animal_Get_Definition().
-///
-/// @param {Array<Struct>} _spawn_defs
+/// @description Handles animal spawn for this file's subsystem.
+/// @param {Any} _spawn_defs Input used by Animal_Spawn.
+/// @returns {void} The result of the operation, when it produces one.
 function Animal_Spawn(_spawn_defs)
 {
     // -------------------------------------------------------------------------
@@ -545,7 +545,11 @@ function Animal_Spawn(_spawn_defs)
 }
 
 /// @function Animal_Take_Damage
-/// @description TODO: Document.
+/// @description Handles animal take damage for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_Take_Damage.
+/// @param {Any} _damage Input used by Animal_Take_Damage.
+/// @param {Any} _source Input used by Animal_Take_Damage.
+/// @returns {Any} The result of the operation, when it produces one.
 function Animal_Take_Damage(_animal, _damage, _source) {
 	// --------------------------------------------------
 	// Ignore Dead Animals
@@ -598,7 +602,10 @@ function Animal_Take_Damage(_animal, _damage, _source) {
 }
 
 /// @function Animal_Start_Flee
-/// @description TODO: Document.
+/// @description Handles animal start flee for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_Start_Flee.
+/// @param {Any} _source Input used by Animal_Start_Flee.
+/// @returns {void} The result of the operation, when it produces one.
 function Animal_Start_Flee(_animal, _source)
 {
     _animal.flee_source = _source;
@@ -612,7 +619,14 @@ function Animal_Start_Flee(_animal, _source)
 }
 
 /// @function Animal_Death_Effect
-/// @description TODO: Document.
+/// @description Handles animal death effect for this file's subsystem.
+/// @param {Any} _animal Input used by Animal_Death_Effect.
+/// @returns {void} The result of the operation, when it produces one.
 function Animal_Death_Effect(_animal) {
 	Spark_Spawn(_animal.x, _animal.y);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.3.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

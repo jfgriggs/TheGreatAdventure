@@ -20,3 +20,6 @@ Room Creation Code is a special event attached to a room. An event is code that 
 
 ## Known notes
 The exact order of startup is important: controller-owned resources and global values must exist before gameplay objects use them.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

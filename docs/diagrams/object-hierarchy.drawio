@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" modified="2026-09-07T00:00:00.000Z" agent="The Great Adventure Documentation" version="24.7.17">
+  <diagram id="object-hierarchy" name="Object Hierarchy">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="animal" value="obj_animal&#xa;Shared behavior: movement, health, AI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1"><mxGeometry x="420" y="30" width="280" height="80" as="geometry" /></mxCell>
+        <mxCell id="chicken" value="obj_animal_chicken&#xa;animal_type = CHICKEN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="40" y="220" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="cow" value="obj_animal_cow&#xa;animal_type = COW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="300" y="220" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="pig" value="obj_animal_pig&#xa;animal_type = PIG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="560" y="220" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="sheep" value="obj_animal_sheep&#xa;animal_type = SHEEP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" vertex="1" parent="1"><mxGeometry x="820" y="220" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="before" value="Before event_inherited():&#xa;set values the parent needs immediately" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1"><mxGeometry x="120" y="390" width="360" height="75" as="geometry" /></mxCell>
+        <mxCell id="after" value="After event_inherited():&#xa;override sprites or tuning when the parent made defaults" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1"><mxGeometry x="600" y="390" width="420" height="75" as="geometry" /></mxCell>
+        <mxCell id="definition" value="scr_animals&#xa;Animal_Get_Definition()&#xa;Centralized species data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;" vertex="1" parent="1"><mxGeometry x="380" y="540" width="320" height="80" as="geometry" /></mxCell>
+        <mxCell id="p1" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="animal" target="chicken"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="p2" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="animal" target="cow"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="p3" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="animal" target="pig"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="p4" value="inherits" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="animal" target="sheep"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="p5" value="sets before inheritance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;" edge="1" parent="1" source="before" target="chicken"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="p6" value="can override after inheritance" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=block;" edge="1" parent="1" source="after" target="cow"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="p7" value="loads definition" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="animal" target="definition"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

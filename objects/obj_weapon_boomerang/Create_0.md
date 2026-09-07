@@ -20,3 +20,6 @@ Child objects can choose data while the parent controls common firing behavior.
 
 ## Known notes
 Simple configuration-only Create event using `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

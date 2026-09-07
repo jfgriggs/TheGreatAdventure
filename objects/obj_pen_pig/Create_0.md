@@ -20,3 +20,6 @@ A small child event can specialize a shared object with one data value.
 
 ## Known notes
 Configuration-only and calls `event_inherited()`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

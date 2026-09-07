@@ -1,8 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_player_ben
-// EVENT:       Create
-// SYSTEM:      Ben Configuration
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_player_ben
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Player Ben Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures the player as Ben, supplying character-specific sprite or tuning values and inheriting shared player setup.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -23,3 +29,8 @@ acceleration = 0.32;
 movement_damping = 0.04;
 max_speed = move_speed;
 impulse_decay = 0.55;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

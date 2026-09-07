@@ -1,25 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_player
-// EVENT:       Step
-// SYSTEM:      Player Runtime Update
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_player
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Player Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Updates player input, state machine, movement, attacks, damage effects, and game-over interactions.
+//
+// ===========================================================================
 
-/// @description Handles per-frame player updates and delegates behavior to shared systems and player states.
-///
-/// Responsibilities:
-/// - Update player state machine
-/// - Process movement input
-/// - Process aiming input
-/// - Handle attack/throw input
-/// - Apply movement and collision
-/// - Update terrain interactions
-/// - Update animation state
-///
-/// Notes:
-/// - State-specific behavior belongs in scr_player_states
-/// - Avoid embedding complex gameplay logic directly here
-
-// If game not playing stop
 if (global.game_state != GAME_STATE.PLAYING) {
 	exit;
 }
@@ -211,3 +201,8 @@ if (input_switch_item) {
 		active_item = stack[| 0];
 	}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

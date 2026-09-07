@@ -20,3 +20,6 @@ A projectile can query several target types and apply the same hit idea to each.
 
 ## Known notes
 Target checks are explicitly written for the enemy objects named in the source.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -1,26 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_item_tomato
-// EVENT:       Create
-// SYSTEM:      Item Configuration
-// =============================================================================
-
-/// @description Configures tomato-specific item behavior and data.
-///
-/// Parent Object:
-/// - obj_item
-///
-/// Responsibilities:
-/// - Assign tomato item type
-/// - Configure item data struct
-/// - Setup vegetable-specific properties
-/// - Configure throw/interactions
-/// - Initialize visual configuration
-///
-/// Notes:
-/// - Inherits shared behavior from obj_item
-/// - Item data should remain data-driven
-/// - Shared item logic belongs in scr_items
-/// - Avoid duplicating generic item functionality here
+// ===========================================================================
+// OBJECT:       obj_item_tomato
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Item Tomato Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures a tomato item with ITEM.TOMATO, its definition, life value, sprite, and mask.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -44,3 +32,8 @@ life = item.life;
 
 sprite_index = item.sprite;
 mask_index = item.sprite;
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

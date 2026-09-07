@@ -20,3 +20,6 @@ A moving object repeatedly calculates its next position. Hit testing checks whet
 
 ## Known notes
 Uses the shared tile-blocking rule for fired weapons.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

@@ -1,31 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_item_thrown
-// EVENT:       Step
-// SYSTEM:      Thrown Item Runtime Update
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_item_thrown
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Item Thrown Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Moves a thrown item, stops it at blocking tiles, and turns it back into an inventory item when its travel ends or it reaches a limit.
+//
+// ===========================================================================
 
-/// @description Updates thrown-item movement, collision, terrain interaction, and lifecycle behavior.
-///
-/// Parent Object:
-/// - obj_item
-///
-/// Responsibilities:
-/// - Apply movement physics
-/// - Process drag/deceleration
-/// - Handle collision resolution
-/// - Update terrain interaction
-/// - Process lifetime expiration
-/// - Detect animal interactions
-/// - Update visual state/effects
-///
-/// Notes:
-/// - Movement should route through shared systems
-/// - Terrain handling should remain centralized
-/// - Avoid duplicating projectile logic across item types
-
-/// =========================
-/// AIR PHYSICS
-/// =========================
 if (!landed) {
 	// ------------------------------------------------------------------------
 	// Movement
@@ -91,3 +75,8 @@ if (!landed) {
 	//    }
 	//}
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

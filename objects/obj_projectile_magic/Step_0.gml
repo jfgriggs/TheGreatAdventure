@@ -1,12 +1,15 @@
-// =============================================================================
-// OBJECT:      obj_projectile_magic
-// EVENT:       Step
-// SYSTEM:      Magic Projectile Runtime
-// =============================================================================
+// ===========================================================================
+// OBJECT:       obj_projectile_magic
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Projectile Magic Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Advances magic projectile motion and handles wall collision, range, and target effects.
+//
+// ===========================================================================
 
-/// =========================
-/// DISTANCE
-/// =========================
 distance_traveled += speed;
 
 if (distance_traveled >= max_distance) {
@@ -70,3 +73,8 @@ y = next_y;
 image_angle += image_angle_speed;
 
 event_inherited();
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

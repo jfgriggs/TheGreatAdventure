@@ -20,3 +20,6 @@ A field is named information stored on an instance. A timer is a value counted d
 
 ## Known notes
 The initial stage and timer are randomized, so newly placed plants may not all look identical.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

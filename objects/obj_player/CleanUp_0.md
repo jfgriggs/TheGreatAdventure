@@ -20,3 +20,6 @@ A resource lifetime begins at creation and ends at cleanup. Cleanup belongs with
 
 ## Known notes
 Resources owned by the controller or shared scripts are not the player's responsibility.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

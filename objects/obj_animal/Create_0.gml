@@ -1,26 +1,15 @@
-// =============================================================================
+// ===========================================================================
 // OBJECT:       obj_animal
 // EVENT:        Create
 // REVISION:     1.2.0
-// SYSTEM:       Animal Base Initialization
-// ARCHITECTURE: Animal System
+// SYSTEM:       Animal Object
+// ARCHITECTURE: Object Event Architecture
 //
 // DESCRIPTION:
-// Initializes the common variables and systems shared by all animal types.
+// Initializes the shared animal instance: definition data, movement fields, safety checks, health, sprite settings, and a state machine.
 //
-// Child animal objects configure species-specific values after calling
-// event_inherited().
-//
-// This object provides the default movement interface required by the shared
-// movement subsystem (scr_movement).
-// =============================================================================
+// ===========================================================================
 
-
-// -----------------------------------------------------------------------------
-// Configuration
-// -----------------------------------------------------------------------------
-
-// Load immutable species configuration
 var cfg = Animal_Get_Definition(animal_type);
 
 /// Gameplay
@@ -138,3 +127,8 @@ if (array_length(sprite_set) > 0)
 	mask_index = sprite_set[3];
 	sprite_index = sprite_set[3];
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.2.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

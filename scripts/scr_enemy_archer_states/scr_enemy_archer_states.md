@@ -20,3 +20,6 @@ A timer can be used as a repeating counter. An object reference lets one object 
 
 ## Known notes
 The state script assumes the archer has a valid player and projectile setup from its Create event.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

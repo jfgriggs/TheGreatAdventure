@@ -1,3 +1,15 @@
+// ===========================================================================
+// OBJECT:       oTreeParent
+// EVENT:        Step
+// REVISION:     1.0.0
+// SYSTEM:       Otreeparent Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Runs shared per-frame behavior for the legacy tree parent, including its world interaction or presentation state.
+//
+// ===========================================================================
+
 var p = global.player_object;
 
 //depth = -y;
@@ -15,3 +27,8 @@ with (obj_obstacle) {
 
 	image_alpha = lerp(image_alpha, target, 0.2);
 }
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

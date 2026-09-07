@@ -1,4 +1,14 @@
-/// @description obj_garden_corn : Create Event
+// ===========================================================================
+// OBJECT:       obj_garden_pumpkin
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Garden Pumpkin Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Configures a plant to grow pumpkins by selecting ITEM.PUMPKIN, the pumpkin garden sprite, and pickup sound.
+//
+// ===========================================================================
 
 event_inherited();
 
@@ -33,3 +43,8 @@ harvest_sound = snd_item_pickup;
 //
 // Slower crops:
 // growth_time = room_speed * 20; 
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

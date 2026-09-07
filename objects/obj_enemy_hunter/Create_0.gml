@@ -1,29 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_enemy_archer
-// EVENT:       Create
-// SYSTEM:      Enemy Configuration
-// =============================================================================
-
-/// @description Configures archer-specific enemy data, combat behavior, and AI tuning.
-///
-/// Parent Object:
-/// - obj_enemy_parent
-///
-/// Responsibilities:
-/// - Assign enemy type
-/// - Configure archer data struct
-/// - Setup ranged combat properties
-/// - Configure movement/AI tuning
-/// - Initialize targeting variables
-/// - Configure projectile behavior
-/// - Setup visual/animation configuration
-///
-/// Notes:
-/// - Inherits shared enemy behavior from obj_enemy_parent
-/// - Shared AI logic belongs in scr_enemy_states
-/// - Shared combat logic belongs in scr_combat
-/// - Enemy definitions should remain data-driven
-/// - Avoid duplicating shared enemy functionality here
+// ===========================================================================
+// OBJECT:       obj_enemy_hunter
+// EVENT:        Create
+// REVISION:     1.0.0
+// SYSTEM:       Enemy Hunter Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Initializes hunter-specific speed, vision and attack ranges, fire rate, health, invincibility, knockback, and local movement function.
+//
+// ===========================================================================
 
 sm = new StateMachine(id);
 
@@ -44,6 +29,16 @@ knockback_force = 4;
 
 sm.change(Archer_Patrol(sm));
 
+/// @function apply_movement
+/// @description Handles apply movement for this file's subsystem.
+/// @param {Any} _vx Input used by apply_movement.
+/// @param {Any} _vy Input used by apply_movement.
+/// @returns {void} The result of the operation, when it produces one.
 apply_movement = function(_vx, _vy) {
 	var o = self;
 };
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

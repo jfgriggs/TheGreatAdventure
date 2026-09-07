@@ -20,3 +20,6 @@ A weapon can create many small projectile instances, each with independent state
 
 ## Known notes
 The Create setup is similar to the slug but belongs to the pellet object.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

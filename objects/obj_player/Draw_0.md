@@ -20,3 +20,6 @@ A Draw event displays state; it normally does not decide the state.
 
 ## Known notes
 Depth and visual choices depend on the player fields initialized by the parent and child.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

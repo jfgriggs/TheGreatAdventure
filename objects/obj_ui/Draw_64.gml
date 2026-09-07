@@ -1,24 +1,14 @@
-// =============================================================================
-// OBJECT:      obj_ui
-// EVENT:       Draw GUI
-// SYSTEM:      User Interface Rendering
-// =============================================================================
-
-/// @description Draws gameplay-independent user interface elements, menus, prompts, notifications, and interaction feedback.
-///
-/// Responsibilities:
-/// - Draw menus and interface panels
-/// - Draw interaction prompts
-/// - Draw notifications/messages
-/// - Draw contextual UI elements
-/// - Draw temporary interface effects
-/// - Draw optional debug UI
-///
-/// Notes:
-/// - Gameplay HUD belongs in obj_hud
-/// - Global overlays belong in obj_controller
-/// - Keep rendering logic presentation-focused
-/// - Avoid gameplay/state modification during drawing
+// ===========================================================================
+// OBJECT:       obj_ui
+// EVENT:        Draw
+// REVISION:     1.0.0
+// SYSTEM:       Ui Object
+// ARCHITECTURE: Object Event Architecture
+//
+// DESCRIPTION:
+// Draws the UI overlay elements handled by the base UI object when the expected player or other instance is present.
+//
+// ===========================================================================
 
 var p = global.player_object;
 
@@ -40,3 +30,8 @@ draw_text(20, 110, "Time: " + string(global.game_time div 60));
 
 // Score
 draw_text(20, 140, "Score: " + string(global.points));
+
+// ---------------------------------------------------------------------------
+// Revision History
+// 1.0.0 - Documentation migration; executable behavior unchanged.
+// ---------------------------------------------------------------------------

@@ -20,3 +20,6 @@ A parent initializes common machinery; children choose which tool that machinery
 
 ## Known notes
 Concrete child definitions are centralized in `scr_weapons`.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

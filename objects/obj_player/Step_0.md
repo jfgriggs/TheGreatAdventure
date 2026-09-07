@@ -20,3 +20,6 @@ Input is read each frame. The player state machine turns input and world facts i
 
 ## Known notes
 Shared movement remains in the movement subsystem rather than being duplicated in player states.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

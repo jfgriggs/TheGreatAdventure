@@ -20,3 +20,6 @@ A collision is a rule that decides when moving objects meet a barrier or target.
 
 ## Known notes
 Projectile variants add their own behavior where their flight shape or target handling differs.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

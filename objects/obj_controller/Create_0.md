@@ -20,3 +20,6 @@ Ownership means one system is responsible for creating and cleaning up a resourc
 
 ## Known notes
 `global.controller` is the expected route to controller-owned tilemap and effects.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.

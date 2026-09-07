@@ -20,3 +20,6 @@ A parent object holds behavior shared by children. Initialization prepares field
 
 ## Known notes
 Child Create events must configure their type at the point expected by inherited setup; species behavior is intentionally shared and data-driven.
+
+## Documentation migration
+The matching GML file now uses the canonical project header and revision history. Function comments identify inputs and outputs where the file defines functions. This migration changes comments only; executable behavior is unchanged.
